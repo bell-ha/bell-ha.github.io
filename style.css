@@ -1,0 +1,167 @@
+:root {
+  --text-primary: #111;
+  --text-secondary: #555;
+  --border-color: #e6e6e6;
+  --bg-color: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  background: var(--bg-color);
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.container {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 120px 24px;
+}
+
+/* ===== Profile ===== */
+.profile {
+  display: flex;
+  gap: 48px;
+  margin-bottom: 140px;
+}
+
+.profile-img {
+  width: 300px;
+  height: 300px;
+  border-radius: 20%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+
+.name {
+  font-size: 3rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 18px;
+}
+
+.roles p {
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+}
+
+.links {
+  margin-top: 28px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+}
+
+.links a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.links a:hover {
+  text-decoration: underline;
+}
+
+.resume {
+  margin-top: 18px;
+}
+
+.resume-btn {
+  padding: 12px 26px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--text-primary);
+}
+
+/* ===== Sections ===== */
+section {
+  margin-bottom: 140px;
+}
+
+h2 {
+  font-size: 1.8rem;
+  margin-bottom: 36px;
+  color: var(--text-primary);
+}
+
+.about {
+  max-width: 760px;
+}
+
+.about p {
+  margin-bottom: 10px;
+}
+
+/* ===== Projects ===== */
+.projects {
+  max-width: 760px;
+}
+
+.project-category {
+  margin-bottom: 96px;
+}
+
+.category-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 36px;
+  color: var(--text-primary);
+}
+
+.project {
+  margin-bottom: 64px;
+}
+
+.project h4 {
+  font-size: 1.15rem;
+  margin-bottom: 12px;
+  color: var(--text-primary);
+}
+
+.project .summary {
+  margin-bottom: 14px;
+}
+
+.project ul {
+  list-style: disc;
+  padding-left: 22px;
+  margin-bottom: 12px;
+}
+
+.project li {
+  margin-bottom: 6px;
+}
+
+.project a {
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.project a:hover {
+  text-decoration: underline;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 760px) {
+  .profile {
+    flex-direction: column;
+  }
+
+  .profile-img {
+    width: 160px;
+    height: 160px;
+  }
+
+  .name {
+    font-size: 2.3rem;
+  }
+}
