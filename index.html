@@ -22,7 +22,7 @@
       <h1 class="name">Jongha Lee</h1>
 
       <div class="roles">
-        <p>Software & AI Systems Developer, Music Technologist</p>
+        <p>Software & AI Systems Developer, Robotics, Music Technologist</p>
       </div>
 
       <div class="links">
@@ -48,6 +48,7 @@
     <p>
       웹 서비스와 백엔드 시스템을 개발하며,
       컴퓨터 비전과 머신러닝을 활용한 AI 시스템,<br>
+      사회적 약자를 위한 로봇 시스템 설계 및 소프트웨어 개발,<br>
       그리고 사운드와 인터랙션을 결합한 뮤직테크놀러지 프로젝트를 진행해왔습니다.
     </p>
     <p>
@@ -120,6 +121,76 @@
           <li>MetalLB를 활용한 서비스 외부 노출</li>
         </ul>
         <a href="https://github.com/bell-ha/kubernetes-cloudstack-infrastructure" target="_blank">GitHub 보기 →</a>
+      </div>
+
+      <div class="project">
+        <h4>아티스트 홍보 플랫폼 SEIHI</h4>
+        <p class="summary">
+          아티스트 정보 및 멀티미디어 콘텐츠 관리를 위한 풀스택 웹 애플리케이션입니다.<br>
+          Google OAuth 및 이메일 OTP 인증, Cloudinary 기반 파일 업로드를 지원합니다.
+        </p>
+        <ul>
+          <li>FastAPI + PostgreSQL(NeonDB) 기반 백엔드 API 설계 및 구현</li>
+          <li>React 18 + TypeScript + Tailwind CSS 프론트엔드 구현</li>
+          <li>Google OAuth 2.0 및 이메일 OTP 다중 인증 시스템</li>
+          <li>Cloudinary CDN 기반 이미지·음원 파일 업로드</li>
+          <li>Docker Compose 환경 구성 및 Cloudtype 배포</li>
+        </ul>
+        <div class="project-links">
+          <a href="https://www.seihi.co.kr/" target="_blank" class="project-btn">사이트 보기 →</a>
+          <a href="https://github.com/bell-ha/artist-promotion-platform" target="_blank">GitHub 보기 →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Robotics -->
+    <div class="project-category">
+      <h3 class="category-title">Robotics</h3>
+
+      <div class="project">
+        <h4>두리 — AI 스마트 순찰 로봇</h4>
+        <p class="summary">
+          도심 내 포트홀·점자블록 파손을 실시간으로 감지하고 자율 순찰하는 AI 로봇 프로토타입입니다.<br>
+          <strong>2025 지능형 로봇 SDGs 아이디어 공모전 대상 수상 (2026.01.17)</strong>
+        </p>
+        <ul>
+          <li>YOLOv8 기반 실시간 위험 요소 탐지 및 유지보수 우선순위 분류</li>
+          <li>ROS2 + SLAM 기반 자율 주행 및 GPS 데이터 전송</li>
+          <li>Unity 2022 환경 시뮬레이션 구현</li>
+          <li>크롤러형 3D 모델링 및 시스템 설계</li>
+        </ul>
+        <a href="https://github.com/bell-ha/doori-robot-idea" target="_blank">GitHub 보기 →</a>
+      </div>
+
+      <div class="project">
+        <h4>시각장애인 실내 안내 로봇</h4>
+        <p class="summary">
+          Hello Robot Stretch SE3를 활용한 시각장애인 대상 실내 자율 안내 로봇 시스템입니다.<br>
+          ROS2 토픽 기반 직접 제어와 GPT-4o Vision 기반 시각 보조 기능을 제공합니다.
+        </p>
+        <ul>
+          <li>ROS2 Nav2 기반 자율 주행 및 실시간 장애물 회피</li>
+          <li>RPLidar + Intel RealSense D435i 기반 SLAM 및 환경 인식</li>
+          <li>ROS 토픽을 통한 로봇 직접 제어 및 상태 관리</li>
+          <li>음성 인식 및 TTS 기반 사용자 인터페이스</li>
+          <li>GPT-4o Vision 연동 시각 보조 기능</li>
+        </ul>
+        <a href="https://github.com/bell-ha/visually-impaired-navigation-robot" target="_blank">GitHub 보기 →</a>
+      </div>
+
+      <div class="project">
+        <h4>휠체어 자동주차 시스템</h4>
+        <p class="summary">
+          어라운드 뷰 카메라와 ArUco 마커를 활용하여 휠체어 위치를 추적하고<br>
+          자동 주차를 수행하는 컴퓨터 비전 기반 임베디드 시스템입니다.
+        </p>
+        <ul>
+          <li>좌측·후방 듀얼 카메라 어라운드 뷰 생성 및 캘리브레이션</li>
+          <li>ArUco 마커(ID 0/1) 기반 휠체어 위치 추정 및 추적</li>
+          <li>전역 좌표계 기반 경로 계획 및 4방향(전/후/좌/우) 제어</li>
+          <li>카메라 캘리브레이션 파이프라인 구현 (RMS Error: 0.5898)</li>
+        </ul>
+        <a href="https://github.com/bell-ha/wheelchair-auto-parking-system" target="_blank">GitHub 보기 →</a>
       </div>
     </div>
 
