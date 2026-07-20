@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>이종하 | Resume</title>
+  <link rel="stylesheet" href="resume.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"
+  />
+</head>
+<body>
+
+<button type="button" class="print-btn" onclick="window.print()">PDF 저장 / 인쇄</button>
+
+<div class="sheet">
+
+  <!-- ===== Hero ===== -->
+  <header class="hero">
+    <img src="images/profile.jpg" alt="이종하" class="hero-photo" />
+    <div class="hero-text">
+      <h1 class="hero-name">이 종 하</h1>
+      <p class="hero-role">Robotics &amp; Embedded Systems &nbsp;·&nbsp; Software &amp; AI &nbsp;·&nbsp; Music Technology</p>
+    </div>
+  </header>
+
+  <!-- ===== Personal Information ===== -->
+  <section class="block">
+    <h2 class="block-title">Personal Information</h2>
+    <div class="block-body">
+      <div class="line"><span class="key">이름</span><span class="val">이종하</span></div>
+      <div class="line"><span class="key">연락처</span><span class="val">010 2605 8273</span></div>
+      <div class="line"><span class="key">e-mail</span><span class="val">jongha8273@naver.com</span></div>
+      <div class="line"><span class="key">GitHub</span><span class="val">github.com/bell-ha</span></div>
+    </div>
+  </section>
+
+  <!-- ===== Education ===== -->
+  <section class="block">
+    <h2 class="block-title">Education</h2>
+    <div class="block-body">
+      <div class="line"><span class="key">2020.03 ~ 현재</span><span class="val">단국대학교 뮤직테크놀러지 전공</span></div>
+      <div class="line"><span class="key"></span><span class="val">단국대학교 컴퓨터공학 복수전공</span></div>
+      <div class="line"><span class="key"></span><span class="val">전공 학점: 4.35/4.5 (교육부 예술체육비전 장학생)</span></div>
+      <div class="line"><span class="key"></span><span class="val">평균 학점: 4.22/4.5</span></div>
+    </div>
+  </section>
+
+  <!-- ===== Experience ===== -->
+  <section class="block">
+    <h2 class="block-title">Experience</h2>
+    <div class="block-body">
+
+      <div class="group">
+        <span class="group-tag">Robotics<br>Embedded</span>
+        <div class="item">
+          <p class="item-title">시각장애인 실내 안내 로봇</p>
+          <p class="item-desc">ROS2 Nav2 자율주행, SLAM 환경 인식, GPT-4o Vision 시각 보조</p>
+        </div>
+        <div class="item">
+          <p class="item-title">휠체어 자동주차 시스템</p>
+          <p class="item-desc">어라운드 뷰 카메라와 ArUco 마커 기반 위치 추정 및 주차 제어</p>
+        </div>
+        <div class="item">
+          <p class="item-title">두리 AI 스마트 순찰 로봇</p>
+          <p class="item-desc">YOLOv8 기반 포트홀·점자블록 파손 탐지, Unity 시뮬레이션</p>
+        </div>
+        <div class="item">
+          <p class="item-title">악력 재활 훈련 시스템</p>
+          <p class="item-desc">HX711 로드셀 신호 처리, 재활 게임 4종 및 신디사이저 구현</p>
+        </div>
+      </div>
+
+      <div class="group">
+        <span class="group-tag">Software<br>AI</span>
+        <div class="item">
+          <p class="item-title">아티스트 홍보 플랫폼 SEIHI</p>
+          <p class="item-desc">FastAPI + React 풀스택 웹 서비스, OAuth·OTP 인증 구현</p>
+        </div>
+        <div class="item">
+          <p class="item-title">WGBS 유전체 분석 자동화 프로그램</p>
+          <p class="item-desc">서울대·연세대 연구진 협업, 분석 과정 GUI 통합 (특허 준비 중)</p>
+        </div>
+        <div class="item">
+          <p class="item-title">뉴뮤직학부 연습실 예약 시스템</p>
+          <p class="item-desc">FastAPI·JWT 기반 예약 시스템, AWS EC2 배포 및 운영</p>
+        </div>
+        <div class="item">
+          <p class="item-title">Kubernetes 클러스터 인프라 구축</p>
+          <p class="item-desc">Terraform·Ansible 기반 IaC, GitLab·Jenkins CI/CD 구축</p>
+        </div>
+        <div class="item">
+          <p class="item-title">DelRev — 3D 스텔스 서바이벌 게임 개발</p>
+          <p class="item-desc">Unity·C# 클라이언트 개발 및 게임 사운드 디자인</p>
+        </div>
+        <div class="item">
+          <p class="item-title">감정 기반 TTS 보컬 합성 연구</p>
+          <p class="item-desc">실시간 표정 인식 기반 감정 추정 및 보컬 합성, 학사학위 논문</p>
+        </div>
+      </div>
+
+      <div class="group">
+        <span class="group-tag">Music<br>Technology</span>
+        <div class="item">
+          <p class="item-title">국립국악원 국악 음원 규격화 및 아카이빙</p>
+          <p class="item-desc">Qlaudio 협업, 「조선 시리즈」 36종 국악 가상악기로 출시</p>
+        </div>
+        <div class="item">
+          <p class="item-title">Unity와 TouchDesigner를 활용한 메타버스 입체음향 작품 제작</p>
+          <p class="item-desc">Max/Msp 알고리즘 사운드 디자인, WebGL을 통한 홈페이지 배포</p>
+        </div>
+        <div class="item">
+          <p class="item-title">권혁준 감독 단편영화 &lsquo;After Session&rsquo; 음악 제작</p>
+          <p class="item-desc">장면 분석 기반 음악 구성, 작곡·편곡 및 최종 믹싱 납품</p>
+        </div>
+        <div class="item">
+          <p class="item-title">Qlaudio 게임 사운드 디자인</p>
+          <p class="item-desc">던전, 배틀로얄, 동물농장, 아케인덱스, 퍼즐 등 게임 사운드 제작</p>
+        </div>
+        <div class="item">
+          <p class="item-title">Unity 기반 게임 제작 및 사운드 디자인</p>
+          <p class="item-desc">C# Script를 활용한 게임 로직 구현과 사운드 요소 제작</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== Awards ===== -->
+  <section class="block compact">
+    <h2 class="block-title">Awards</h2>
+    <div class="block-body">
+      <div class="line"><span class="key">2026.01</span><span class="val">지능형 로봇 SDGs 아이디어 공모전 대상</span></div>
+      <div class="line"><span class="key">2025.12</span><span class="val">단국 G-RISE 캡스톤디자인 경진대회 G7부문 장려상</span></div>
+      <div class="line"><span class="key">2025.12</span><span class="val">단국대학교 SW중심대학 캡스톤 페스티벌 장려상</span></div>
+    </div>
+  </section>
+
+  <!-- ===== Skills ===== -->
+  <section class="block compact">
+    <h2 class="block-title">Skills</h2>
+    <div class="block-body">
+      <div class="line"><span class="key">Languages</span><span class="val">Python, C#, TypeScript</span></div>
+      <div class="line"><span class="key">Robotics</span><span class="val">ROS2, Nav2, SLAM, Arduino</span></div>
+      <div class="line"><span class="key">Backend</span><span class="val">FastAPI, React, PostgreSQL</span></div>
+      <div class="line"><span class="key">Infra</span><span class="val">Docker, Kubernetes, Terraform, AWS</span></div>
+      <div class="line"><span class="key">AI</span><span class="val">YOLOv8, OpenCV, MediaPipe, TensorFlow</span></div>
+      <div class="line"><span class="key">Music</span><span class="val">Max/Msp, Logic Pro X, Cubase, Composition, Arrangement</span></div>
+    </div>
+  </section>
+
+</div>
+
+
+<script>
+(function () {
+  const PAGE_H = 297, PAD_BOTTOM = 12; // mm
+
+  function mm(v) {
+    const probe = document.createElement('div');
+    probe.style.cssText = 'position:absolute;visibility:hidden;height:' + v + 'mm';
+    document.body.appendChild(probe);
+    const px = probe.getBoundingClientRect().height;
+    probe.remove();
+    return px;
+  }
+
+  function collect(block) {
+    const units = [];
+    block.querySelectorAll(':scope > .block-body > *').forEach(node => {
+      if (node.classList.contains('group')) {
+        const tag = node.querySelector('.group-tag');
+        node.querySelectorAll(':scope > .item').forEach((item, i) => {
+          units.push({ el: item, tag: tag ? tag.innerHTML : '', head: i === 0, grouped: true });
+        });
+      } else {
+        units.push({ el: node, grouped: false });
+      }
+    });
+    return units;
+  }
+
+  function paginate() {
+    const source = document.querySelector('.sheet');
+    if (!source) return;
+    const hero = source.querySelector('.hero');
+    const blocks = [...source.querySelectorAll('.block')].map(b => ({
+      title: b.querySelector('.block-title').textContent,
+      units: collect(b)
+    }));
+
+    const wrap = document.createElement('div');
+    wrap.id = 'pages';
+    source.replaceWith(wrap);
+
+    const limit = mm(PAGE_H - PAD_BOTTOM);
+    let page, body, first = true;
+
+    function newPage() {
+      page = document.createElement('div');
+      page.className = 'sheet';
+      body = document.createElement('div');
+      body.className = 'page-content' + (first ? '' : ' continued');
+      page.appendChild(body);
+      wrap.appendChild(page);
+      if (first && hero) body.appendChild(hero);
+      first = false;
+    }
+
+    function openBlock(title) {
+      const sec = document.createElement('section');
+      sec.className = 'block';
+      sec.innerHTML = '<h2 class="block-title">' + title + '</h2><div class="block-body"></div>';
+      body.appendChild(sec);
+      return sec.querySelector('.block-body');
+    }
+
+    function openGroup(host, tagHTML) {
+      const g = document.createElement('div');
+      g.className = 'group';
+      g.innerHTML = '<span class="group-tag">' + (tagHTML || '') + '</span>';
+      host.appendChild(g);
+      return g;
+    }
+
+    const overflow = () => body.getBoundingClientRect().height > limit;
+
+    newPage();
+
+    blocks.forEach(block => {
+      let host = openBlock(block.title);
+      let group = null, tag = '';
+
+      block.units.forEach(unit => {
+        if (unit.grouped) {
+          if (unit.head) { tag = unit.tag; group = openGroup(host, tag); }
+          if (!group) group = openGroup(host, tag);
+          group.appendChild(unit.el);
+        } else {
+          host.appendChild(unit.el);
+        }
+
+        if (overflow()) {
+          unit.el.remove();
+          newPage();
+          host = openBlock(block.title);
+          if (unit.grouped) {
+            group = openGroup(host, tag);
+            group.appendChild(unit.el);
+          } else {
+            group = null;
+            host.appendChild(unit.el);
+          }
+        }
+      });
+    });
+
+    const total = wrap.children.length;
+    [...wrap.children].forEach((s, i) => {
+      const n = document.createElement('span');
+      n.className = 'page-num';
+      n.textContent = (i + 1) + ' / ' + total;
+      s.appendChild(n);
+    });
+  }
+
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(paginate);
+  } else {
+    window.addEventListener('load', paginate);
+  }
+})();
+</script>
+
+</body>
+</html>
