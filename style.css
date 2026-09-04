@@ -255,6 +255,18 @@ h2 {
   margin-bottom: 8px;
 }
 
+.about-lead {
+  font-size: 1.06rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+.about p + p {
+  margin-top: 12px;
+}
+
 /* ===== Skills & Education ===== */
 .skills {
   max-width: 760px;
@@ -463,4 +475,214 @@ h2 {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* ===== Project media ===== */
+.project-media {
+  margin: 14px 0 16px;
+}
+
+.project-media img {
+  width: 100%;
+  max-width: 620px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  display: block;
+}
+
+.project-media figcaption {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-top: 6px;
+}
+
+.project-tags {
+  margin-bottom: 12px;
+}
+
+.project-metric {
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  line-height: 1.7;
+  margin-bottom: 12px;
+  padding-left: 12px;
+  border-left: 2px solid var(--border-color);
+}
+
+/* ===== Stat blocks ===== */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+  gap: 10px;
+  margin: 16px 0 18px;
+}
+
+.stat {
+  padding: 12px 14px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+}
+
+.stat-value {
+  display: block;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+}
+
+.stat-label {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+
+/* ===== Video embed ===== */
+.video-embed {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #000;
+}
+
+.video-embed iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* ===== Architecture diagram ===== */
+.diagram {
+  margin: 18px 0;
+  max-width: 700px;
+}
+
+.diagram svg,
+.diagram img {
+  display: block;
+  width: 100%;
+  height: auto;
+  color: var(--text-primary);
+}
+
+.diagram img {
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+}
+
+.diagram figcaption {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-top: 6px;
+}
+
+/* ===== Theme toggle button ===== */
+.theme-toggle {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 30px;
+  padding: 0 11px;
+  font-family: inherit;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.theme-toggle:hover {
+  color: var(--text-primary);
+  background: var(--hover-tint);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid var(--text-primary);
+  outline-offset: 2px;
+}
+
+.theme-toggle .label-light {
+  display: none;
+}
+
+/* ===== Dark mode ===== */
+/* 1) 시스템이 다크이고, 사용자가 라이트를 고르지 않았을 때 */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --text-primary: #ececec;
+    --text-secondary: #a3a3a3;
+    --border-color: #2c2e33;
+    --bg-color: #111215;
+    --hover-tint: rgba(255, 255, 255, 0.06);
+  }
+
+  :root:not([data-theme="light"]) .site-nav {
+    background: rgba(17, 18, 21, 0.92);
+  }
+
+  :root:not([data-theme="light"]) .award {
+    background: #1a1c20;
+  }
+
+  :root:not([data-theme="light"]) .resume-btn:hover {
+    color: var(--bg-color);
+  }
+
+  :root:not([data-theme="light"]) .project-media img,
+  :root:not([data-theme="light"]) .diagram img {
+    opacity: 0.9;
+  }
+
+  :root:not([data-theme="light"]) .theme-toggle .label-dark {
+    display: none;
+  }
+
+  :root:not([data-theme="light"]) .theme-toggle .label-light {
+    display: block;
+  }
+}
+
+/* 2) 버튼으로 다크를 직접 골랐을 때 (시스템 설정보다 우선) */
+:root[data-theme="dark"] {
+  --text-primary: #ececec;
+  --text-secondary: #a3a3a3;
+  --border-color: #2c2e33;
+  --bg-color: #111215;
+  --hover-tint: rgba(255, 255, 255, 0.06);
+}
+
+:root[data-theme="dark"] .site-nav {
+  background: rgba(17, 18, 21, 0.92);
+}
+
+:root[data-theme="dark"] .award {
+  background: #1a1c20;
+}
+
+:root[data-theme="dark"] .resume-btn:hover {
+  color: var(--bg-color);
+}
+
+:root[data-theme="dark"] .project-media img,
+:root[data-theme="dark"] .diagram img {
+  opacity: 0.9;
+}
+
+:root[data-theme="dark"] .theme-toggle .label-dark {
+  display: none;
+}
+
+:root[data-theme="dark"] .theme-toggle .label-light {
+  display: block;
 }

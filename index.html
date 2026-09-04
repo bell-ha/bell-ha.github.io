@@ -3,7 +3,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Jongha Lee | Portfolio</title>
+  <title>Jongha Lee | Robotics Software Portfolio</title>
+  <meta name="description" content="사람 곁에서 움직이는 로봇의 소프트웨어를 만듭니다. 시각장애인 안내 로봇, 전동휠체어 자동 주차 — ROS2 · 컴퓨터비전 · 시스템 통합." />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Jongha Lee | Robotics Software Portfolio" />
+  <meta property="og:description" content="시각장애인 안내 로봇과 전동휠체어 자동 주차를 실제 로봇에서 개발해 왔습니다. ROS2 · 컴퓨터비전 · 시스템 통합." />
+  <meta property="og:image" content="https://bell-ha.github.io/images/profile.jpg" />
+  <meta property="og:url" content="https://bell-ha.github.io" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('theme');
+        var system = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', saved || system);
+      } catch (e) {}
+    })();
+  </script>
+
   <link rel="stylesheet" href="style.css" />
   <link
     rel="stylesheet"
@@ -22,6 +42,11 @@
       <a href="#software">Software & AI</a>
       <a href="#music">Music Technology</a>
     </div>
+
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="화면 테마 전환">
+      <span class="label-dark">Dark</span>
+      <span class="label-light">Light</span>
+    </button>
   </div>
 </nav>
 
@@ -35,7 +60,7 @@
       <h1 class="name">Jongha Lee</h1>
 
       <div class="roles">
-        <p>Robotics & Embedded Systems · Software & AI · Music Technology</p>
+        <p>로봇 소프트웨어 개발자 &nbsp;·&nbsp; ROS2 · 컴퓨터비전 · 시스템 통합</p>
       </div>
 
       <div class="links">
@@ -54,21 +79,17 @@
   <!-- ===== About ===== -->
   <section class="about">
     <h2>About</h2>
-    <p>
-      저는 소프트웨어 시스템과 인공지능 기반 기능을 설계하고 구현하는 개발자이자,
-      음악 기술을 기반으로 한 창작 작업을 함께 수행하고 있습니다.
-    </p>
-    <p>
-      시각장애인 안내 로봇, 휠체어 자동주차, 재활 훈련 시스템 등
-      사회적 약자를 위한 로봇·임베디드 시스템을 설계하고 소프트웨어를 개발해왔으며,
-      웹 서비스와 백엔드, 연구 현장에서 실제로 사용되는 분석 도구,
-      그리고 사운드와 인터랙션을 결합한 뮤직테크놀러지 프로젝트를 진행했습니다.
-    </p>
-    <p>
-      기술이 실제 환경에서 안정적으로 동작하도록 구조를 설계하는 과정과,
-      그 기술이 사용자 경험과 표현으로 이어지는 지점에 관심을 두고 작업하고 있습니다.
-    </p>
 
+    <p class="about-lead">사람 곁에서 움직이는 로봇의 소프트웨어를 만듭니다.</p>
+
+    <p>
+      시각장애인 안내 로봇과 전동휠체어 자동 주차를 실제 로봇에서 개발해 왔습니다.
+      모듈을 각각 만드는 것보다 합쳤을 때 깨지는 지점을 찾는 일,
+      그리고 사용자가 실패를 볼 수 없는 환경에서 안전하게 실패하는 방법을 주로 다룹니다.
+    </p>
+    <p>
+      웹 서비스와 백엔드, 사운드와 인터랙션을 결합한 뮤직테크놀러지 작업도 함께 해왔습니다.
+    </p>
   </section>
 
   <!-- ===== Skills & Education ===== -->
@@ -76,24 +97,24 @@
     <h2>Skills</h2>
 
     <div class="info-row">
+      <span class="info-label">Robotics</span>
+      <span class="info-value">ROS2 Humble · Nav2 · AMCL · SLAM · LiDAR · RealSense · 센서퓨전 · IMU · CAN · Jetson Nano · Arduino · 3D Printing</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">Vision & AI</span>
+      <span class="info-value">YOLOv8 · OpenCV · SolvePnP · Kalman Filter · IBVS · MediaPipe · TensorFlow · GPT-4o Vision · RAG</span>
+    </div>
+    <div class="info-row">
       <span class="info-label">Languages</span>
       <span class="info-value">Python · C# · TypeScript</span>
     </div>
     <div class="info-row">
-      <span class="info-label">Robotics & Embedded</span>
-      <span class="info-value">ROS2 · Nav2 · SLAM · Arduino</span>
-    </div>
-    <div class="info-row">
       <span class="info-label">Backend & Infra</span>
-      <span class="info-value">FastAPI · React · PostgreSQL · Docker · Kubernetes · Terraform</span>
+      <span class="info-value">FastAPI · React · PostgreSQL · Docker · Kubernetes · Terraform · AWS</span>
     </div>
     <div class="info-row">
-      <span class="info-label">AI & Vision</span>
-      <span class="info-value">YOLOv8 · OpenCV · MediaPipe · TensorFlow</span>
-    </div>
-    <div class="info-row">
-      <span class="info-label">Music & Interactive</span>
-      <span class="info-value">Max/MSP · Logic Pro X · Cubase · Unity · Composition and Arrangement </span>
+      <span class="info-label">Music</span>
+      <span class="info-value">Max/MSP · Logic Pro X · Cubase · Unity · TouchDesigner</span>
     </div>
 
     <h2 class="edu-title">Education</h2>
@@ -101,8 +122,41 @@
     <div class="info-row">
       <span class="info-label">2020.03 ~</span>
       <span class="info-value">
-        단국대학교 뮤직테크놀러지 · 컴퓨터공학 전공 (교육부 예술체육비전 장학생)<br>
-        전공 학점 4.35 / 4.5 · 평점 평균 4.22 / 4.5
+        단국대학교 뉴뮤직과 뮤직테크놀러지 전공 · 컴퓨터공학 복수전공<br>
+        전공 학점 4.35 / 4.5 · 평점 평균 4.22 / 4.5 · 교육부 예술체육비전 장학생
+      </span>
+    </div>
+
+    <h2 class="edu-title">Research</h2>
+
+    <div class="info-row">
+      <span class="info-label">2025.12 ~</span>
+      <span class="info-value">
+        단국대학교 배리어프리 ICT기술 연구센터(ITRC) 학부연구생 · 최용근 교수 연구실<br>
+        정부지원 연구센터 과제로 시각장애인 안내 로봇 · 전동휠체어 자동 주차 시스템 개발<br>
+        시각장애인 당사자 인터뷰 기반 요구사항 도출 · ITRC 인재양성대전(코엑스) 시연
+      </span>
+    </div>
+
+    <h2 class="edu-title">Awards</h2>
+
+    <div class="info-row">
+      <span class="info-label">2026.01</span>
+      <span class="info-value">
+        지능형 로봇 분야 SDGs 아이디어 공모전 <strong>대상</strong><br>
+        산업통상자원부 · KIAT · 단국대학교 공학교육혁신센터
+      </span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">2025.12</span>
+      <span class="info-value">
+        2025학년도 캡스톤디자인 경진대회 G7부문 장려상 — 단국G-RISE사업단 (75팀 중 6팀)
+      </span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">2025.12</span>
+      <span class="info-value">
+        단국대학교 SW중심대학 캡스톤 페스티벌 장려상 — SW중심대학사업단 (100팀 중 15팀)
       </span>
     </div>
   </section>
@@ -117,39 +171,101 @@
 
       <div class="project">
         <h4>시각장애인 실내 안내 로봇</h4>
+        <p class="project-tags"><span class="award">단독 개발</span><span class="award">ITRC 과제</span><span class="award">ROS2 · Nav2 · AMCL</span></p>
+
         <p class="summary">
-          Hello Robot Stretch SE3를 활용한 시각장애인 대상 실내 자율 안내 로봇 시스템입니다.
-          ROS2 토픽 기반 직접 제어와 GPT-4o Vision 기반 시각 보조 기능을 제공합니다.
+          <strong>문제 —</strong> 시각장애인의 실내 이동에서 가장 막히는 것은 층간 이동입니다.
+          엘리베이터는 버튼 위치가 제각각이고, 로봇–엘리베이터 연동은 승강기 제조사와 제작 연도마다
+          제어 방식이 달라 쓸 수 있는 표준 API가 없습니다(국가표준 KS도 제정 중).
         </p>
+        <p class="summary">
+          <strong>해결 —</strong> 연동 규격에 기대지 않고, 상용 플랫폼(Hello Robot Stretch SE3) 위에
+          그리퍼 카메라로 층 버튼을 직접 인식해 누르는 방식을 구현했습니다.
+          층 전환 시에는 지도를 교체하고 위치추정(AMCL)을 재초기화합니다.
+        </p>
+
+        <figure class="project-media">
+          <div class="video-embed">
+            <iframe src="https://www.youtube-nocookie.com/embed/3vwIzmuHD_s" title="1층 출발부터 엘리베이터 자율 탑승을 거쳐 5층 504호 도착까지의 전 구간 주행 영상" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+          <figcaption>1층 출발 → 엘리베이터 자율 탑승 → 5층 504호 도착. 정상 시나리오에서 한 번 성공했다.</figcaption>
+        </figure>
+
+        <figure class="project-media">
+          <img src="images/elevator-align.jpg" alt="엘리베이터 캐빈 안에서 그리퍼 카메라가 층 버튼을 인식하고 정렬한 화면. 각 버튼에 라벨과 신뢰도가 표시되고 목표 버튼까지 0.27m로 표기됨" loading="lazy" />
+          <figcaption>그리퍼 카메라 시점 — 버튼별 라벨·신뢰도를 붙이고 목표 버튼(0.27m)에 정렬을 마친 상태. 글자를 못 읽으면 <code>~?</code>로 표시하고 패턴으로 추정한다.</figcaption>
+        </figure>
+
+        <figure class="diagram">
+          <img src="images/journey-states.png" alt="여정 단계별 상태와 바퀴 제어권 표. 승차지점 주행과 504호 주행은 자율주행, 엘리베이터 시퀀스는 엘리베이터 앱이 제어권을 가지며 나머지 단계는 잠금·정지" loading="lazy" />
+          <figcaption>단계마다 바퀴 제어권을 한 곳에만 준다 — 주행 중에는 Nav2, 엘리베이터 안에서는 버튼 조작 앱. 나머지 구간은 잠금으로 두어 두 주체가 동시에 로봇을 움직이지 못하게 했다.</figcaption>
+        </figure>
+
+        <div class="stats">
+          <div class="stat"><span class="stat-value">1층 → 5층</span><span class="stat-label">층간 이동 완주 (정상 시나리오 1회)</span></div>
+          <div class="stat"><span class="stat-value">27건</span><span class="stat-label">조용한 실패 목록화</span></div>
+          <div class="stat"><span class="stat-value">코엑스</span><span class="stat-label">ITRC 인재양성대전 시연</span></div>
+        </div>
+
         <div class="project-detail">
           <button type="button" class="detail-toggle" aria-expanded="false">자세히 보기</button>
           <div class="detail-body">
           <ul>
-            <li>ROS2 Nav2 기반 자율 주행 및 실시간 장애물 회피</li>
-            <li>RPLidar + Intel RealSense D435i 기반 SLAM 및 환경 인식</li>
-            <li>ROS 토픽을 통한 로봇 직접 제어 및 상태 관리</li>
-            <li>음성 인식 및 TTS 기반 사용자 인터페이스</li>
-            <li>GPT-4o Vision 연동 시각 보조 기능</li>
+            <li>ROS2 Humble · Nav2 기반 자율 주행, RPLidar + RealSense D435i 환경 인식</li>
+            <li>그리퍼 카메라 OCR로 엘리베이터 버튼 인식 · 가압 — 정렬은 자동, 실제 가압은 사용자 승인 후 실행</li>
+            <li>층별 지도 전환과 AMCL 재초기화 — 실패 시 4층인데 5층 지도로 주행하는 위험을 별도 관리</li>
+            <li>사용자가 로봇의 실패를 볼 수 없다는 제약 → LLM에는 의도 해석만 맡기고, 최종 확정은 물리 버튼으로 분리</li>
+            <li>주행·음성·엘리베이터 모듈을 하나의 상태머신으로 통합. 모듈별로는 동작하나 합치면 깨지는 문제를 재설계로 해결</li>
+            <li>손잡이 하드웨어를 3D 모델링·출력하고 아두이노 압력센서를 ROS2에 연동</li>
+            <li>Nav2 footprint를 5각형·뒤 −0.85 m로 확장해 뒤따르는 사람을 로봇 크기에 포함, 후진 차단(min_vel_x 0.0)</li>
+            <li>시각장애인 당사자 인터뷰로 요구사항 수집 — 부정적 반응이 나온 장애물 밀기 기능은 보류</li>
           </ul>
+          <a href="https://www.youtube.com/watch?v=SAGndz1JyPY" target="_blank">ITRC 시연 영상 →</a>
           <a href="https://github.com/bell-ha/visually-impaired-navigation-robot" target="_blank">GitHub 보기 →</a>
           </div>
         </div>
       </div>
 
       <div class="project">
-        <h4>휠체어 자동주차 시스템</h4>
+        <h4>전동휠체어 자동 주차 시스템</h4>
+        <p class="project-tags"><span class="award">3인 팀 · 위치추정 / 인식 / 통합</span><span class="award">ITRC 과제</span><span class="award">YOLOv8 · SolvePnP · IBVS</span></p>
+
         <p class="summary">
-          어라운드 뷰 카메라와 ArUco 마커를 활용하여 휠체어 위치를 추적하고
-          자동 주차를 수행하는 컴퓨터 비전 기반 임베디드 시스템입니다.
+          <strong>문제 —</strong> 전동휠체어 사용자가 차에 탄 뒤, 남겨진 휠체어를 수납하려면
+          반드시 타인의 도움이 필요합니다. 혼자 운전하는 사용자에게는 외출 자체의 제약이 됩니다.
         </p>
+        <p class="summary">
+          <strong>1차 접근과 전환 —</strong> 처음에는 차량의 어라운드뷰 카메라로 휠체어를 봤습니다.
+          어안 렌즈 왜곡으로 위치 추정값이 튀었고, SolvePnP 잔차가 거리·각도에 따라 체계적으로 편향되는 것을 확인해
+          Ridge Regression 보정층과 칼만 필터를 붙였습니다. 그래도 오차가 남았고,
+          원인이 튜닝이 아니라 <strong>“고정된 카메라로 넓은 영역을 왜곡 보정해 본다”는 구조 자체</strong>에 있다고 판단해
+          카메라를 차량에서 휠체어로 옮겼습니다.
+        </p>
+
+        <figure class="project-media">
+          <img src="https://raw.githubusercontent.com/bell-ha/wheelchair-auto-parking-system/main/src/v2_vision/outputs/poster_compare/cmp_frame1200.jpg" alt="도메인 데이터 추가 학습 전후 차량 부위 검출 비교" loading="lazy" />
+          <figcaption>자체 촬영 데이터 추가 학습 전(좌)과 후(우) — 같은 프레임에서 검출 0건 → 4건</figcaption>
+        </figure>
+
+        <div class="stats">
+          <div class="stat"><span class="stat-value">0.995</span><span class="stat-label">차량 부위 6종 탐지 mAP50 최대</span></div>
+          <div class="stat"><span class="stat-value">1.20 m</span><span class="stat-label">단안 거리 추정 (실측 1.2 m)</span></div>
+          <div class="stat"><span class="stat-value">15 FPS</span><span class="stat-label">Jetson Nano 실시간 구동</span></div>
+          <div class="stat"><span class="stat-value">181장</span><span class="stat-label">자체 촬영 · 라벨링 데이터</span></div>
+        </div>
+
         <div class="project-detail">
           <button type="button" class="detail-toggle" aria-expanded="false">자세히 보기</button>
           <div class="detail-body">
           <ul>
-            <li>좌측·후방 듀얼 카메라 어라운드 뷰 생성 및 캘리브레이션</li>
-            <li>ArUco 마커(ID 0/1) 기반 휠체어 위치 추정 및 추적</li>
-            <li>전역 좌표계 기반 경로 계획 및 4방향(전/후/좌/우) 제어</li>
-            <li>카메라 캘리브레이션 파이프라인 구현 (RMS Error: 0.5898)</li>
+            <li><strong>V1 담당</strong> — 어안 캘리브레이션 → ArUco 검출 → SolvePnP → Ridge Regression 잔차 보정층 → 칼만 필터 3단 자세추정 파이프라인 설계</li>
+            <li>보정층 특징 설계: 바닥거리 · 마커각도 · 시선각 · 재투영오차를 넣어 편향을 학습 기반으로 보정</li>
+            <li>파이프라인 8단계 중 7단계가 실기체에서 동작 (AgileX TRACER 섀시 · CAN 제어)</li>
+            <li><strong>V2 담당</strong> — 공공 데이터셋의 도메인 불일치를 자체 촬영·라벨링(실차 121장 + 목업 60장)으로 해결</li>
+            <li>번호판 실측 규격(335 × 155 mm)과 핀홀 모델로 거리 · yaw · bearing 추정</li>
+            <li>IBVS 정렬 + 초음파 평행 맞춤 + IMU 회전각 제어를 결합한 9단계 주차 / 7단계 출차 시나리오 구현</li>
+            <li>캐스터 휠 구조상 직진이 바퀴 정렬 상태에 따라 휘는 문제 — 관측 불가 구간으로 규정하고 IMU 회전각 보장 로직으로 보완</li>
+            <li>Jetson Nano(4 GB) 부하 측정: 320 px 기준 지속 15 FPS, 추론 42 ms, RAM 3.55/3.96 GB, 5.8 W. 스왑 부족 프리징을 4 GB 확장으로 해소</li>
           </ul>
           <a href="https://github.com/bell-ha/wheelchair-auto-parking-system" target="_blank">GitHub 보기 →</a>
           </div>
@@ -178,18 +294,35 @@
 
       <div class="project">
         <h4>악력 재활 훈련 시스템</h4>
+        <p class="project-tags"><span class="award">2인 팀</span><span class="award">HX711 · Arduino · Python</span></p>
+
         <p class="summary">
-          HX711 로드셀과 Arduino를 활용한 양손 악력 측정 및 재활 훈련 임베디드 시스템입니다.
-          악력으로 조작하는 재활 게임 4종과 실시간 신디사이저를 제공합니다.
+          <strong>문제 —</strong> 악력을 회복해야 하는 환자의 재활 훈련은 반복적이고 지루해 지속률이 낮습니다.
+          그런데 로드셀 원신호는 손이 닿는 순간 수십 kg짜리 스파이크가 튀고, 힘을 유지해도 값이 계속 진동해
+          게임 입력으로 바로 쓸 수 없습니다.
         </p>
+        <p class="summary">
+          <strong>해결 —</strong> 원신호를 신뢰할 수 있는 제어 입력으로 만드는 신호처리 파이프라인을 만들고,
+          그 위에 악력으로 조작하는 재활 게임 3종과 실시간 신디사이저를 올렸습니다.
+        </p>
+
+        <div class="stats">
+          <div class="stat"><span class="stat-value">4단 필터</span><span class="stat-label">스파이크 → 중간값 → 이동평균 → 데드존</span></div>
+          <div class="stat"><span class="stat-value">60 Hz</span><span class="stat-label">고정 dt Producer–Consumer 루프</span></div>
+          <div class="stat"><span class="stat-value">센서 3종</span><span class="stat-label">추상화로 하드웨어 없이 개발</span></div>
+        </div>
+
         <div class="project-detail">
           <button type="button" class="detail-toggle" aria-expanded="false">자세히 보기</button>
           <div class="detail-body">
           <ul>
-            <li>스파이크·중간값·이동평균 필터 기반 신호 처리 파이프라인 구현</li>
-            <li>센서 캘리브레이션, UART 시리얼 통신 및 진동 피드백 제어</li>
-            <li>60Hz 고정 게임 루프, Producer-Consumer 멀티스레딩 구조</li>
-            <li>악력 기반 실시간 신디사이저(절차적 사운드 합성) 구현</li>
+            <li>필터 순서가 설계 지점 — 스파이크를 먼저 버리지 않으면 중간값·이동평균 윈도우가 오염되고, 데드존을 먼저 걸면 스파이크가 그대로 통과</li>
+            <li>센서 80 Hz와 게임 루프 60 Hz의 주기 불일치를 스레드 분리 + 큐로 해결. 시리얼 읽기 지연이 프레임 드롭으로 번지지 않게 함</li>
+            <li><code>GripSensor</code> 추상 인터페이스에 Mock(키보드) / Arduino(USB) / 라즈베리파이(GPIO) 3종 구현 — 로드셀 없이도 게임 로직 개발·디버깅 가능</li>
+            <li>영점(Tare) 3초 + 최대 악력 5초 자동 캘리브레이션, 결과를 JSON으로 저장해 재사용</li>
+            <li>게임마다 요구하는 입력 특성이 달라 파이프라인 검증에 사용 — 유지(풍선), 순간 입력(두더지), 좌우 차이(우주 조종), 연속 변화(신디사이저)</li>
+            <li>진동 모터 구동 시 오른손 센서가 끊기는 문제 — 원인이 전류 부하임을 확인하고 NPN 트랜지스터(2N2222) 구동으로 회로 변경</li>
+            <li>로드셀 마운트를 3D 모델링·출력, 아두이노 시리얼 프로토콜 직접 설계</li>
           </ul>
           <a href="https://github.com/bell-ha/grip-rehab-system" target="_blank">GitHub 보기 →</a>
           </div>
@@ -552,6 +685,30 @@
   window.addEventListener('resize', () => {
     clearTimeout(collapseResizeTimer);
     collapseResizeTimer = setTimeout(setupCollapse, 150);
+  });
+
+  /* ===== Theme toggle ===== */
+  const root = document.documentElement;
+  const themeBtn = document.getElementById('theme-toggle');
+  const media = window.matchMedia('(prefers-color-scheme: dark)');
+
+  function applyTheme(theme) {
+    root.setAttribute('data-theme', theme);
+    themeBtn.setAttribute('aria-label', theme === 'dark' ? '라이트 모드로 전환' : '다크 모드로 전환');
+  }
+
+  applyTheme(root.getAttribute('data-theme') || (media.matches ? 'dark' : 'light'));
+
+  themeBtn.addEventListener('click', () => {
+    const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    applyTheme(next);
+    try { localStorage.setItem('theme', next); } catch (e) {}
+  });
+
+  media.addEventListener('change', e => {
+    let saved = null;
+    try { saved = localStorage.getItem('theme'); } catch (err) {}
+    if (!saved) applyTheme(e.matches ? 'dark' : 'light');
   });
 </script>
 
