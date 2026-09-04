@@ -4,6 +4,7 @@
   --border-color: #e6e6e6;
   --bg-color: #ffffff;
   --hover-tint: rgba(17, 17, 17, 0.05);
+  --accent: #1f6feb;
 }
 
 * {
@@ -305,7 +306,7 @@ h2 {
 }
 
 .category-title {
-  font-size: 1.3rem;
+  font-size: 1.22rem;
   font-weight: 600;
   margin-bottom: 28px;
   color: var(--text-primary);
@@ -348,6 +349,11 @@ h2 {
   font-size: 0.8rem;
   color: var(--text-primary);
   background: #fafafa;
+}
+
+.project-btn {
+  font-weight: 600;
+  color: var(--text-primary);
 }
 
 .project-note {
@@ -479,15 +485,15 @@ h2 {
 
 /* ===== Project media ===== */
 .project-media {
+  max-width: 700px;
   margin: 14px 0 16px;
 }
 
 .project-media img {
-  width: 100%;
-  max-width: 620px;
-  border: 1px solid var(--border-color);
-  border-radius: 6px;
   display: block;
+  width: 100%;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
 }
 
 .project-media figcaption {
@@ -498,15 +504,6 @@ h2 {
 
 .project-tags {
   margin-bottom: 12px;
-}
-
-.project-metric {
-  font-size: 0.9rem;
-  color: var(--text-primary);
-  line-height: 1.7;
-  margin-bottom: 12px;
-  padding-left: 12px;
-  border-left: 2px solid var(--border-color);
 }
 
 /* ===== Stat blocks ===== */
@@ -557,29 +554,98 @@ h2 {
   border: 0;
 }
 
-/* ===== Architecture diagram ===== */
-.diagram {
-  margin: 18px 0;
+/* ===== Flow table ===== */
+.flow {
+  max-width: 560px;
+  margin: 20px 0 18px;
+}
+
+.flow-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.86rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.flow-table caption {
+  text-align: left;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  padding-bottom: 8px;
+}
+
+.flow-table th {
+  text-align: left;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  padding: 0 10px 6px 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.flow-table td {
+  padding: 9px 10px 9px 0;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-secondary);
+}
+
+.flow-table td:first-child {
+  color: var(--text-primary);
+  width: 47%;
+}
+
+.flow--wide {
   max-width: 700px;
 }
 
-.diagram svg,
-.diagram img {
-  display: block;
-  width: 100%;
-  height: auto;
-  color: var(--text-primary);
+.flow--wide .flow-table td:first-child {
+  width: 3.5em;
 }
 
-.diagram img {
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
+.flow-table tbody tr:last-child td {
+  border-bottom: 0;
 }
 
-.diagram figcaption {
-  font-size: 0.8rem;
+.step-no {
+  display: inline-block;
+  width: 1.35em;
   color: var(--text-secondary);
-  margin-top: 6px;
+}
+
+.flow-table tr.is-key td {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.flow-table tr.is-key td:first-child {
+  color: var(--accent);
+  box-shadow: inset 2px 0 0 var(--accent);
+  padding-left: 10px;
+}
+
+.flow-table tr.is-key .step-no {
+  color: var(--accent);
+}
+
+.v-note {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 6px;
+  font-size: 0.7rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  color: var(--text-secondary);
+  vertical-align: 1px;
+}
+
+.flow figcaption {
+  font-size: 0.8rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  margin-top: 10px;
 }
 
 /* ===== Theme toggle button ===== */
@@ -625,6 +691,7 @@ h2 {
     --border-color: #2c2e33;
     --bg-color: #111215;
     --hover-tint: rgba(255, 255, 255, 0.06);
+    --accent: #58a6ff;
   }
 
   :root:not([data-theme="light"]) .site-nav {
@@ -639,8 +706,7 @@ h2 {
     color: var(--bg-color);
   }
 
-  :root:not([data-theme="light"]) .project-media img,
-  :root:not([data-theme="light"]) .diagram img {
+  :root:not([data-theme="light"]) .project-media img {
     opacity: 0.9;
   }
 
@@ -660,6 +726,7 @@ h2 {
   --border-color: #2c2e33;
   --bg-color: #111215;
   --hover-tint: rgba(255, 255, 255, 0.06);
+  --accent: #58a6ff;
 }
 
 :root[data-theme="dark"] .site-nav {
@@ -674,8 +741,7 @@ h2 {
   color: var(--bg-color);
 }
 
-:root[data-theme="dark"] .project-media img,
-:root[data-theme="dark"] .diagram img {
+:root[data-theme="dark"] .project-media img {
   opacity: 0.9;
 }
 

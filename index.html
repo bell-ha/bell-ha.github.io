@@ -9,7 +9,10 @@
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Jongha Lee | Robotics Software Portfolio" />
   <meta property="og:description" content="시각장애인 안내 로봇과 전동휠체어 자동 주차를 실제 로봇에서 개발해 왔습니다. ROS2 · 컴퓨터비전 · 시스템 통합." />
-  <meta property="og:image" content="https://bell-ha.github.io/images/profile.jpg" />
+  <meta property="og:image" content="https://bell-ha.github.io/images/og.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="엘리베이터 캐빈 안에서 로봇 그리퍼 카메라가 층 버튼을 인식하고 정렬을 마친 화면" />
   <meta property="og:url" content="https://bell-ha.github.io" />
   <meta name="twitter:card" content="summary_large_image" />
 
@@ -150,13 +153,13 @@
     <div class="info-row">
       <span class="info-label">2025.12</span>
       <span class="info-value">
-        2025학년도 캡스톤디자인 경진대회 G7부문 장려상 — 단국G-RISE사업단 (75팀 중 6팀)
+        2025학년도 캡스톤디자인 경진대회 G7부문 장려상 · 단국G-RISE사업단 (75팀 중 6팀)
       </span>
     </div>
     <div class="info-row">
       <span class="info-label">2025.12</span>
       <span class="info-value">
-        단국대학교 SW중심대학 캡스톤 페스티벌 장려상 — SW중심대학사업단 (100팀 중 15팀)
+        단국대학교 SW중심대학 캡스톤 페스티벌 장려상 · SW중심대학사업단 (100팀 중 15팀)
       </span>
     </div>
   </section>
@@ -188,17 +191,54 @@
           <div class="video-embed">
             <iframe src="https://www.youtube-nocookie.com/embed/3vwIzmuHD_s" title="1층 출발부터 엘리베이터 자율 탑승을 거쳐 5층 504호 도착까지의 전 구간 주행 영상" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
           </div>
-          <figcaption>1층 출발 → 엘리베이터 자율 탑승 → 5층 504호 도착. 정상 시나리오에서 한 번 성공했다.</figcaption>
+          <figcaption>1층에서 5층 504호까지. 정상 시나리오 1회 성공.</figcaption>
         </figure>
 
         <figure class="project-media">
           <img src="images/elevator-align.jpg" alt="엘리베이터 캐빈 안에서 그리퍼 카메라가 층 버튼을 인식하고 정렬한 화면. 각 버튼에 라벨과 신뢰도가 표시되고 목표 버튼까지 0.27m로 표기됨" loading="lazy" />
-          <figcaption>그리퍼 카메라 시점 — 버튼별 라벨·신뢰도를 붙이고 목표 버튼(0.27m)에 정렬을 마친 상태. 글자를 못 읽으면 <code>~?</code>로 표시하고 패턴으로 추정한다.</figcaption>
+          <figcaption>글자를 못 읽은 버튼은 <code>~?</code>로 두고 배치로 추정한다.</figcaption>
         </figure>
 
-        <figure class="diagram">
-          <img src="images/journey-states.png" alt="여정 단계별 상태와 바퀴 제어권 표. 승차지점 주행과 504호 주행은 자율주행, 엘리베이터 시퀀스는 엘리베이터 앱이 제어권을 가지며 나머지 단계는 잠금·정지" loading="lazy" />
-          <figcaption>단계마다 바퀴 제어권을 한 곳에만 준다 — 주행 중에는 Nav2, 엘리베이터 안에서는 버튼 조작 앱. 나머지 구간은 잠금으로 두어 두 주체가 동시에 로봇을 움직이지 못하게 했다.</figcaption>
+        <figure class="flow">
+          <table class="flow-table">
+            <caption>여정 단계별 상태와 바퀴 제어권</caption>
+            <thead>
+              <tr><th scope="col">여정 단계</th><th scope="col">상태</th><th scope="col">바퀴 제어권</th></tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td><span class="step-no">①</span>층 지정 · 목적지 선택</td>
+              <td>잠금</td>
+              <td>정지</td>
+            </tr>
+            <tr>
+              <td><span class="step-no">②</span>승차지점 주행</td>
+              <td>주행</td>
+              <td>Nav2 자율주행</td>
+            </tr>
+            <tr class="is-key">
+              <td><span class="step-no">③</span>엘리베이터 시퀀스</td>
+              <td>잠금</td>
+              <td>엘리베이터 앱</td>
+            </tr>
+            <tr>
+              <td><span class="step-no">④</span>지도 전환 · 위치 재설정</td>
+              <td>잠금</td>
+              <td>정지</td>
+            </tr>
+            <tr>
+              <td><span class="step-no">⑤</span>504호 주행</td>
+              <td>주행</td>
+              <td>Nav2 자율주행</td>
+            </tr>
+            <tr>
+              <td><span class="step-no">⑥</span>도착 안내</td>
+              <td>잠금</td>
+              <td>정지</td>
+            </tr>
+            </tbody>
+          </table>
+          <figcaption>제어권이 겹치면 팔과 바퀴가 동시에 움직인다. 뒤에 사람이 서 있는 상태에서는 그대로 사고다.</figcaption>
         </figure>
 
         <div class="stats">
@@ -212,13 +252,13 @@
           <div class="detail-body">
           <ul>
             <li>ROS2 Humble · Nav2 기반 자율 주행, RPLidar + RealSense D435i 환경 인식</li>
-            <li>그리퍼 카메라 OCR로 엘리베이터 버튼 인식 · 가압 — 정렬은 자동, 실제 가압은 사용자 승인 후 실행</li>
-            <li>층별 지도 전환과 AMCL 재초기화 — 실패 시 4층인데 5층 지도로 주행하는 위험을 별도 관리</li>
+            <li>그리퍼 카메라 OCR로 엘리베이터 버튼 인식·가압. 정렬까지는 자동이지만 실제 가압은 사용자 승인을 받고 실행</li>
+            <li>층별 지도 전환과 AMCL 재초기화. 실패하면 4층인데 5층 지도로 달리게 되므로 따로 관리</li>
             <li>사용자가 로봇의 실패를 볼 수 없다는 제약 → LLM에는 의도 해석만 맡기고, 최종 확정은 물리 버튼으로 분리</li>
             <li>주행·음성·엘리베이터 모듈을 하나의 상태머신으로 통합. 모듈별로는 동작하나 합치면 깨지는 문제를 재설계로 해결</li>
             <li>손잡이 하드웨어를 3D 모델링·출력하고 아두이노 압력센서를 ROS2에 연동</li>
             <li>Nav2 footprint를 5각형·뒤 −0.85 m로 확장해 뒤따르는 사람을 로봇 크기에 포함, 후진 차단(min_vel_x 0.0)</li>
-            <li>시각장애인 당사자 인터뷰로 요구사항 수집 — 부정적 반응이 나온 장애물 밀기 기능은 보류</li>
+            <li>시각장애인 당사자 인터뷰로 요구사항 수집. 부정적 반응이 나온 장애물 밀기 기능은 보류</li>
           </ul>
           <a href="https://www.youtube.com/watch?v=SAGndz1JyPY" target="_blank">ITRC 시연 영상 →</a>
           <a href="https://github.com/bell-ha/visually-impaired-navigation-robot" target="_blank">GitHub 보기 →</a>
@@ -243,8 +283,39 @@
         </p>
 
         <figure class="project-media">
+          <img src="images/wheelchair-v1.jpg" alt="차량에 장착된 좌측·후방 어안 카메라의 실시간 화면. 화면 가장자리가 심하게 휘어 있고 마커를 붙인 휠체어와 차량 모형이 보인다" loading="lazy" />
+          <figcaption>V1 어라운드뷰 화면. 가장자리 휘어짐이 그대로 각도 오차가 됐다.</figcaption>
+        </figure>
+
+        <figure class="flow flow--wide">
+          <table class="flow-table">
+            <caption>위치추정 방식을 두 번 바꿨다</caption>
+            <thead>
+              <tr><th scope="col">버전</th><th scope="col">방식</th><th scope="col">바꾼 이유</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="step-no">V1</span></td>
+                <td>차량 어라운드뷰 카메라 + 휠체어에 ArUco 마커</td>
+                <td>렌즈 주변부 왜곡으로 각도값이 튀고, 가시영역을 벗어나면 놓친다</td>
+              </tr>
+              <tr class="is-key">
+                <td><span class="step-no">V2</span></td>
+                <td>카메라를 휠체어로 옮겨 차량 특징점(사이드미러 · 손잡이 · 번호판)을 인식</td>
+                <td>보는 주체를 바꿔 왜곡과 가시영역 문제를 함께 없앴다</td>
+              </tr>
+              <tr>
+                <td><span class="step-no">V3</span></td>
+                <td>UWB 측위 <span class="v-note">검토 중</span></td>
+                <td>휠체어에 붙는 하드웨어가 계속 늘고, 카메라와 초음파가 동시에 놓치면 복구할 방법이 없다</td>
+              </tr>
+            </tbody>
+          </table>
+        </figure>
+
+        <figure class="project-media">
           <img src="https://raw.githubusercontent.com/bell-ha/wheelchair-auto-parking-system/main/src/v2_vision/outputs/poster_compare/cmp_frame1200.jpg" alt="도메인 데이터 추가 학습 전후 차량 부위 검출 비교" loading="lazy" />
-          <figcaption>자체 촬영 데이터 추가 학습 전(좌)과 후(우) — 같은 프레임에서 검출 0건 → 4건</figcaption>
+          <figcaption>자체 데이터 학습 전(좌)과 후(우). 같은 프레임에서 0건 → 4건.</figcaption>
         </figure>
 
         <div class="stats">
@@ -264,7 +335,7 @@
             <li><strong>V2 담당</strong> — 공공 데이터셋의 도메인 불일치를 자체 촬영·라벨링(실차 121장 + 목업 60장)으로 해결</li>
             <li>번호판 실측 규격(335 × 155 mm)과 핀홀 모델로 거리 · yaw · bearing 추정</li>
             <li>IBVS 정렬 + 초음파 평행 맞춤 + IMU 회전각 제어를 결합한 9단계 주차 / 7단계 출차 시나리오 구현</li>
-            <li>캐스터 휠 구조상 직진이 바퀴 정렬 상태에 따라 휘는 문제 — 관측 불가 구간으로 규정하고 IMU 회전각 보장 로직으로 보완</li>
+            <li>캐스터 휠 구조상 직진이 바퀴 정렬 상태에 따라 휘는 문제. 관측 불가 구간으로 규정하고 IMU 회전각 보장 로직으로 보완</li>
             <li>Jetson Nano(4 GB) 부하 측정: 320 px 기준 지속 15 FPS, 추론 42 ms, RAM 3.55/3.96 GB, 5.8 W. 스왑 부족 프리징을 4 GB 확장으로 해소</li>
           </ul>
           <a href="https://github.com/bell-ha/wheelchair-auto-parking-system" target="_blank">GitHub 보기 →</a>
@@ -306,6 +377,18 @@
           그 위에 악력으로 조작하는 재활 게임 3종과 실시간 신디사이저를 올렸습니다.
         </p>
 
+        <figure class="project-media">
+          <div class="video-embed">
+            <iframe src="https://www.youtube-nocookie.com/embed/_I-ejlEAkNM" title="악력 재활 훈련 시스템 데모 — 로드셀 악력으로 조작하는 재활 게임" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+          <figcaption>쥐는 힘이 그대로 게임 입력이 된다.</figcaption>
+        </figure>
+
+        <figure class="project-media">
+          <img src="images/grip-hardware.jpg" alt="악력 재활 장치 내부. 가운데 로드셀 마운트, 우측 상단 아두이노 우노, 그 아래 HX711 증폭 모듈, 좌우에 진동 모터가 배선되어 있다" loading="lazy" />
+          <figcaption>3D 출력한 로드셀 마운트에 HX711과 아두이노를 얹었다.</figcaption>
+        </figure>
+
         <div class="stats">
           <div class="stat"><span class="stat-value">4단 필터</span><span class="stat-label">스파이크 → 중간값 → 이동평균 → 데드존</span></div>
           <div class="stat"><span class="stat-value">60 Hz</span><span class="stat-label">고정 dt Producer–Consumer 루프</span></div>
@@ -316,14 +399,15 @@
           <button type="button" class="detail-toggle" aria-expanded="false">자세히 보기</button>
           <div class="detail-body">
           <ul>
-            <li>필터 순서가 설계 지점 — 스파이크를 먼저 버리지 않으면 중간값·이동평균 윈도우가 오염되고, 데드존을 먼저 걸면 스파이크가 그대로 통과</li>
+            <li>필터 순서가 곧 설계 지점. 스파이크를 먼저 버리지 않으면 중간값·이동평균 윈도우가 오염되고, 데드존을 먼저 걸면 스파이크가 그대로 통과</li>
             <li>센서 80 Hz와 게임 루프 60 Hz의 주기 불일치를 스레드 분리 + 큐로 해결. 시리얼 읽기 지연이 프레임 드롭으로 번지지 않게 함</li>
-            <li><code>GripSensor</code> 추상 인터페이스에 Mock(키보드) / Arduino(USB) / 라즈베리파이(GPIO) 3종 구현 — 로드셀 없이도 게임 로직 개발·디버깅 가능</li>
+            <li><code>GripSensor</code> 추상 인터페이스에 Mock(키보드) / Arduino(USB) / 라즈베리파이(GPIO) 3종 구현. 로드셀 없이도 게임 로직을 개발·디버깅할 수 있다</li>
             <li>영점(Tare) 3초 + 최대 악력 5초 자동 캘리브레이션, 결과를 JSON으로 저장해 재사용</li>
-            <li>게임마다 요구하는 입력 특성이 달라 파이프라인 검증에 사용 — 유지(풍선), 순간 입력(두더지), 좌우 차이(우주 조종), 연속 변화(신디사이저)</li>
-            <li>진동 모터 구동 시 오른손 센서가 끊기는 문제 — 원인이 전류 부하임을 확인하고 NPN 트랜지스터(2N2222) 구동으로 회로 변경</li>
+            <li>게임마다 요구하는 입력 특성이 달라 파이프라인 검증에 사용. 유지(풍선), 순간 입력(두더지), 좌우 차이(우주 조종), 연속 변화(신디사이저)</li>
+            <li>진동 모터 구동 시 오른손 센서가 끊기는 문제. 원인이 전류 부하임을 확인하고 NPN 트랜지스터(2N2222) 구동으로 회로 변경</li>
             <li>로드셀 마운트를 3D 모델링·출력, 아두이노 시리얼 프로토콜 직접 설계</li>
           </ul>
+          <a href="https://www.youtube.com/watch?v=_I-ejlEAkNM" target="_blank">데모 영상 →</a>
           <a href="https://github.com/bell-ha/grip-rehab-system" target="_blank">GitHub 보기 →</a>
           </div>
         </div>
@@ -341,6 +425,7 @@
 
       <div class="project">
         <h4>아티스트 홍보 플랫폼 SEIHI</h4>
+        <p class="project-tags"><span class="award">실서비스 운영</span><span class="award">FastAPI · React · PostgreSQL · Docker</span></p>
         <p class="summary">
           아티스트 정보 및 멀티미디어 콘텐츠 관리를 위한 풀스택 웹 애플리케이션입니다.
           Google OAuth 및 이메일 OTP 인증, Cloudinary 기반 파일 업로드를 지원합니다.
@@ -365,6 +450,7 @@
 
       <div class="project">
         <h4>단국대학교 뉴뮤직학부 연습실 예약 시스템</h4>
+        <p class="project-tags"><span class="award">교내 서비스</span><span class="award">FastAPI · JWT · AWS EC2</span></p>
         <p class="summary">
           단국대학교 뉴뮤직 학부 학생들을 위한 연습실 예약 및 장비 관리 웹 서비스입니다.
           학생과 관리자의 역할을 분리하여 예약 및 승인 시스템을 구현했습니다.
@@ -385,6 +471,7 @@
 
       <div class="project">
         <h4>DelRev — 3D 스텔스 서바이벌 게임</h4>
+        <p class="project-tags"><span class="award">4인 팀 · 클라이언트 / 사운드</span><span class="award">Unity 2022 · C#</span></p>
         <p class="summary">
           다양한 배경과 고유 AI 몬스터로부터 도망치며 생존하는 풀-3D 스텔스 서바이벌 게임입니다.
           4인 팀에서 클라이언트 개발과 사운드 디자인을 담당했습니다.
@@ -407,6 +494,7 @@
 
       <div class="project">
         <h4>실시간 표정 인식을 이용한 감정 기반 TTS 보컬 합성 시스템 연구</h4>
+        <p class="project-tags"><span class="award">학사 졸업논문</span><span class="award">MediaPipe · CNN · Flask · OpenAI TTS</span></p>
         <p class="summary">
           사용자의 얼굴 표정을 실시간으로 인식하여 감정 상태를 추정하고,
           이를 보컬 합성(Text-to-Speech)에 즉시 반영하는 감정 기반 TTS 시스템을
@@ -431,6 +519,7 @@
 
       <div class="project">
         <h4>생성형 AI 기반 맞춤형 반도핑 예방교육 시스템 개발</h4>
+        <p class="project-tags"><span class="award">연세대 AI혁신연구원</span><span class="award">2026.08 ~ 진행 중</span><span class="award">LLM · RAG</span></p>
         <p class="summary">
           연세대학교 AI 혁신연구원 프로젝트로, 2026년 8월부터 진행하고 있습니다.
           선수 경기력 데이터와 생성형 AI를 결합한 맞춤형 도핑 예방교육 시스템을 개발하고 있습니다.
@@ -449,6 +538,7 @@
 
       <div class="project">
         <h4>WGBS 유전체 분석 자동화 데스크톱 프로그램</h4>
+        <p class="project-tags"><span class="award">서울대 · 연세대 연구진 협업</span><span class="award">실제 연구 데이터 분석에 사용</span><span class="award">Python · Tkinter</span></p>
         <p class="summary">
           서울대학교·연세대학교 연구진과 함께 진행한 유전체 분석 자동화 프로젝트에서
           Python 애플리케이션 개발을 담당했습니다.
@@ -472,6 +562,7 @@
 
       <div class="project">
         <h4>Cloud-Native Kubernetes Cluster Infrastructure</h4>
+        <p class="project-tags"><span class="award">Terraform · Ansible · Jenkins · MetalLB</span></p>
         <p class="summary">
           CloudStack 환경에서 프로덕션 수준의 Kubernetes 클러스터를
           Infrastructure as Code 방식으로 설계 및 자동화한 프로젝트입니다.
@@ -518,6 +609,7 @@
 
       <div class="project">
         <h4>국립국악원 국악 음원 규격화 및 아카이빙</h4>
+        <p class="project-tags"><span class="award">국립국악원 × Qlaudio</span><span class="award">상용 출시</span></p>
         <p class="summary">
           국립국악원 음원을 대상으로 사운드 규격 제작과 음질 균일화 후반 작업을 수행했으며,
           국립국악원 × Qlaudio 국악기 사운드 정리 프로젝트에 협업으로 참여했습니다.
@@ -539,6 +631,7 @@
 
       <div class="project">
         <h4>단편영화 「After Session」 음악 제작</h4>
+        <p class="project-tags"><span class="award">작곡 · 사운드 디자인</span></p>
         <p class="summary">
           권혁준 감독의 단편영화 「After Session」의 음악을 제작했으며,
           영화의 정서와 흐름에 맞춘 작곡 및 사운드 디자인을 진행했습니다.
@@ -558,6 +651,7 @@
 
       <div class="project">
         <h4>인터랙티브 사운드 & 퍼포먼스 작업</h4>
+        <p class="project-tags"><span class="award">Max/MSP · MediaPipe · Unity</span></p>
         <p class="summary">
           인터랙션과 사운드를 결합한 퍼포먼스 및 실험적 작업들입니다.
         </p>
