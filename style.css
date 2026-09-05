@@ -496,6 +496,22 @@ h2 {
   border-radius: 8px;
 }
 
+/* 도면은 텍스트 컬럼(760px)보다 넓어야 글자가 읽힌다.
+   .container 안쪽 여백(872px)까지 오른쪽으로 넓힌다. */
+.project-media--wide {
+  max-width: none;
+}
+
+.project-media--wide img {
+  background: #ffffff;
+}
+
+@media (min-width: 940px) {
+  .project-media--wide {
+    margin-right: -112px;
+  }
+}
+
 .project-media figcaption {
   font-size: 0.8rem;
   color: var(--text-secondary);
