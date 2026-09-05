@@ -8,7 +8,7 @@
 
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Jongha Lee | Robotics Software Portfolio" />
-  <meta property="og:description" content="시각장애인 안내 로봇과 전동휠체어 자동 주차를 실제 로봇에서 개발해 왔습니다. ROS2 · 컴퓨터비전 · 시스템 통합." />
+  <meta property="og:description" content="시각장애인 안내 로봇과 전동휠체어 자동 주차를 실제 로봇에서 개발해 왔습니다. Unity 3D 게임 클라이언트와 사운드 디자인도 함께 — ROS2 · 컴퓨터비전 · 시스템 통합." />
   <meta property="og:image" content="https://bell-ha.github.io/images/og.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -43,6 +43,7 @@
       <a href="#all">All Projects</a>
       <a href="#robotics">Robotics & Embedded</a>
       <a href="#software">Software & AI</a>
+      <a href="#game">Game</a>
       <a href="#music">Music Technology</a>
     </div>
 
@@ -91,7 +92,12 @@
       그리고 사용자가 실패를 볼 수 없는 환경에서 안전하게 실패하는 방법을 주로 다룹니다.
     </p>
     <p>
-      웹 서비스와 백엔드, 사운드와 인터랙션을 결합한 뮤직테크놀러지 작업도 함께 해왔습니다.
+      3D 스텔스 게임 DelRev는 플레이어가 가정용 도우미 로봇입니다.
+      위험도를 숫자로 보여주는 대신, 심장박동처럼 빨라지는 소리로 알렸습니다.
+      로봇이든 게임이든 매 프레임 돌아가는 것을 안정적으로 만드는 일이라는 점은 같습니다.
+    </p>
+    <p>
+      실서비스로 운영 중인 백엔드, 직접 구축한 클러스터 인프라, 상용 출시된 음악 작업도 이어가고 있습니다.
     </p>
   </section>
 
@@ -340,6 +346,13 @@
         </p>
 
         <figure class="project-media">
+          <div class="video-embed">
+            <iframe src="https://www.youtube-nocookie.com/embed/o30saxUv7JM" title="V1 실기체 테스트 — 어안 2뷰로 마커를 추적하고 탑뷰 맵에 위치를 찍는다" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+          <figcaption>V1 실기체 테스트. 어안 2뷰로 마커를 추적해 탑뷰 맵에 위치를 찍는다.</figcaption>
+        </figure>
+
+        <figure class="project-media">
           <img src="images/wheelchair-v1.jpg" alt="차량에 장착된 좌측·후방 어안 카메라의 실시간 화면. 화면 가장자리가 심하게 휘어 있고 마커를 붙인 휠체어와 차량 모형이 보인다" loading="lazy" />
           <figcaption>V1 어라운드뷰 실제 화면. 가장자리 휘어짐이 그대로 각도 오차가 됐다.</figcaption>
         </figure>
@@ -541,28 +554,6 @@
         </div>
       </div>
 
-      <div class="project">
-        <h4>DelRev — 3D 스텔스 서바이벌 게임</h4>
-        <p class="project-tags"><span class="award">4인 팀 · 클라이언트 / 사운드</span><span class="award">Unity 2022 · C#</span></p>
-        <p class="summary">
-          다양한 배경과 고유 AI 몬스터로부터 도망치며 생존하는 풀-3D 스텔스 서바이벌 게임입니다.
-          4인 팀에서 클라이언트 개발과 사운드 디자인을 담당했습니다.
-        </p>
-        <span class="award">2025 단국 G-RISE 캡스톤디자인 경진대회 G7부문 장려상</span>
-        <span class="award">2025 단국대 SW중심대학 캡스톤 페스티벌 장려상</span>
-        <div class="project-detail">
-          <button type="button" class="detail-toggle" aria-expanded="false">자세히 보기</button>
-          <div class="detail-body">
-          <ul>
-            <li>Unity 2022(URP) + C# 기반 게임 클라이언트 개발</li>
-            <li>시야각·거리·조명 기반 탐지 메커닉 및 10+ 유형 몬스터 AI 구현</li>
-            <li>위험게이지·데드라인 등 핵심 자원 관리 시스템 설계</li>
-            <li>게임 사운드 디자인 및 상황별 오디오 연출</li>
-          </ul>
-          <a href="https://github.com/bell-ha/delrev-game" target="_blank">GitHub 보기 →</a>
-          </div>
-        </div>
-      </div>
 
       <div class="project">
         <h4>실시간 표정 인식을 이용한 감정 기반 TTS 보컬 합성 시스템 연구</h4>
@@ -655,6 +646,157 @@
 
       <div class="pager">
         <a href="#robotics">← Robotics & Embedded</a>
+        <a href="#game">Game →</a>
+      </div>
+    </div>
+
+    <!-- Game -->
+    <div class="project-category" id="game">
+      <h3 class="category-title">Game</h3>
+
+      <div class="project">
+        <h4>DelRev — 3D 스텔스 서바이벌 게임</h4>
+        <p class="project-tags"><span class="award">4인 팀 · 플레이어 / 위험게이지 / 방해자 AI / 사운드</span><span class="award">Unity 2022.3 · C#</span><span class="award">NavMesh · FSM · URP</span></p>
+
+        <p class="summary">
+          <strong>플레이어 캐릭터가 가정용 도우미 로봇입니다.</strong>
+          경쟁사 정보를 빼내기 위해 도우미 로봇으로 위장한 스파이가 가족주택 · 유치원 · 연구소 · 공장에 들어가
+          임무를 수행하고, 방해자에게서 도망치는 풀 3D 스텔스 게임입니다.
+          제가 로봇에서 다루던 것 — <strong>실시간 상태 관리, 센서 기반 판단, 소리로 상태를 알리는 일</strong> — 을
+          그대로 게임 안에서 다뤘습니다.
+        </p>
+        <p class="summary">
+          8개월간 4인 팀으로 만들었고, 게임 스크립트 94개 9,862줄 중 <strong>절반 이상을 주 작성</strong>했습니다.
+        </p>
+
+        <p class="summary">
+          <strong>위험게이지 —</strong> 이 게임의 핵심 자원입니다. 안전구역 밖에 있으면 차오릅니다.
+          그런데 게이지를 <strong>숫자가 아니라 소리로 알립니다.</strong>
+          틱 간격과 볼륨을 4구간으로 나눠, 위험할수록 심장박동처럼 빨라집니다.
+        </p>
+
+        <figure class="project-media">
+          <div class="video-embed">
+            <iframe src="https://www.youtube-nocookie.com/embed/M8obEdlshRk" title="DelRev 게임플레이 주요 장면" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+          <figcaption>게임플레이 — 스테이지별 몬스터를 피해 아이템을 모은다.</figcaption>
+        </figure>
+
+        <figure class="project-media project-media--wide">
+          <img src="images/delrev-danger-gauge.svg" alt="위험게이지에 따른 틱 사운드 곡선. 게이지가 오를수록 틱 간격이 1.5초에서 0.2초로 짧아지고 볼륨은 0에서 1로 올라간다" loading="lazy" />
+          <figcaption>게이지가 오를수록 간격은 짧아지고 볼륨은 커진다. 100%에서 최종 방해자가 깨어난다.</figcaption>
+        </figure>
+
+        <p class="summary">
+          100%에 닿으면 그 스테이지의 최종 방해자만 깨어납니다.
+          게이지 로직이 몬스터를 알 필요가 없도록 <strong>인터페이스 하나로 끊었습니다</strong> —
+          <code>IDangerTarget</code>의 구현체는 스테이지마다 하나씩, 정확히 네 개입니다.
+        </p>
+
+        <figure class="flow flow--wide">
+          <table class="flow-table">
+            <caption>몬스터마다 상태 집합을 따로 정의했다</caption>
+            <thead>
+              <tr><th scope="col">몬스터</th><th scope="col">상태</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Mom<br><sub>가족주택</sub></td><td>None · Patrol · Chase · Return · Alert</td></tr>
+              <tr><td>Dog<br><sub>가족주택</sub></td><td>Patrol · Chase · Return · <strong>Called</strong></td></tr>
+              <tr><td>Director<br><sub>유치원</sub></td><td><strong>Greeting</strong> · Patrol · Chase · Alert</td></tr>
+              <tr><td>SecurityGuard<br><sub>연구소</sub></td><td>Patrol · <strong>CCTV</strong> · Chase</td></tr>
+              <tr><td>Researcher<br><sub>연구소</sub></td><td>Idle · Chase · Return</td></tr>
+            </tbody>
+          </table>
+          <figcaption>같은 FSM을 돌려쓰지 않았다. 상태 이름이 곧 그 몬스터의 성격이다.</figcaption>
+        </figure>
+
+        <p class="summary">
+          <strong>사운드 —</strong> 58개를 설계·구현하고 <code>CHR · MON · EVT · AMB · BGM · SFX · UI</code> 접두사로 분류했습니다.
+          발소리는 바닥 재질별로 변주를 두고, 이동 속도 3단계에 따라 간격을 바꾸며,
+          <strong>발이 닿는 순간 카메라를 흔듭니다.</strong> 소리와 화면을 같이 설계해야 걷는 느낌이 나옵니다.
+        </p>
+
+        <p class="summary">
+          유치원 배경음악은 <strong>동요를 무너뜨리는 방식</strong>으로 만들었습니다.
+          같은 동요를 <strong>단2도</strong> 올려 겹치고 주파수를 미세하게 어긋내 불안을 만든 뒤,
+          <strong>증4도</strong> — 가장 불안정한 음정 — 로 다시 겹칩니다. 그리고 전부 끊습니다. 공백 자체가 공포가 됩니다.
+          컷신과 인트로는 Foley와 디지털 신스를 병행해 직접 제작하고, 움직임 · 카메라 컷 · 장면 전환에 타이밍을 맞췄습니다.
+        </p>
+
+        <p class="summary">
+          <strong>트러블슈팅 — 씬을 넘어갈 때 아이템이 사라졌습니다.</strong>
+          맵을 오갈 때마다 씬을 새로 로드하는데, Unity는 씬을 언로드하며 그 씬의 오브젝트를 전부 파괴합니다.
+          들고 있던 아이템도, 트레일러에 실어 둔 아이템도 같이 사라졌습니다.
+          원인이 하나가 아니라 <strong>네 겹</strong>이었습니다.
+        </p>
+
+        <figure class="flow flow--wide">
+          <table class="flow-table">
+            <caption>원인과 대응</caption>
+            <thead>
+              <tr><th scope="col">원인</th><th scope="col">대응</th></tr>
+            </thead>
+            <tbody>
+              <tr class="is-key">
+                <td><span class="step-no">①</span><code>DontDestroyOnLoad</code>는 루트 오브젝트에만 걸린다<br><sub>자식에 호출하면 조용히 무시되고 부모와 함께 죽는다</sub></td>
+                <td><code>SetParent(null)</code>로 먼저 루트 분리</td>
+              </tr>
+              <tr>
+                <td><span class="step-no">②</span>트레일러에 실으면 자식이 되어 다시 걸린다</td>
+                <td>자식으로 넣으면서 그 아이템도 각각 보호</td>
+              </tr>
+              <tr>
+                <td><span class="step-no">③</span>씬 재로드 시 트레일러가 두 개가 된다</td>
+                <td><code>scene.name</code>으로 원본을 판별해 새 쪽을 제거</td>
+              </tr>
+              <tr>
+                <td><span class="step-no">④</span>초기화가 끝나기 전 트리거가 발동한다</td>
+                <td><code>isValid</code> 플래그로 준비 전 입력 차단</td>
+              </tr>
+            </tbody>
+          </table>
+          <figcaption>오브젝트 수명이 씬 수명에 묶여 있다는 것 — 그 사슬이 부모·자식 → 중복 인스턴스 → 초기화 순서로 이어졌다.</figcaption>
+        </figure>
+
+        <p class="summary">
+          못 잡은 버그도 있었습니다. <code>Day</code>가 0으로 되돌아가는데 원인을 찾지 못해,
+          값이 대입되는 순간의 호출 스택을 찍게 해두고 추적했습니다.
+          잡을 때까지 사용자에게 영향이 가지 않도록 임시 방어를 두고,
+          <strong>코드에 "응급 패치"라고 적어 두었습니다</strong> — 나중에 정상 로직으로 오해되지 않도록.
+        </p>
+
+        <span class="award">2025 RIEF-FESTA 캡스톤디자인 경진대회 G7 부문 장려상 · 75팀 중 6팀</span>
+        <span class="award">2025 단국대 SW중심대학 캡스톤 페스티벌 장려상 · 100팀 중 15팀</span>
+
+        <div class="stats">
+          <div class="stat"><span class="stat-value">9,862줄</span><span class="stat-label">게임 스크립트 (94개)</span></div>
+          <div class="stat"><span class="stat-value">53 / 104</span><span class="stat-label">주 작성 스크립트</span></div>
+          <div class="stat"><span class="stat-value">10+</span><span class="stat-label">몬스터 AI 유형</span></div>
+          <div class="stat"><span class="stat-value">58개</span><span class="stat-label">사운드 설계·구현</span></div>
+        </div>
+
+        <div class="project-detail">
+          <button type="button" class="detail-toggle" aria-expanded="false">자세히 보기</button>
+          <div class="detail-body">
+          <ul>
+            <li><strong>플레이어</strong> — <code>PlayerController</code> 싱글톤으로 체력·스태미나를 전역 노출해 <code>Damage</code>·<code>Inventory</code>·<code>MapTracker</code>가 붙게 설계. 씬 전환 시 스탯 자동 초기화로 맵 간 이동에 대응</li>
+            <li><strong>피격 연출</strong> — 체력 감소 하나에 카메라 흔들림 · 화면 플래시 · 사운드가 함께 걸리도록 <code>Damage</code>를 단일 진입점으로 분리</li>
+            <li><strong>방해자 AI</strong> — NavMesh 순찰 + 시야 Raycast 기반 FSM. 감지 조건을 몬스터마다 다르게 뒀습니다 — 시야각 60° 고정형(<code>Teacher</code>), 웅크리면 미감지(<code>DollMonster</code>), 조작을 묶고 문제를 풀게 하는 비전투형(<code>SmartKid</code>), 플래시로 시야를 마비시키는 특수형(<code>Security_B</code>)</li>
+            <li><strong>위험게이지</strong> — 채움/감소 로직, 4구간 틱 사운드 곡선, <code>IDangerTarget</code> 인터페이스 설계</li>
+            <li><strong>몬스터 AI</strong> — 가족주택 · 유치원 · 연구소 몬스터와 스테이지 최종 방해자 4종. NavMesh 순찰 경로, 시야 Raycast, 추적/복귀 전이</li>
+            <li><strong>맵 · 진행</strong> — 문/열쇠 상호작용, 맵 추적, 씬 전환, 아이템 제출 시스템</li>
+            <li><strong>사운드</strong> — 58개 설계·구현, 발소리 재질별 변주 + 속도 3단계 간격 + 카메라 흔들림 연동</li>
+            <li>공장 로봇 계열(드론 · 포탑 · 용접 · 덫) · 세이브 · 상점은 권예진, <code>Mom</code>·<code>Teacher</code>는 김도현과 공동 작성했습니다</li>
+          </ul>
+          <a href="https://youtu.be/TNu-wWInctg" target="_blank">스토리 영상 (사운드 디자인) →</a>
+          <a href="https://github.com/hitori839/DelRev" target="_blank">GitHub 보기 →</a>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="pager">
+        <a href="#software">← Software & AI</a>
         <a href="#music">Music Technology →</a>
       </div>
     </div>
@@ -741,7 +883,7 @@
       </div>
 
       <div class="pager">
-        <a href="#software">← Software & AI</a>
+        <a href="#game">← Game</a>
         <span></span>
       </div>
     </div>
