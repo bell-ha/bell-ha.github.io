@@ -2,6 +2,8 @@
   --text-primary: #111;
   --text-secondary: #555;
   --border-color: #e6e6e6;
+  --rule-card: #d0d0d0;
+  --rule-category: #111111;
   --bg-color: #ffffff;
   --hover-tint: rgba(17, 17, 17, 0.05);
   --accent: #1f6feb;
@@ -301,19 +303,30 @@ h2 {
 }
 
 .project-category {
-  margin-bottom: 80px;
+  margin-bottom: 128px;
   scroll-margin-top: 72px;
 }
 
 .category-title {
-  font-size: 1.22rem;
+  font-size: 0.95rem;
   font-weight: 600;
-  margin-bottom: 28px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   color: var(--text-primary);
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--rule-category);
+  margin-bottom: 36px;
 }
 
 .project {
   margin-bottom: 56px;
+}
+
+/* 카드가 끝났다는 신호가 여백뿐이라 스크롤 중에 묻힌다.
+   카테고리 첫 카드에는 붙이지 않는다. */
+.project + .project {
+  border-top: 1px solid var(--rule-card);
+  padding-top: 40px;
 }
 
 .project h4 {
@@ -698,6 +711,18 @@ h2 {
   display: none;
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* ===== Dark mode ===== */
 /* 1) 시스템이 다크이고, 사용자가 라이트를 고르지 않았을 때 */
 @media (prefers-color-scheme: dark) {
@@ -705,6 +730,8 @@ h2 {
     --text-primary: #ececec;
     --text-secondary: #a3a3a3;
     --border-color: #2c2e33;
+    --rule-card: #3a3d44;
+    --rule-category: #ececec;
     --bg-color: #111215;
     --hover-tint: rgba(255, 255, 255, 0.06);
     --accent: #58a6ff;
@@ -726,6 +753,14 @@ h2 {
     opacity: 0.9;
   }
 
+  /* 도면 SVG는 흰 배경을 파일 안에 갖고 있어 다크에서 발광한다.
+     모노크롬이라 반전으로 해결된다. */
+  :root:not([data-theme="light"]) .project-media--wide img {
+    background: transparent;
+    filter: invert(0.93) hue-rotate(180deg);
+    opacity: 1;
+  }
+
   :root:not([data-theme="light"]) .theme-toggle .label-dark {
     display: none;
   }
@@ -740,6 +775,8 @@ h2 {
   --text-primary: #ececec;
   --text-secondary: #a3a3a3;
   --border-color: #2c2e33;
+  --rule-card: #3a3d44;
+  --rule-category: #ececec;
   --bg-color: #111215;
   --hover-tint: rgba(255, 255, 255, 0.06);
   --accent: #58a6ff;
@@ -759,6 +796,12 @@ h2 {
 
 :root[data-theme="dark"] .project-media img {
   opacity: 0.9;
+}
+
+:root[data-theme="dark"] .project-media--wide img {
+  background: transparent;
+  filter: invert(0.93) hue-rotate(180deg);
+  opacity: 1;
 }
 
 :root[data-theme="dark"] .theme-toggle .label-dark {
