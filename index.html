@@ -92,7 +92,7 @@
       그리고 사용자가 실패를 볼 수 없는 환경에서 안전하게 실패하는 방법을 주로 다룹니다.
     </p>
     <p>
-      3D 스텔스 게임 DelRev는 플레이어가 가정용 도우미 로봇입니다.
+      3D 잠입 게임 DelRev는 플레이어가 가정용 도우미 로봇입니다.
       위험도를 숫자로 보여주는 대신, 심장박동처럼 빨라지는 소리로 알렸습니다.
       로봇이든 게임이든 매 프레임 돌아가는 것을 안정적으로 만드는 일이라는 점은 같습니다.
     </p>
@@ -171,7 +171,7 @@
   </section>
 
   <!-- ===== Projects ===== -->
-  <section class="projects">
+  <section class="projects" id="all">
     <h2>Projects</h2>
 
     <!-- Robotics -->
@@ -655,24 +655,29 @@
       <h3 class="category-title">Game</h3>
 
       <div class="project">
-        <h4>DelRev — 3D 스텔스 서바이벌 게임</h4>
+        <h4>DelRev — 3D 잠입 액션 게임</h4>
         <p class="project-tags"><span class="award">4인 팀 · 플레이어 / 위험게이지 / 방해자 AI / 사운드</span><span class="award">Unity 2022.3 · C#</span><span class="award">NavMesh · FSM · URP</span></p>
 
         <p class="summary">
           <strong>플레이어 캐릭터가 가정용 도우미 로봇입니다.</strong>
-          경쟁사 정보를 빼내기 위해 도우미 로봇으로 위장한 스파이가 가족주택 · 유치원 · 연구소 · 공장에 들어가
-          임무를 수행하고, 방해자에게서 도망치는 풀 3D 스텔스 게임입니다.
-          제가 로봇에서 다루던 것 — <strong>실시간 상태 관리, 센서 기반 판단, 소리로 상태를 알리는 일</strong> — 을
+          경쟁사 정보를 빼내려고 도우미 로봇으로 위장한 스파이가 가정주택 · 유치원 · 연구소 · 공장에 잠입해
+          임무를 수행하고, 방해자에게서 도망칩니다. 10개월간 4인 팀으로 만든 졸업작품입니다.
+          로봇에서 다루던 것 — <strong>실시간 상태 관리, 센서 기반 판단, 소리로 상태를 알리는 일</strong> — 을
           그대로 게임 안에서 다뤘습니다.
         </p>
-        <p class="summary">
-          8개월간 4인 팀으로 만들었고, 게임 스크립트 94개 9,862줄 중 <strong>절반 이상을 주 작성</strong>했습니다.
-        </p>
+
+        <figure class="project-media">
+          <div class="video-embed">
+            <iframe src="https://www.youtube-nocookie.com/embed/TNu-wWInctg" title="DelRev 인트로 시네마틱 — 도우미 로봇이 회사에서 출고되어 가정에 투입되기까지" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+          <figcaption>인트로 시네마틱 — 뉴스 음성 · 기계음 · 발소리 · 앰비언스를 25개 트랙으로 쌓았다.</figcaption>
+        </figure>
 
         <p class="summary">
-          <strong>위험게이지 —</strong> 이 게임의 핵심 자원입니다. 안전구역 밖에 있으면 차오릅니다.
-          그런데 게이지를 <strong>숫자가 아니라 소리로 알립니다.</strong>
-          틱 간격과 볼륨을 4구간으로 나눠, 위험할수록 심장박동처럼 빨라집니다.
+          <strong>긴장을 무엇으로 만드나 —</strong> 잠입 게임에서 플레이어를 조마조마하게 만드는 것은 적이 아니라 욕심입니다.
+          맵을 끝까지 털면 안전하지만 날짜가 가고, 빨리 나오면 할당량이 모자랍니다.
+          게임이 다음 목적지를 정해 주지 않고 <strong>플레이어가 지도에서 직접 고르게</strong> 했습니다.
+          상점에서 배터리나 시계를 사면 그만큼 코인이 줄어, 그 소비도 같은 저울에 올라갑니다.
         </p>
 
         <figure class="project-media">
@@ -682,15 +687,35 @@
           <figcaption>게임플레이 — 스테이지별 몬스터를 피해 아이템을 모은다.</figcaption>
         </figure>
 
+        <p class="summary">
+          <strong>그런데 플레이어는 게이지를 보지 않습니다 —</strong> 잠입 중에는 적을 보고 있고,
+          다음에 어디로 숨을지 생각합니다. 화면 구석의 막대를 볼 여유가 없습니다.
+          그래서 위험도를 <strong>눈이 아니라 귀로</strong> 옮겼습니다. 틱 간격과 볼륨을 4구간으로 나눠,
+          위험할수록 심장박동처럼 빨라집니다. 값에 정비례해 줄이면 변화를 알아채지 못합니다 —
+          <strong>단계가 바뀌는 순간이 있어야 몸이 반응합니다.</strong> 경계 수치는 플레이테스트로 잡았습니다.
+        </p>
+
         <figure class="project-media project-media--wide">
           <img src="images/delrev-danger-gauge.svg" alt="위험게이지에 따른 틱 사운드 곡선. 게이지가 오를수록 틱 간격이 1.5초에서 0.2초로 짧아지고 볼륨은 0에서 1로 올라간다" loading="lazy" />
           <figcaption>게이지가 오를수록 간격은 짧아지고 볼륨은 커진다. 100%에서 최종 방해자가 깨어난다.</figcaption>
         </figure>
 
         <p class="summary">
-          100%에 닿으면 그 스테이지의 최종 방해자만 깨어납니다.
-          게이지 로직이 몬스터를 알 필요가 없도록 <strong>인터페이스 하나로 끊었습니다</strong> —
+          100%에 닿으면 그 스테이지의 최종 방해자만 깨어나 업무 구역 안까지 쫓아 들어옵니다.
+          플레이어가 믿고 있던 규칙을 마지막에 깨는 장치입니다.
+          깨우는 방식은 맵마다 다른데, 게이지가 그 차이를 전부 알게 만들면 맵을 붙일 때마다 게이지를 고쳐야 합니다.
+          그래서 게이지는 <strong>다 찼다는 사실만 통보</strong>하고 무슨 일이 일어날지는 각 방해자가 정합니다 —
           <code>IDangerTarget</code>의 구현체는 스테이지마다 하나씩, 정확히 네 개입니다.
+        </p>
+
+        <p class="summary">
+          <strong>제일 화가 나는 순간은 왜 들켰는지 모를 때입니다 —</strong>
+          그래서 연구소 CCTV는 플레이어를 보는 순간 경비원을 부르지 않습니다.
+          <strong>시야 안에 3초 이상 머물러야</strong> 호출이 나갑니다. 스쳐 지나가는 것과 들키는 것을 구분해 주지 않으면
+          플레이어는 자기가 무엇을 잘못했는지 모른 채 쫓기게 됩니다.
+          감지하는 객체와 쫓아오는 객체를 분리해서 <strong>CCTV를 피하는 것만으로 추격을 끊을 수 있게</strong> 했고,
+          같은 구조를 연구소 CCTV → 경비원, 가정주택 카메라 → 개, 공장 포탑 → 경비 로봇 세 맵에서 반복했습니다.
+          규칙이 일정해야 플레이어가 배웁니다.
         </p>
 
         <figure class="flow flow--wide">
@@ -700,8 +725,8 @@
               <tr><th scope="col">몬스터</th><th scope="col">상태</th></tr>
             </thead>
             <tbody>
-              <tr><td>Mom<br><sub>가족주택</sub></td><td>None · Patrol · Chase · Return · Alert</td></tr>
-              <tr><td>Dog<br><sub>가족주택</sub></td><td>Patrol · Chase · Return · <strong>Called</strong></td></tr>
+              <tr><td>Mom<br><sub>가정주택</sub></td><td>None · Patrol · Chase · Return · Alert</td></tr>
+              <tr><td>Dog<br><sub>가정주택</sub></td><td>Patrol · Chase · Return · <strong>Called</strong></td></tr>
               <tr><td>Director<br><sub>유치원</sub></td><td><strong>Greeting</strong> · Patrol · Chase · Alert</td></tr>
               <tr><td>SecurityGuard<br><sub>연구소</sub></td><td>Patrol · <strong>CCTV</strong> · Chase</td></tr>
               <tr><td>Researcher<br><sub>연구소</sub></td><td>Idle · Chase · Return</td></tr>
@@ -709,6 +734,15 @@
           </table>
           <figcaption>같은 FSM을 돌려쓰지 않았다. 상태 이름이 곧 그 몬스터의 성격이다.</figcaption>
         </figure>
+
+        <p class="summary">
+          공통 부모 클래스를 두지 않았습니다. 상태 구성이 서로 달랐기 때문입니다.
+          <code>Mom</code> · <code>Dog</code> · <code>BlueEyeCat</code> · <code>Researcher</code> 넷만
+          <code>Return</code>을 가집니다 — 추격을 포기하고 제자리로 돌아가는 상태입니다.
+          이게 없으면 한 번 들킨 플레이어는 맵이 끝날 때까지 쫓깁니다.
+          <strong>곰인형에는 일부러 넣지 않았습니다.</strong> 물러서지 않는 적이 하나는 있어야 했습니다.
+          상태를 빼는 것도 설계였습니다.
+        </p>
 
         <p class="summary">
           <strong>사운드 —</strong> 58개를 설계·구현하고 <code>CHR · MON · EVT · AMB · BGM · SFX · UI</code> 접두사로 분류했습니다.
@@ -737,7 +771,7 @@
               <tr><th scope="col">원인</th><th scope="col">대응</th></tr>
             </thead>
             <tbody>
-              <tr class="is-key">
+              <tr>
                 <td><span class="step-no">①</span><code>DontDestroyOnLoad</code>는 루트 오브젝트에만 걸린다<br><sub>자식에 호출하면 조용히 무시되고 부모와 함께 죽는다</sub></td>
                 <td><code>SetParent(null)</code>로 먼저 루트 분리</td>
               </tr>
@@ -759,7 +793,7 @@
         </figure>
 
         <p class="summary">
-          못 잡은 버그도 있었습니다. <code>Day</code>가 0으로 되돌아가는데 원인을 찾지 못해,
+          <strong>못 잡은 것도 있습니다 —</strong> <code>Day</code>가 0으로 되돌아가는데 원인을 찾지 못해,
           값이 대입되는 순간의 호출 스택을 찍게 해두고 추적했습니다.
           잡을 때까지 사용자에게 영향이 가지 않도록 임시 방어를 두고,
           <strong>코드에 "응급 패치"라고 적어 두었습니다</strong> — 나중에 정상 로직으로 오해되지 않도록.
@@ -770,8 +804,8 @@
 
         <div class="stats">
           <div class="stat"><span class="stat-value">9,862줄</span><span class="stat-label">게임 스크립트 (94개)</span></div>
-          <div class="stat"><span class="stat-value">53 / 104</span><span class="stat-label">주 작성 스크립트</span></div>
-          <div class="stat"><span class="stat-value">10+</span><span class="stat-label">몬스터 AI 유형</span></div>
+          <div class="stat"><span class="stat-value">54%</span><span class="stat-label">직접 작성한 코드 (git blame)</span></div>
+          <div class="stat"><span class="stat-value">11종</span><span class="stat-label">FSM 방해자 (8종 직접 구현)</span></div>
           <div class="stat"><span class="stat-value">58개</span><span class="stat-label">사운드 설계·구현</span></div>
         </div>
 
@@ -783,10 +817,10 @@
             <li><strong>피격 연출</strong> — 체력 감소 하나에 카메라 흔들림 · 화면 플래시 · 사운드가 함께 걸리도록 <code>Damage</code>를 단일 진입점으로 분리</li>
             <li><strong>방해자 AI</strong> — NavMesh 순찰 + 시야 Raycast 기반 FSM. 감지 조건을 몬스터마다 다르게 뒀습니다 — 시야각 60° 고정형(<code>Teacher</code>), 웅크리면 미감지(<code>DollMonster</code>), 조작을 묶고 문제를 풀게 하는 비전투형(<code>SmartKid</code>), 플래시로 시야를 마비시키는 특수형(<code>Security_B</code>)</li>
             <li><strong>위험게이지</strong> — 채움/감소 로직, 4구간 틱 사운드 곡선, <code>IDangerTarget</code> 인터페이스 설계</li>
-            <li><strong>몬스터 AI</strong> — 가족주택 · 유치원 · 연구소 몬스터와 스테이지 최종 방해자 4종. NavMesh 순찰 경로, 시야 Raycast, 추적/복귀 전이</li>
+            <li><strong>몬스터 AI</strong> — 가정주택 · 유치원 · 연구소 몬스터와 스테이지 최종 방해자 4종. NavMesh 순찰 경로, 시야 Raycast, 추적/복귀 전이</li>
             <li><strong>맵 · 진행</strong> — 문/열쇠 상호작용, 맵 추적, 씬 전환, 아이템 제출 시스템</li>
             <li><strong>사운드</strong> — 58개 설계·구현, 발소리 재질별 변주 + 속도 3단계 간격 + 카메라 흔들림 연동</li>
-            <li>공장 로봇 계열(드론 · 포탑 · 용접 · 덫) · 세이브 · 상점은 권예진, <code>Mom</code>·<code>Teacher</code>는 김도현과 공동 작성했습니다</li>
+            <li>공장 로봇 계열(드론 · 포탑 · 용접) · 세이브 · 부팅 · 상점 · 환경설정은 권예진, 유치원 방해자 계열(<code>Teacher</code> · <code>DollMonster</code> · <code>SmartKid</code>)은 김도현이 만든 파일 위에 이어 작업했습니다</li>
           </ul>
           <a href="https://youtu.be/TNu-wWInctg" target="_blank">스토리 영상 (사운드 디자인) →</a>
           <a href="https://github.com/hitori839/DelRev" target="_blank">GitHub 보기 →</a>
@@ -893,7 +927,7 @@
 </main>
 
 <script>
-  const catIds = ['software', 'robotics', 'music'];
+  const catIds = ['robotics', 'software', 'game', 'music'];
   const tabs = document.querySelectorAll('.nav-links a');
   const navLinks = document.querySelector('.nav-links');
   const navIndicator = document.querySelector('.nav-indicator');
