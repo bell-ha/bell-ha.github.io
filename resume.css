@@ -235,4 +235,21 @@ body {
     break-after: auto;
     page-break-after: auto;
   }
+
+  /* 좁은 창에서 인쇄해도 모바일 축소가 새어 나오지 않게 */
+  #pages {
+    transform: none !important;
+    height: auto !important;
+  }
+}
+
+/* ===== Mobile (screen only) ===== */
+@media screen and (max-width: 794px) {
+  body {
+    overflow-x: hidden;
+  }
+}
+
+#pages {
+  transform-origin: top left;
 }
