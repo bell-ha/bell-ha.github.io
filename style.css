@@ -43,6 +43,16 @@ button:focus-visible {
   border-radius: 2px;
 }
 
+/* 탭을 누르면 스크립트가 해당 섹션에 포커스를 옮긴다(키보드 이동용).
+   클릭한 사람에게는 브라우저 기본 파란 테두리가 상자로 남아 보이므로 지운다.
+   섹션은 조작하는 요소가 아니라 도착 지점이라 테두리가 뜻하는 바가 없다. */
+main > section[tabindex="-1"]:focus,
+main .project-category[tabindex="-1"]:focus,
+main > section[tabindex="-1"]:focus-visible,
+main .project-category[tabindex="-1"]:focus-visible {
+  outline: none;
+}
+
 img {
   max-width: 100%;
   display: block;

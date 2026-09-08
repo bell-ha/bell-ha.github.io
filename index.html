@@ -579,6 +579,7 @@
           </div>
           </div>
         </div>
+      </div>
 
       <div class="project">
         <h4>단국대학교 뉴뮤직학부 연습실 예약 시스템</h4>
@@ -686,7 +687,7 @@
           </div>
           </div>
         </div>
-
+      </div>
 
       <div class="project">
         <h4>실시간 표정 인식을 이용한 감정 기반 TTS 보컬 합성 시스템 연구</h4>
@@ -1107,11 +1108,23 @@
 
 <script>
   const catIds = ['robotics', 'software', 'game', 'music'];
+  const validIds = ['all', ...catIds];
   const tabs = document.querySelectorAll('.nav-links a');
   const navLinks = document.querySelector('.nav-links');
   const navIndicator = document.querySelector('.nav-indicator');
   const projectsEl = document.querySelector('.projects');
-  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // 예전에는 로드 시점에 한 번만 읽어서, OS 설정을 바꿔도 새로고침 전까지
+  // 반영되지 않았다.
+  const motionQuery = matchMedia('(prefers-reduced-motion: reduce)');
+  let reduceMotion = motionQuery.matches;
+  motionQuery.addEventListener('change', e => { reduceMotion = e.matches; });
+
+  // 섹션으로 포커스를 옮길 수 있어야 스크린리더가 "본문이 바뀌었다"를 안다.
+  // 카드 마크업을 건드리지 않으려고 속성은 여기서 붙인다.
+  [projectsEl, ...catIds.map(id => document.getElementById(id))].forEach(el => {
+    if (el && !el.hasAttribute('tabindex')) el.setAttribute('tabindex', '-1');
+  });
 
   function moveIndicator() {
     const active = navLinks.querySelector('a.active');
@@ -1122,6 +1135,21 @@
     navIndicator.style.opacity = '1';
     navIndicator.style.width = active.offsetWidth + 'px';
     navIndicator.style.transform = `translateX(${active.offsetLeft}px)`;
+  }
+
+  // 내비 막대만 가로로 움직인다.
+  // 예전에는 active.scrollIntoView({ block: 'nearest' })를 써서 세로 스크롤이
+  // 함께 일어났고, 그게 본문 스크롤과 목표를 다투었다.
+  function centerActiveTab() {
+    const active = navLinks.querySelector('a.active');
+    if (!active) return;
+    const wanted = active.offsetLeft - (navLinks.clientWidth - active.offsetWidth) / 2;
+    const left = Math.max(0, Math.min(wanted, navLinks.scrollWidth - navLinks.clientWidth));
+    if (navLinks.scrollTo) {
+      navLinks.scrollTo({ left, behavior: reduceMotion ? 'auto' : 'smooth' });
+    } else {
+      navLinks.scrollLeft = left;
+    }
   }
 
   function applyFilter(id) {
@@ -1136,37 +1164,68 @@
       else a.removeAttribute('aria-current');
     });
     moveIndicator();
-    const active = navLinks.querySelector('a.active');
-    if (active) {
-      active.scrollIntoView({ inline: 'center', block: 'nearest', behavior: reduceMotion ? 'auto' : 'smooth' });
-    }
+    centerActiveTab();
   }
 
-  function show(id, animate) {
+  // 스크롤은 필터가 끝난 "뒤에" 한 번만 한다.
+  //
+  // 예전에는 필터를 160ms 뒤에 적용하면서 스크롤은 즉시 시작했다. 그래서
+  // 곧 사라질 레이아웃(문서 24,845px, 네 섹션 모두 보이는 상태)을 기준으로
+  // 목표를 잡고 출발했고, 필터가 적용되면 문서가 8,086px로 줄어드니
+  // 그 자리에는 아무것도 없었다. "눌렀는데 프로젝트가 안 뜬다"가 이것이었다.
+  function scrollToSection(id, smooth) {
+    const el = (id === 'all') ? projectsEl : document.getElementById(id);
+    if (!el) return;
+    el.scrollIntoView({
+      behavior: (smooth && !reduceMotion) ? 'smooth' : 'auto',
+      block: 'start',
+    });
+    // 키보드로 탭을 누르면 포커스가 body로 떨어져서 자리를 잃었다.
+    // 대상 섹션으로 옮기면 포커스도 살고 스크린리더가 새 제목을 읽는다.
+    // 스크롤은 바로 위에서 이미 했으므로 여기서는 막는다.
+    el.focus({ preventScroll: true });
+  }
+
+  function go(id, animate, scroll) {
     if (animate && !reduceMotion) {
       projectsEl.style.transition = 'opacity .18s ease';
       projectsEl.style.opacity = '0';
       setTimeout(() => {
         applyFilter(id);
         projectsEl.style.opacity = '1';
+        if (scroll) scrollToSection(id, true);
       }, 160);
     } else {
       applyFilter(id);
+      projectsEl.style.opacity = '1';
+      if (scroll) scrollToSection(id, false);
     }
   }
 
   function fromHash(animate) {
-    const id = location.hash.slice(1);
-    const valid = catIds.includes(id) || id === 'all';
-    const target = valid ? id : 'all';
-    show(target, animate);
-    if (valid) {
-      requestAnimationFrame(() => {
-        document.querySelector('.projects').scrollIntoView();
-      });
-    }
+    const raw = location.hash.slice(1);
+    const valid = validIds.includes(raw);
+    // 잘못된 해시(#nonsense)가 주소창과 히스토리에 그대로 남아서, 뒤로가기로
+    // 돌아오면 아무 설명 없이 다시 All이 됐다. 주소를 정정해 둔다.
+    if (raw && !valid) history.replaceState(null, '', '#all');
+    go(valid ? raw : 'all', animate, valid);
   }
 
+  // 탭과 하단 이동 링크(.pager)를 모두 가로챈다.
+  // 앵커 기본 동작을 두면 브라우저가 먼저 섹션으로 점프하고, 그 스크롤이
+  // 스크립트 스크롤과 겹쳐 목표가 도중에 바뀐다.
+  // pushState는 hashchange를 발생시키지 않으므로 아래 핸들러와 중복되지 않는다.
+  document.addEventListener('click', e => {
+    const a = e.target.closest ? e.target.closest('a[href^="#"]') : null;
+    if (!a) return;
+    const id = a.getAttribute('href').slice(1);
+    if (!validIds.includes(id)) return;
+    e.preventDefault();
+    if (location.hash !== '#' + id) history.pushState(null, '', '#' + id);
+    go(id, true, true);
+  });
+
+  // 뒤로/앞으로 가기로 해시가 바뀌는 경우만 여기로 온다.
   window.addEventListener('hashchange', () => fromHash(true));
   fromHash(false);
 
