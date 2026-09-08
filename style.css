@@ -811,3 +811,20 @@ h2 {
 :root[data-theme="dark"] .theme-toggle .label-light {
   display: block;
 }
+
+/* 두 장을 나란히 놓아 비교하는 그림.
+   템플릿 1과 2처럼 "왜 둘로 나눴나"가 나란히 놓아야 보이는 경우에 쓴다. */
+.two-up {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  align-items: start;
+}
+.two-up img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+@media (max-width: 720px) {
+  .two-up { grid-template-columns: 1fr; }
+}
