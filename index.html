@@ -836,7 +836,7 @@
 
         <p class="summary">
           <strong>플레이어 캐릭터가 가정용 도우미 로봇입니다.</strong>
-          경쟁사 정보를 빼내려고 도우미 로봇으로 위장한 스파이가 가정주택 · 유치원 · 연구소 · 공장에 잠입해
+          경쟁사 정보를 빼내려고 도우미 로봇으로 위장한 스파이가 가정주택 · 유치원 · 공장에 잠입해
           임무를 수행하고, 방해자에게서 도망칩니다. 10개월간 4인 팀으로 만든 졸업작품입니다.
           로봇에서 다루던 것 — <strong>실시간 상태 관리, 센서 기반 판단, 소리로 상태를 알리는 일</strong> — 을
           그대로 게임 안에서 다뤘습니다.
@@ -886,11 +886,11 @@
 
         <p class="summary">
           <strong>제일 화가 나는 순간은 왜 들켰는지 모를 때입니다 —</strong>
-          그래서 연구소 CCTV는 플레이어를 보는 순간 경비원을 부르지 않습니다.
+          그래서 CCTV는 플레이어를 보는 순간 경비원을 부르지 않습니다.
           <strong>시야 안에 3초 이상 머물러야</strong> 호출이 나갑니다. 스쳐 지나가는 것과 들키는 것을 구분해 주지 않으면
           플레이어는 자기가 무엇을 잘못했는지 모른 채 쫓기게 됩니다.
           감지하는 객체와 쫓아오는 객체를 분리해서 <strong>CCTV를 피하는 것만으로 추격을 끊을 수 있게</strong> 했고,
-          같은 구조를 연구소 CCTV → 경비원, 가정주택 카메라 → 개, 공장 포탑 → 경비 로봇 세 맵에서 반복했습니다.
+          같은 구조를 가정주택 카메라 → 개, 공장 포탑 → 경비 로봇, 연구소 CCTV → 경비원 세 맵에 넣었습니다.
           규칙이 일정해야 플레이어가 배웁니다.
         </p>
 
@@ -904,8 +904,8 @@
               <tr><td>Mom<br><sub>가정주택</sub></td><td>None · Patrol · Chase · Return · Alert</td></tr>
               <tr><td>Dog<br><sub>가정주택</sub></td><td>Patrol · Chase · Return · <strong>Called</strong></td></tr>
               <tr><td>Director<br><sub>유치원</sub></td><td><strong>Greeting</strong> · Patrol · Chase · Alert</td></tr>
-              <tr><td>SecurityGuard<br><sub>연구소</sub></td><td>Patrol · <strong>CCTV</strong> · Chase</td></tr>
-              <tr><td>Researcher<br><sub>연구소</sub></td><td>Idle · Chase · Return</td></tr>
+              <tr><td>SecurityGuard<br><sub>연구소 · 미출시</sub></td><td>Patrol · <strong>CCTV</strong> · Chase</td></tr>
+              <tr><td>Researcher<br><sub>연구소 · 미출시</sub></td><td>Idle · Chase · Return</td></tr>
             </tbody>
           </table>
           <figcaption>같은 FSM을 돌려쓰지 않았다. 상태 이름이 곧 그 몬스터의 성격이다.</figcaption>
@@ -993,7 +993,7 @@
             <li><strong>피격 연출</strong> — 체력 감소 하나에 카메라 흔들림 · 화면 플래시 · 사운드가 함께 걸리도록 <code>Damage</code>를 단일 진입점으로 분리</li>
             <li><strong>방해자 AI</strong> — NavMesh 순찰 + 시야 Raycast 기반 FSM. 감지 조건을 몬스터마다 다르게 뒀습니다 — 시야각 60° 고정형(<code>Teacher</code>), 웅크리면 미감지(<code>DollMonster</code>), 조작을 묶고 문제를 풀게 하는 비전투형(<code>SmartKid</code>), 플래시로 시야를 마비시키는 특수형(<code>Security_B</code>)</li>
             <li><strong>위험게이지</strong> — 채움/감소 로직, 4구간 틱 사운드 곡선, <code>IDangerTarget</code> 인터페이스 설계</li>
-            <li><strong>몬스터 AI</strong> — 가정주택 · 유치원 · 연구소 몬스터와 스테이지 최종 방해자 4종. NavMesh 순찰 경로, 시야 Raycast, 추적/복귀 전이</li>
+            <li><strong>몬스터 AI</strong> — 가정주택 · 유치원 · 연구소(미출시) 몬스터와 스테이지 최종 방해자 4종(출시 3종). NavMesh 순찰 경로, 시야 Raycast, 추적/복귀 전이</li>
             <li><strong>맵 · 진행</strong> — 문/열쇠 상호작용, 맵 추적, 씬 전환, 아이템 제출 시스템</li>
             <li><strong>사운드</strong> — 57개 설계·구현, 발소리 재질별 변주 + 속도 3단계 간격 + 카메라 흔들림 연동</li>
             <li>공장 로봇 계열(드론 · 포탑 · 용접) · 세이브 · 부팅 · 상점 · 환경설정은 권예진, 유치원 방해자 계열(<code>Teacher</code> · <code>DollMonster</code> · <code>SmartKid</code>)은 김도현이 만든 파일 위에 이어 작업했습니다</li>
