@@ -415,8 +415,8 @@
             <li>파이프라인 8단계 중 7단계가 실기체에서 동작 (AgileX TRACER 섀시 · CAN 제어)</li>
             <li><strong>V2 담당</strong> — 공공 데이터셋의 도메인 불일치를 자체 촬영·라벨링(실차 121장 + 목업 60장)으로 해결</li>
             <li>번호판 실측 규격(335 × 155 mm)과 핀홀 모델로 거리 · yaw · bearing 추정</li>
-            <li>IBVS 정렬 + 초음파 평행 맞춤 + IMU 회전각 제어를 결합한 9단계 주차 / 7단계 출차 시나리오 구현</li>
-            <li>캐스터 휠 구조상 직진이 바퀴 정렬 상태에 따라 휘는 문제. 관측 불가 구간으로 규정하고 IMU 회전각 보장 로직으로 보완</li>
+            <li>9단계 주차 / 7단계 출차 시나리오를 설계하고, 그중 IBVS 정렬과 초음파 평행 맞춤 두 단계를 자동화 (나머지 단계는 수동 조작으로 연결)</li>
+            <li>캐스터 휠 구조상 직진이 바퀴 정렬 상태에 따라 휘는 문제. 관측 불가 구간으로 규정하고 IMU yaw 피드백으로 직진 방위를 유지하도록 보완</li>
             <li>Jetson Nano(4 GB) 부하 측정: 320 px 기준 지속 15 FPS, 추론 42 ms, RAM 3.55/3.96 GB, 5.8 W. 스왑 부족 프리징을 4 GB 확장으로 해소</li>
           </ul>
           <a href="https://github.com/bell-ha/wheelchair-auto-parking-system" target="_blank">GitHub 보기 →</a>
@@ -881,7 +881,7 @@
         </p>
 
         <p class="summary">
-          <strong>사운드 —</strong> 58개를 설계·구현하고 <code>CHR · MON · EVT · AMB · BGM · SFX · UI</code> 접두사로 분류했습니다.
+          <strong>사운드 —</strong> 57개를 설계·구현하고 <code>CHR · MON · EVT · AMB · BGM · SFX · UI</code> 접두사로 분류했습니다.
           발소리는 바닥 재질별로 변주를 두고, 이동 속도 3단계에 따라 간격을 바꾸며,
           <strong>발이 닿는 순간 카메라를 흔듭니다.</strong> 소리와 화면을 같이 설계해야 걷는 느낌이 나옵니다.
         </p>
@@ -935,14 +935,14 @@
           <strong>코드에 "응급 패치"라고 적어 두었습니다</strong> — 나중에 정상 로직으로 오해되지 않도록.
         </p>
 
-        <span class="award">2025 RIEF-FESTA 캡스톤디자인 경진대회 G7 부문 장려상 · 75팀 중 6팀</span>
+        <span class="award">2025학년도 캡스톤디자인 경진대회 G7부문 장려상 · 단국G-RISE사업단 (75팀 중 6팀)</span>
         <span class="award">2025 단국대 SW중심대학 캡스톤 페스티벌 장려상 · 100팀 중 15팀</span>
 
         <div class="stats">
           <div class="stat"><span class="stat-value">9,862줄</span><span class="stat-label">게임 스크립트 (94개)</span></div>
           <div class="stat"><span class="stat-value">54%</span><span class="stat-label">직접 작성한 코드 (git blame)</span></div>
           <div class="stat"><span class="stat-value">11종</span><span class="stat-label">FSM 방해자 (8종 직접 구현)</span></div>
-          <div class="stat"><span class="stat-value">58개</span><span class="stat-label">사운드 설계·구현</span></div>
+          <div class="stat"><span class="stat-value">57개</span><span class="stat-label">사운드 설계·구현</span></div>
         </div>
 
         <div class="project-detail">
@@ -955,7 +955,7 @@
             <li><strong>위험게이지</strong> — 채움/감소 로직, 4구간 틱 사운드 곡선, <code>IDangerTarget</code> 인터페이스 설계</li>
             <li><strong>몬스터 AI</strong> — 가정주택 · 유치원 · 연구소 몬스터와 스테이지 최종 방해자 4종. NavMesh 순찰 경로, 시야 Raycast, 추적/복귀 전이</li>
             <li><strong>맵 · 진행</strong> — 문/열쇠 상호작용, 맵 추적, 씬 전환, 아이템 제출 시스템</li>
-            <li><strong>사운드</strong> — 58개 설계·구현, 발소리 재질별 변주 + 속도 3단계 간격 + 카메라 흔들림 연동</li>
+            <li><strong>사운드</strong> — 57개 설계·구현, 발소리 재질별 변주 + 속도 3단계 간격 + 카메라 흔들림 연동</li>
             <li>공장 로봇 계열(드론 · 포탑 · 용접) · 세이브 · 부팅 · 상점 · 환경설정은 권예진, 유치원 방해자 계열(<code>Teacher</code> · <code>DollMonster</code> · <code>SmartKid</code>)은 김도현이 만든 파일 위에 이어 작업했습니다</li>
           </ul>
           <a href="https://github.com/hitori839/DelRev" target="_blank">GitHub 보기 →</a>
