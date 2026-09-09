@@ -780,6 +780,45 @@
         </div>
       </div>
 
+      <div class="project">
+        <h4>CAST — 탄소 인식 클라우드 스케줄러</h4>
+        <p class="project-tags"><span class="award">4인 팀 · 로드밸런서 담당</span><span class="award">진행 중</span><span class="award">LSTM · ILP</span></p>
+        <p class="summary">
+          전기가 깨끗한 리전·시간대로 작업을 옮겨 탄소 배출을 줄이는 스케줄러입니다.
+        </p>
+        <div class="project-detail">
+          <button type="button" class="detail-toggle" aria-expanded="false">자세히 보기</button>
+          <div class="detail-body">
+          <ul>
+            <li>LSTM 탄소집약도 예측 → ILP 리전 이동 → 유연 작업 시간 이동</li>
+            <li>라우팅은 예측값, 탄소 정산은 실측값으로 분리해 결과 부풀림 차단</li>
+            <li>가중치를 고정하지 않고 매 슬롯 파레토 무릎점에서 자동 선택</li>
+            <li>8개 리전 · 146,000건 시뮬레이션에서 탄소 56.9% 감소, 지연 36.2ms 증가</li>
+          </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="project">
+        <h4>OnWork 그룹웨어 — 휴가 모듈 설계</h4>
+        <p class="project-tags"><span class="award">4인 팀 · 설계 담당</span><span class="award">SW아키텍처</span></p>
+        <p class="summary">
+          휴가 결재자도 휴가를 갑니다. 결재가 그 자리에서 멈추지 않도록 대행 체계를 설계했습니다.
+        </p>
+        <div class="project-detail">
+          <button type="button" class="detail-toggle" aria-expanded="false">자세히 보기</button>
+          <div class="detail-body">
+          <ul>
+            <li>결재자 부재 시 다음 순위가 자동 대행 (ADR-LVE-001)</li>
+            <li>같은 대행 로직을 3일 초과 대기 자동 에스컬레이션에 재사용</li>
+            <li>승인 시점 잔여 차감 및 취소 시 환원, USE/CANCEL 이력</li>
+            <li>유스케이스에서 구현 · 엔드포인트 · 검증까지 잇는 추적성 대조표 작성 (검증 근거 46행)</li>
+          </ul>
+          <a href="https://github.com/bell-ha/onwork-groupware/tree/main/SW%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98%20%EC%B5%9C%EC%A2%85%EA%B2%B0%EA%B3%BC%EB%AC%BC" target="_blank">설계 산출물 보기 →</a>
+          </div>
+        </div>
+      </div>
+
       <div class="pager">
         <a href="#robotics">← Robotics & Embedded</a>
         <a href="#game">Game →</a>
