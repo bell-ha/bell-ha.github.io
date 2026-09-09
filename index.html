@@ -284,7 +284,7 @@
 
         <div class="stats">
           <div class="stat"><span class="stat-value">1층 → 5층</span><span class="stat-label">층간 이동 완주 (정상 시나리오 1회)</span></div>
-          <div class="stat"><span class="stat-value">27건</span><span class="stat-label">조용한 실패 목록화</span></div>
+          <div class="stat"><span class="stat-value">160건</span><span class="stat-label">조용한 실패 목록화</span></div>
           <div class="stat"><span class="stat-value">4.8 mm</span><span class="stat-label">버튼 3D 좌표 독립 3측정 일치</span></div>
           <div class="stat"><span class="stat-value">코엑스</span><span class="stat-label">ITRC 인재양성대전 시연</span></div>
         </div>
@@ -415,7 +415,7 @@
             <li>파이프라인 8단계 중 7단계가 실기체에서 동작 (AgileX TRACER 섀시 · CAN 제어)</li>
             <li><strong>V2 담당</strong> — 공공 데이터셋의 도메인 불일치를 자체 촬영·라벨링(실차 121장 + 목업 60장)으로 해결</li>
             <li>번호판 실측 규격(335 × 155 mm)과 핀홀 모델로 거리 · yaw · bearing 추정</li>
-            <li>9단계 주차 / 7단계 출차 시나리오를 설계하고, 그중 IBVS 정렬과 초음파 평행 맞춤 두 단계를 자동화 (나머지 단계는 수동 조작으로 연결)</li>
+            <li>카메라(IBVS)와 초음파를 융합한 정렬기를 구현하고, 9단계 주차 / 7단계 출차 전 구간을 실기체에서 검증 (정렬 2단계 자동 · 나머지 구간 수동 조작)</li>
             <li>캐스터 휠 구조상 직진이 바퀴 정렬 상태에 따라 휘는 문제. 관측 불가 구간으로 규정하고 IMU yaw 피드백으로 직진 방위를 유지하도록 보완</li>
             <li>Jetson Nano(4 GB) 부하 측정: 320 px 기준 지속 15 FPS, 추론 42 ms, RAM 3.55/3.96 GB, 5.8 W. 스왑 부족 프리징을 4 GB 확장으로 해소</li>
           </ul>
