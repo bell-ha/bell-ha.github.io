@@ -532,7 +532,7 @@ h2 {
   max-width: 720px;
 }
 
-.project-media--wide img {
+.project-media--wide img:not(.photo) {
   background: #ffffff;
 }
 
@@ -768,7 +768,7 @@ h2 {
 
   /* 도면 SVG는 흰 배경을 파일 안에 갖고 있어 다크에서 발광한다.
      모노크롬이라 반전으로 해결된다. */
-  :root:not([data-theme="light"]) .project-media--wide img {
+  :root:not([data-theme="light"]) .project-media--wide img:not(.photo) {
     background: transparent;
     filter: invert(0.93) hue-rotate(180deg);
     opacity: 1;
@@ -811,7 +811,9 @@ h2 {
   opacity: 0.9;
 }
 
-:root[data-theme="dark"] .project-media--wide img {
+/* --wide 는 흰 배경 도표·화면 캡처를 위한 것이라 다크모드에서 색을 뒤집는다.
+   실사 사진에 걸면 음화가 되므로 .photo 를 붙여 예외로 둔다. */
+:root[data-theme="dark"] .project-media--wide img:not(.photo) {
   background: transparent;
   filter: invert(0.93) hue-rotate(180deg);
   opacity: 1;
