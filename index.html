@@ -278,8 +278,8 @@
         <p class="summary">
           <strong>완주, 그리고 남은 것 —</strong> 2026년 8월, 여섯 단계가 처음으로 한 번에 이어져
           1층에서 5층 504호까지 사람의 개입 없이 갔습니다. <strong>다만 1회입니다.</strong>
-          같은 날 호출 버튼의 상행·하행 중 하나만 인식돼 내려오는 시나리오는 돌지 못했고,
-          문이 닫히기 전에 탑승을 끝내지 못하는 경우도 잦았습니다. 반복 성공률은 아직 측정하지 않았습니다.
+          호출 버튼 인식과 탑승 타이밍이 어긋나는 경우가 아직 잦고,
+          반복 성공률은 측정하지 않았습니다.
         </p>
 
         <figure class="project-media project-media--wide">
@@ -912,8 +912,8 @@
               <tr><td>Mom<br><sub>가정주택</sub></td><td>None · Patrol · Chase · Return · Alert</td></tr>
               <tr><td>Dog<br><sub>가정주택</sub></td><td>Patrol · Chase · Return · <strong>Called</strong></td></tr>
               <tr><td>Director<br><sub>유치원</sub></td><td><strong>Greeting</strong> · Patrol · Chase · Alert</td></tr>
-              <tr><td>SecurityGuard<br><sub>연구소 · 미출시</sub></td><td>Patrol · <strong>CCTV</strong> · Chase</td></tr>
-              <tr><td>Researcher<br><sub>연구소 · 미출시</sub></td><td>Idle · Chase · Return</td></tr>
+              <tr><td>SecurityGuard<br><sub>연구소</sub></td><td>Patrol · <strong>CCTV</strong> · Chase</td></tr>
+              <tr><td>Researcher<br><sub>연구소</sub></td><td>Idle · Chase · Return</td></tr>
             </tbody>
           </table>
           <figcaption>같은 FSM을 돌려쓰지 않았다. 상태 이름이 곧 그 몬스터의 성격이다.</figcaption>
@@ -1001,9 +1001,9 @@
             <li><strong>피격 연출</strong>. 체력 감소 하나에 카메라 흔들림 · 화면 플래시 · 사운드가 함께 걸리도록 <code>Damage</code>를 단일 진입점으로 분리</li>
             <li><strong>방해자 AI</strong>. NavMesh 순찰 + 시야 Raycast 기반 FSM. 감지 조건을 몬스터마다 다르게 뒀습니다. 시야각 60° 고정형(<code>Teacher</code>), 웅크리면 미감지(<code>DollMonster</code>), 조작을 묶고 문제를 풀게 하는 비전투형(<code>SmartKid</code>), 플래시로 시야를 마비시키는 특수형(<code>Security_B</code>)</li>
             <li><strong>위험게이지</strong>. 채움/감소 로직, 4구간 틱 사운드 곡선, <code>IDangerTarget</code> 인터페이스 설계</li>
-            <li><strong>몬스터 AI</strong>. 가정주택 · 유치원 · 연구소(미출시) 몬스터와 스테이지 최종 방해자 4종(출시 3종). NavMesh 순찰 경로, 시야 Raycast, 추적/복귀 전이</li>
+            <li><strong>몬스터 AI</strong>. 가정주택 · 유치원 · 연구소 몬스터와 스테이지 최종 방해자 4종(출시 3종). NavMesh 순찰 경로, 시야 Raycast, 추적/복귀 전이</li>
             <li><strong>맵 · 진행</strong>. 문/열쇠 상호작용, 맵 추적, 씬 전환, 아이템 제출 시스템</li>
-            <li><strong>사운드</strong>. 57개 설계·구현, 발소리 재질별 변주 + 속도 3단계 간격 + 카메라 흔들림 연동</li>
+            <li><strong>사운드</strong>. 발소리 재질별 변주 + 속도 3단계 간격 + 카메라 흔들림 연동</li>
             <li>공장 로봇 계열(드론 · 포탑 · 용접) · 세이브 · 부팅 · 상점 · 환경설정은 권예진, 유치원 방해자 계열(<code>Teacher</code> · <code>DollMonster</code> · <code>SmartKid</code>)은 김도현이 만든 파일 위에 이어 작업했습니다</li>
           </ul>
           <a href="https://github.com/hitori839/DelRev" target="_blank">GitHub 보기 →</a>
@@ -1074,11 +1074,17 @@
 
         <p class="summary">
           납품을 마친 뒤 <strong>1,456개를 전수 집계</strong>했습니다. 전부 24bit, 48kHz는 한 개만 예외였고,
-          카테고리 접두사 규칙을 벗어난 파일은 없었습니다. 분포가 장르 설계를 그대로 드러냅니다.
+          카테고리 접두사 규칙을 벗어난 파일은 없었습니다. 1,456개의 이름을 규칙에 맞추는 일과
+          포맷 일괄 변환은 파이썬 스크립트로 처리했습니다. 분포는 장르 설계를 그대로 드러냅니다.
           FPS에는 이벤트음과 몬스터음 카테고리가 아예 없고 전투음과 발소리에 몰린 반면,
           퍼즐은 이벤트 사운드 163개가 전체의 8할을 차지했습니다.
           <strong>캐릭터 동작음은 대부분 모노로 만들었습니다.</strong> 게임 안에서 3D 위치를 갖는 소리라서 그렇고,
           모노가 절반을 넘는 카테고리는 이것 하나뿐이었습니다.
+        </p>
+        <p class="summary">
+          카드 전략의 <strong>"화면을 보지 않아도 구별되게"</strong>는 이후 DelRev에서 위험도를 숫자가 아니라
+          소리로 옮길 때 그대로 쓰인 판단입니다. 소리를 만드는 사람이 재생 시점까지 코드로 정하면
+          <strong>외주 왕복 없이 그 자리에서 고칠 수 있습니다.</strong>
         </p>
 
         <div class="soundlist">
@@ -1091,18 +1097,6 @@
             <div class="sound-scroll"><table class="sound-table"><tbody></tbody></table></div>
           </div>
         </div>
-
-        <p class="summary">
-          포맷을 WAV로 일괄 변환하는 스크립트를 짜고, 파일 목록을 뽑아 납품 문서와 맞춰 봤습니다.
-          그 과정에서 한 건을 찾았습니다. <code>Rain_Loop</code> 1·2 다음이 연번이 아니라
-          <code>Ruin</code>, 폐허 소리였습니다.
-        </p>
-
-        <p class="summary">
-          카드 전략의 <strong>"화면을 보지 않아도 구별되게"</strong>는 이후 DelRev에서 위험도를 숫자가 아니라
-          소리로 옮길 때 그대로 쓰인 판단입니다. 소리를 만드는 사람이 재생 시점까지 코드로 정하면
-          <strong>외주 왕복 없이 그 자리에서 고칠 수 있습니다.</strong>
-        </p>
 
         <div class="project-links">
           <a href="https://qlaudio.co.kr/" target="_blank" class="project-btn">판매 페이지 →</a>
