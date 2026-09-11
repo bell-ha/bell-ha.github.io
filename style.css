@@ -771,12 +771,18 @@ h2 {
     opacity: 0.9;
   }
 
-  /* 도면 SVG는 흰 배경을 파일 안에 갖고 있어 다크에서 발광한다.
-     모노크롬이라 반전으로 해결된다. */
-  :root:not([data-theme="light"]) .project-media--wide img:not(.photo) {
+  /* 직접 그린 도면 SVG만 반전한다. 흰 배경을 파일 안에 갖고 있어 다크에서
+     발광하는데, 모노크롬이라 반전이 먹는다.
+     화면 캡처(PNG/JPG)는 컬러라 반전하면 색이 뒤집혀 못 쓴다 — 제외한다. */
+  :root:not([data-theme="light"]) .project-media--wide img[src$=".svg"]:not(.photo) {
     background: transparent;
     filter: invert(0.93) hue-rotate(180deg);
     opacity: 1;
+  }
+
+  /* 반전하지 않는 캡처는 흰 바탕이 페이지로 번지지 않게 테두리로 끊어준다. */
+  :root:not([data-theme="light"]) .project-media--wide img:not([src$=".svg"]) {
+    border: 1px solid var(--rule);
   }
 
   :root:not([data-theme="light"]) .theme-toggle .label-dark {
@@ -816,12 +822,16 @@ h2 {
   opacity: 0.9;
 }
 
-/* --wide 는 흰 배경 도표·화면 캡처를 위한 것이라 다크모드에서 색을 뒤집는다.
-   실사 사진에 걸면 음화가 되므로 .photo 를 붙여 예외로 둔다. */
-:root[data-theme="dark"] .project-media--wide img:not(.photo) {
+/* 반전은 직접 그린 모노크롬 도면 SVG에만 건다.
+   컬러 화면 캡처(PNG/JPG)와 실사 사진은 반전하면 음화가 되므로 제외한다. */
+:root[data-theme="dark"] .project-media--wide img[src$=".svg"]:not(.photo) {
   background: transparent;
   filter: invert(0.93) hue-rotate(180deg);
   opacity: 1;
+}
+
+:root[data-theme="dark"] .project-media--wide img:not([src$=".svg"]) {
+  border: 1px solid var(--rule);
 }
 
 :root[data-theme="dark"] .theme-toggle .label-dark {
