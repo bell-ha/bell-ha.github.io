@@ -325,6 +325,12 @@
             <li>Nav2 footprint를 5각형·뒤 −0.85 m로 확장해 뒤따르는 사람을 로봇 크기에 포함, 후진 차단(min_vel_x 0.0)</li>
             <li>시각장애인 당사자 인터뷰로 요구사항 수집. 부정적 반응이 나온 장애물 밀기 기능은 보류</li>
           </ul>
+          <figure class="project-media project-media--small">
+            <img src="images/robot-handle.png" width="522" height="484" loading="lazy"
+                 alt="3D 출력한 검은 손잡이를 두 각도에서 찍은 사진. 윗면에 노란 버튼 2개, 옆면에 둥근 필름형 압력센서와 리본 단자가 보인다. 슬라이드 제목은 '손잡이 조작', 설명은 '버튼으로 상태 전환, 환경 분석 / 압력 센서로 위험 신호 감지'이고, 화살표 라벨은 '실내 환경 분석', '목적지/명령 확정', '당길 시 긴급정지'다." />
+            <figcaption>Fusion으로 설계해 직접 출력한 손잡이. 버튼 2개와 압력 센서를 아두이노로 읽는다.</figcaption>
+          </figure>
+
           <figure class="project-media project-media--wide">
             <img src="images/fig5-architecture.svg" width="1000" height="560" alt="시스템 구성도. 입력, 핵심 로직, 인지, 주행, 관측 다섯 그룹으로 나뉘고 프로세스 경계와 데이터 흐름이 표시되어 있다" loading="lazy" />
             <figcaption>한 프로세스에 몰아넣지 않았다. ROS2 노드 35개 · Flask 서버 2개 · 층별 지도 8종.</figcaption>
