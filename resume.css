@@ -12,7 +12,10 @@
 }
 
 body {
-  font-family: Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  /* css/fonts.css 의 자체 호스팅 서브셋. 없는 글자는 글자 단위로
+     뒤 패밀리(설치된 Pretendard → 시스템)로 넘어간다. */
+  font-family: 'Pretendard KR Subset', Pretendard, -apple-system,
+               BlinkMacSystemFont, system-ui, sans-serif;
   background: #efefef;
   color: var(--ink);
   line-height: 1.45;

@@ -92,8 +92,12 @@
 
   /* ---- 타이포 ------------------------------------------------- */
   /* 한글 본문은 16px이면 좁다. 모바일 17 → 데스크톱 17.5로 둔다. */
-  --font-sans: Pretendard, -apple-system, BlinkMacSystemFont, system-ui,
-               "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  /* 서브셋을 맨 앞에 둔다. 서브셋에 없는 글자는 브라우저가 글자 단위로
+     다음 패밀리로 넘어가므로, 뒤에 남겨 둔 Pretendard(설치돼 있으면 사용)와
+     시스템 폰트가 그대로 받아 준다. */
+  --font-sans: 'Pretendard KR Subset', Pretendard, -apple-system,
+               BlinkMacSystemFont, system-ui, "Apple SD Gothic Neo",
+               "Malgun Gothic", sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
 
   --fs-display: clamp(2rem,   1.55rem + 2.25vw, 3rem);
