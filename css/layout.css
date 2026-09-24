@@ -1,0 +1,244 @@
+/* ============================================================
+   layout.css — 헤더 · 컨테이너 · 섹션 · 히어로 · 푸터
+   ============================================================ */
+
+.container {
+  inline-size: 100%;
+  max-inline-size: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* ============================================================
+   헤더
+   ============================================================ */
+
+.site-header {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 100;
+  background: var(--bg);
+  border-block-end: var(--hairline) solid var(--border);
+}
+
+/* 배경 블러는 지원될 때만. 긴 문서에서 매 스크롤 프레임마다
+   합성 레이어를 다시 칠하므로 저사양 기기에서 끊긴다.
+   불투명 배경을 기본값으로 두고 블러는 얹기만 한다. */
+@supports (backdrop-filter: blur(8px)) or (-webkit-backdrop-filter: blur(8px)) {
+  @media (prefers-reduced-motion: no-preference) {
+    .site-header {
+      background: color-mix(in srgb, var(--bg) 88%, transparent);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+  }
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  min-block-size: var(--header-h);
+}
+
+.site-header__home {
+  flex: none;
+  color: var(--text);
+  font-weight: var(--fw-semi);
+  text-decoration: none;
+  /* 44px 터치 타깃 — 보이는 글자는 그대로 두고 영역만 세로로 채운다 */
+  display: inline-flex;
+  align-items: center;
+  min-block-size: var(--tap);
+  padding-inline-end: var(--sp-2);
+}
+.site-header__home:hover { color: var(--accent); }
+
+/* ---- 분야 내비 ------------------------------------------------ */
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-1);
+  min-inline-size: 0;
+  margin-inline-end: auto;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scrollbar-width: none;
+}
+.site-nav::-webkit-scrollbar { display: none; }
+
+.site-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: var(--tap);
+  padding-inline: var(--sp-3);
+  border-radius: var(--r-sm);
+  color: var(--text-muted);
+  font-size: var(--fs-sm);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.site-nav a:hover { color: var(--text); background: var(--surface-2); }
+.site-nav a[aria-current] { color: var(--text); font-weight: var(--fw-semi); }
+
+/* 좁은 화면에서는 이름만 남기고 분야 내비를 감춘다.
+   본문에 같은 링크가 섹션 제목으로 전부 있으므로 길이 끊기지 않는다.
+   가로 스크롤되는 탭 줄은 스크롤바를 숨겨 두면 "더 있다"는 신호가
+   없어서, 없는 편이 낫다. */
+@media (max-width: 719px) {
+  .site-nav { display: none; }
+}
+
+/* ---- 테마 토글 ------------------------------------------------
+   theme.js 가 <html data-theme> 과 버튼의 aria-pressed 를 갱신한다.
+   버튼 글자는 "누르면 무엇이 되는지"를 말한다:
+     라이트일 때 → "Dark"   (.label-light)
+     다크일 때   → "Light"  (.label-dark)
+   ---------------------------------------------------------------- */
+.theme-toggle {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-block-size: var(--tap);
+  min-inline-size: 4.25rem;
+  padding-inline: var(--sp-3);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-medium);
+  color: var(--text-muted);
+  background: transparent;
+  border: var(--hairline) solid var(--border-strong);
+  border-radius: var(--r-sm);
+  transition: color var(--dur) var(--ease), background-color var(--dur) var(--ease);
+}
+.theme-toggle:hover { color: var(--text); background: var(--surface-2); }
+
+.theme-toggle .label-dark { display: none; }
+.theme-toggle .label-light { display: inline; }
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-toggle .label-light { display: none; }
+  :root:not([data-theme="light"]) .theme-toggle .label-dark { display: inline; }
+}
+:root[data-theme="dark"] .theme-toggle .label-light { display: none; }
+:root[data-theme="dark"] .theme-toggle .label-dark { display: inline; }
+/* 시스템이 다크여도 라이트를 직접 고르면 다시 "Dark" 로 */
+:root[data-theme="light"] .theme-toggle .label-light { display: inline; }
+:root[data-theme="light"] .theme-toggle .label-dark { display: none; }
+
+/* ============================================================
+   본문 · 섹션
+   ============================================================ */
+
+main.container {
+  padding-block: clamp(2.5rem, 1.8rem + 3.5vw, 4.5rem) var(--sp-11);
+}
+
+.section { margin-block-end: var(--section-gap); }
+
+.section__title {
+  margin-block-end: var(--sp-5);
+  padding-block-end: var(--sp-3);
+  border-block-end: 2px solid var(--border-strong);
+  font-size: var(--fs-h2);
+  scroll-margin-block-start: calc(var(--header-h) + var(--sp-4));
+}
+
+/* 읽는 글은 줄길이를 제한한다 — 660px에서 한글 약 38자 / 로마자 약 70자 */
+.section > p,
+.section > ul:not([class]),
+.section > ol:not([class]) {
+  max-inline-size: var(--container-text);
+}
+
+.about__lead {
+  max-inline-size: var(--container-text);
+  font-size: clamp(1.15rem, 1.08rem + 0.35vw, 1.3rem);
+  font-weight: var(--fw-semi);
+  line-height: var(--lh-snug);
+  color: var(--text);
+  margin-block-end: var(--sp-5);
+}
+
+/* ============================================================
+   히어로
+   ============================================================ */
+
+.hero {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: clamp(1.25rem, 0.8rem + 2.2vw, 2.5rem);
+  margin-block-end: var(--section-gap);
+}
+
+.hero__photo {
+  flex: none;
+  inline-size: clamp(88px, 22vw, 136px);
+  block-size: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: var(--r-lg);
+  border: var(--hairline) solid var(--border);
+}
+
+.hero__body { min-inline-size: 0; flex: 1 1 18rem; }
+
+.hero__name {
+  font-size: var(--fs-display);
+  letter-spacing: -0.03em;
+}
+
+.hero__tagline {
+  margin-block-start: var(--sp-2);
+  max-inline-size: var(--container-text);
+  font-size: clamp(1.05rem, 0.98rem + 0.4vw, 1.25rem);
+  line-height: var(--lh-snug);
+  color: var(--text);
+}
+
+.hero__status {
+  margin-block-start: var(--sp-2);
+  font-size: var(--fs-sm);
+  color: var(--text-faint);
+}
+
+.hero__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-1) var(--sp-2);
+  margin-block-start: var(--sp-4);
+  padding: 0;
+  list-style: none;
+}
+.hero__links li { margin-block-start: 0; }
+
+.hero__links a {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: var(--tap);
+  padding-inline: var(--sp-3);
+  border: var(--hairline) solid var(--border-strong);
+  border-radius: var(--r-sm);
+  font-size: var(--fs-sm);
+  color: var(--text);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  transition: border-color var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+.hero__links a:hover { color: var(--accent); border-color: var(--accent); }
+
+/* ============================================================
+   푸터
+   ============================================================ */
+
+.site-footer {
+  border-block-start: var(--hairline) solid var(--border);
+  padding-block: var(--sp-7);
+  color: var(--text-faint);
+  font-size: var(--fs-sm);
+}
+.site-footer p { overflow-wrap: anywhere; }
+.site-footer a { color: var(--text-muted); }
+.site-footer a:hover { color: var(--accent); }

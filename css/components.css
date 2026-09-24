@@ -1,0 +1,690 @@
+/* ============================================================
+   components.css — 카드 · 배지 · 태그 · 경력표 · Impact · 도판 · 페이저
+   tokens.css → base.css → layout.css 다음에 읽는다.
+   ============================================================ */
+
+/* ============================================================
+   1. 프로젝트 섹션
+   <section class="proj-section" id="robotics" data-category="robotics">
+   data-category 하나로 그 안의 카드·수치가 분야색을 따라온다.
+   ============================================================ */
+
+.proj-section {
+  margin-block-end: var(--section-gap);
+  scroll-margin-block-start: calc(var(--header-h) + var(--sp-4));
+}
+
+.proj-section__title {
+  display: flex;
+  align-items: baseline;
+  gap: var(--sp-3);
+  margin-block-end: var(--sp-5);
+  padding-block-end: var(--sp-3);
+  border-block-end: 2px solid var(--cat);
+  font-size: var(--fs-h2);
+}
+
+.proj-section__count {
+  margin-inline-start: auto;
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-normal);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-faint);
+}
+.proj-section__count::before { content: "프로젝트 "; }
+
+/* ============================================================
+   2. 프로젝트 카드 — <a class="proj-card"> 통째로 링크
+   ============================================================ */
+
+.proj-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-5);
+}
+
+@media (min-width: 680px) {
+  .proj-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-5); }
+}
+
+/* 카드 구분은 네 겹으로 만든다. 장식이 아니라 전부 경계 신호다 —
+   배경 단차(--bg 위 --surface) + 테두리 + 상단 분야 바 + 여백. */
+.proj-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  padding: var(--card-pad);
+  padding-block-start: calc(var(--card-pad) + var(--cat-bar));
+  background: var(--surface);
+  border: var(--hairline) solid var(--border);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-card);
+  color: inherit;
+  text-decoration: none;
+  transition: border-color var(--dur) var(--ease),
+              box-shadow var(--dur) var(--ease),
+              transform var(--dur) var(--ease);
+}
+
+.proj-card::before {
+  content: "";
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline: 0;
+  block-size: var(--cat-bar);
+  background: var(--cat);
+  border-start-start-radius: var(--r-md);
+  border-start-end-radius: var(--r-md);
+}
+
+.proj-card:hover { border-color: var(--cat); box-shadow: var(--shadow-lift); }
+.proj-card:hover .proj-card__title { color: var(--cat); }
+
+@media (hover: hover) {
+  .proj-card:hover { transform: translateY(-2px); }
+}
+
+.proj-card:focus-visible {
+  outline: var(--focus-w) solid var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+
+/* ---- 배지 줄 -------------------------------------------------- */
+.proj-card__badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+.proj-card__period {
+  margin-inline-start: auto;
+  font-size: var(--fs-xs);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-faint);
+  white-space: nowrap;
+}
+
+/* ---- 제목 · 한 줄 --------------------------------------------- */
+.proj-card__title {
+  font-size: var(--fs-h3);
+  color: var(--text);
+  transition: color var(--dur) var(--ease);
+}
+
+.proj-card__oneline {
+  font-size: var(--fs-sm);
+  line-height: var(--lh-snug);
+  color: var(--text-muted);
+}
+
+/* ---- Impact — 카드의 얼굴 -------------------------------------
+   라벨이 "물리 버튼 하나가 상태와 단계에 따라 여섯 가지 뜻으로 동작"
+   처럼 한 문장이다. 숫자를 가로로 늘어놓으면 라벨 칸이 100px도 안 돼
+   네다섯 줄로 쪼개진다. 그래서 가로 3열이 아니라 세로 행으로 쌓고,
+   숫자를 왼쪽 고정폭 열에 세운다.
+
+   이렇게 하면
+     · 숫자가 왼쪽에 한 줄로 서서 세로로 훑인다
+     · 수치가 2개인 카드와 3개인 카드가 섞여도 숫자 열의 x좌표가 같다
+     · 라벨이 길어져도 오른쪽에서 자연스럽게 흐른다
+   ---------------------------------------------------------------- */
+.proj-card__impact {
+  display: grid;
+  gap: var(--sp-2);
+  margin-block-start: var(--sp-1);
+  padding: var(--sp-3) var(--sp-4);
+  list-style: none;
+  background: var(--cat-tint);
+  border-radius: var(--r-sm);
+}
+
+.proj-card__impact .impact-item {
+  display: grid;
+  grid-template-columns: minmax(0, 4.75rem) minmax(0, 1fr);
+  gap: var(--sp-1) var(--sp-3);
+  align-items: baseline;
+  margin-block-start: 0;
+}
+
+.proj-card__impact .impact-item__num {
+  font-size: 1.15rem;
+  line-height: 1.25;
+}
+
+.proj-card__impact .impact-item__label {
+  font-size: var(--fs-xs);
+  line-height: var(--lh-snug);
+}
+
+/* 카드가 아주 좁으면 숫자 열을 접어 위아래로 놓는다.
+   기준은 뷰포트가 아니라 카드 폭이다 — 카드 폭은 뷰포트에 비례하지
+   않는다(실측: vw 414 → 카드 378px, vw 680 → 카드 305px. 2열로
+   바뀌면서 오히려 좁아진다). 미디어쿼리로 걸면 더 좁은 카드에서
+   안 접히는 역전이 난다. */
+@supports (container-type: inline-size) {
+  .proj-card { container-type: inline-size; container-name: card; }
+
+  @container card (max-width: 235px) {
+    .proj-card__impact .impact-item { grid-template-columns: 1fr; }
+  }
+}
+
+/* ---- 태그 줄 -------------------------------------------------- */
+.proj-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  margin-block-start: auto;   /* 카드 높이가 달라도 태그 줄은 바닥에 정렬 */
+  padding: var(--sp-1) 0 0;
+  list-style: none;
+}
+.proj-card__tags li { margin-block-start: 0; }
+
+/* ============================================================
+   3. Impact 아이템 — 상세 페이지의 큰 숫자 카드
+   ============================================================ */
+
+.impact-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+  min-inline-size: 0;
+}
+
+.impact-item__num {
+  font-size: var(--fs-num);
+  font-weight: var(--fw-semi);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.impact-item__unit {
+  margin-inline-start: 1px;
+  font-size: 0.6em;
+  font-weight: var(--fw-medium);
+  letter-spacing: 0;
+  color: var(--text-muted);
+}
+
+.impact-item__label {
+  font-size: var(--fs-xs);
+  line-height: var(--lh-snug);
+  color: var(--text-muted);
+}
+
+.impact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  gap: var(--sp-4);
+  margin-block: var(--sp-5);
+  padding: 0;
+  list-style: none;
+}
+.impact-grid .impact-item { margin-block-start: 0; }
+
+.impact-grid > .impact-item {
+  padding: var(--sp-5);
+  background: var(--surface);
+  border: var(--hairline) solid var(--border);
+  border-inline-start: var(--cat-bar) solid var(--cat);
+  border-radius: var(--r-sm);
+}
+
+.impact-grid .impact-item__num {
+  font-size: clamp(1.7rem, 1.4rem + 1.5vw, 2.3rem);
+}
+
+/* ============================================================
+   4. 태그 · 배지
+   ============================================================ */
+
+.tag {
+  display: inline-block;
+  padding: 3px var(--sp-2);
+  font-size: var(--fs-xs);
+  line-height: 1.5;
+  color: var(--text-muted);
+  background: var(--surface-2);
+  border: var(--hairline) solid var(--border);
+  border-radius: var(--r-sm);
+  white-space: nowrap;
+}
+
+/* "+3" — 마크업이 class="tag tag-more" 라 뒤에 와서 덮는다 */
+.tag-more {
+  color: var(--text-faint);
+  background: transparent;
+  border-style: dashed;
+  border-color: var(--border-strong);
+  font-variant-numeric: tabular-nums;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+  padding: 2px var(--sp-2);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-medium);
+  line-height: 1.6;
+  border-radius: var(--r-pill);
+  /* "제안·시뮬레이션 단계 · 공모전 대상" 처럼 긴 배지가 있다 */
+  overflow-wrap: anywhere;
+  word-break: keep-all;
+}
+
+/* 상태를 색 하나로만 나르지 않는다(WCAG 1.4.1) — 점 표식이 같이 간다 */
+.badge::before {
+  content: "";
+  flex: none;
+  inline-size: 6px;
+  block-size: 6px;
+  border-radius: 50%;
+  background: currentcolor;
+}
+
+.badge--live { color: var(--badge-live-fg); background: var(--badge-live-bg); }
+.badge--wip  { color: var(--badge-wip-fg);  background: var(--badge-wip-bg); }
+.badge--done { color: var(--badge-done-fg); background: var(--badge-done-bg); }
+
+/* 끝난 것에 채운 점을 찍으면 진행 중처럼 읽힌다. 속을 비운다. */
+.badge--done::before { background: none; box-shadow: inset 0 0 0 1.5px currentcolor; }
+
+/* ============================================================
+   5. 사이드 프로젝트 — 한 줄 리스트
+   위계 차이의 핵심은 표면을 주지 않는 것이다.
+   카드 = 떠 있는 면 / 리스트 = 바닥에 붙은 줄.
+   ============================================================ */
+
+.proj-list__title {
+  margin-block: var(--sp-7) 0;
+  padding-block-end: var(--sp-2);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semi);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--text-faint);
+  border-block-end: var(--hairline) solid var(--border-strong);
+}
+
+.proj-list { padding: 0; list-style: none; }
+
+.proj-row { margin-block-start: 0; }
+.proj-row + .proj-row { border-block-start: var(--hairline) solid var(--border); }
+
+.proj-row > a {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-1) var(--sp-4);
+  padding: var(--sp-3) var(--sp-2);
+  margin-inline: calc(var(--sp-2) * -1);
+  border-radius: var(--r-sm);
+  color: inherit;
+  text-decoration: none;
+}
+.proj-row > a:hover { background: var(--surface-2); }
+.proj-row > a:hover .proj-row__title { color: var(--cat); }
+
+@media (min-width: 720px) {
+  .proj-row > a {
+    grid-template-columns: minmax(0, 17rem) minmax(0, 1fr) auto;
+    align-items: baseline;
+  }
+}
+
+.proj-row__title {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semi);
+  line-height: var(--lh-snug);
+  color: var(--text);
+}
+
+.proj-row__oneline {
+  font-size: var(--fs-sm);
+  line-height: var(--lh-snug);
+  color: var(--text-muted);
+}
+
+.proj-row__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-1) var(--sp-2);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.proj-row__tags li { margin-block-start: 0; }
+
+/* 리스트 줄의 태그는 카드보다 조용하게 — 테두리를 걷고 점으로 잇는다 */
+.proj-row__tags .tag {
+  padding-inline: 0;
+  color: var(--text-faint);
+  background: none;
+  border-color: transparent;
+  white-space: normal;
+}
+.proj-row__tags li + li .tag::before {
+  content: "·";
+  margin-inline-end: var(--sp-2);
+  color: var(--border-strong);
+}
+
+/* ---- 상호참조 리스트 (.proj-list--xref) -----------------------
+   다른 분야 섹션에 본체가 있는 프로젝트를 가리키는 줄이다.
+   같은 섹션의 사이드 프로젝트와 구별되게 한 단 더 낮춘다 —
+   여기 걸린 것은 "이 분야의 작업"이 아니라 "저기 있는 것으로 가는 길". */
+.proj-list--xref .proj-row > a { padding-block: var(--sp-2); }
+
+.proj-list--xref .proj-row__title {
+  font-weight: var(--fw-medium);
+  color: var(--text-muted);
+}
+
+.proj-list--xref .proj-row__title::before {
+  content: "↗";
+  margin-inline-end: var(--sp-2);
+  color: var(--text-faint);
+}
+
+.proj-list--xref .proj-row > a:hover .proj-row__title { color: var(--cat); }
+
+/* ============================================================
+   6. 경력 표
+   ------------------------------------------------------------
+   열: 소속(th scope=row) / 직위 / 기간 / 하는 일
+   768px 미만에서는 카드형으로 쌓는다. 가로 스크롤 표는 훑어보는
+   문서에서 제일 안 읽힌다.
+
+   마크업에 data-label 이 없으므로 열 이름은 순서로 붙인다.
+   열 순서가 바뀌면 아래 nth-of-type 도 같이 고쳐야 한다.
+   ============================================================ */
+
+.exp-table { font-size: var(--fs-sm); }
+
+.exp-table caption {
+  margin-block-end: var(--sp-3);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semi);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--text-faint);
+  text-align: start;
+}
+
+.exp-table thead th {
+  padding: 0 var(--sp-4) var(--sp-2) 0;
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semi);
+  color: var(--text-faint);
+  border-block-end: var(--hairline) solid var(--border-strong);
+  white-space: nowrap;
+}
+
+.exp-table tbody th,
+.exp-table td {
+  padding: var(--sp-4) var(--sp-4) var(--sp-4) 0;
+  border-block-end: var(--hairline) solid var(--border);
+  vertical-align: baseline;
+}
+
+.exp-table tbody th {
+  font-weight: var(--fw-semi);
+  color: var(--text);
+}
+
+.exp-table td { color: var(--text-muted); }
+
+.exp-table__period {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* 관련 프로젝트 링크 묶음 — 본문 아래 줄로 내린다 */
+.exp-table__projects {
+  display: block;
+  margin-block-start: var(--sp-2);
+  font-size: var(--fs-xs);
+  color: var(--text-faint);
+}
+.exp-table__projects a { color: var(--text-muted); }
+.exp-table__projects a:hover { color: var(--accent); }
+
+.exp-table tbody tr:last-child th,
+.exp-table tbody tr:last-child td { border-block-end: 0; }
+
+@media (min-width: 680px) {
+  .exp-table tbody th { inline-size: 32%; }
+}
+
+@media (max-width: 679px) {
+  .exp-table thead {
+    position: absolute;
+    inline-size: 1px; block-size: 1px;
+    margin: -1px; padding: 0;
+    overflow: hidden; clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .exp-table,
+  .exp-table tbody,
+  .exp-table tr,
+  .exp-table th,
+  .exp-table td { display: block; }
+
+  .exp-table tr {
+    padding: var(--sp-4);
+    margin-block-end: var(--sp-4);
+    background: var(--surface);
+    border: var(--hairline) solid var(--border);
+    border-radius: var(--r-sm);
+  }
+
+  .exp-table tbody th {
+    padding: 0 0 var(--sp-3);
+    font-size: var(--fs-body);
+    border-block-end: var(--hairline) solid var(--border);
+  }
+
+  .exp-table td {
+    display: grid;
+    grid-template-columns: 3.75rem minmax(0, 1fr);
+    gap: var(--sp-3);
+    padding: var(--sp-2) 0 0;
+    border-block-end: 0;
+  }
+
+  /* th(소속) 다음의 td 세 개 — 직위 / 기간 / 하는 일 */
+  .exp-table td:nth-of-type(1)::before { content: "직위"; }
+  .exp-table td:nth-of-type(2)::before { content: "기간"; }
+  .exp-table td:nth-of-type(3)::before { content: "하는 일"; }
+
+  .exp-table td::before {
+    font-size: var(--fs-xs);
+    font-weight: var(--fw-semi);
+    color: var(--text-faint);
+  }
+
+  /* td 가 2열 그리드이므로 자식이 자동 배치된다. ::before 가 1열,
+     본문 텍스트가 2열을 차지하고 나면 .exp-table__projects 는 다음 행의
+     1열(3.75rem)로 떨어져 링크가 한 글자씩 세로로 쪼개진다.
+     값과 같은 열에 세운다. */
+  .exp-table__projects { grid-column: 2; }
+}
+
+/* ============================================================
+   7. 수상 · 자격 · 학력
+   ============================================================ */
+
+.awards,
+.certs,
+.education {
+  padding: 0;
+  list-style: none;
+  max-inline-size: var(--container-text);
+}
+
+.awards li,
+.certs li,
+.education li {
+  display: grid;
+  gap: var(--sp-1);
+  padding-block: var(--sp-4);
+  margin-block-start: 0;
+  border-block-end: var(--hairline) solid var(--border);
+}
+.awards li:last-child,
+.certs li:last-child,
+.education li:last-child { border-block-end: 0; }
+
+.awards__title,
+.certs__title,
+.education__school {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semi);
+  color: var(--text);
+}
+
+.awards__meta,
+.certs__meta,
+.education__period,
+.education__detail {
+  font-size: var(--fs-xs);
+  line-height: var(--lh-snug);
+  color: var(--text-faint);
+}
+
+.education__period { font-variant-numeric: tabular-nums; }
+.education__detail { color: var(--text-muted); }
+
+/* ============================================================
+   8. 도판 (.figure)
+   ------------------------------------------------------------
+   다크모드 도면 처리 — filter: invert 를 기본값에서 뺐다.
+
+   images/ 의 SVG 9장을 전부 파싱해 보면 #1a1a1a·#666·#fff 같은
+   순수 회색뿐이고 비회색 색상이 0개다. 그래서 현행
+   filter: invert(0.93) hue-rotate(180deg) 의 결과물 자체는 멀쩡하다.
+
+   문제는 결과가 아니라 선택자다. `img[src$=".svg"]` 는 "파일 확장자"를
+   기준으로 삼아서, 앞으로 넣는 SVG가 컬러든 아니든 자동으로 반전
+   대상이 된다. 사진 3장이 음화로 뒤집혔던 사건도 구조가 같았다 —
+   대상을 명시하지 않고 넓게 잡은 선택자였다.
+
+     .figure__img--diagram  ← 기본. 밝은 판(--paper) 위에 올린다.
+                              filter 없음 → 컬러 SVG를 넣어도 안전.
+     .figure__img--invert   ← 명시적으로 지정했을 때만 반전.
+                              확장자·태그로 자동 적용하지 말 것.
+   ============================================================ */
+
+.figure { margin-block: var(--sp-6); }
+
+.figure img {
+  inline-size: 100%;
+  border-radius: var(--r-sm);
+}
+
+.figure__img--photo {
+  border: var(--hairline) solid var(--border-strong);
+  background: var(--surface-2);
+}
+
+/* 도면 기본형 — 밝은 판 위. 어느 테마에서도 반전하지 않는다. */
+.figure__img--diagram {
+  padding: var(--sp-4);
+  background: var(--paper);
+  border: var(--hairline) solid var(--paper-edge);
+}
+
+/* 모노크롬 도면에 한해 옵트인하는 반전 */
+.figure__img--invert {
+  padding: var(--sp-4);
+  background: var(--paper);
+  border: var(--hairline) solid var(--paper-edge);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .figure__img--invert {
+    background: transparent;
+    border-color: transparent;
+    filter: invert(0.92) hue-rotate(180deg);
+  }
+}
+:root[data-theme="dark"] .figure__img--invert {
+  background: transparent;
+  border-color: transparent;
+  filter: invert(0.92) hue-rotate(180deg);
+}
+
+.figure__caption {
+  margin-block-start: var(--sp-3);
+  max-inline-size: var(--container-text);
+  font-size: var(--fs-xs);
+  line-height: var(--lh-snug);
+  color: var(--text-muted);
+}
+
+.figure__caption--standalone {
+  padding-inline-start: var(--sp-3);
+  border-inline-start: 2px solid var(--border-strong);
+  font-size: var(--fs-sm);
+}
+
+/* 도면은 글자가 들어 있어 본문보다 넓어야 읽힌다 */
+.figure--wide {
+  inline-size: 100%;
+  max-inline-size: none;
+}
+
+/* ============================================================
+   9. 페이저
+   마크업: <a class="pager__next"><span>다음</span>프로젝트명</a>
+   방향 라벨이 내부 <span> 이므로 ::before 로 또 넣지 않는다.
+   ============================================================ */
+
+.pager {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-4);
+  margin-block-start: var(--section-gap);
+  padding-block-start: var(--sp-5);
+  border-block-start: var(--hairline) solid var(--border-strong);
+}
+
+.pager__prev,
+.pager__next {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  flex: 1 1 14rem;
+  min-inline-size: 0;
+  min-block-size: var(--tap);
+  padding: var(--sp-3) var(--sp-4);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semi);
+  color: var(--text);
+  text-decoration: none;
+  background: var(--surface);
+  border: var(--hairline) solid var(--border);
+  border-radius: var(--r-sm);
+  transition: border-color var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+
+.pager__prev > span,
+.pager__next > span {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-normal);
+  color: var(--text-faint);
+}
+
+.pager__next { text-align: end; align-items: flex-end; }
+
+.pager__prev:hover,
+.pager__next:hover { border-color: var(--accent); color: var(--accent); }
+
+/* 한쪽만 있을 때 반대쪽 자리를 비운다 */
+.pager__next:only-child { margin-inline-start: auto; flex-grow: 0; }

@@ -1,0 +1,252 @@
+/* ============================================================
+   tokens.css — 색 · 타이포 · 간격 · 반경 · 모션
+   ------------------------------------------------------------
+   테마는 3단이다.
+     1) :root                          라이트 (기본값)
+     2) prefers-color-scheme: dark     시스템이 다크이고 사용자가 라이트를 고르지 않았을 때
+     3) :root[data-theme="dark"]       버튼으로 다크를 직접 골랐을 때 (시스템보다 우선)
+
+   값은 --d-* 에 한 번만 적는다. 2단과 3단은 "어떤 값을 쓸지"만 고르는
+   매핑 블록이고 색을 새로 적지 않는다. 지금 style.css는 다크 팔레트를
+   통째로 두 번 적어 두었고, 그래서 6122e47에서 들어온 var(--rule)
+   오타가 양쪽에 똑같이 복제됐다(--rule은 정의된 적이 없다 → 선언 자체가
+   무효가 되어 다크에서 카드 테두리가 사라진다).
+
+   var()는 대상이 없으면 조용히 선언 전체를 버린다. 그래서 이 파일에
+   없는 토큰을 쓰면 에러가 아니라 "그 스타일만 안 먹는" 형태로 나타난다.
+   토큰을 추가할 때는 반드시 --d-* 와 매핑 두 곳을 같이 손볼 것.
+   ============================================================ */
+
+:root {
+  color-scheme: light;
+
+  /* ---- 팔레트: 다크 값 원본 (여기 한 곳에만 적는다) ------------- */
+  --d-bg:            #0f1013;
+  --d-surface:       #16181d;
+  --d-surface-2:     #1c1f25;
+  --d-surface-sunk:  #121317;
+  --d-text:          #ededf0;
+  --d-text-muted:    #a6a6b0;
+  --d-text-faint:    #8b8b96;
+  --d-border:        #2b2e36;
+  --d-border-strong: #454a55;
+  --d-accent:        #79b0ff;
+  --d-accent-weak:   #1a2740;
+
+  --d-cat-robotics:  #79b0ff;
+  --d-cat-software:  #4fc7ac;
+  --d-cat-game:      #c3a3ff;
+  --d-cat-music:     #e8b761;
+  --d-cat-robotics-tint: #141d2c;
+  --d-cat-software-tint: #10231f;
+  --d-cat-game-tint:     #1d1730;
+  --d-cat-music-tint:    #251f10;
+
+  --d-badge-live-fg: #4ad3a4;  --d-badge-live-bg: #12241d;
+  --d-badge-wip-fg:  #e8b761;  --d-badge-wip-bg:  #26200f;
+  --d-badge-done-fg: #a6a6b0;  --d-badge-done-bg: #20232a;
+
+  /* 다크에서도 종이처럼 밝게 두는 도면 바닥. filter 반전을 대신한다. */
+  --d-paper:      #f2f2f4;
+  --d-paper-edge: #3a3e47;
+
+  --d-shadow-card: 0 1px 2px rgb(0 0 0 / 0.5);
+  --d-shadow-lift: 0 4px 14px rgb(0 0 0 / 0.55);
+
+  /* ---- 라이트 값 = 실제 사용 토큰의 기본값 --------------------- */
+  --bg:            #f4f4f5;
+  --surface:       #ffffff;
+  --surface-2:     #f4f4f5;
+  --surface-sunk:  #fbfbfc;
+  --text:          #18181b;
+  --text-muted:    #52525b;
+  --text-faint:    #6b6b74;
+  --border:        #dcdce0;
+  --border-strong: #b8b8c0;
+  --accent:        #1a5fd0;
+  --accent-weak:   #e8effb;
+
+  /* 분야색. 의미를 색 하나로만 나르지 않는다 — 항상 글자가 같이 간다. */
+  --cat-robotics:  #1a5fd0;
+  --cat-software:  #0f6b5c;
+  --cat-game:      #6d3bc4;
+  --cat-music:     #94540a;
+  --cat-robotics-tint: #eaf1fc;
+  --cat-software-tint: #e7f4f1;
+  --cat-game-tint:     #f1ecfb;
+  --cat-music-tint:    #faf1e2;
+
+  --badge-live-fg: #116149;  --badge-live-bg: #e7f5ef;
+  --badge-wip-fg:  #8a5300;  --badge-wip-bg:  #fbf1de;
+  --badge-done-fg: #52525b;  --badge-done-bg: #f1f1f3;
+
+  --paper:      #ffffff;
+  --paper-edge: #dcdce0;
+
+  --shadow-card: 0 1px 2px rgb(24 24 27 / 0.06);
+  --shadow-lift: 0 4px 14px rgb(24 24 27 / 0.10);
+
+  /* 섹션이 data-cat을 안 달았을 때의 기본 분야색 */
+  --cat: var(--accent);
+  --cat-tint: var(--accent-weak);
+
+  /* ---- 타이포 ------------------------------------------------- */
+  /* 한글 본문은 16px이면 좁다. 모바일 17 → 데스크톱 17.5로 둔다. */
+  --font-sans: Pretendard, -apple-system, BlinkMacSystemFont, system-ui,
+               "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+
+  --fs-display: clamp(2rem,   1.55rem + 2.25vw, 3rem);
+  --fs-h1:      clamp(1.7rem, 1.4rem  + 1.5vw,  2.4rem);
+  --fs-h2:      clamp(1.3rem, 1.15rem + 0.75vw, 1.65rem);
+  --fs-h3:      clamp(1.1rem, 1.03rem + 0.35vw, 1.28rem);
+  --fs-body:    clamp(1.0625rem, 1.04rem + 0.1vw, 1.09rem);
+  --fs-sm:      0.9375rem;
+  --fs-xs:      0.8125rem;
+  --fs-num:     clamp(1.35rem, 1.2rem + 0.75vw, 1.7rem);
+
+  --lh-tight: 1.25;
+  --lh-snug:  1.4;
+  --lh-body:  1.7;   /* 한글 본문은 넉넉해야 읽힌다 */
+
+  --fw-normal: 400;
+  --fw-medium: 500;
+  --fw-semi:   600;
+  --fw-bold:   700;
+
+  --tracking-caps: 0.08em;
+
+  /* ---- 간격 (4px 배수) ---------------------------------------- */
+  --sp-1:  0.25rem;  --sp-2:  0.5rem;   --sp-3: 0.75rem;  --sp-4: 1rem;
+  --sp-5:  1.25rem;  --sp-6:  1.5rem;   --sp-7: 2rem;     --sp-8: 2.5rem;
+  --sp-9:  3rem;     --sp-10: 4rem;     --sp-11: 5rem;    --sp-12: 6rem;
+
+  --section-gap: clamp(3.5rem, 2.5rem + 5vw, 6rem);
+  --card-pad:    clamp(1.125rem, 0.95rem + 0.9vw, 1.5rem);
+
+  /* ---- 레이아웃 ----------------------------------------------- */
+  --container:      1080px;
+  /* 본문 줄길이. 660px · 본문 17.4px 기준으로 로마자 약 70자,
+     한글 약 38자가 한 줄에 들어간다. 한글은 전각이라 로마자 기준
+     65~75자를 그대로 적용하면 너무 길어진다 — 660px이 두 기준의 접점이다. */
+  --container-text: 660px;
+  --gutter:         clamp(1rem, 0.6rem + 2vw, 2rem);
+  --header-h:       56px;
+
+  /* ---- 반경 · 선 ---------------------------------------------- */
+  --r-sm: 6px;  --r-md: 10px;  --r-lg: 14px;  --r-pill: 999px;
+  --hairline: 1px;
+  --cat-bar: 3px;
+
+  /* ---- 포커스 ------------------------------------------------- */
+  /* 링은 어떤 표면 위에서도 5.4:1 이상이다(측정값: 라이트 5.41~5.85,
+     다크 7.44~8.58). 안쪽 흰 링을 한 겹 더 둬서 분야색 카드 위에서도 뜬다. */
+  --focus-ring:   var(--accent);
+  --focus-halo:   var(--surface);
+  --focus-w:      2px;
+  --focus-offset: 2px;
+
+  /* ---- 터치 타깃 ---------------------------------------------- */
+  --tap: 44px;
+
+  /* ---- 모션 --------------------------------------------------- */
+  --dur-fast: 120ms;
+  --dur:      200ms;
+  --ease:     cubic-bezier(0.2, 0, 0.2, 1);
+}
+
+/* 2단 — 시스템 다크, 사용자가 라이트를 명시하지 않음 */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+
+    --bg:            var(--d-bg);
+    --surface:       var(--d-surface);
+    --surface-2:     var(--d-surface-2);
+    --surface-sunk:  var(--d-surface-sunk);
+    --text:          var(--d-text);
+    --text-muted:    var(--d-text-muted);
+    --text-faint:    var(--d-text-faint);
+    --border:        var(--d-border);
+    --border-strong: var(--d-border-strong);
+    --accent:        var(--d-accent);
+    --accent-weak:   var(--d-accent-weak);
+
+    --cat-robotics:  var(--d-cat-robotics);
+    --cat-software:  var(--d-cat-software);
+    --cat-game:      var(--d-cat-game);
+    --cat-music:     var(--d-cat-music);
+    --cat-robotics-tint: var(--d-cat-robotics-tint);
+    --cat-software-tint: var(--d-cat-software-tint);
+    --cat-game-tint:     var(--d-cat-game-tint);
+    --cat-music-tint:    var(--d-cat-music-tint);
+
+    --badge-live-fg: var(--d-badge-live-fg);  --badge-live-bg: var(--d-badge-live-bg);
+    --badge-wip-fg:  var(--d-badge-wip-fg);   --badge-wip-bg:  var(--d-badge-wip-bg);
+    --badge-done-fg: var(--d-badge-done-fg);  --badge-done-bg: var(--d-badge-done-bg);
+
+    --paper:      var(--d-paper);
+    --paper-edge: var(--d-paper-edge);
+
+    --shadow-card: var(--d-shadow-card);
+    --shadow-lift: var(--d-shadow-lift);
+  }
+}
+
+/* 3단 — 버튼으로 다크를 직접 고름. 시스템 설정을 이긴다. */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --bg:            var(--d-bg);
+  --surface:       var(--d-surface);
+  --surface-2:     var(--d-surface-2);
+  --surface-sunk:  var(--d-surface-sunk);
+  --text:          var(--d-text);
+  --text-muted:    var(--d-text-muted);
+  --text-faint:    var(--d-text-faint);
+  --border:        var(--d-border);
+  --border-strong: var(--d-border-strong);
+  --accent:        var(--d-accent);
+  --accent-weak:   var(--d-accent-weak);
+
+  --cat-robotics:  var(--d-cat-robotics);
+  --cat-software:  var(--d-cat-software);
+  --cat-game:      var(--d-cat-game);
+  --cat-music:     var(--d-cat-music);
+  --cat-robotics-tint: var(--d-cat-robotics-tint);
+  --cat-software-tint: var(--d-cat-software-tint);
+  --cat-game-tint:     var(--d-cat-game-tint);
+  --cat-music-tint:    var(--d-cat-music-tint);
+
+  --badge-live-fg: var(--d-badge-live-fg);  --badge-live-bg: var(--d-badge-live-bg);
+  --badge-wip-fg:  var(--d-badge-wip-fg);   --badge-wip-bg:  var(--d-badge-wip-bg);
+  --badge-done-fg: var(--d-badge-done-fg);  --badge-done-bg: var(--d-badge-done-bg);
+
+  --paper:      var(--d-paper);
+  --paper-edge: var(--d-paper-edge);
+
+  --shadow-card: var(--d-shadow-card);
+  --shadow-lift: var(--d-shadow-lift);
+}
+
+/* 라이트를 직접 고름 — :root 기본값을 그대로 쓰되 색 스킴만 고정한다.
+   (스크롤바·폼 컨트롤이 시스템 다크를 따라가지 않게) */
+:root[data-theme="light"] { color-scheme: light; }
+
+/* ------------------------------------------------------------
+   분야색 스코프
+   .proj-section[data-cat="robotics"] 처럼 한 번만 달면
+   그 안의 카드·배지·임팩트가 전부 var(--cat)으로 따라온다.
+   카드마다 클래스를 붙일 필요가 없다.
+   ------------------------------------------------------------ */
+/* 마크업은 data-category 를 씁니다. data-cat 도 같이 받아 둡니다. */
+[data-category="robotics"], [data-cat="robotics"] { --cat: var(--cat-robotics); --cat-tint: var(--cat-robotics-tint); }
+[data-category="software"], [data-cat="software"] { --cat: var(--cat-software); --cat-tint: var(--cat-software-tint); }
+[data-category="game"],     [data-cat="game"]     { --cat: var(--cat-game);     --cat-tint: var(--cat-game-tint); }
+[data-category="music"],    [data-cat="music"]    { --cat: var(--cat-music);    --cat-tint: var(--cat-music-tint); }
+
+/* 모션을 줄여 달라고 한 사람에게는 duration을 0으로 준다.
+   각 컴포넌트가 var(--dur)만 쓰면 여기 한 줄로 전부 꺼진다. */
+@media (prefers-reduced-motion: reduce) {
+  :root { --dur-fast: 0.01ms; --dur: 0.01ms; }
+}

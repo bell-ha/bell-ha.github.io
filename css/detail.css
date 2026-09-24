@@ -1,0 +1,256 @@
+/* ============================================================
+   detail.css — 프로젝트 상세 페이지 전용
+   /projects/<slug>/index.html 에서만 읽는다.
+   ============================================================ */
+
+.detail {
+  /* 상세는 읽는 문서다. 본문은 줄길이를 묶고, 도판과 숫자 카드만
+     이 폭을 벗어나게 한다. */
+  --measure: var(--container-text);
+}
+
+/* ============================================================
+   1. 머리
+   ============================================================ */
+
+.detail-header {
+  padding-block-end: var(--sp-6);
+  margin-block-end: var(--sp-8);
+  border-block-end: 2px solid var(--border-strong);
+}
+
+.detail-breadcrumb {
+  margin-block-end: var(--sp-3);
+  font-size: var(--fs-xs);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+}
+
+.detail-breadcrumb a {
+  color: var(--text-faint);
+  text-decoration: none;
+  /* 44px 터치 타깃 — 글자 크기는 그대로 두고 영역만 넓힌다 */
+  display: inline-flex;
+  align-items: center;
+  min-block-size: var(--tap);
+}
+/* inline-flex 라 content 안의 공백은 지워진다. 간격은 margin 으로 준다. */
+.detail-breadcrumb a::before { content: "←"; margin-inline-end: 0.45em; }
+.detail-breadcrumb a:hover { color: var(--accent); }
+
+.detail-title {
+  font-size: var(--fs-h1);
+  letter-spacing: -0.03em;
+}
+
+.detail-oneline {
+  margin-block-start: var(--sp-2);
+  max-inline-size: var(--measure);
+  font-size: clamp(1.05rem, 0.98rem + 0.4vw, 1.2rem);
+  line-height: var(--lh-snug);
+  color: var(--text-muted);
+}
+
+/* ---- 기간 · 역할 (dl) ----------------------------------------- */
+.detail-meta {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--sp-1) var(--sp-4);
+  align-items: baseline;
+  margin-block-start: var(--sp-5);
+  max-inline-size: var(--measure);
+  font-size: var(--fs-sm);
+}
+
+.detail-meta .meta-key,
+.detail-meta dt {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semi);
+  color: var(--text-faint);
+  white-space: nowrap;
+}
+
+.detail-meta dd {
+  margin: 0;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- 링크 ----------------------------------------------------- */
+.detail-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  margin-block-start: var(--sp-5);
+  padding: 0;
+  list-style: none;
+}
+.detail-links li { margin-block-start: 0; }
+
+.detail-links a {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: var(--tap);
+  padding-inline: var(--sp-4);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  color: var(--text);
+  text-decoration: none;
+  background: var(--surface);
+  border: var(--hairline) solid var(--border-strong);
+  border-radius: var(--r-sm);
+  transition: border-color var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+.detail-links a:hover { color: var(--accent); border-color: var(--accent); }
+
+/* 새 탭으로 열리는 링크임을 눈으로도 알린다 */
+.detail-links a[target="_blank"]::after {
+  content: "↗";
+  margin-inline-start: var(--sp-2);
+  font-size: 0.85em;
+  color: var(--text-faint);
+}
+
+/* ---- 태그 ----------------------------------------------------- */
+.detail-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2);
+  margin-block-start: var(--sp-5);
+  padding: 0;
+  list-style: none;
+}
+.detail-tags li { margin-block-start: 0; }
+
+/* ============================================================
+   2. 섹션
+   제목은 Impact / Background / Architecture / Contributions /
+   Troubleshooting / Related 로 영어 고정.
+   ============================================================ */
+
+.detail-section {
+  margin-block-end: var(--section-gap);
+  scroll-margin-block-start: calc(var(--header-h) + var(--sp-4));
+}
+
+.detail-section__title {
+  margin-block-end: var(--sp-5);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+/* 섹션 제목 왼쪽에 분야색 짧은 막대 — 어디가 새 섹션인지 표시 */
+.detail-section__title::before {
+  content: "";
+  display: inline-block;
+  inline-size: 1.5rem;
+  block-size: 2px;
+  margin-inline-end: var(--sp-3);
+  vertical-align: 0.3em;
+  background: var(--cat, var(--accent));
+}
+
+/* 상세 본문의 줄길이 제한. 도판·숫자 카드는 제외한다. */
+.detail-section > p,
+.detail-section > ul:not([class]),
+.detail-section > ol:not([class]) {
+  max-inline-size: var(--measure);
+}
+
+/* ============================================================
+   3. Contributions
+   ============================================================ */
+
+.contrib { margin-block-end: var(--sp-6); }
+
+.contrib__title {
+  margin-block-end: var(--sp-2);
+  font-size: var(--fs-h3);
+  color: var(--text);
+}
+
+.contrib p { max-inline-size: var(--measure); }
+
+/* ============================================================
+   4. Troubleshooting
+   ------------------------------------------------------------
+   .ts-item__rows 는 <dl>. 키는 문제/원인/해결/결과 넷으로 고정이다.
+   키를 왼쪽 고정폭 열에 세워 네 항목이 세로로 정렬되게 한다 —
+   여러 트러블슈팅을 비교하며 읽을 때 같은 자리에서 같은 항목을 만난다.
+   ============================================================ */
+
+.ts-item {
+  padding: var(--card-pad);
+  margin-block-end: var(--sp-5);
+  background: var(--surface);
+  border: var(--hairline) solid var(--border);
+  border-radius: var(--r-md);
+}
+
+.ts-item__title {
+  margin-block-end: var(--sp-4);
+  padding-block-end: var(--sp-3);
+  font-size: var(--fs-h3);
+  border-block-end: var(--hairline) solid var(--border);
+}
+
+.ts-item > p { max-inline-size: var(--measure); }
+
+.ts-item__rows {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--sp-1);
+  margin: 0;
+}
+
+@media (min-width: 560px) {
+  .ts-item__rows {
+    grid-template-columns: 3.5rem minmax(0, 1fr);
+    gap: var(--sp-3) var(--sp-4);
+  }
+}
+
+.ts-item__key {
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-semi);
+  color: var(--text-faint);
+  white-space: nowrap;
+}
+
+/* 좁은 화면에서는 키가 값 위로 올라가므로 위쪽 간격을 준다 */
+@media (max-width: 559px) {
+  .ts-item__key { margin-block-start: var(--sp-3); }
+  .ts-item__rows > .ts-item__key:first-child { margin-block-start: 0; }
+}
+
+.ts-item__val {
+  margin: 0;
+  font-size: var(--fs-sm);
+  line-height: var(--lh-body);
+  color: var(--text-muted);
+  max-inline-size: var(--measure);
+}
+
+/* "미해결" 같은 강조가 본문에서 묻히지 않게 */
+.ts-item__val strong { color: var(--text); }
+
+.ts-note {
+  margin-block-start: var(--sp-4);
+  padding: var(--sp-3) var(--sp-4);
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  background: var(--surface-2);
+  border-inline-start: 2px solid var(--border-strong);
+  border-radius: var(--r-sm);
+  max-inline-size: var(--measure);
+}
+
+/* ============================================================
+   5. 상세에서만 쓰는 도판 여백
+   ============================================================ */
+
+.detail-section .figure:first-child { margin-block-start: 0; }
+.detail-section .figure:last-child { margin-block-end: 0; }

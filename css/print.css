@@ -1,0 +1,252 @@
+/* ============================================================
+   print.css — 인쇄 · PDF 저장
+   media="print" 로 링크되므로 파일 전체가 인쇄에만 적용된다.
+   (그래서 @media print 로 한 번 더 감싸지 않는다.)
+
+   목표: 채용 담당자가 상세 페이지를 Ctrl+P 로 뽑았을 때
+   화면용 장식 없이 문서로 읽히고, 칸이 중간에서 잘리지 않게.
+   ============================================================ */
+
+@page {
+  size: A4;
+  margin: 16mm 14mm;
+}
+
+/* ============================================================
+   1. 색 — 잉크를 아끼고 대비를 올린다
+   ------------------------------------------------------------
+   다크모드로 보던 중에 인쇄해도 흰 바닥·검은 글자로 나와야 한다.
+   그래서 토큰을 인쇄값으로 통째로 덮는다.
+   ============================================================ */
+
+:root,
+:root[data-theme="dark"],
+:root[data-theme="light"] {
+  --bg:            #fff;
+  --surface:       #fff;
+  --surface-2:     #fff;
+  --surface-sunk:  #fff;
+  --text:          #000;
+  --text-muted:    #1a1a1a;
+  --text-faint:    #4a4a4a;
+  --border:        #bbb;
+  --border-strong: #666;
+  --accent:        #000;
+  --accent-weak:   #fff;
+  --paper:         #fff;
+  --paper-edge:    #bbb;
+
+  --cat:      #333;
+  --cat-tint: #fff;
+  --cat-robotics: #333; --cat-software: #333;
+  --cat-game:     #333; --cat-music:    #333;
+  --cat-robotics-tint: #fff; --cat-software-tint: #fff;
+  --cat-game-tint:     #fff; --cat-music-tint:    #fff;
+
+  --badge-live-fg: #000; --badge-live-bg: #fff;
+  --badge-wip-fg:  #000; --badge-wip-bg:  #fff;
+  --badge-done-fg: #000; --badge-done-bg: #fff;
+
+  --shadow-card: none;
+  --shadow-lift: none;
+
+  color-scheme: light;
+}
+
+html, body {
+  background: #fff !important;
+  color: #000;
+  font-size: 10.5pt;
+  line-height: 1.55;
+}
+
+/* ============================================================
+   2. 화면 전용 요소 제거
+   ============================================================ */
+
+.site-header,
+.site-nav,
+.theme-toggle,
+.skip-link,
+.site-footer,
+.pager {
+  display: none !important;
+}
+
+/* ============================================================
+   3. 레이아웃 — 화면 폭 제한을 풀고 종이 폭을 다 쓴다
+   ============================================================ */
+
+.container,
+main.container {
+  max-inline-size: none;
+  inline-size: auto;
+  margin: 0;
+  padding: 0;
+}
+
+.detail { --measure: none; }
+
+.section > p,
+.detail-section > p,
+.detail-section > ul:not([class]),
+.contrib p,
+.ts-item__val,
+.ts-item > p,
+.detail-oneline,
+.hero__tagline,
+.about__lead,
+.figure__caption,
+.ts-note {
+  max-inline-size: none;
+}
+
+/* ============================================================
+   4. 쪽 나눔
+   ============================================================ */
+
+.proj-card,
+.proj-row,
+.ts-item,
+.contrib,
+.figure,
+.impact-grid > .impact-item,
+.exp-table tr,
+.awards li, .certs li, .education li {
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+h1, h2, h3,
+.detail-section__title,
+.proj-section__title,
+.section__title,
+.contrib__title,
+.ts-item__title {
+  break-after: avoid;
+  page-break-after: avoid;
+}
+
+.detail-section,
+.proj-section { break-before: auto; }
+
+/* 표 머리를 쪽마다 반복 */
+thead { display: table-header-group; }
+tr { break-inside: avoid; }
+
+/* ============================================================
+   5. 컴포넌트 — 화면 장식을 문서 장식으로 바꾼다
+   ============================================================ */
+
+.proj-card,
+.ts-item,
+.impact-grid > .impact-item {
+  box-shadow: none;
+  border: 0.5pt solid #999;
+  border-radius: 0;
+  transform: none !important;
+}
+
+/* 카드 상단 분야 바는 인쇄에서 회색 막대로 */
+.proj-card::before { background: #666; }
+
+.proj-card__impact {
+  background: none;
+  border: 0.5pt solid #ccc;
+  border-radius: 0;
+}
+
+.impact-grid > .impact-item { border-inline-start: 2pt solid #666; }
+
+.badge {
+  border: 0.5pt solid #666;
+  border-radius: 0;
+  background: none;
+}
+.badge::before { display: none; }
+
+.tag {
+  background: none;
+  border: 0.5pt solid #bbb;
+  border-radius: 0;
+}
+.tag-more { border-style: dashed; }
+
+.detail-links a,
+.hero__links a {
+  min-block-size: 0;
+  padding: 0 0.4em 0 0;
+  border: 0;
+  font-weight: 400;
+}
+
+/* 링크 주소를 종이에 남긴다 — 인쇄물에서는 클릭할 수 없으므로.
+   내부 링크(projects/...)는 주소가 길기만 해서 넣지 않는다. */
+.detail-links a[href^="http"]::after,
+.site-footer a[href^="http"]::after {
+  content: " (" attr(href) ")";
+  font-size: 8.5pt;
+  font-weight: 400;
+  color: #4a4a4a;
+  word-break: break-all;
+}
+.detail-links a[target="_blank"]::after { content: " (" attr(href) ")"; }
+
+a { color: #000; text-decoration: underline; }
+
+/* ============================================================
+   6. 도판 — 반전을 반드시 끈다
+   화면에서 다크로 보던 중 인쇄하면 음화가 종이에 그대로 찍힌다.
+   ============================================================ */
+
+.figure__img--invert,
+.figure__img--diagram,
+.figure img {
+  filter: none !important;
+  background: #fff !important;
+  border: 0.5pt solid #ccc;
+  border-radius: 0;
+}
+
+.figure { margin-block: 8mm; }
+
+/* 도판이 한 쪽을 넘지 않게 — 넘으면 통째로 다음 쪽으로 밀린다 */
+.figure img { max-block-size: 150mm; object-fit: contain; }
+
+/* ============================================================
+   7. 표
+   ============================================================ */
+
+.exp-table { font-size: 9.5pt; }
+
+.exp-table thead,
+.exp-table tbody,
+.exp-table tr,
+.exp-table th,
+.exp-table td {
+  display: revert;   /* 모바일 카드형 전환을 되돌린다 */
+}
+
+.exp-table td::before { content: none !important; }
+
+.exp-table tbody th,
+.exp-table td {
+  padding: 2mm 4mm 2mm 0;
+  border-block-end: 0.5pt solid #ccc;
+}
+
+.exp-table tr {
+  padding: 0;
+  margin: 0;
+  background: none;
+  border: 0;
+}
+
+/* ============================================================
+   8. 움직임 제거
+   ============================================================ */
+
+*, *::before, *::after {
+  transition: none !important;
+  animation: none !important;
+}
