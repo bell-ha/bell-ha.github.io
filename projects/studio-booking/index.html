@@ -80,8 +80,11 @@
 </section>
 <section class="detail-section" id="contributions">
 <h2 class="detail-section__title">Contributions</h2>
-<div class="contrib"><h3 class="contrib__title">평면도를 그리는 좌표 자체를 데이터로 뒀다</h3><p>평면도를 이미지 한 장으로 넣으면 공사나 용도 변경이 있을 때마다 이미지를 새로 만들고 좌표를 코드에 다시 박아 재배포해야 합니다. 배치가 바뀌는 주체는 학과 사무실인데 그것을 반영하는 주체가 개발자가 됩니다. 관리자가 화면에서 펜으로 복도를 긋고 이름표를 얹으면 그 값이 그대로 저장되고, 학생 화면은 그 데이터를 읽어 평면도를 그립니다. 층을 늘리는 것도 버튼 하나입니다.</p></div>
-<div class="contrib"><h3 class="contrib__title">정책도 같은 판단으로 옮겼다</h3><p>최대 예약 시간, 취소 마감, 운영 시간, 주간 오픈 시점이 전부 코드에 상수로 박혀 있었습니다. 규칙 하나 바꾸려면 재배포해야 합니다. 이 값들을 실제로 바꿔야 하는 사람은 학과 사무실이지 개발자가 아니므로 데이터베이스로 옮기고 관리자 화면을 붙였습니다. 규칙 이름만으로는 판단할 수 없어서 무엇이 달라지는지 한 줄씩 적어 두었습니다.</p></div>
+<div class="contrib"><h3 class="contrib__title">평면도를 그리는 좌표 자체를 데이터로 뒀다</h3><p>평면도를 이미지 한 장으로 넣으면 공사나 용도 변경이 있을 때마다 이미지를 새로 만들고 좌표를 코드에 다시 박아 재배포해야 합니다. 배치가 바뀌는 주체는 학과 사무실인데 그것을 반영하는 주체가 개발자가 됩니다. 관리자가 화면에서 펜으로 복도를 긋고 이름표를 얹으면 그 값이 그대로 저장되고, 학생 화면은 그 데이터를 읽어 평면도를 그립니다. 층을 늘리는 것도 버튼 하나입니다.</p>
+<figure class="figure figure--wide"><img class="figure__img--photo" src="../../images/booking-editor.png" alt="관리자가 모눈 위에 펜으로 복도를 긋고 방 이름표를 얹는다. 층을 늘리는 것도 버튼 하나다." loading="lazy"><figcaption class="figure__caption">관리자가 모눈 위에 펜으로 복도를 긋고 방 이름표를 얹는다. 층을 늘리는 것도 버튼 하나다.</figcaption></figure>
+<figure class="figure figure--wide"><img class="figure__img--photo" src="../../images/booking-user.png" alt="학생은 같은 데이터를 읽어 그린 평면도에서 방을 고른다." loading="lazy"><figcaption class="figure__caption">학생은 같은 데이터를 읽어 그린 평면도에서 방을 고른다.</figcaption></figure></div>
+<div class="contrib"><h3 class="contrib__title">정책도 같은 판단으로 옮겼다</h3><p>최대 예약 시간, 취소 마감, 운영 시간, 주간 오픈 시점이 전부 코드에 상수로 박혀 있었습니다. 규칙 하나 바꾸려면 재배포해야 합니다. 이 값들을 실제로 바꿔야 하는 사람은 학과 사무실이지 개발자가 아니므로 데이터베이스로 옮기고 관리자 화면을 붙였습니다. 규칙 이름만으로는 판단할 수 없어서 무엇이 달라지는지 한 줄씩 적어 두었습니다.</p>
+<figure class="figure figure--wide"><img class="figure__img--photo" src="../../images/booking-policy.png" alt="규칙 이름만으로는 판단할 수 없어 무엇이 달라지는지 한 줄씩 적었다." loading="lazy"><figcaption class="figure__caption">규칙 이름만으로는 판단할 수 없어 무엇이 달라지는지 한 줄씩 적었다.</figcaption></figure></div>
 <div class="contrib"><h3 class="contrib__title">업무 규칙을 데이터베이스에도 새겼다</h3><p>제약이 코드에만 있었습니다. 업무 규칙을 전부 파이썬이 검사하고 있어서, SQL로 직접 넣으면 15:00~13:00 같은 예약도 그대로 들어갔습니다. 관리자가 데이터베이스를 직접 만지거나 배치 작업이 붙으면 코드의 검사는 우회됩니다. CHECK · UNIQUE · 인덱스 12개를 적용하고, 넣기 전 위반 데이터가 0건인 것과 넣은 뒤 다섯 경우가 전부 차단되는 것을 확인했습니다.</p></div>
 <div class="contrib"><h3 class="contrib__title">정책이 되돌아가는 것까지 테스트로 막았다</h3><p>테스트가 없어 pytest 26개를 만들었습니다. 정책 테스트는 값을 바꾼 뒤 동작이 실제로 갈리는지를 봅니다 — 나중에 누가 하드코딩 상수로 되돌리면 여기서 잡힙니다.</p></div>
 </section>
