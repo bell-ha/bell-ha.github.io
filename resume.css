@@ -277,27 +277,28 @@ body {
    인쇄(@media print)는 screen 쿼리라 영향을 받지 않는다.
    ============================================================ */
 @media screen and (max-width: 794px) {
-  body { background: #fff; }
-
   /* 스크립트가 넣는 인라인 축소를 무력화 */
   #pages {
     transform: none !important;
     height: auto !important;
-    padding: 0;
+    padding: 14px 0;
   }
 
-  /* 종이 한 장이 아니라 이어지는 문서로 */
+  /* 높이 고정만 풀고 "장" 개념은 남긴다.
+     paginate() 는 블록이 쪽을 넘어가면 다음 쪽에 같은 제목을 다시 단다
+     (A4에서는 그게 맞다). 장을 이어 붙여 버리면 그 반복이 내용 중복으로
+     읽히므로, 장 사이를 눈에 보이게 띄워 "다음 장, 같은 절"로 읽히게 둔다. */
   .sheet {
     width: auto;
     height: auto;
-    margin: 0;
+    margin: 0 0 14px;
     overflow: visible;
-    box-shadow: none;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
   }
 
-  .page-content { padding-bottom: 0; }
-  .page-content.continued { padding-top: 0; }
-  .page-num { display: none; }
+  .page-content { padding-bottom: 20px; }
+  .page-content.continued { padding-top: 20px; }
+  .page-num { bottom: 5px; right: 20px; }
 
   /* ---- 머리 ---- */
   .hero {
@@ -353,8 +354,14 @@ body {
   .val { font-size: 0.9375rem; line-height: 1.45; }
 
   /* ---- 경력: 왼쪽 여백에 띄워 둔 태그를 본문 흐름으로 ---- */
+  /* 태그는 A4의 좁은 왼쪽 여백(34mm)에 맞춰 "Robotics<br>Embedded" 처럼
+     줄바꿈이 박혀 있다. 본문 흐름으로 내려오면 두 줄짜리 라벨이 되므로,
+     flex 로 만들어 br 을 죽이고 gap 으로 띄운다. */
   .group-tag {
     position: static;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35em;
     width: auto;
     margin: 14px 0 4px;
     text-align: left;
@@ -362,6 +369,7 @@ body {
     font-weight: 700;
     color: var(--ink);
   }
+  .group-tag br { display: none; }
 
   .item { padding: 9px 0; }
   .item-title { font-size: 0.9375rem; }
