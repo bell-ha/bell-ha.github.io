@@ -360,8 +360,8 @@ body {
   .group-tag {
     position: static;
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.35em;
+    flex-wrap: nowrap;
+    align-items: baseline;
     width: auto;
     margin: 14px 0 4px;
     text-align: left;
@@ -369,7 +369,12 @@ body {
     font-weight: 700;
     color: var(--ink);
   }
-  .group-tag br { display: none; }
+
+  /* br 을 display:none 으로 지우면 앞뒤 텍스트가 하나의 익명 flex 항목으로
+     합쳐져 "RoboticsEmbedded" 가 된다(gap 도 안 먹는다). 지우지 말고
+     br 자체를 항목으로 남겨 간격 역할을 시킨다 — flex 컨테이너 안에서는
+     br 이 줄바꿈을 만들지 않는다. */
+  .group-tag br { flex: 0 0 0.35em; }
 
   .item { padding: 9px 0; }
   .item-title { font-size: 0.9375rem; }

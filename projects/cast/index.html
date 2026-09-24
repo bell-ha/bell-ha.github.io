@@ -73,6 +73,10 @@
 <p>같은 연산이라도 어느 지역에서 몇 시에 돌리는지에 따라 배출되는 탄소가 달라집니다. 전력 구성이 지역마다, 시간대마다 바뀌기 때문입니다.</p>
 <p>급하지 않은 작업을 전기가 깨끗한 리전·시간대로 옮겨 배출을 줄이는 스케줄러입니다. 4인 팀에서 <strong>작업을 어느 리전으로 보낼지 결정하는 로드밸런서</strong>를 맡았습니다 — <code>load_balancer/</code>의 96%가 제 코드입니다(탄소강도를 예측하는 LSTM 모델은 팀원 담당). <strong>1년치 실데이터로 돌린 시뮬레이션이며 실제 클라우드에 배포하지는 않았습니다.</strong></p>
 </section>
+<section class="detail-section" id="architecture">
+<h2 class="detail-section__title">Architecture</h2>
+<figure class="figure figure--wide"><img class="figure__img--photo" src="../../images/cast-flow.png" alt="라우팅은 한 시간 전 예측만 보고 정하고, 탄소 회계는 같은 시각 실측만 쓴다. 둘을 섞으면 결과가 저절로 좋아 보인다." loading="lazy"><figcaption class="figure__caption">라우팅은 한 시간 전 예측만 보고 정하고, 탄소 회계는 같은 시각 실측만 쓴다. 둘을 섞으면 결과가 저절로 좋아 보인다.</figcaption></figure>
+</section>
 <section class="detail-section" id="contributions">
 <h2 class="detail-section__title">Contributions</h2>
 <div class="contrib"><h3 class="contrib__title">배정을 정수최적화 문제로 세웠다</h3><p>슬롯마다 들어온 작업 묶음을 8개 리전에 배정하는 문제입니다. 목적함수는 탄소강도와 네트워크 지연을 정규화해 가중합한 값(<code>min Σ (α·M̃ + (1−α)·l̃)·x</code>)이고, 제약은 리전별 동시 실행 한도와 전량 처리입니다. 어느 리전에도 넣을 수 없는 작업이 생기면 해가 없어지므로, 미배정을 허용하는 변수를 따로 두고 비용을 물렸습니다. 솔버는 PuLP/CBC를 씁니다.</p></div>
