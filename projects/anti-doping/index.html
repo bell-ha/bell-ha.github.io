@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>생성형 AI 기반 맞춤형 반도핑 예방교육 시스템 — 이종하</title>
+<meta name="description" content="선수마다 다른 도핑 예방 교육을 생성한다">
+<link rel="canonical" href="https://bell-ha.github.io/projects/anti-doping/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="생성형 AI 기반 맞춤형 반도핑 예방교육 시스템 — 이종하">
+<meta property="og:description" content="선수마다 다른 도핑 예방 교육을 생성한다">
+<meta property="og:url" content="https://bell-ha.github.io/projects/anti-doping/">
+<meta property="og:image" content="https://bell-ha.github.io/images/og.jpg">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/base.css">
+<link rel="stylesheet" href="../../css/layout.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../../css/detail.css">
+<link rel="stylesheet" href="../../css/print.css" media="print">
+<script>
+(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">본문으로 건너뛰기</a>
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="site-header__home" href="../../">이종하</a>
+    <nav class="site-nav" aria-label="분야">
+      <a href="../../#robotics">Robotics &amp; Embedded</a>
+      <a href="../../#software">Software &amp; AI</a>
+      <a href="../../#game">Game</a>
+      <a href="../../#music">Music Technology</a>
+    </nav>
+    <button class="theme-toggle" type="button" aria-label="화면 테마 전환">
+      <span class="label-light">Dark</span><span class="label-dark">Light</span>
+    </button>
+  </div>
+</header>
+<main id="main" class="container">
+
+<article class="detail" data-category="software">
+<header class="detail-header">
+<p class="detail-breadcrumb"><a href="../../#software">Software &amp; AI</a></p>
+<h1 class="detail-title">생성형 AI 기반 맞춤형 반도핑 예방교육 시스템</h1>
+<p class="detail-oneline">선수마다 다른 도핑 예방 교육을 생성한다</p>
+<dl class="detail-meta">
+<dt class="meta-key">기간</dt><dd>2026.09 ~ 현재</dd>
+<dt class="meta-key">역할</dt><dd>연세대학교 운동생리학연구실 연구보조원 · 개발 담당</dd>
+</dl>
+<ul class="detail-tags">
+<li class="tag">LLM</li>
+<li class="tag">RAG</li>
+<li class="tag">Python</li>
+</ul>
+</header>
+<section class="detail-section" id="background">
+<h2 class="detail-section__title">Background</h2>
+<p>도핑 예방 교육은 모든 선수에게 같은 자료를 나눠 주는 방식이었습니다. 종목과 경력, 복용 이력이 다른데 같은 내용을 받으면 자기 상황에 해당하는 대목을 선수가 직접 골라내야 합니다.</p>
+<p>연세대학교 운동생리학연구실 연구보조원으로 맡은 과제입니다. 선수의 경기력 데이터와 생성형 AI를 결합해 선수별로 다른 예방 교육을 만드는 시스템을 개발하고 있습니다.</p>
+</section>
+<section class="detail-section" id="contributions">
+<h2 class="detail-section__title">Contributions</h2>
+<div class="contrib"><h3 class="contrib__title">교육 자료를 근거로 묶어 답하게 했다</h3><p>생성형 AI가 아는 대로 답하면 예방 교육이 아니라 추측이 됩니다. 예방교육 데이터베이스를 검색해 그 내용을 근거로만 답하도록 RAG 파이프라인(질문에 맞는 자료를 먼저 찾아 그것만 보고 답하게 하는 구성)을 구축했습니다.</p></div>
+<div class="contrib"><h3 class="contrib__title">선수 프로파일과 역할을 프롬프트에 반영</h3><p>선수 프로파일링 결과와 사용자 역할(선수·지도자 등)에 따라 같은 질문에도 다른 수준의 답이 나가도록 개인화 프롬프트를 설계했습니다.</p></div>
+<div class="contrib"><h3 class="contrib__title">틀린 답이 나갈 수 있는 자리를 먼저 막았다</h3><p>도핑은 잘못된 정보가 선수의 자격 정지로 이어지는 영역입니다. 응답 범위를 제한하고, 판단이 필요한 질문은 답하지 않고 전문가 상담으로 넘기는 안전장치를 넣었습니다.</p></div>
+</section>
+</article>
+<nav class="pager" aria-label="다른 프로젝트">
+<a class="pager__prev" href="../emotion-tts/"><span>이전</span>감정 기반 TTS 보컬 합성 시스템</a>
+<a class="pager__next" href="../wgbs/"><span>다음</span>WGBS 유전체 분석 자동화 프로그램</a>
+</nav>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <p>이종하 · <a href="mailto:jongha8273@gmail.com">jongha8273@gmail.com</a> · <a href="https://github.com/bell-ha" target="_blank" rel="noopener">GitHub</a></p>
+  </div>
+</footer>
+<script src="../../js/theme.js" defer></script>
+</body>
+</html>

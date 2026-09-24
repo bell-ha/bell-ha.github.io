@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OnWork 그룹웨어 — 휴가 모듈 설계 — 이종하</title>
+<meta name="description" content="결재자가 휴가를 가도 멈추지 않는 결재">
+<link rel="canonical" href="https://bell-ha.github.io/projects/onwork/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OnWork 그룹웨어 — 휴가 모듈 설계 — 이종하">
+<meta property="og:description" content="결재자가 휴가를 가도 멈추지 않는 결재">
+<meta property="og:url" content="https://bell-ha.github.io/projects/onwork/">
+<meta property="og:image" content="https://bell-ha.github.io/images/og.jpg">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/base.css">
+<link rel="stylesheet" href="../../css/layout.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../../css/detail.css">
+<link rel="stylesheet" href="../../css/print.css" media="print">
+<script>
+(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">본문으로 건너뛰기</a>
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="site-header__home" href="../../">이종하</a>
+    <nav class="site-nav" aria-label="분야">
+      <a href="../../#robotics">Robotics &amp; Embedded</a>
+      <a href="../../#software">Software &amp; AI</a>
+      <a href="../../#game">Game</a>
+      <a href="../../#music">Music Technology</a>
+    </nav>
+    <button class="theme-toggle" type="button" aria-label="화면 테마 전환">
+      <span class="label-light">Dark</span><span class="label-dark">Light</span>
+    </button>
+  </div>
+</header>
+<main id="main" class="container">
+
+<article class="detail" data-category="software">
+<header class="detail-header">
+<p class="detail-breadcrumb"><a href="../../#software">Software &amp; AI</a></p>
+<h1 class="detail-title">OnWork 그룹웨어 — 휴가 모듈 설계</h1>
+<p class="detail-oneline">결재자가 휴가를 가도 멈추지 않는 결재</p>
+<dl class="detail-meta">
+<dt class="meta-key">기간</dt><dd>2026.05 ~ 2026.09</dd>
+<dt class="meta-key">역할</dt><dd>4인 팀 · 휴가 모듈 설계 담당</dd>
+</dl>
+<ul class="detail-links">
+<li><a href="https://github.com/bell-ha/onwork-groupware/tree/main/SW%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98%20%EC%B5%9C%EC%A2%85%EA%B2%B0%EA%B3%BC%EB%AC%BC" target="_blank" rel="noopener">docs</a></li>
+</ul>
+<ul class="detail-tags">
+<li class="tag">SW아키텍처 설계</li>
+<li class="tag">ADR</li>
+<li class="tag">유스케이스 추적성</li>
+</ul>
+</header>
+<section class="detail-section" id="impact">
+<h2 class="detail-section__title">Impact</h2>
+<ul class="impact-grid"><li class="impact-item"><span class="impact-item__num">14<span class="impact-item__unit">건</span></span><span class="impact-item__label">설계 결정을 ADR 식별자로 남김 (휴가 모듈 3건)</span></li><li class="impact-item"><span class="impact-item__num">31<span class="impact-item__unit">개</span></span><span class="impact-item__label">유스케이스 13개를 엔드포인트까지 한 표로 추적</span></li><li class="impact-item"><span class="impact-item__num">2<span class="impact-item__unit">단</span></span><span class="impact-item__label">결재자가 부재면 대행자에게, 대행자도 부재면 경영진으로 자동 배정</span></li></ul>
+</section>
+<section class="detail-section" id="background">
+<h2 class="detail-section__title">Background</h2>
+<p>휴가 결재자도 휴가를 갑니다. 결재선을 사람 이름으로 고정해 두면 그 사람이 자리에 없는 동안 모든 휴가 신청이 그 자리에서 멈춥니다. 정작 사람들이 휴가를 가장 많이 내는 시기가 결재자도 자리에 없는 시기입니다.</p>
+<p>구현이 아니라 <strong>설계 산출물로 낸 과제</strong>입니다. 그래서 판단의 근거를 문서에 남기는 것이 결과물 자체였습니다.</p>
+</section>
+<section class="detail-section" id="contributions">
+<h2 class="detail-section__title">Contributions</h2>
+<div class="contrib"><h3 class="contrib__title">부재를 예외가 아니라 정상 경로로 뒀다</h3><p>결재자가 부재일 때 다음 순위가 자동으로 대행하도록 설계했습니다(ADR-LVE-001). 부재를 예외 처리로 두면 부재 중에 들어온 신청이 오류가 되고, 정상 경로로 두면 결재가 계속 흐릅니다.</p></div>
+<div class="contrib"><h3 class="contrib__title">대행자도 없을 때까지 내려갔다</h3><p>한 단계 위임만 두면 팀장과 대행자가 같은 기간에 함께 자리를 비울 때 다시 멈춥니다. 실제로 연휴나 워크숍에서 그렇게 됩니다. 그래서 팀장과 대행자가 <strong>모두</strong> 부재인 경우 경영진으로 자동 배정되는 2차 위임까지 설계했습니다. 위임은 시간이 아니라 <strong>부재 상태</strong>로 발동합니다.</p></div>
+<div class="contrib"><h3 class="contrib__title">잔여 일수가 변하는 시점을 못 박았다</h3><p>승인 시점에 잔여를 차감하고, 취소하면 환원하며, USE/CANCEL 이력을 남깁니다. 신청 시점에 차감할지 승인 시점에 차감할지는 구현 취향이 아니라 업무 규칙이라 설계 문서에 명시했습니다.</p></div>
+<div class="contrib"><h3 class="contrib__title">요구사항에서 검증까지 한 표로 이었다</h3><p>유스케이스 13개를 엔드포인트 31개까지 잇는 추적성 대조표를 작성하고, 판단이 갈린 지점은 ADR 14건으로 남겼습니다. 설계 문서만 있으면 무엇이 빠졌는지 알 수 없고, 어떤 대안을 왜 버렸는지도 다음 사람에게 전달되지 않습니다.</p></div>
+</section>
+</article>
+<nav class="pager" aria-label="다른 프로젝트">
+<a class="pager__prev" href="../cast/"><span>이전</span>CAST — 탄소 인식 클라우드 스케줄러</a>
+<a class="pager__next" href="../delrev/"><span>다음</span>DelRev — 3D 잠입 액션 게임</a>
+</nav>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <p>이종하 · <a href="mailto:jongha8273@gmail.com">jongha8273@gmail.com</a> · <a href="https://github.com/bell-ha" target="_blank" rel="noopener">GitHub</a></p>
+  </div>
+</footer>
+<script src="../../js/theme.js" defer></script>
+</body>
+</html>

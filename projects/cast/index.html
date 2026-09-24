@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CAST — 탄소 인식 클라우드 스케줄러 — 이종하</title>
+<meta name="description" content="전기가 깨끗한 시간대로 작업을 옮긴다">
+<link rel="canonical" href="https://bell-ha.github.io/projects/cast/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CAST — 탄소 인식 클라우드 스케줄러 — 이종하">
+<meta property="og:description" content="전기가 깨끗한 시간대로 작업을 옮긴다">
+<meta property="og:url" content="https://bell-ha.github.io/projects/cast/">
+<meta property="og:image" content="https://bell-ha.github.io/images/og.jpg">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/base.css">
+<link rel="stylesheet" href="../../css/layout.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../../css/detail.css">
+<link rel="stylesheet" href="../../css/print.css" media="print">
+<script>
+(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">본문으로 건너뛰기</a>
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="site-header__home" href="../../">이종하</a>
+    <nav class="site-nav" aria-label="분야">
+      <a href="../../#robotics">Robotics &amp; Embedded</a>
+      <a href="../../#software">Software &amp; AI</a>
+      <a href="../../#game">Game</a>
+      <a href="../../#music">Music Technology</a>
+    </nav>
+    <button class="theme-toggle" type="button" aria-label="화면 테마 전환">
+      <span class="label-light">Dark</span><span class="label-dark">Light</span>
+    </button>
+  </div>
+</header>
+<main id="main" class="container">
+
+<article class="detail" data-category="software">
+<header class="detail-header">
+<p class="detail-breadcrumb"><a href="../../#software">Software &amp; AI</a></p>
+<h1 class="detail-title">CAST — 탄소 인식 클라우드 스케줄러</h1>
+<p class="detail-oneline">전기가 깨끗한 시간대로 작업을 옮긴다</p>
+<dl class="detail-meta">
+<dt class="meta-key">기간</dt><dd>2026.07 ~ 현재</dd>
+<dt class="meta-key">역할</dt><dd>4인 팀 · 탄소 인지 로드밸런서(ILP 라우팅) 담당</dd>
+</dl>
+<ul class="detail-links">
+<li><a href="https://github.com/bell-ha/carbon-aware-scheduler" target="_blank" rel="noopener">GitHub</a></li>
+</ul>
+<ul class="detail-tags">
+<li class="tag">Python</li>
+<li class="tag">PuLP/CBC</li>
+<li class="tag">NumPy</li>
+<li class="tag">Pandas</li>
+<li class="tag">Dash</li>
+</ul>
+</header>
+<section class="detail-section" id="impact">
+<h2 class="detail-section__title">Impact</h2>
+<ul class="impact-grid"><li class="impact-item"><span class="impact-item__num">5<span class="impact-item__unit">종</span></span><span class="impact-item__label">선행연구를 직접 구현해 자기 결과와 나란히 비교 (1,122줄)</span></li><li class="impact-item"><span class="impact-item__num">933<span class="impact-item__unit">줄</span></span><span class="impact-item__label">한 명령으로 표·그림·스윕을 통째로 재생성하는 재현 하네스</span></li><li class="impact-item"><span class="impact-item__num">56.7<span class="impact-item__unit">%</span></span><span class="impact-item__label">본인 담당 ILP 로드밸런서 단독 탄소 절감 (시뮬레이션)</span></li></ul>
+</section>
+<section class="detail-section" id="background">
+<h2 class="detail-section__title">Background</h2>
+<p>같은 연산이라도 어느 지역에서 몇 시에 돌리는지에 따라 배출되는 탄소가 달라집니다. 전력 구성이 지역마다, 시간대마다 바뀌기 때문입니다.</p>
+<p>급하지 않은 작업을 전기가 깨끗한 리전·시간대로 옮겨 배출을 줄이는 스케줄러입니다. 4인 팀에서 <strong>작업을 어느 리전으로 보낼지 결정하는 로드밸런서</strong>를 맡았습니다 — <code>load_balancer/</code>의 96%가 제 코드입니다(탄소강도를 예측하는 LSTM 모델은 팀원 담당). <strong>1년치 실데이터로 돌린 시뮬레이션이며 실제 클라우드에 배포하지는 않았습니다.</strong></p>
+</section>
+<section class="detail-section" id="contributions">
+<h2 class="detail-section__title">Contributions</h2>
+<div class="contrib"><h3 class="contrib__title">배정을 정수최적화 문제로 세웠다</h3><p>슬롯마다 들어온 작업 묶음을 8개 리전에 배정하는 문제입니다. 목적함수는 탄소강도와 네트워크 지연을 정규화해 가중합한 값(<code>min Σ (α·M̃ + (1−α)·l̃)·x</code>)이고, 제약은 리전별 동시 실행 한도와 전량 처리입니다. 어느 리전에도 넣을 수 없는 작업이 생기면 해가 없어지므로, 미배정을 허용하는 변수를 따로 두고 비용을 물렸습니다. 솔버는 PuLP/CBC를 씁니다.</p></div>
+<div class="contrib"><h3 class="contrib__title">ILP를 항상 돌리지 않는다</h3><p>1년치를 전부 돌려야 하는 실험에서는 슬롯마다 솔버를 부르는 비용이 그대로 실험 시간이 됩니다. 모든 리전의 가용량이 배치 크기보다 크면 용량 제약이 아무 작업도 묶지 않으므로, 각 작업이 독립적으로 가장 싼 리전을 고르는 것이 곧 최적해입니다. 이 경우를 판별해 솔버를 건너뛰고 최솟값 선택으로 처리했습니다. 최적성을 포기한 근사가 아니라 <strong>같은 답이 보장되는 구간만 지름길로 뺀 것</strong>입니다.</p></div>
+<div class="contrib"><h3 class="contrib__title">예측으로 옮기고 실측으로 정산한다</h3><p>라우팅은 LSTM이 1시간 전에 발행한 예측값으로 결정하고, 탄소 회계는 같은 시간의 실측값으로만 계산합니다. 양쪽에 같은 예측값을 쓰면 <strong>예측이 잘 맞은 것이 감축량으로 둔갑합니다.</strong> 코드에서도 예측 계열과 실측 계열을 분리해 들고 있고, 예측 대신 실측으로 라우팅한 경우를 상한(perfect forecast)으로 따로 돌려 비교합니다.</p></div>
+<div class="contrib"><h3 class="contrib__title">가중치를 사람이 고르지 않게 했다</h3><p>탄소와 지연은 맞바꾸는 관계라 α를 얼마로 두느냐가 결과를 바꿉니다. 하나로 고정하면 그 숫자를 고른 사람에게 결과가 달려 있습니다. α 후보를 0.1 간격 11개로 두고 매 슬롯 파레토 곡선의 무릎점(더 이상 싸게 얻어지지 않는 지점)을 자동 선택하게 했습니다. 0.05 간격 대비 슬롯당 연산이 절반이면서 무릎점을 찾는 데는 충분합니다.</p></div>
+<div class="contrib"><h3 class="contrib__title">한 리전으로 쏠리지 않게 막았다</h3><p>가장 깨끗한 리전으로 전부 몰면 숫자는 좋아지지만 결과가 현실과 멀어집니다. 리전 용량을 원래 배정의 최대 동시 실행 수에서 산정하고 거기에 여유를 더 남겨(headroom) 쏠림을 완화했습니다.</p></div>
+<div class="contrib"><h3 class="contrib__title">결과 (시뮬레이션)</h3><p>8개 리전(미국 3 · 프랑스 · 독일 · 한국 · 인도 · 일본) · <strong>146,000건 1년치 실데이터</strong>입니다. 팀 전체 구성에서 탄소 <strong>56.9% 감소</strong>, 지연 <strong>36.2 ms 증가</strong>. 제가 맡은 ILP 로드밸런서만 단독으로 적용했을 때는 <strong>56.7%</strong>입니다. 두 값이 가까운 것은 감축의 대부분이 리전 이동에서 나온다는 뜻이기도 합니다. 라우팅 결과는 스케줄러가 받아 쓰는 산출물로 따로 내보냅니다.</p></div>
+</section>
+<section class="detail-section" id="troubleshooting">
+<h2 class="detail-section__title">Troubleshooting</h2>
+<div class="ts-item"><h3 class="ts-item__title">감축량이 실제보다 좋게 나왔다</h3><dl class="ts-item__rows"><dt class="ts-item__key">문제</dt><dd class="ts-item__val">초기 구성에서는 감축 효과가 과하게 잡혔습니다.</dd><dt class="ts-item__key">원인</dt><dd class="ts-item__val">작업을 옮길 때 쓴 예측 탄소강도로 감축량까지 계산하고 있었습니다. 예측이 틀린 만큼이 그대로 감축으로 들어갑니다.</dd><dt class="ts-item__key">해결</dt><dd class="ts-item__val">라우팅 결정과 탄소 정산의 입력을 분리했습니다. 정산은 해당 시간의 실측값만 쓰고, 예측으로 라우팅한 경우와 실측으로 라우팅한 경우를 나란히 돌려 예측 품질이 결과에 얼마나 기여했는지를 따로 볼 수 있게 했습니다.</dd><dt class="ts-item__key">결과</dt><dd class="ts-item__val">위 수치는 이 분리 이후의 값입니다. 최적화 결과를 보고할 때 <strong>어떤 숫자로 계산했는지가 결과 자체만큼 중요하다</strong>는 것을 배웠습니다.</dd></dl></div>
+</section>
+</article>
+<nav class="pager" aria-label="다른 프로젝트">
+<a class="pager__prev" href="../k8s-infra/"><span>이전</span>쿠버네티스 클러스터 인프라 구축</a>
+<a class="pager__next" href="../onwork/"><span>다음</span>OnWork 그룹웨어 — 휴가 모듈 설계</a>
+</nav>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <p>이종하 · <a href="mailto:jongha8273@gmail.com">jongha8273@gmail.com</a> · <a href="https://github.com/bell-ha" target="_blank" rel="noopener">GitHub</a></p>
+  </div>
+</footer>
+<script src="../../js/theme.js" defer></script>
+</body>
+</html>

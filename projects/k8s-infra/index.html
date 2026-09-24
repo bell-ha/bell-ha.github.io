@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>쿠버네티스 클러스터 인프라 구축 — 이종하</title>
+<meta name="description" content="공인 IP 하나로 운영하는 3노드 클러스터">
+<link rel="canonical" href="https://bell-ha.github.io/projects/k8s-infra/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="쿠버네티스 클러스터 인프라 구축 — 이종하">
+<meta property="og:description" content="공인 IP 하나로 운영하는 3노드 클러스터">
+<meta property="og:url" content="https://bell-ha.github.io/projects/k8s-infra/">
+<meta property="og:image" content="https://bell-ha.github.io/images/og.jpg">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/base.css">
+<link rel="stylesheet" href="../../css/layout.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../../css/detail.css">
+<link rel="stylesheet" href="../../css/print.css" media="print">
+<script>
+(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">본문으로 건너뛰기</a>
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="site-header__home" href="../../">이종하</a>
+    <nav class="site-nav" aria-label="분야">
+      <a href="../../#robotics">Robotics &amp; Embedded</a>
+      <a href="../../#software">Software &amp; AI</a>
+      <a href="../../#game">Game</a>
+      <a href="../../#music">Music Technology</a>
+    </nav>
+    <button class="theme-toggle" type="button" aria-label="화면 테마 전환">
+      <span class="label-light">Dark</span><span class="label-dark">Light</span>
+    </button>
+  </div>
+</header>
+<main id="main" class="container">
+
+<article class="detail" data-category="software">
+<header class="detail-header">
+<p class="detail-breadcrumb"><a href="../../#software">Software &amp; AI</a></p>
+<h1 class="detail-title">쿠버네티스 클러스터 인프라 구축</h1>
+<p class="detail-oneline">공인 IP 하나로 운영하는 3노드 클러스터</p>
+<dl class="detail-meta">
+<dt class="meta-key">기간</dt><dd>2025.09 ~ 2025.12</dd>
+<dt class="meta-key">역할</dt><dd>단독 · 설계 및 구축</dd>
+</dl>
+<ul class="detail-tags">
+<li class="tag">Terraform</li>
+<li class="tag">Ansible</li>
+<li class="tag">Kubernetes v1.30</li>
+<li class="tag">CloudStack</li>
+<li class="tag">Calico</li>
+<li class="tag">MetalLB</li>
+<li class="tag">Jenkins</li>
+<li class="tag">GitLab</li>
+</ul>
+</header>
+<section class="detail-section" id="impact">
+<h2 class="detail-section__title">Impact</h2>
+<ul class="impact-grid"><li class="impact-item"><span class="impact-item__num">20<span class="impact-item__unit">개</span></span><span class="impact-item__label">네트워크·방화벽·VM·포트포워딩을 Terraform 선언으로</span></li><li class="impact-item"><span class="impact-item__num">5<span class="impact-item__unit">개</span></span><span class="impact-item__label">Ansible 롤로 기동 순서를 고정 — 마스터 → CNI → 워커 → MetalLB → 앱</span></li><li class="impact-item"><span class="impact-item__num">3<span class="impact-item__unit">대</span></span><span class="impact-item__label">CloudStack VM 위에 K8s v1.30 클러스터를 재현 가능하게 구축</span></li></ul>
+</section>
+<section class="detail-section" id="background">
+<h2 class="detail-section__title">Background</h2>
+<p>사설 CloudStack(가상 서버를 직접 띄우는 사내 클라우드) 위에 3노드 쿠버네티스 클러스터를 세우고, 커밋이 배포까지 이어지는 파이프라인을 붙였습니다.</p>
+<p>퍼블릭 클라우드가 아니라는 것이 제약의 대부분이었습니다. <strong>로드밸런서를 대신 만들어 주는 장치가 없고, 공인 IP는 하나만 받습니다.</strong> 그래서 무엇을 어떻게 외부로 꺼낼지를 먼저 정해야 했습니다.</p>
+</section>
+<section class="detail-section" id="contributions">
+<h2 class="detail-section__title">Contributions</h2>
+<div class="contrib"><h3 class="contrib__title">IP 하나 위에서 포트로 모든 것을 가른다</h3><p>공인 IP가 하나이므로 포트 규약을 먼저 정했습니다. SSH는 22 · 2201 · 2202로 노드를 가르고, 서비스는 쿠버네티스가 노드에 열어 주는 포트(NodePort) 번호를 그대로 외부 포트로 통과시켰습니다. 규약을 나중에 정하면 서비스가 늘 때마다 포트가 충돌합니다.</p></div>
+<div class="contrib"><h3 class="contrib__title">구축을 두 단계로 나눴다</h3><p>Terraform으로 노드를 만들고(프로비저닝), Ansible로 설정합니다(구성). 순서는 마스터 준비 → Calico 네트워크 → 워커 조인 → MetalLB 준비 → 앱 배포 다섯 단계입니다. 마스터가 준비된 뒤에야 워커가 조인할 수 있으므로 플레이를 쪼개 경계를 두었습니다.</p></div>
+<div class="contrib"><h3 class="contrib__title">다시 돌려도 안전하게 만들었다</h3><p>초기화와 조인은 이미 끝났으면 건너뛰게 했습니다. 구축 스크립트는 한 번 성공하는 것보다 <strong>몇 번을 돌려도 같은 상태가 되는 것</strong>이 중요합니다. 중간에 실패하면 처음부터 다시 돌려야 하기 때문입니다.</p></div>
+<div class="contrib"><h3 class="contrib__title">LoadBalancer가 없는 환경을 정직하게 다뤘다</h3><p>CloudStack에는 퍼블릭 로드밸런서가 없어서 <code>type: LoadBalancer</code> 서비스는 외부 IP를 받지 못하고 대기 상태에 머뭅니다. MetalLB를 설치해 컨트롤러가 뜬 뒤 IP 풀과 L2Advertisement까지 구성해 두었습니다. <strong>거기까지입니다</strong> — 실제 외부 접근은 공인 IP 하나에 포트포워딩을 걸어 NodePort로 내려보내는 방식이고, 클러스터에 <code>type: LoadBalancer</code> 서비스는 하나도 없습니다(30080 · 32080 · 30500 · 30001 네 개 모두 NodePort).</p></div>
+<div class="contrib"><h3 class="contrib__title">비밀값이 파일로 남지 않게 했다</h3><p>워커 조인 토큰은 파일 대신 메모리로 넘겼습니다. 제출 뒤 저장소를 점검해 평문 API 키와 상태 파일을 분리했습니다.</p></div>
+</section>
+<section class="detail-section" id="troubleshooting">
+<h2 class="detail-section__title">Troubleshooting</h2>
+<div class="ts-item"><h3 class="ts-item__title">서비스를 외부에서 열 수 없다</h3><dl class="ts-item__rows"><dt class="ts-item__key">문제</dt><dd class="ts-item__val">앱을 올려도 브라우저로 접근할 방법이 없었습니다. <code>type: LoadBalancer</code> 서비스가 외부 IP를 배정받지 못하고 무한히 대기했습니다.</dd><dt class="ts-item__key">원인</dt><dd class="ts-item__val">그 타입은 클라우드 제공자가 로드밸런서를 만들어 준다는 전제 위에 있습니다. 사설 CloudStack에는 그 장치가 없습니다.</dd><dt class="ts-item__key">해결</dt><dd class="ts-item__val">MetalLB를 설치해 IP 풀과 L2Advertisement를 구성해 두고, 외부 접근은 공인 IP 하나에 포트포워딩을 걸어 NodePort로 내려보내는 방식으로 정리했습니다.</dd><dt class="ts-item__key">결과</dt><dd class="ts-item__val">GitLab · Jenkins · 컨테이너 레지스트리를 올려 커밋에서 배포까지 이어지는 것을 확인했습니다. 다만 실제 경로는 NodePort이며 MetalLB로 서비스를 노출한 것은 아닙니다. 노드가 3대이고 마스터가 1대라 마스터가 죽으면 클러스터가 멈추는 구성입니다 — 운영 환경과 같은 이중화는 아닙니다.</dd></dl></div>
+</section>
+</article>
+<nav class="pager" aria-label="다른 프로젝트">
+<a class="pager__prev" href="../wgbs/"><span>이전</span>WGBS 유전체 분석 자동화 프로그램</a>
+<a class="pager__next" href="../cast/"><span>다음</span>CAST — 탄소 인식 클라우드 스케줄러</a>
+</nav>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <p>이종하 · <a href="mailto:jongha8273@gmail.com">jongha8273@gmail.com</a> · <a href="https://github.com/bell-ha" target="_blank" rel="noopener">GitHub</a></p>
+  </div>
+</footer>
+<script src="../../js/theme.js" defer></script>
+</body>
+</html>

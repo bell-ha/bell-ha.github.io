@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>전동휠체어 자동 주차 시스템 — 이종하</title>
+<meta name="description" content="카메라를 차량에서 휠체어로 옮긴 자동 주차">
+<link rel="canonical" href="https://bell-ha.github.io/projects/wheelchair-parking/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="전동휠체어 자동 주차 시스템 — 이종하">
+<meta property="og:description" content="카메라를 차량에서 휠체어로 옮긴 자동 주차">
+<meta property="og:url" content="https://bell-ha.github.io/projects/wheelchair-parking/">
+<meta property="og:image" content="https://bell-ha.github.io/images/og.jpg">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/base.css">
+<link rel="stylesheet" href="../../css/layout.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../../css/detail.css">
+<link rel="stylesheet" href="../../css/print.css" media="print">
+<script>
+(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">본문으로 건너뛰기</a>
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="site-header__home" href="../../">이종하</a>
+    <nav class="site-nav" aria-label="분야">
+      <a href="../../#robotics">Robotics &amp; Embedded</a>
+      <a href="../../#software">Software &amp; AI</a>
+      <a href="../../#game">Game</a>
+      <a href="../../#music">Music Technology</a>
+    </nav>
+    <button class="theme-toggle" type="button" aria-label="화면 테마 전환">
+      <span class="label-light">Dark</span><span class="label-dark">Light</span>
+    </button>
+  </div>
+</header>
+<main id="main" class="container">
+
+<article class="detail" data-category="robotics">
+<header class="detail-header">
+<p class="detail-breadcrumb"><a href="../../#robotics">Robotics &amp; Embedded</a></p>
+<h1 class="detail-title">전동휠체어 자동 주차 시스템</h1>
+<p class="detail-oneline">카메라를 차량에서 휠체어로 옮긴 자동 주차</p>
+<dl class="detail-meta">
+<dt class="meta-key">기간</dt><dd>2025.12 ~ 현재</dd>
+<dt class="meta-key">역할</dt><dd>3인 팀 · 전체 설계 · 위치추정 · 인식 · 통합 · ITRC 과제</dd>
+</dl>
+<ul class="detail-links">
+<li><a href="https://github.com/bell-ha/wheelchair-auto-parking-system" target="_blank" rel="noopener">GitHub</a></li>
+</ul>
+<ul class="detail-tags">
+<li class="tag">Python</li>
+<li class="tag">YOLOv8</li>
+<li class="tag">OpenCV</li>
+<li class="tag">SolvePnP</li>
+<li class="tag">Jetson Nano</li>
+<li class="tag">AgileX TRACER</li>
+</ul>
+</header>
+<section class="detail-section" id="impact">
+<h2 class="detail-section__title">Impact</h2>
+<ul class="impact-grid"><li class="impact-item"><span class="impact-item__num">181<span class="impact-item__unit">장</span></span><span class="impact-item__label">공개 데이터셋으로 안 돼 실차 121장·목업 60장을 직접 찍고 라벨링</span></li><li class="impact-item"><span class="impact-item__num">15<span class="impact-item__unit">FPS</span></span><span class="impact-item__label">Jetson Nano 320px 실시간 추론 · 5.8 W</span></li><li class="impact-item"><span class="impact-item__num">6<span class="impact-item__unit">종</span></span><span class="impact-item__label">차량 부위 탐지 · mAP50 0.754~0.995</span></li></ul>
+</section>
+<section class="detail-section" id="background">
+<h2 class="detail-section__title">Background</h2>
+<p>전동휠체어 사용자가 차에 탄 뒤, 남겨진 휠체어를 차에 실으려면 반드시 다른 사람의 도움이 필요합니다. 혼자 운전하는 사용자에게는 외출 자체의 제약이 됩니다.</p>
+<p>원칙은 범용성이었습니다. 휠체어에 아무것도 붙이지 않는 쪽이 가장 여러 대에 적용됩니다. 그래서 차량에 이미 달려 있는 어라운드뷰 카메라(주차용 광각 카메라)를 쓰는 것으로 시작했습니다.</p>
+</section>
+<section class="detail-section" id="architecture">
+<h2 class="detail-section__title">Architecture</h2>
+<figure class="figure figure--wide"><img class="figure__img--diagram" src="../../images/wc-where-camera.svg" alt="보는 주체를 차량에서 휠체어로 옮겼다. 이 선택이 두 버전을 갈랐다." loading="lazy"><figcaption class="figure__caption">보는 주체를 차량에서 휠체어로 옮겼다. 이 선택이 두 버전을 갈랐다.</figcaption></figure>
+</section>
+<section class="detail-section" id="contributions">
+<h2 class="detail-section__title">Contributions</h2>
+<div class="contrib"><h3 class="contrib__title">V1 — 위치추정 파이프라인 3단</h3><p>어안 렌즈 보정 → 마커(ArUco) 검출 → SolvePnP(평면 마커의 네 점으로 카메라와의 상대 자세를 푸는 계산) → 회귀 보정층 → 칼만 필터로 자세추정을 쌓았습니다. 위치 오차가 거리·각도에 따라 <strong>일정하게 치우치는</strong> 것을 확인해, 바닥거리·마커각도·시선각·재투영오차를 입력으로 넣어 편향 자체를 학습으로 상쇄하는 보정층을 설계했습니다. 8단계 파이프라인 중 7단계가 실기체(AgileX TRACER 섀시·CAN 제어)에서 동작했습니다.</p></div>
+<div class="contrib"><h3 class="contrib__title">V1을 접은 판단</h3><p>깎아서 될 문제가 아니었습니다. 어라운드뷰는 차량 바로 주변을 보라고 달린 장치인데 휠체어는 그 밖에서 출발합니다. 멀어질수록 마커가 화면에서 작아지고 렌즈 주변부로 밀려나, 보정으로 메울 수 없는 구간이 남습니다. <strong>보정은 왜곡을 펴는 것이지 찍히지 않은 곳을 보이게 하지 못합니다.</strong> 그래서 카메라를 움직이는 쪽에 실었습니다 — 대상까지의 거리가 항상 가까우면 이 문제 자체가 생기지 않습니다.</p></div>
+<div class="contrib"><h3 class="contrib__title">V2 — 차량 부위 6종을 따로 탐지</h3><p>공개 데이터셋은 차량을 하나의 상자로만 잡아 정렬 기준이 없었습니다. 실차 121장과 목업 60장을 직접 촬영·라벨링해 YOLOv8을 다시 학습시키고, 사이드미러·번호판·후미등 등 6종을 개별 탐지하도록 바꿨습니다. 같은 프레임에서 검출 0건이 4건이 됐습니다. mAP50 0.995는 6종 가운데 가장 잘 맞은 클래스의 값입니다.</p></div>
+<div class="contrib"><h3 class="contrib__title">단안 카메라로 거리와 각도를 잡는 방법</h3><p>카메라가 한 대라 절대 거리를 알 수 없습니다. 규격이 법으로 정해진 번호판(335 × 155 mm)을 기준자로 삼고 핀홀 모델(초점거리와 실제 크기, 화면상 크기의 비례로 거리를 푸는 기본 카메라 모델)로 거리·yaw·방위를 계산했습니다. 줄자로 잰 1.2 m를 모델이 맞혔습니다.</p></div>
+<div class="contrib"><h3 class="contrib__title">센서를 단계마다 번갈아 기준으로 삼는 정렬기</h3><p>카메라 기반 정렬과 초음파를 융합한 정렬기를 구현했습니다. 캐스터 휠 구조상 직진이 바퀴 정렬 상태에 따라 휘는데, 이것을 관측 불가 구간으로 규정하고 IMU의 방위값 피드백으로 직진 방위를 유지하도록 보완했습니다.</p></div>
+</section>
+<section class="detail-section" id="troubleshooting">
+<h2 class="detail-section__title">Troubleshooting</h2>
+<div class="ts-item"><h3 class="ts-item__title">Jetson Nano 4 GB에서 프리징</h3><dl class="ts-item__rows"><dt class="ts-item__key">문제</dt><dd class="ts-item__val">추론을 돌리면 보드가 얼어붙어 아무 응답이 없었습니다.</dd><dt class="ts-item__key">원인</dt><dd class="ts-item__val">메모리 부족입니다. 스왑 공간이 모자라 시스템이 멈추는 것이었고, RAM은 3.55/3.96 GB까지 차 있었습니다.</dd><dt class="ts-item__key">해결</dt><dd class="ts-item__val">스왑을 4 GB로 확장하고 입력 해상도를 320 px로 낮췄습니다.</dd><dt class="ts-item__key">결과</dt><dd class="ts-item__val">지속 15 FPS, 추론 42 ms, 소비전력 5.8 W를 확보했습니다. 휠체어에 실어야 하는 제약에서 출발해 정해진 보드 안에서 성능을 맞춘 것입니다.</dd></dl></div>
+<div class="ts-item"><h3 class="ts-item__title">튜닝으로 풀 문제와 설계를 바꿔야 하는 문제</h3><dl class="ts-item__rows"><dt class="ts-item__key">문제</dt><dd class="ts-item__val">V1에서 보정층과 칼만 필터를 계속 붙였는데도 먼 구간의 오차가 줄지 않았습니다.</dd><dt class="ts-item__key">원인</dt><dd class="ts-item__val">파라미터 문제가 아니라 관측 자체가 없는 구간이었습니다. 7/8단계가 이미 동작하고 있어서 버리기 아까운 상태였고, 팀 안에서도 아무도 먼저 말하지 않았습니다.</dd><dt class="ts-item__key">해결</dt><dd class="ts-item__val">마커를 더 키울 수도 보정으로 풀 수도 없다는 근거를 정리해 카메라를 휠체어로 옮기는 방향을 제안했습니다. 바뀌는 것은 인식 방식이고 그것이 제 담당이었으므로, 경로 생성은 그대로 두고 시뮬레이션을 실물로 옮기는 일까지 제가 맡았습니다.</dd><dt class="ts-item__key">결과</dt><dd class="ts-item__val">반대할 때는 그 변경이 누구의 일을 얼마나 늘리는지까지 계산해서 말해야 한다는 것을 배웠습니다.</dd></dl></div>
+<div class="ts-item"><h3 class="ts-item__title">어디까지 됐는지</h3><p>주차 9단계 · 출차 7단계 전 구간을 실기체에서 검증했지만, <strong>자동으로 도는 것은 정렬 1·2단계까지이고 3단계부터는 수동 조작입니다.</strong> V3으로 UWB 측위를 검토 중입니다 — 휠체어에 붙는 하드웨어가 계속 늘고, 카메라와 초음파가 동시에 놓치면 복구할 방법이 없기 때문입니다.</p></div>
+</section>
+</article>
+<nav class="pager" aria-label="다른 프로젝트">
+<a class="pager__prev" href="../nav-robot/"><span>이전</span>시각장애인 실내 안내 로봇</a>
+<a class="pager__next" href="../doori/"><span>다음</span>두리 — AI 스마트 순찰 로봇</a>
+</nav>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <p>이종하 · <a href="mailto:jongha8273@gmail.com">jongha8273@gmail.com</a> · <a href="https://github.com/bell-ha" target="_blank" rel="noopener">GitHub</a></p>
+  </div>
+</footer>
+<script src="../../js/theme.js" defer></script>
+</body>
+</html>

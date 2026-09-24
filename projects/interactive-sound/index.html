@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>인터랙티브 사운드 &amp; 퍼포먼스 작업 — 이종하</title>
+<meta name="description" content="제스처로 소리를 움직이는 퍼포먼스 작업">
+<link rel="canonical" href="https://bell-ha.github.io/projects/interactive-sound/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="인터랙티브 사운드 &amp; 퍼포먼스 작업 — 이종하">
+<meta property="og:description" content="제스처로 소리를 움직이는 퍼포먼스 작업">
+<meta property="og:url" content="https://bell-ha.github.io/projects/interactive-sound/">
+<meta property="og:image" content="https://bell-ha.github.io/images/og.jpg">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+<link rel="stylesheet" href="../../css/tokens.css">
+<link rel="stylesheet" href="../../css/base.css">
+<link rel="stylesheet" href="../../css/layout.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../../css/detail.css">
+<link rel="stylesheet" href="../../css/print.css" media="print">
+<script>
+(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">본문으로 건너뛰기</a>
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="site-header__home" href="../../">이종하</a>
+    <nav class="site-nav" aria-label="분야">
+      <a href="../../#robotics">Robotics &amp; Embedded</a>
+      <a href="../../#software">Software &amp; AI</a>
+      <a href="../../#game">Game</a>
+      <a href="../../#music">Music Technology</a>
+    </nav>
+    <button class="theme-toggle" type="button" aria-label="화면 테마 전환">
+      <span class="label-light">Dark</span><span class="label-dark">Light</span>
+    </button>
+  </div>
+</header>
+<main id="main" class="container">
+
+<article class="detail" data-category="music">
+<header class="detail-header">
+<p class="detail-breadcrumb"><a href="../../#music">Music Technology</a></p>
+<h1 class="detail-title">인터랙티브 사운드 &amp; 퍼포먼스 작업</h1>
+<p class="detail-oneline">제스처로 소리를 움직이는 퍼포먼스 작업</p>
+<dl class="detail-meta">
+<dt class="meta-key">기간</dt><dd>(확인필요)</dd>
+<dt class="meta-key">역할</dt><dd>단독 · 기획 · 구현</dd>
+</dl>
+<ul class="detail-links">
+<li><a href="https://www.youtube.com/@%EC%9D%B4%EC%A2%85%ED%95%98-t9u" target="_blank" rel="noopener">YouTube</a></li>
+</ul>
+<ul class="detail-tags">
+<li class="tag">Max/MSP</li>
+<li class="tag">MediaPipe</li>
+<li class="tag">Unity</li>
+<li class="tag">TouchDesigner</li>
+</ul>
+</header>
+<section class="detail-section" id="background">
+<h2 class="detail-section__title">Background</h2>
+<p>녹음된 소리는 정해진 대로 재생됩니다. 연주자나 관객이 움직였을 때 소리가 함께 바뀌게 하려면 움직임을 입력으로 받아야 하고, 그러려면 코드를 써야 합니다. 음악 전공에서 컴퓨터공학으로 넘어간 계기가 이 지점이었습니다.</p>
+</section>
+<section class="detail-section" id="contributions">
+<h2 class="detail-section__title">Contributions</h2>
+<div class="contrib"><h3 class="contrib__title">움직임을 소리의 입력으로 만들었다</h3><p>MediaPipe로 제스처를 인식해 그 값을 Max/MSP로 넘기고, 실시간으로 사운드를 제어했습니다. 무엇을 인식할지가 아니라 <strong>어떤 움직임이 어떤 소리 변화로 느껴져야 하는가</strong>를 먼저 정하는 것이 작업의 대부분이었습니다.</p></div>
+<div class="contrib"><h3 class="contrib__title">공간 안에서 소리가 위치를 갖게 했다</h3><p>Unity로 공간 음향을 연동해, 소리가 화면이 아니라 공간 어딘가에서 나는 것으로 들리게 했습니다. TouchDesigner를 함께 써 시각과 소리를 같은 값으로 움직였습니다.</p></div>
+</section>
+<section class="detail-section" id="related">
+<h2 class="detail-section__title">Related</h2>
+<p>소리를 실시간 입력으로 다루는 이 작업이 <a href="../emotion-tts/">감정 기반 TTS 보컬 합성</a>으로 이어졌습니다.</p>
+</section>
+</article>
+<nav class="pager" aria-label="다른 프로젝트">
+<a class="pager__prev" href="../after-session/"><span>이전</span>단편영화 「After Session」 음악 제작</a>
+</nav>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <p>이종하 · <a href="mailto:jongha8273@gmail.com">jongha8273@gmail.com</a> · <a href="https://github.com/bell-ha" target="_blank" rel="noopener">GitHub</a></p>
+  </div>
+</footer>
+<script src="../../js/theme.js" defer></script>
+</body>
+</html>
