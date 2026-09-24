@@ -1,6 +1,6 @@
 :root {
   --ink: #1a1a1a;
-  --sub: #8a8a8a;
+  --sub: #6e6e6e;   /* #8a8a8a는 흰 바탕에서 3.45:1로 AA 미달 → 5.10:1 */
   --rule: #d5d5d5;
   --hero-bg: #3d3d3d;
 }
@@ -80,6 +80,13 @@ body {
   font-size: 8.5pt;
   letter-spacing: 0.02em;
   color: #c9c9c9;
+}
+
+.hero-sub {
+  margin-top: 1.2mm;
+  font-size: 7.8pt;
+  letter-spacing: 0.01em;
+  color: #9d9d9d;
 }
 
 .hero-name {
@@ -174,6 +181,14 @@ body {
 .item-title::before {
   content: "•";
   margin-right: 2mm;
+}
+
+.item-period {
+  margin-left: 2mm;
+  font-size: 8pt;
+  font-weight: 400;
+  color: var(--sub);
+  white-space: nowrap;
 }
 
 .item-desc {
