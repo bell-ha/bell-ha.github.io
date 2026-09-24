@@ -354,27 +354,25 @@ body {
   .val { font-size: 0.9375rem; line-height: 1.45; }
 
   /* ---- 경력: 왼쪽 여백에 띄워 둔 태그를 본문 흐름으로 ---- */
-  /* 태그는 A4의 좁은 왼쪽 여백(34mm)에 맞춰 "Robotics<br>Embedded" 처럼
-     줄바꿈이 박혀 있다. 본문 흐름으로 내려오면 두 줄짜리 라벨이 되므로,
-     flex 로 만들어 br 을 죽이고 gap 으로 띄운다. */
+  /* 태그 원문은 A4의 좁은 왼쪽 여백(34mm)에 맞춰 "Robotics<br>Embedded" 로
+     줄바꿈이 박혀 있다. 이 br 은 CSS로 없앨 수 없다 —
+     display:none 으로 지우면 앞뒤 텍스트가 한 덩어리로 붙어
+     "RoboticsEmbedded" 가 되고(사이에 공백 문자가 없다), flex 로 바꿔도
+     Chrome 은 br 을 강제 줄바꿈으로 처리한다(flex-wrap 무관, 실측 확인).
+     그래서 두 줄인 채로 두되, 행간을 좁혀 한 덩어리 라벨로 읽히게 한다.
+     HTML 에서 <br> 을 공백으로 바꾸면 한 줄이 된다. */
   .group-tag {
     position: static;
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: baseline;
     width: auto;
-    margin: 14px 0 4px;
+    margin: 16px 0 4px;
     text-align: left;
-    font-size: 0.8125rem;
+    font-size: 0.75rem;
     font-weight: 700;
-    color: var(--ink);
+    line-height: 1.2;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--sub);
   }
-
-  /* br 을 display:none 으로 지우면 앞뒤 텍스트가 하나의 익명 flex 항목으로
-     합쳐져 "RoboticsEmbedded" 가 된다(gap 도 안 먹는다). 지우지 말고
-     br 자체를 항목으로 남겨 간격 역할을 시킨다 — flex 컨테이너 안에서는
-     br 이 줄바꿈을 만들지 않는다. */
-  .group-tag br { flex: 0 0 0.35em; }
 
   .item { padding: 9px 0; }
   .item-title { font-size: 0.9375rem; }
