@@ -45,6 +45,10 @@
   font-size: var(--fs-h1);
   font-weight: var(--fw-semi);
   letter-spacing: normal;
+  /* 행간만 예외다. 구 .name 은 1.65 였지만 "Jongha Lee" 한 줄짜리라
+     줄 사이가 보인 적이 없다. 41.6px 제목이 두 줄로 넘어가면 그 값은
+     68.6px 이 되어 두 줄이 서로 다른 제목처럼 떨어져 보인다. */
+  line-height: 1.2;
 }
 
 /* 구 사이트에서 "리드 문장"은 .about-lead 하나였고 0.95rem · 600 · 1.6 으로
