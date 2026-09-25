@@ -403,7 +403,7 @@
 /* ============================================================
    6. 경력 표
    ------------------------------------------------------------
-   열: 소속(th scope=row) / 직위 / 기간 / 하는 일
+   열: 소속(th scope=row) / 역할 / 기간 / 담당 업무
    768px 미만에서는 카드형으로 쌓는다. 가로 스크롤 표는 훑어보는
    문서에서 제일 안 읽힌다.
 
@@ -411,9 +411,11 @@
    열 순서가 바뀌면 아래 nth-of-type 도 같이 고쳐야 한다.
    ============================================================ */
 
-.exp-table { font-size: var(--fs-sm); }
+.exp-table,
+.rec-table { font-size: var(--fs-sm); }
 
-.exp-table caption {
+.exp-table caption,
+.rec-table caption {
   margin-block-end: var(--sp-3);
   font-size: var(--fs-xs);
   font-weight: var(--fw-semi);
@@ -423,7 +425,8 @@
   text-align: start;
 }
 
-.exp-table thead th {
+.exp-table thead th,
+.rec-table thead th {
   padding: 0 var(--sp-4) var(--sp-2) 0;
   font-size: var(--fs-xs);
   font-weight: var(--fw-semi);
@@ -433,18 +436,22 @@
 }
 
 .exp-table tbody th,
-.exp-table td {
+.exp-table td,
+.rec-table tbody th,
+.rec-table td {
   padding: var(--sp-3) var(--sp-4) var(--sp-3) 0;
   border-block-end: var(--hairline) solid var(--border);
   vertical-align: baseline;
 }
 
-.exp-table tbody th {
+.exp-table tbody th,
+.rec-table tbody th {
   font-weight: var(--fw-semi);
   color: var(--text);
 }
 
-.exp-table td { color: var(--text-muted); }
+.exp-table td,
+.rec-table td { color: var(--text-muted); }
 
 .exp-table__period {
   font-variant-numeric: tabular-nums;
@@ -469,7 +476,7 @@
   /* 가장 긴 소속("단국대학교 배리어프리 ICT기술 연구센터(ITRC)")이 한 줄에
      들어가는 폭. 32%(279px)에서는 두 줄로 접혔다. */
   .exp-table tbody th { inline-size: 39%; }
-  /* 직위·기간은 내용 길이에 맞춰 최소로 — 남는 폭을 "하는 일"에 준다 */
+  /* 역할·기간은 내용 길이에 맞춰 최소로 — 남는 폭을 담당 업무에 준다 */
   .exp-table td:nth-of-type(1) { inline-size: 1%; white-space: nowrap; }
   .exp-table td:nth-of-type(2) { inline-size: 1%; }
 }
@@ -511,10 +518,10 @@
     border-block-end: 0;
   }
 
-  /* th(소속) 다음의 td 세 개 — 직위 / 기간 / 하는 일 */
-  .exp-table td:nth-of-type(1)::before { content: "직위"; }
+  /* th(소속) 다음의 td 세 개 — 역할 / 기간 / 담당 업무 */
+  .exp-table td:nth-of-type(1)::before { content: "역할"; }
   .exp-table td:nth-of-type(2)::before { content: "기간"; }
-  .exp-table td:nth-of-type(3)::before { content: "하는 일"; }
+  .exp-table td:nth-of-type(3)::before { content: "담당 업무"; }
 
   .exp-table td::before {
     font-size: var(--fs-xs);
@@ -939,3 +946,33 @@
 
 /* ---- Projects 아래 분야 제목 --------------------------------- */
 .proj-section__title { font-size: 0.95rem; }
+
+/* ---- 수상 · 자격 표 — 날짜 · 이름 · 주관 --------------------- */
+.rec-table { inline-size: 100%; border-collapse: collapse; }
+.rec-table__date {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  inline-size: 1%;
+}
+/* 「75팀 중 6팀」처럼 수상에 딸린 조건은 이름 아래 한 단 낮춰 붙인다 */
+.rec-table__note {
+  display: block;
+  margin-block-start: 3px;
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-normal);
+  color: var(--text-faint);
+}
+
+/* 폰에서는 세 열이 좁아 이름이 잘린다 — 경력 표와 같은 카드 모양으로 */
+@media (max-width: 559px) {
+  .rec-table, .rec-table tbody, .rec-table tr, .rec-table th, .rec-table td { display: block; }
+  .rec-table thead { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); }
+  .rec-table tr {
+    padding: 14px 0;
+    border-block-end: var(--hairline) solid var(--border);
+  }
+  .rec-table tr:last-child { border-block-end: 0; }
+  .rec-table th, .rec-table td { padding: 0; border: 0; }
+  .rec-table__date { margin-block-end: 4px; color: var(--text-faint); font-size: var(--fs-xs); }
+  .rec-table tbody th { margin-block-end: 2px; }
+}
