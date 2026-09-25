@@ -44,6 +44,7 @@
 .site-header__home {
   flex: none;
   color: var(--text);
+  font-size: var(--fs-body);   /* 구 .nav-name 0.95rem */
   font-weight: var(--fw-semi);
   text-decoration: none;
   /* 44px 터치 타깃 — 보이는 글자는 그대로 두고 영역만 세로로 채운다 */
@@ -269,9 +270,12 @@ h2 {
 
 .resume-btn:active { transform: scale(0.97); }
 
-/* ===== About ===== */
+/* ===== About =====
+   구 사이트의 .about p 는 행간이 1.6 이었다(본문 기본 1.65 보다 한 단 좁다).
+   리드 문장도 이 규칙에 덮여 1.6 으로 나왔다 — 선택자가 더 구체적이라서다. */
 .about p {
   font-size: var(--fs-body);
+  line-height: 1.6;
   margin-bottom: 8px;
 }
 

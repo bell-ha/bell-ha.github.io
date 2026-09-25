@@ -36,20 +36,27 @@ body {
 /* ---- 제목 ----------------------------------------------------
    구 사이트는 제목에 자간을 손대지 않았고 행간도 본문과 같은 1.65였다.
    재설계하며 1.25로 조이고 자간을 -0.015em 좁혔는데, 같은 Pretendard인데도
-   글자가 다르게 보이는 원인이 이것이었다. 구 쪽으로 되돌린다. */
+   글자가 다르게 보이는 원인이 이것이었다. 구 쪽으로 되돌린다.
+
+   굵기도 마찬가지다. 구 사이트는 제목에 font-weight 를 거의 적지 않아
+   브라우저 기본값 700 으로 나왔다(h2 25.6px/700 · h4 17.6px/700).
+   600 으로 내려 잡았던 것을 700 으로 되돌리고, 구 사이트가 명시적으로
+   600 을 준 셋만 각자 자리에서 다시 600 으로 내린다
+   — .name · .detail-title · 대문자 분야 제목. */
 h1, h2, h3, h4, h5, h6 {
   color: var(--text);
-  font-weight: var(--fw-semi);
+  font-weight: var(--fw-bold);
   line-height: var(--lh-body);
   letter-spacing: normal;
   text-wrap: balance;
 }
 
-/* 구 사이트 h2 는 700 이었다 */
-h2 { font-weight: var(--fw-bold); }
-
-/* body 가 16px 이므로 본문 문단은 구 사이트처럼 한 단 낮춰 잡는다 */
-p, li, dd, dt, td, th, figcaption { font-size: var(--fs-body); }
+/* body 가 16px 이므로 본문 문단은 구 사이트처럼 한 단 낮춰 잡는다.
+   표는 셀이 아니라 <table> 에 걸어야 한다 — td·th 에 직접 걸면 표가
+   자기 크기를 정해도(.md-table 0.86rem 등) 셀 쪽 선택자가 이겨서
+   그대로 15.2px 로 그려진다. 실제로 그렇게 되어 있었다. */
+p, li, dd, dt, figcaption { font-size: var(--fs-body); }
+table { font-size: var(--fs-body); }
 
 h1 { font-size: var(--fs-h1); }
 h2 { font-size: var(--fs-h2); }

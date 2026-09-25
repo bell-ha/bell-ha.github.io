@@ -194,11 +194,12 @@
   min-inline-size: 0;
 }
 
+/* 행간·자간은 구 .stat-value 값 그대로 (1.25 · -0.01em) */
 .impact-item__num {
   font-size: var(--fs-num);
   font-weight: var(--fw-semi);
-  line-height: 1.15;
-  letter-spacing: -0.02em;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
   font-variant-numeric: tabular-nums;
   color: var(--text);
   white-space: nowrap;
@@ -212,9 +213,11 @@
   color: var(--text-muted);
 }
 
+/* 구 .stat-label 0.78rem. 행간도 구 사이트처럼 본문과 같은 단으로 둔다 —
+   1.4 로 조여 두었더니 두 줄짜리 설명이 한 덩어리로 뭉쳐 보였다. */
 .impact-item__label {
-  font-size: var(--fs-xs);
-  line-height: var(--lh-snug);
+  font-size: 0.78rem;
+  line-height: 1.6;
   color: var(--text-muted);
 }
 
@@ -313,7 +316,7 @@
   padding-block-end: var(--sp-2);
   font-size: var(--fs-xs);
   font-weight: var(--fw-semi);
-  letter-spacing: var(--tracking-caps);
+  letter-spacing: 0.1em;   /* 구 사이트의 대문자 자간은 0.1em 하나였다 */
   text-transform: uppercase;
   color: var(--text-faint);
   border-block-end: var(--hairline) solid var(--border-strong);
@@ -411,15 +414,18 @@
    열 순서가 바뀌면 아래 nth-of-type 도 같이 고쳐야 한다.
    ============================================================ */
 
+/* 구 사이트에서 이 자리(소속·기간을 왼쪽에 세운 줄)는 .info-row 였고
+   0.9rem · 행간 1.7 이었다. */
 .exp-table,
-.rec-table { font-size: var(--fs-sm); }
+.rec-table { font-size: var(--fs-sm); line-height: 1.7; }
 
+/* 구 .flow-table caption 과 같은 값 (0.78rem · 600 · 자간 0.02em) */
 .exp-table caption,
 .rec-table caption {
   margin-block-end: var(--sp-3);
-  font-size: var(--fs-xs);
+  font-size: 0.78rem;
   font-weight: var(--fw-semi);
-  letter-spacing: var(--tracking-caps);
+  letter-spacing: 0.02em;
   text-transform: uppercase;
   color: var(--text-faint);
   text-align: start;
@@ -736,11 +742,12 @@
   filter: invert(0.92) hue-rotate(180deg);
 }
 
+/* 구 사이트 캡션은 0.8rem · 행간 1.55 였다 */
 .figure__caption {
   margin-block-start: var(--sp-2);
   max-inline-size: var(--container-text);
   font-size: var(--fs-xs);
-  line-height: var(--lh-snug);
+  line-height: 1.55;
   color: var(--text-muted);
 }
 
@@ -813,10 +820,12 @@
   overscroll-behavior-inline: contain;
 }
 
+/* 구 .flow-table 은 본문보다 한 단 작은 0.86rem 이었다. 표가 본문과 같은
+   크기면 글 흐름 속에서 표로 안 읽힌다 — 그 차이가 구 사이트의 표 인상이었다. */
 .md-table {
   inline-size: 100%;
   border-collapse: collapse;
-  font-size: var(--fs-sm);
+  font-size: 0.86rem;
   font-variant-numeric: tabular-nums;
 }
 
@@ -832,7 +841,7 @@
 
 .md-table th {
   text-align: start;
-  font-size: var(--fs-xs);
+  font-size: 0.75rem;   /* 구 .flow-table th */
   font-weight: var(--fw-medium);
   color: var(--text-muted);
   padding: 0 10px 6px 0;
@@ -934,7 +943,8 @@
   border-block-start: var(--hairline) solid var(--border);
 }
 .edu li:first-child { border-block-start: 0; padding-block-start: 0; }
-.edu__org    { font-size: var(--fs-body); font-weight: var(--fw-semi); color: var(--text); }
+/* Skills 의 dt, Experience 의 소속 열과 같은 자리다 — 셋을 같은 단으로 맞춘다 */
+.edu__org    { font-size: var(--fs-sm); font-weight: var(--fw-semi); color: var(--text); }
 .edu__period { font-size: var(--fs-sm); color: var(--text-faint); font-variant-numeric: tabular-nums; white-space: nowrap; }
 .edu__detail { grid-column: 1 / -1; font-size: var(--fs-sm); color: var(--text-muted); }
 .edu__note   { grid-column: 1 / -1; font-size: var(--fs-xs); color: var(--text-faint); }
