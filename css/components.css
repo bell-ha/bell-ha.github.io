@@ -14,14 +14,19 @@
   scroll-margin-block-start: calc(var(--header-h) + var(--sp-4));
 }
 
+/* 구 사이트의 .category-title 과 같은 무게로 되돌렸다 —
+   큰 제목이 아니라 작은 대문자 라벨. 한 화면에 카드가 더 들어온다. */
 .proj-section__title {
   display: flex;
   align-items: baseline;
   gap: var(--sp-3);
   margin-block-end: var(--sp-5);
   padding-block-end: var(--sp-3);
-  border-block-end: 2px solid var(--cat);
-  font-size: var(--fs-h2);
+  border-block-end: var(--hairline) solid var(--cat);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-semi);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
 .proj-section__count {
@@ -40,31 +45,36 @@
 .proj-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--sp-5);
+  gap: var(--sp-4);
 }
 
 @media (min-width: 680px) {
-  .proj-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-5); }
+  .proj-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--sp-4);
+    /* 카드를 늘려 높이를 맞추지 않는다. 수치 블록이 없는 카드(두리·사운드팩 등)가
+       옆 카드 높이에 끌려가면 가운데가 텅 빈다 — 면과 그림자를 걷어낸 뒤로는
+       그 빈칸이 그대로 구멍으로 보인다. 내용만큼만 차지하게 둔다. */
+    align-items: start;
+  }
 }
 
-/* 카드 구분은 네 겹으로 만든다. 장식이 아니라 전부 경계 신호다 —
-   배경 단차(--bg 위 --surface) + 테두리 + 상단 분야 바 + 여백. */
+/* 구분은 얇은 선과 여백으로만 만든다. 배경 단차와 그림자, 호버 들림은
+   뺐다 — 텍스트 중심이라는 요구에서 장식은 덜어내는 쪽이 맞다.
+   남긴 것: 1px 테두리 + 상단 2px 분야 바 + 여백. */
 .proj-card {
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: var(--sp-3);
+  gap: var(--sp-2);
   padding: var(--card-pad);
   padding-block-start: calc(var(--card-pad) + var(--cat-bar));
   background: var(--surface);
   border: var(--hairline) solid var(--border);
-  border-radius: var(--r-md);
-  box-shadow: var(--shadow-card);
+  border-radius: var(--r-sm);
   color: inherit;
   text-decoration: none;
-  transition: border-color var(--dur) var(--ease),
-              box-shadow var(--dur) var(--ease),
-              transform var(--dur) var(--ease);
+  transition: border-color var(--dur) var(--ease);
 }
 
 .proj-card::before {
@@ -74,16 +84,12 @@
   inset-inline: 0;
   block-size: var(--cat-bar);
   background: var(--cat);
-  border-start-start-radius: var(--r-md);
-  border-start-end-radius: var(--r-md);
+  border-start-start-radius: var(--r-sm);
+  border-start-end-radius: var(--r-sm);
 }
 
-.proj-card:hover { border-color: var(--cat); box-shadow: var(--shadow-lift); }
+.proj-card:hover { border-color: var(--cat); }
 .proj-card:hover .proj-card__title { color: var(--cat); }
-
-@media (hover: hover) {
-  .proj-card:hover { transform: translateY(-2px); }
-}
 
 .proj-card:focus-visible {
   outline: var(--focus-w) solid var(--focus-ring);
@@ -131,10 +137,14 @@
      · 라벨이 길어져도 오른쪽에서 자연스럽게 흐른다
    ---------------------------------------------------------------- */
 .proj-card__impact {
+  /* 카드 안의 수치는 훑어보라고 있는 것이라 상세의 히어로 숫자만큼 키우지
+     않는다. 본문(0.95rem)보다 한 단만 위. */
+  --fs-num: 1.06rem;
+
   display: grid;
   gap: var(--sp-2);
   margin-block-start: var(--sp-1);
-  padding: var(--sp-3) var(--sp-4);
+  padding: var(--sp-3);
   list-style: none;
   background: var(--cat-tint);
   border-radius: var(--r-sm);
@@ -149,7 +159,7 @@
 }
 
 .proj-card__impact .impact-item__num {
-  font-size: 1.15rem;
+  font-size: var(--fs-num);
   line-height: 1.25;
 }
 
@@ -176,7 +186,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--sp-2);
-  margin-block-start: auto;   /* 카드 높이가 달라도 태그 줄은 바닥에 정렬 */
+  margin-block-start: var(--sp-1);
   padding: var(--sp-1) 0 0;
   list-style: none;
 }
@@ -219,25 +229,24 @@
 
 .impact-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
-  gap: var(--sp-4);
-  margin-block: var(--sp-5);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
+  gap: var(--sp-3);
+  margin-block: var(--sp-4);
   padding: 0;
   list-style: none;
 }
 .impact-grid .impact-item { margin-block-start: 0; }
 
 .impact-grid > .impact-item {
-  padding: var(--sp-5);
+  padding: var(--sp-3) var(--sp-4);
   background: var(--surface);
   border: var(--hairline) solid var(--border);
   border-inline-start: var(--cat-bar) solid var(--cat);
   border-radius: var(--r-sm);
 }
 
-.impact-grid .impact-item__num {
-  font-size: clamp(1.7rem, 1.4rem + 1.5vw, 2.3rem);
-}
+/* 구 .stat-value 와 같은 1.3rem. 재설계 1차는 36.8px로 +77% 커져 있었다. */
+.impact-grid .impact-item__num { font-size: var(--fs-num); }
 
 /* ============================================================
    4. 태그 · 배지
@@ -302,7 +311,7 @@
    ============================================================ */
 
 .proj-list__title {
-  margin-block: var(--sp-7) 0;
+  margin-block: var(--sp-5) 0;
   padding-block-end: var(--sp-2);
   font-size: var(--fs-xs);
   font-weight: var(--fw-semi);
@@ -427,7 +436,7 @@
 
 .exp-table tbody th,
 .exp-table td {
-  padding: var(--sp-4) var(--sp-4) var(--sp-4) 0;
+  padding: var(--sp-3) var(--sp-4) var(--sp-3) 0;
   border-block-end: var(--hairline) solid var(--border);
   vertical-align: baseline;
 }
@@ -533,7 +542,7 @@
 .education li {
   display: grid;
   gap: var(--sp-1);
-  padding-block: var(--sp-4);
+  padding-block: var(--sp-3);
   margin-block-start: 0;
   border-block-end: var(--hairline) solid var(--border);
 }
@@ -581,10 +590,18 @@
                               확장자·태그로 자동 적용하지 말 것.
    ============================================================ */
 
-.figure { margin-block: var(--sp-6); }
+.figure { margin-block: var(--sp-5); }
 
+/* 세로 상한. 이게 없으면 원본 비율대로 화면을 가득 채워 스크롤이 길어진다.
+   구 style.css 도 .project-media img 에 max-height: 560px 을 걸어 뒀었다.
+   width 를 100% 로 고정하지 않고 auto 로 둬야 높이를 줄일 때 가로도 같이
+   줄어 여백이 생기지 않는다. */
 .figure img {
-  inline-size: 100%;
+  max-inline-size: 100%;
+  inline-size: auto;
+  block-size: auto;
+  max-block-size: var(--figure-max-h);
+  margin-inline: auto;
   border-radius: var(--r-sm);
 }
 
@@ -595,14 +612,14 @@
 
 /* 도면 기본형 — 밝은 판 위. 어느 테마에서도 반전하지 않는다. */
 .figure__img--diagram {
-  padding: var(--sp-4);
+  padding: var(--sp-3);
   background: var(--paper);
   border: var(--hairline) solid var(--paper-edge);
 }
 
 /* 모노크롬 도면에 한해 옵트인하는 반전 */
 .figure__img--invert {
-  padding: var(--sp-4);
+  padding: var(--sp-3);
   background: var(--paper);
   border: var(--hairline) solid var(--paper-edge);
 }
@@ -620,7 +637,7 @@
 }
 
 .figure__caption {
-  margin-block-start: var(--sp-3);
+  margin-block-start: var(--sp-2);
   max-inline-size: var(--container-text);
   font-size: var(--fs-xs);
   line-height: var(--lh-snug);
@@ -648,9 +665,9 @@
 .pager {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--sp-4);
-  margin-block-start: var(--section-gap);
-  padding-block-start: var(--sp-5);
+  gap: var(--sp-3);
+  margin-block-start: var(--sp-8);
+  padding-block-start: var(--sp-4);
   border-block-start: var(--hairline) solid var(--border-strong);
 }
 

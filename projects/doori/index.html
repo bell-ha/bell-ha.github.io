@@ -64,26 +64,18 @@
 </header>
 <section class="detail-section" id="background">
 <h2 class="detail-section__title">Background</h2>
-<p>점자블록 파손을 <strong>가장 먼저 밟는 사람이 정작 그것을 볼 수 없습니다.</strong> 그래서 신고가 늦어집니다. 경기도의 점자블록 적합 설치율 4%와 용인시 포트홀 2년간 75.6% 증가를 근거로 문제를 정의했습니다.</p>
-<p>사람이 신고하기 전에 로봇이 먼저 찾자는 제안입니다. 보도를 자율 순찰하며 파손을 탐지해 위치와 함께 보고합니다. <strong>아이디어 공모전 출품작이고 실물 제작까지 가는 대회가 아니었으므로, 제안과 설계까지가 결과물입니다.</strong></p>
-</section>
-<section class="detail-section" id="architecture">
-<h2 class="detail-section__title">Architecture</h2>
-<p class="figure__caption figure__caption--standalone">단차를 넘어야 해서 바퀴가 아니라 무한궤도로 갔다. 기구가 먼저 정해지면 나머지 구성이 따라온다.</p>
+<p>점자블록 파손을 <strong>가장 먼저 밟는 사람이 정작 그것을 볼 수 없습니다.</strong> 그래서 신고가 늦어집니다. 경기도 점자블록 적합 설치율 4%와 용인시 포트홀 2년간 75.6% 증가로 문제를 정의하고, 보도를 자율 순찰하며 파손을 탐지해 위치와 함께 보고하는 로봇을 제안했습니다.</p>
+<p><strong>아이디어 공모전 출품작이라 제안과 설계까지가 결과물이고, 코드로 구현한 것은 없습니다.</strong></p>
 </section>
 <section class="detail-section" id="contributions">
 <h2 class="detail-section__title">Contributions</h2>
-<div class="contrib"><h3 class="contrib__title">단차를 넘는 기구부터 정했다</h3><p>보도는 평지가 아닙니다. 보도블록 단차를 넘지 못하면 순찰 경로 자체가 성립하지 않습니다. 그래서 바퀴가 아니라 무한궤도(크롤러) 기구로 잡고, 그 형상을 3D 모델로 제시했습니다. 기구를 먼저 정해야 탑재할 수 있는 무게와 높이가 정해지고, 카메라가 보도를 어느 각도에서 보는지가 따라옵니다.</p></div>
-<div class="contrib"><h3 class="contrib__title">탐지와 주행과 보고를 잇는 구조를 정리했다</h3><p>탐지 모델이 무엇을 찾았는지와 로봇이 어디로 갈지는 별개의 문제입니다. 탐지 결과를 주행 제어로 넘기고, 찾은 파손에 유지보수 우선순위를 붙여 보고하는 구조를 설계했습니다. 전부 찾아 보고해도 고치는 순서가 없으면 신고만 쌓입니다.</p></div>
-<div class="contrib"><h3 class="contrib__title">문제를 숫자로 세웠다</h3><p>&quot;불편하다&quot;로는 제안이 되지 않습니다. 점자블록 적합 설치율 4%와 포트홀 2년간 75.6% 증가를 찾아 문제의 크기를 먼저 정하고, 그 위에 로봇을 올렸습니다.</p></div>
-</section>
-<section class="detail-section" id="troubleshooting">
-<h2 class="detail-section__title">Troubleshooting</h2>
-<div class="ts-item"><h3 class="ts-item__title">실물 없이 제안이 성립하는지 보여야 했다</h3><dl class="ts-item__rows"><dt class="ts-item__key">문제</dt><dd class="ts-item__val">실물 제작까지 가는 대회가 아니었고, 심사자에게 전달할 수단이 설명과 도면뿐이었습니다.</dd><dt class="ts-item__key">원인</dt><dd class="ts-item__val">심사자가 확인하려는 것은 기구가 그럴듯한지가 아니라 <strong>순찰이 실제로 돌아갈 수 있는지</strong>입니다. 도면만으로는 움직임이 전달되지 않습니다.</dd><dt class="ts-item__key">해결</dt><dd class="ts-item__val">기구 형상을 3D 모델로 보여 주고, 탐지에서 보고까지의 구성을 발표 자료로 정리했습니다.</dd><dt class="ts-item__key">결과</dt><dd class="ts-item__val">이 범위에서 지능형 로봇 분야 SDGs 아이디어 공모전 <strong>대상</strong>을 받았습니다(단국대학교 공학교육혁신센터 주최 · 공과대학장 명의). <strong>코드로 구현한 것은 없습니다</strong> — 제안과 설계 단계까지입니다.</dd></dl></div>
+<div class="contrib"><h3 class="contrib__title">단차를 넘는 기구부터 정했다</h3><p>보도는 평지가 아닙니다. 보도블록 단차를 넘지 못하면 순찰 경로 자체가 성립하지 않아 바퀴가 아니라 무한궤도로 잡고 그 형상을 3D 모델로 제시했습니다. 기구가 정해져야 탑재 무게와 카메라 높이가 따라옵니다.</p></div>
+<div class="contrib"><h3 class="contrib__title">탐지와 주행과 보고를 잇는 구조를 정리했다</h3><p>탐지 모델이 무엇을 찾았는지와 로봇이 어디로 갈지는 별개의 문제입니다. 탐지 결과를 주행 제어로 넘기고, 찾은 파손에 유지보수 우선순위를 붙여 보고하는 구조를 설계했습니다.</p></div>
+<div class="contrib"><h3 class="contrib__title">실물 없이 제안이 성립하는지 보여야 했다</h3><p>심사자가 확인하려는 것은 기구가 그럴듯한지가 아니라 순찰이 실제로 돌아갈 수 있는지입니다. 기구 형상과 탐지에서 보고까지의 구성을 발표 자료로 정리해 제시했고, 이 범위에서 지능형 로봇 분야 SDGs 아이디어 공모전 <strong>대상</strong>을 받았습니다(단국대학교 공학교육혁신센터 주최 · 공과대학장 명의).</p></div>
 </section>
 <section class="detail-section" id="related">
 <h2 class="detail-section__title">Related</h2>
-<p>&quot;보이지 않는 사용자&quot;라는 출발점은 <a href="../nav-robot/">시각장애인 실내 안내 로봇</a>과 같습니다. 이쪽은 개인을 안내하고, 두리는 그 사람이 밟을 길을 먼저 점검합니다. 제안에 그친 두리와 달리 안내 로봇은 실기체까지 갔습니다.</p>
+<p>&quot;보이지 않는 사용자&quot;라는 출발점은 <a href="../nav-robot/">시각장애인 실내 안내 로봇</a>과 같습니다. 이쪽은 개인을 안내하고, 두리는 그 사람이 밟을 길을 먼저 점검합니다.</p>
 </section>
 </article>
 <nav class="pager" aria-label="다른 프로젝트">

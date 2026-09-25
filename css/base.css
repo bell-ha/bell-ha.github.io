@@ -45,7 +45,7 @@ h3 { font-size: var(--fs-h3); }
 
 /* ---- 본문 ---------------------------------------------------- */
 p { text-wrap: pretty; }
-p + p { margin-block-start: var(--sp-4); }
+p + p { margin-block-start: var(--sp-3); }
 
 strong, b { font-weight: var(--fw-semi); color: var(--text); }
 

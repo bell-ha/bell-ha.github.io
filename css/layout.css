@@ -131,15 +131,15 @@
    ============================================================ */
 
 main.container {
-  padding-block: clamp(2.5rem, 1.8rem + 3.5vw, 4.5rem) var(--sp-11);
+  padding-block: clamp(1.75rem, 1.3rem + 2.2vw, 3rem) var(--sp-9);
 }
 
 .section { margin-block-end: var(--section-gap); }
 
 .section__title {
-  margin-block-end: var(--sp-5);
-  padding-block-end: var(--sp-3);
-  border-block-end: 2px solid var(--border-strong);
+  margin-block-end: var(--sp-4);
+  padding-block-end: var(--sp-2);
+  border-block-end: var(--hairline) solid var(--border-strong);
   font-size: var(--fs-h2);
   scroll-margin-block-start: calc(var(--header-h) + var(--sp-4));
 }
@@ -153,11 +153,11 @@ main.container {
 
 .about__lead {
   max-inline-size: var(--container-text);
-  font-size: clamp(1.15rem, 1.08rem + 0.35vw, 1.3rem);
+  font-size: var(--fs-lead);
   font-weight: var(--fw-semi);
   line-height: var(--lh-snug);
   color: var(--text);
-  margin-block-end: var(--sp-5);
+  margin-block-end: var(--sp-4);
 }
 
 /* ============================================================
@@ -168,13 +168,13 @@ main.container {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: clamp(1.25rem, 0.8rem + 2.2vw, 2.5rem);
+  gap: clamp(1rem, 0.7rem + 1.5vw, 1.75rem);
   margin-block-end: var(--section-gap);
 }
 
 .hero__photo {
   flex: none;
-  inline-size: clamp(88px, 22vw, 136px);
+  inline-size: clamp(76px, 18vw, 112px);
   block-size: auto;
   aspect-ratio: 1;
   object-fit: cover;
@@ -193,7 +193,7 @@ main.container {
 .hero__tagline {
   margin-block-start: var(--sp-2);
   max-inline-size: var(--container-text);
-  font-size: clamp(1.05rem, 0.98rem + 0.4vw, 1.25rem);
+  font-size: var(--fs-lead);
   line-height: var(--lh-snug);
   color: var(--text);
 }
@@ -208,7 +208,7 @@ main.container {
   display: flex;
   flex-wrap: wrap;
   gap: var(--sp-1) var(--sp-2);
-  margin-block-start: var(--sp-4);
+  margin-block-start: var(--sp-3);
   padding: 0;
   list-style: none;
 }
@@ -235,7 +235,7 @@ main.container {
 
 .site-footer {
   border-block-start: var(--hairline) solid var(--border);
-  padding-block: var(--sp-7);
+  padding-block: var(--sp-5);
   color: var(--text-faint);
   font-size: var(--fs-sm);
 }

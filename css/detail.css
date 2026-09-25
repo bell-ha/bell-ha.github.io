@@ -14,8 +14,8 @@
    ============================================================ */
 
 .detail-header {
-  padding-block-end: var(--sp-6);
-  margin-block-end: var(--sp-8);
+  padding-block-end: var(--sp-4);
+  margin-block-end: var(--sp-6);
   border-block-end: 2px solid var(--border-strong);
 }
 
@@ -46,7 +46,7 @@
 .detail-oneline {
   margin-block-start: var(--sp-2);
   max-inline-size: var(--measure);
-  font-size: clamp(1.05rem, 0.98rem + 0.4vw, 1.2rem);
+  font-size: var(--fs-lead);
   line-height: var(--lh-snug);
   color: var(--text-muted);
 }
@@ -57,7 +57,7 @@
   grid-template-columns: auto minmax(0, 1fr);
   gap: var(--sp-1) var(--sp-4);
   align-items: baseline;
-  margin-block-start: var(--sp-5);
+  margin-block-start: var(--sp-4);
   max-inline-size: var(--measure);
   font-size: var(--fs-sm);
 }
@@ -81,7 +81,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--sp-2);
-  margin-block-start: var(--sp-5);
+  margin-block-start: var(--sp-4);
   padding: 0;
   list-style: none;
 }
@@ -116,7 +116,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--sp-2);
-  margin-block-start: var(--sp-5);
+  margin-block-start: var(--sp-3);
   padding: 0;
   list-style: none;
 }
@@ -134,7 +134,7 @@
 }
 
 .detail-section__title {
-  margin-block-end: var(--sp-5);
+  margin-block-end: var(--sp-4);
   font-size: var(--fs-xs);
   font-weight: var(--fw-bold);
   letter-spacing: var(--tracking-caps);
@@ -164,7 +164,7 @@
    3. Contributions
    ============================================================ */
 
-.contrib { margin-block-end: var(--sp-6); }
+.contrib { margin-block-end: var(--sp-5); }
 
 .contrib__title {
   margin-block-end: var(--sp-2);
@@ -182,19 +182,16 @@
    여러 트러블슈팅을 비교하며 읽을 때 같은 자리에서 같은 항목을 만난다.
    ============================================================ */
 
+/* 카드로 띄우지 않고 왼쪽 선 하나로 묶는다 — 장식을 덜어내는 쪽. */
 .ts-item {
-  padding: var(--card-pad);
+  padding-inline-start: var(--sp-4);
   margin-block-end: var(--sp-5);
-  background: var(--surface);
-  border: var(--hairline) solid var(--border);
-  border-radius: var(--r-md);
+  border-inline-start: var(--hairline) solid var(--border-strong);
 }
 
 .ts-item__title {
-  margin-block-end: var(--sp-4);
-  padding-block-end: var(--sp-3);
+  margin-block-end: var(--sp-3);
   font-size: var(--fs-h3);
-  border-block-end: var(--hairline) solid var(--border);
 }
 
 .ts-item > p { max-inline-size: var(--measure); }
@@ -208,8 +205,8 @@
 
 @media (min-width: 560px) {
   .ts-item__rows {
-    grid-template-columns: 3.5rem minmax(0, 1fr);
-    gap: var(--sp-3) var(--sp-4);
+    grid-template-columns: 3.25rem minmax(0, 1fr);
+    gap: var(--sp-2) var(--sp-4);
   }
 }
 
