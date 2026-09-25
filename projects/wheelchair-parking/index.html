@@ -90,7 +90,7 @@
 <h2 class="detail-section__title">Troubleshooting</h2>
 <div class="ts-item"><h3 class="ts-item__title">튜닝으로 풀 문제와 설계를 바꿔야 하는 문제</h3><dl class="ts-item__rows"><dt class="ts-item__key">문제</dt><dd class="ts-item__val">V1에서 보정층과 칼만 필터를 계속 붙였는데도 먼 구간의 오차가 줄지 않았습니다.</dd><dt class="ts-item__key">원인</dt><dd class="ts-item__val">파라미터 문제가 아니라 그 구간이 아예 찍히지 않는 것이었습니다. 이미 7단계까지 동작하던 상태라 버리기 아까웠고, 팀에서도 아무도 먼저 말을 꺼내지 않았습니다.</dd><dt class="ts-item__key">해결</dt><dd class="ts-item__val">마커를 더 키울 수도 보정으로 메울 수도 없다는 근거를 정리해서 카메라를 휠체어로 옮기자고 제안했습니다. 바뀌는 부분이 제 담당이었기 때문에 시뮬레이션을 실물로 옮기는 작업까지 맡았습니다.</dd><dt class="ts-item__key">결과</dt><dd class="ts-item__val">경로 생성은 그대로 쓸 수 있어서 팀원의 작업은 영향을 받지 않았습니다.</dd></dl></div>
 <div class="ts-item"><h3 class="ts-item__title">Jetson Nano에서 프리징</h3><dl class="ts-item__rows"><dt class="ts-item__key">문제</dt><dd class="ts-item__val">추론을 돌리면 보드가 멈춰서 아무 응답이 없었습니다.</dd><dt class="ts-item__key">원인</dt><dd class="ts-item__val">메모리가 모자라 스왑이 부족해진 것이었습니다.</dd><dt class="ts-item__key">해결</dt><dd class="ts-item__val">스왑을 4GB로 늘리고 입력 해상도를 320픽셀로 낮췄습니다.</dd><dt class="ts-item__key">결과</dt><dd class="ts-item__val">15FPS로 지속 구동했고 추론에 42ms가 걸렸습니다.</dd></dl></div>
-<div class="ts-item"><h3 class="ts-item__title">어디까지 됐는지</h3><p>주차 9단계와 출차 7단계를 실기체에서 확인했지만, 자동으로 도는 것은 정렬 1·2단계까지이고 3단계부터는 수동으로 조작합니다. 휠체어에 붙는 장치가 계속 늘고 카메라와 초음파가 동시에 놓치면 복구할 방법이 없어서 UWB 측위를 검토하고 있습니다.</p></div>
+<div class="ts-item"><h3 class="ts-item__title">어디까지 됐는지</h3><p>주차 9단계를 실기체에서 확인했지만 자동으로 도는 것은 정렬 1·2단계까지이고 3단계부터는 수동으로 조작합니다. 출차 경로는 설계까지 했습니다. 휠체어에 붙는 장치가 계속 늘고 카메라와 초음파가 동시에 놓치면 복구할 방법이 없어서 UWB 측위를 검토하고 있습니다.</p></div>
 </section>
 </article>
 <nav class="pager" aria-label="다른 프로젝트">
