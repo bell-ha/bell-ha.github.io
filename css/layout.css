@@ -162,7 +162,7 @@ section { margin-block-end: var(--section-gap); }
 h2 {
   margin-block-end: 28px;
   font-size: var(--fs-h2);
-  font-weight: var(--fw-semi);
+  font-weight: var(--fw-bold);   /* 구 사이트 h2 는 700 */
   color: var(--text);
   scroll-margin-block-start: calc(var(--header-h) + var(--sp-4));
 }
