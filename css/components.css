@@ -846,3 +846,20 @@
 
 /* 긴 식별자가 든 칸이 칸을 넘기지 않게 — base.css 의 code 규칙과 같은 이유 */
 .md-table code { overflow-wrap: anywhere; }
+
+/* ---- 도면을 눌러서 원본으로 ----------------------------------
+   폰에서는 도면이 화면 폭에 맞춰 줄어들어 글자가 읽히지 않는다.
+   눌러서 이미지 원본을 새 탭으로 열면 브라우저 확대를 그대로 쓸 수 있다.
+   링크가 걸렸다는 표시는 데스크톱에서만 — 폰에서는 커서가 없다. -------- */
+.figure__zoom {
+  display: block;
+  line-height: 0;
+  border-radius: var(--r-sm);
+}
+.figure__zoom:focus-visible {
+  outline: var(--focus-w) solid var(--focus-ring);
+  outline-offset: var(--focus-offset);
+}
+@media (hover: hover) {
+  .figure__zoom:hover img { border-color: var(--text-muted); }
+}

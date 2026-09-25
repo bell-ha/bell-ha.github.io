@@ -81,18 +81,21 @@
 .site-nav a:hover { color: var(--text); background: var(--surface-2); }
 .site-nav a[aria-current] { color: var(--text); font-weight: var(--fw-semi); }
 
-/* 좁은 화면에서 내비를 숨겼더니 분야로 갈 방법이 아예 없어졌다(햄버거도
-   없다). 구 사이트처럼 항상 두고 가로로 스크롤시킨다 — 대신 자리가 모자라면
-   이름 쪽을 접는다. 오른쪽 끝에 페이드를 둬서 "더 있다"를 알린다. */
+/* 좁은 화면에서 내비를 숨겼더니 분야로 갈 방법이 아예 없어졌다(햄버거도 없다).
+   가로 스크롤로 두었더니 네 번째 분야가 잘린 채 "더 있다"는 표시도 약했다.
+   폰에서는 분야 이름을 짧게 줄여 넷이 모두 한 줄에 들어오게 한다 —
+   스크롤해서 찾게 하는 것보다 처음부터 다 보이는 편이 낫다. */
+.nav-short { display: none; }
+
 @media (max-width: 719px) {
-  .site-nav {
-    -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 24px), transparent);
-    mask-image: linear-gradient(to right, #000 calc(100% - 24px), transparent);
-  }
   .site-nav a { padding-inline: var(--sp-2); font-size: var(--fs-xs); }
+  .nav-full  { display: none; }
+  .nav-short { display: inline; }
 }
 
-@media (max-width: 460px) {
+/* 그래도 모자라는 폭에서만 이름을 접는다. 짧은 라벨 넷이 들어가는 폭이면
+   이름을 남겨 둔다 — 상세 페이지에서 홈으로 돌아갈 유일한 링크다. */
+@media (max-width: 400px) {
   .site-header__home { display: none; }
 }
 
