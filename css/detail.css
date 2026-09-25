@@ -42,7 +42,12 @@
    -0.03em 을 준 동안 한글 제목이 눌려 보였고, 같은 Pretendard 인데도
    글꼴이 다르게 느껴지던 가장 큰 원인이었다. 굵기도 구 .name 의 600. */
 .detail-title {
-  font-size: var(--fs-h1);
+  /* 제일 긴 제목(SoNA …)이 한 줄에 들어가는 크기로 묶는다. 본문 칸이
+     872px 로 고정되는 넓은 화면에서 한계가 34.2px 이라 34px 을 상한으로
+     두고, 화면이 좁아지면 칸 폭에 비례해 줄인다(3.9vw − 1.9px 이 그 비례식).
+     790px 아래에서는 어떤 크기로도 한 줄에 못 넣으므로 1.8rem 에서 멈추고
+     두 줄로 접는다 — 더 줄이면 13px 짜리 제목이 된다. */
+  font-size: clamp(1.8rem, 3.9vw - 1.9px, 34px);
   font-weight: var(--fw-semi);
   letter-spacing: normal;
   /* 행간만 예외다. 구 .name 은 1.65 였지만 "Jongha Lee" 한 줄짜리라
