@@ -51,26 +51,28 @@
 <p class="detail-oneline">보도 파손을 찾는 순찰 로봇 제안</p>
 <dl class="detail-meta">
 <dt class="meta-key">기간</dt><dd>2025.12 ~ 2026.01</dd>
-<dt class="meta-key">역할</dt><dd>2인 팀 · 기구 설계 · 시스템 구조 설계</dd>
+<dt class="meta-key">역할</dt><dd>2인 팀 · 3D 모델링 · 시스템 구조 설계</dd>
 </dl>
 <ul class="detail-links">
 <li><a href="https://github.com/bell-ha/doori-robot-idea" target="_blank" rel="noopener">GitHub</a></li>
 </ul>
 <ul class="detail-tags">
+<li class="tag">Unity 2022</li>
 <li class="tag">3D 모델링</li>
-<li class="tag">시스템 구조 설계</li>
-<li class="tag">제안서·발표자료</li>
+<li class="tag">YOLOv8</li>
+<li class="tag">ROS2</li>
 </ul>
 </header>
 <section class="detail-section" id="background">
 <h2 class="detail-section__title">Background</h2>
-<p>점자블록이 깨지면 그것을 가장 먼저 밟는 사람이 정작 볼 수 없어서 신고가 늦어집니다. 경기도의 점자블록 적합 설치율 4%와 용인시 포트홀 2년간 75.6% 증가를 근거로 문제를 잡고, 보도를 자율 순찰하면서 파손을 찾아 위치와 함께 보고하는 로봇을 제안했습니다. 아이디어 공모전에 낸 제안이라 실물은 만들지 않았습니다.</p>
+<p>점자블록이 깨지면 그것을 가장 먼저 밟는 사람이 정작 볼 수 없어서 신고가 늦어집니다. 경기도의 점자블록 적합 설치율 4%와 용인시 포트홀 2년간 75.6% 증가를 근거로 문제를 잡고, 보도를 자율 순찰하면서 파손을 찾아 위치와 함께 보고하는 로봇을 제안했습니다. 실물 제작까지 가는 대회는 아니어서 시뮬레이션으로 검증한 제안 단계까지입니다.</p>
 </section>
 <section class="detail-section" id="contributions">
 <h2 class="detail-section__title">Contributions</h2>
-<div class="contrib"><h3 class="contrib__title">단차를 넘는 기구부터 정했다</h3><p>보도는 평지가 아니라서 보도블록 단차를 넘지 못하면 순찰 경로가 성립하지 않습니다. 바퀴 대신 무한궤도로 잡고 그 형상을 3D 모델로 제시했습니다. 기구가 정해져야 실을 수 있는 무게와 카메라 높이가 따라옵니다.</p></div>
-<div class="contrib"><h3 class="contrib__title">탐지와 주행, 보고를 잇는 구조를 정리했다</h3><p>탐지 모델이 무엇을 찾았는지와 로봇이 어디로 갈지는 별개의 문제입니다. 탐지 결과를 주행 제어로 넘기고, 찾은 파손에 유지보수 우선순위를 붙여 보고하는 구조를 설계했습니다.</p></div>
-<div class="contrib"><h3 class="contrib__title">도면만으로 전달되지 않는 것을 발표 자료로 만들었다</h3><p>심사에서 확인하려는 것은 순찰이 실제로 돌아갈 수 있는지였습니다. 기구 형상과 탐지에서 보고까지의 구성을 발표 자료로 정리해 제시했습니다.</p></div>
+<div class="contrib"><h3 class="contrib__title">단차를 넘는 기구부터 정했다</h3><p>보도는 평지가 아니라서 보도블록 단차를 넘지 못하면 순찰 경로가 성립하지 않습니다. 바퀴 대신 무한궤도로 잡고 직접 3D 모델링했습니다. 기구가 정해져야 실을 수 있는 무게와 카메라 높이가 따라옵니다.</p>
+<figure class="figure figure--wide" tabindex="0" role="region" aria-label="도면 — 가로로 스크롤할 수 있습니다"><img class="figure__img--photo" src="../../images/doori.png" alt="" loading="lazy"><figcaption class="figure__caption">제안한 로봇 형상. 보도블록 단차를 넘기 위해 무한궤도로 설계했다.</figcaption></figure></div>
+<div class="contrib"><h3 class="contrib__title">탐지와 주행, 보고를 잇는 구조를 정리했다</h3><p>탐지 모델이 무엇을 찾았는지와 로봇이 어디로 갈지는 별개의 문제입니다. YOLOv8 탐지 결과를 ROS2 주행 제어로 넘기고, 찾은 파손에 유지보수 우선순위를 붙여 보고하는 구조를 설계했습니다.</p></div>
+<div class="contrib"><h3 class="contrib__title">Unity로 순찰을 돌려 봤다</h3><p>도면만으로는 실제로 동작하는지 전달할 수 없습니다. Unity로 보도 환경을 만들어 순찰 경로와 탐지 동작을 돌리고, 그것으로 실현 가능성을 확인했습니다.</p></div>
 </section>
 </article>
 <nav class="pager" aria-label="다른 프로젝트">

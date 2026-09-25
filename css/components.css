@@ -43,30 +43,40 @@
    2. 프로젝트 카드 — <a class="proj-card"> 통째로 링크
    ============================================================ */
 
-/* 구 사이트는 프로젝트를 상자에 담지 않고 한 열로 세로로 늘어놓고
-   사이를 선으로만 갈랐다. 그 형태로 되돌린다. */
-.proj-grid { display: block; }
+/* 메인 프로젝트는 카드(테두리 있는 상자), 그 외 작업은 한 줄 리스트.
+   둘의 무게 차이가 "이쪽이 주력"을 말한다 — 한 열 목록으로 통일했더니
+   그 구분이 사라졌다. 배경도 그림자도 두지 않는다. 테두리 하나면 된다. */
+.proj-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 680px) {
+  .proj-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    align-items: start;   /* 내용이 짧은 카드가 옆 카드 높이에 끌려가 비지 않게 */
+  }
+  /* 카드가 하나뿐인 분야(Game)는 오른쪽 절반이 통째로 비므로 1열 */
+  .proj-grid:has(> :only-child) { grid-template-columns: 1fr; }
+}
 
 
 .proj-card {
   position: relative;
   display: block;
-  margin-bottom: 32px;
+  padding: 18px 20px;
+  border: var(--hairline) solid var(--border-strong);
+  border-radius: 8px;
   color: inherit;
   text-decoration: none;
+  transition: border-color var(--dur) var(--ease);
 }
 
-/* 구 값(56+40=96px)은 카드가 상자였을 때 기준이다. 한 열 텍스트 목록으로
-   바뀌었으니 다시 잡는다 — 32+32=64px. */
-.proj-card + .proj-card {
-  border-top: var(--hairline) solid var(--border-strong);
-  padding-top: 32px;
-}
-
-/* 분야의 마지막 카드 아래 여백이 섹션 여백과 겹쳐 170px까지 떴다 */
-.proj-card:last-child { margin-bottom: 0; }
 
 
+.proj-card:hover { border-color: var(--text); }
 .proj-card:hover .proj-card__title { text-decoration: underline; text-underline-offset: 0.18em; }
 
 .proj-card:focus-visible {
@@ -94,7 +104,7 @@
 /* ---- 제목 · 한 줄 --------------------------------------------- */
 .proj-card__title {
   font-size: 1.1rem;          /* 구 .project h4 */
-  margin-bottom: 10px;
+  margin-bottom: 6px;
   color: var(--text);
   text-wrap: balance;
 }
