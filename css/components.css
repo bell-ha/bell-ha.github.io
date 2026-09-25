@@ -49,6 +49,11 @@
   gap: var(--sp-4);
 }
 
+/* 카드가 하나뿐인 분야(Game)는 2열로 두면 오른쪽 절반이 통째로 빈다 */
+@media (min-width: 680px) {
+  .proj-grid:has(> :only-child) { grid-template-columns: 1fr; }
+}
+
 @media (min-width: 680px) {
   .proj-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -89,8 +94,7 @@
   border-start-end-radius: var(--r-sm);
 }
 
-.proj-card:hover { border-color: var(--accent); }
-.proj-card:hover .proj-card__title { color: var(--accent); }
+.proj-card:hover { border-color: var(--text); }
 
 .proj-card:focus-visible {
   outline: var(--focus-w) solid var(--focus-ring);
@@ -341,11 +345,13 @@
   text-decoration: none;
 }
 .proj-row > a:hover { background: var(--surface-2); }
-.proj-row > a:hover .proj-row__title { color: var(--accent); }
+
 
 @media (min-width: 720px) {
   .proj-row > a {
-    grid-template-columns: minmax(0, 17rem) minmax(0, 1fr) auto;
+    /* 마지막 열을 auto 로 두면 태그가 오른쪽 끝에 붙고, 태그 길이가
+       제각각이라 우측 가장자리가 들쭉날쭉해진다. 고정폭 열에 왼쪽 정렬한다. */
+    grid-template-columns: minmax(0, 19rem) minmax(0, 1fr) minmax(0, 11rem);
     align-items: baseline;
   }
 }
@@ -404,7 +410,7 @@
   color: var(--text-faint);
 }
 
-.proj-list--xref .proj-row > a:hover .proj-row__title { color: var(--accent); }
+.proj-list--xref 
 
 /* ============================================================
    6. 경력 표
@@ -465,7 +471,7 @@
   color: var(--text-faint);
 }
 .exp-table__projects a { color: var(--text-muted); }
-.exp-table__projects a:hover { color: var(--accent); }
+.exp-table__projects a:hover { color: var(--text); }
 
 .exp-table tbody tr:last-child th,
 .exp-table tbody tr:last-child td { border-block-end: 0; }
@@ -538,7 +544,6 @@
 .education {
   padding: 0;
   list-style: none;
-  max-inline-size: var(--container-text);
 }
 
 .awards li,
@@ -549,6 +554,22 @@
   padding-block: var(--sp-3);
   margin-block-start: 0;
   border-block-end: var(--hairline) solid var(--border);
+}
+
+/* 넓은 화면에서는 제목과 메타를 한 줄에 놓는다 — 세로를 줄이고
+   오른쪽 빈 공간도 함께 없앤다. */
+@media (min-width: 720px) {
+  .awards li,
+  .certs li {
+    grid-template-columns: minmax(0, 28rem) minmax(0, 1fr);
+    align-items: baseline;
+    gap: var(--sp-1) var(--sp-5);
+  }
+  .education li {
+    grid-template-columns: minmax(0, 14rem) minmax(0, 10rem) minmax(0, 1fr);
+    align-items: baseline;
+    gap: var(--sp-1) var(--sp-5);
+  }
 }
 .awards li:last-child,
 .certs li:last-child,
@@ -705,7 +726,7 @@
 .pager__next { text-align: end; align-items: flex-end; }
 
 .pager__prev:hover,
-.pager__next:hover { border-color: var(--accent); color: var(--accent); }
+.pager__next:hover { border-color: var(--text); }
 
 /* 한쪽만 있을 때 반대쪽 자리를 비운다 */
 .pager__next:only-child { margin-inline-start: auto; flex-grow: 0; }

@@ -36,7 +36,7 @@
 }
 /* inline-flex 라 content 안의 공백은 지워진다. 간격은 margin 으로 준다. */
 .detail-breadcrumb a::before { content: "←"; margin-inline-end: 0.45em; }
-.detail-breadcrumb a:hover { color: var(--accent); }
+.detail-breadcrumb a:hover { color: var(--text); }
 
 .detail-title {
   font-size: var(--fs-h1);
@@ -101,7 +101,7 @@
   border-radius: var(--r-sm);
   transition: border-color var(--dur) var(--ease), color var(--dur) var(--ease);
 }
-.detail-links a:hover { color: var(--accent); border-color: var(--accent); }
+.detail-links a:hover { color: var(--text); border-color: var(--text); }
 
 /* 새 탭으로 열리는 링크임을 눈으로도 알린다 */
 .detail-links a[target="_blank"]::after {
@@ -150,7 +150,7 @@
   block-size: 2px;
   margin-inline-end: var(--sp-3);
   vertical-align: 0.3em;
-  background: var(--cat, var(--accent));
+  background: var(--cat);
 }
 
 /* 상세 본문의 줄길이 제한. 도판·숫자 카드는 제외한다. */

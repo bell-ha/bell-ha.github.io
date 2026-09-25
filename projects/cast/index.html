@@ -70,11 +70,11 @@
 </section>
 <section class="detail-section" id="background">
 <h2 class="detail-section__title">Background</h2>
-<p>같은 연산이라도 어느 지역에서 몇 시에 돌리는지에 따라 배출되는 탄소가 달라집니다. 급하지 않은 작업을 깨끗한 리전·시간대로 옮기는 스케줄러이고, 4인 팀에서 <strong>작업을 어느 리전으로 보낼지 결정하는 로드밸런서</strong>를 맡았습니다(<code>load_balancer/</code>의 96%가 제 코드, 탄소강도 예측 LSTM은 팀원 담당). <strong>1년치 실데이터로 돌린 시뮬레이션이며 실제 클라우드에 배포하지는 않았습니다.</strong></p>
+<p>같은 연산이라도 어느 지역에서 몇 시에 돌리는지에 따라 배출되는 탄소가 달라집니다. 급하지 않은 작업을 깨끗한 리전·시간대로 옮기는 스케줄러입니다. 제가 맡은 것은 <strong>작업을 어느 리전으로 보낼지 결정하는 로드밸런서</strong>이고(<code>load_balancer/</code>의 96%가 제 코드), 탄소강도 예측 LSTM은 팀원 담당입니다. <strong>1년치 실데이터로 돌린 시뮬레이션이며 실제 클라우드에 배포하지는 않았습니다.</strong></p>
 </section>
 <section class="detail-section" id="architecture">
 <h2 class="detail-section__title">Architecture</h2>
-<figure class="figure figure--wide"><img class="figure__img--photo" src="../../images/cast-flow.png" alt="라우팅은 한 시간 전 예측만 보고 정하고, 탄소 회계는 같은 시각 실측만 쓴다. 둘을 섞으면 결과가 저절로 좋아 보인다." loading="lazy"><figcaption class="figure__caption">라우팅은 한 시간 전 예측만 보고 정하고, 탄소 회계는 같은 시각 실측만 쓴다. 둘을 섞으면 결과가 저절로 좋아 보인다.</figcaption></figure>
+<figure class="figure figure--wide"><img class="figure__img--photo" src="../../images/cast-flow.png" alt="" loading="lazy"><figcaption class="figure__caption">라우팅은 한 시간 전 예측만 보고 정하고, 탄소 회계는 같은 시각 실측만 쓴다. 둘을 섞으면 결과가 저절로 좋아 보인다.</figcaption></figure>
 </section>
 <section class="detail-section" id="contributions">
 <h2 class="detail-section__title">Contributions</h2>

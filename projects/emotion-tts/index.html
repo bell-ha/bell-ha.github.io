@@ -77,10 +77,6 @@
 <div class="contrib"><h3 class="contrib__title">표정 인식 값을 그대로 쓰면 목소리가 떨린다</h3><p>표정 인식은 프레임 단위로 판정하므로 같은 표정을 유지해도 결과가 튑니다. 그 값을 바로 합성에 넘기면 한 문장 안에서 감정이 여러 번 바뀝니다. 지수이동평균으로 값을 눌러 주고 다수결 투표를 겹쳐, 짧게 스쳐 간 오판정이 문장의 감정을 바꾸지 못하게 했습니다. <strong>인식 정확도보다 안정화가 먼저 필요했습니다.</strong></p></div>
 <div class="contrib"><h3 class="contrib__title">감정과 합성 사이를 서버로 끊고, 추정을 제안으로 뒀다</h3><p>MediaPipe로 얼굴을 검출하고 CNN으로 표정을 분류해, 추정된 감정을 JSON으로 Flask 서버에 넘기면 서버가 TTS를 호출할 때 프롬프트 입력으로 반영합니다. 웹 UI에서는 문장 종결부마다 감정 태그가 자동 삽입되고, 사용자는 태그를 직접 고르는 대신 붙은 결과를 보고 고칩니다.</p></div>
 </section>
-<section class="detail-section" id="related">
-<h2 class="detail-section__title">Related</h2>
-<p>소리로 상태를 전한다는 문제를 처음 다룬 작업입니다. 같은 판단이 <a href="../sound-packs/">게임 사운드팩</a>과 <a href="../delrev/">DelRev</a>의 &quot;위험도를 눈이 아니라 귀로&quot;로 이어집니다.</p>
-</section>
 </article>
 <nav class="pager" aria-label="다른 프로젝트">
 <a class="pager__prev" href="../studio-booking/"><span>이전</span>뉴뮤직학부 연습실 예약 시스템</a>

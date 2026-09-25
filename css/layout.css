@@ -52,7 +52,7 @@
   min-block-size: var(--tap);
   padding-inline-end: var(--sp-2);
 }
-.site-header__home:hover { color: var(--accent); }
+.site-header__home:hover { color: var(--text); }
 
 /* ---- 분야 내비 ------------------------------------------------ */
 .site-nav {
@@ -136,11 +136,18 @@ main.container {
 
 .section { margin-block-end: var(--section-gap); }
 
+/* 분야 제목(.proj-section__title)과 같은 형식으로 맞춘다.
+   프로젝트 분야를 작은 대문자 라벨로 내렸더니 Awards·Certifications 같은
+   보조 목록의 제목이 본체인 프로젝트 제목보다 커지는 위계 역전이 났다.
+   둘 다 최상위 섹션이므로 같은 표기를 쓴다. */
 .section__title {
   margin-block-end: var(--sp-4);
-  padding-block-end: var(--sp-2);
+  padding-block-end: var(--sp-3);
   border-block-end: var(--hairline) solid var(--border-strong);
-  font-size: var(--fs-h2);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-semi);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   scroll-margin-block-start: calc(var(--header-h) + var(--sp-4));
 }
 
@@ -227,7 +234,7 @@ main.container {
   overflow-wrap: anywhere;
   transition: border-color var(--dur) var(--ease), color var(--dur) var(--ease);
 }
-.hero__links a:hover { color: var(--accent); border-color: var(--accent); }
+.hero__links a:hover { color: var(--text); border-color: var(--text); }
 
 /* ============================================================
    푸터
@@ -241,4 +248,4 @@ main.container {
 }
 .site-footer p { overflow-wrap: anywhere; }
 .site-footer a { color: var(--text-muted); }
-.site-footer a:hover { color: var(--accent); }
+.site-footer a:hover { color: var(--text); }

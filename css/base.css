@@ -52,13 +52,24 @@ strong, b { font-weight: var(--fw-semi); color: var(--text); }
 ul, ol { padding-inline-start: 1.2em; }
 li + li { margin-block-start: var(--sp-1); }
 
-/* ---- 링크 ---------------------------------------------------- */
+/* ---- 링크 ----------------------------------------------------
+   링크를 색으로 표시하지 않는다. 텍스트 중심 문서에서 본문 안의
+   파란 글자는 유일한 유채색이 되어 그것만 튄다(실측: 사이트 전체에서
+   유채색 글자가 이 링크 하나뿐이었다).
+   구분은 밑줄로 하고, 호버는 색이 아니라 굵기와 명도로 반응한다.
+   악센트색은 포커스 링에만 남긴다 — 키보드 사용자에게만, 잠깐 보인다. */
 a {
-  color: var(--accent);
+  color: inherit;
+  text-decoration: underline;
   text-decoration-thickness: 1px;
+  text-decoration-color: var(--border-strong);
   text-underline-offset: 0.2em;
 }
-a:hover { text-decoration-thickness: 2px; }
+a:hover {
+  color: var(--text);
+  text-decoration-thickness: 2px;
+  text-decoration-color: currentColor;
+}
 
 /* ---- 코드 ----------------------------------------------------
    현행 index.html 977행의 "원인과 대응" 표가 320px에서 약 308px을
@@ -159,7 +170,8 @@ button { cursor: pointer; background: none; border: 0; }
 }
 
 /* ---- 선택 영역 ------------------------------------------------ */
-::selection { background: var(--accent); color: var(--surface); }
+/* 드래그 선택도 색 대신 명도 반전으로 */
+::selection { background: var(--text); color: var(--bg); }
 
 /* ============================================================
    모션 축소

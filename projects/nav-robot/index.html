@@ -73,30 +73,30 @@
 </section>
 <section class="detail-section" id="background">
 <h2 class="detail-section__title">Background</h2>
-<p>시각장애인의 실내 이동에서 가장 막히는 것은 층간 이동입니다. 기존 안내 로봇들은 사용자를 버튼 앞까지 데려가고 조작은 사용자에게 맡기는데, 버튼을 못 보는 사람에게 그것은 문제를 옮긴 것이지 푼 것이 아닙니다.</p>
-<p>당사자 인터뷰에서 나온 요구 셋을 그대로 설계 목표로 삼았습니다 — 층을 넘어갈 것, 사람들이 지나가는 방향을 따를 것, 알아서 움직이지 말고 상황을 설명한 뒤 사용자의 결정을 따를 것.</p>
-<figure class="figure figure--wide"><img class="figure__img--diagram" src="../../images/fig4-gap.svg" alt="" loading="lazy"></figure>
+<p>시각장애인의 실내 이동에서 가장 막히는 것은 층간 이동입니다. 기존 안내 로봇은 버튼 앞까지 데려가고 조작은 사용자에게 맡기는데, 버튼을 못 보는 사람에게 그것은 문제를 옮긴 것이지 푼 것이 아닙니다.</p>
+<p>당사자 인터뷰에서 나온 요구 셋을 설계 목표로 삼았습니다 — 층을 넘어갈 것, 사람들이 지나가는 방향을 따를 것, 알아서 움직이지 말고 상황을 설명한 뒤 사용자의 결정을 따를 것.</p>
+<figure class="figure figure--wide"><img class="figure__img--diagram" src="../../images/fig4-gap.svg" alt="fig4 gap" loading="lazy"></figure>
 </section>
 <section class="detail-section" id="architecture">
 <h2 class="detail-section__title">Architecture</h2>
-<figure class="figure figure--wide"><img class="figure__img--diagram" src="../../images/fig5-architecture.svg" alt="시각장애인 실내 안내 로봇" loading="lazy"></figure>
+<figure class="figure figure--wide"><img class="figure__img--diagram" src="../../images/fig5-architecture.svg" alt="fig5 architecture" loading="lazy"></figure>
 <p>주행·음성·엘리베이터를 한 프로세스에 몰아넣지 않고, 위에 최상위 상태 기계 하나를 두어 <strong>바퀴를 잡는 주체가 항상 하나</strong>가 되게 했습니다.</p>
-<p>| 여정 단계 | 최상위 상태 | 바퀴 제어권 | |---|---|---| | ① 층 지정 · 목적지 선택 | 잠금 | 정지 | | ② 승차지점 주행 | 주행 | Nav2 자율주행 | | <strong>③ 엘리베이터 시퀀스</strong> | 잠금 | 엘리베이터 앱 | | ④ 지도 전환 · 위치 재설정 | 잠금 | 정지 | | ⑤ 목적지 주행 | 주행 | Nav2 자율주행 | | ⑥ 도착 안내 | 잠금 | 정지 |</p>
+<div class="table-wrap"><table class="md-table"><thead><tr><th scope="col">여정 단계</th><th scope="col">최상위 상태</th><th scope="col">바퀴 제어권</th></tr></thead><tbody><tr><td>② 승차지점 주행 · ⑤ 목적지 주행</td><td>주행</td><td>Nav2</td></tr><tr><td><strong>③ 엘리베이터 시퀀스</strong></td><td>잠금</td><td>엘리베이터 앱</td></tr><tr><td>① 층 지정 · ④ 지도 전환 · ⑥ 도착 안내</td><td>잠금</td><td>정지</td></tr></tbody></table></div>
 <p>제어권이 겹치면 팔과 바퀴가 동시에 움직입니다. 손잡이를 쥐고 뒤에 사람이 서 있는 상태에서는 그대로 사고입니다.</p>
 </section>
 <section class="detail-section" id="contributions">
 <h2 class="detail-section__title">Contributions</h2>
 <div class="contrib"><h3 class="contrib__title">직접 만든 하드웨어는 손잡이뿐이다</h3><p>상용 로봇(Hello Robot Stretch SE3) 위에 주행·음성·엘리베이터와 이를 묶는 상태 기계(LOCKED·READY·NAV·PAUSED)까지 전 계층을 혼자 설계하고 구현했습니다. 손잡이는 걷는 내내 쥐고 있어서 쥐는 세기가 신호가 되지 못합니다. 세게 쥔 것과 급히 당긴 것을 <strong>올라가는 속도</strong>로 갈랐습니다 — 3731을 넘으면 무장하고 0.80초 안에 4095에 닿을 때만 당김으로 확정해 일시정지합니다.</p>
-<figure class="figure figure--wide"><img class="figure__img--photo" src="../../images/robot-handle.png" alt="Fusion으로 설계해 직접 출력했다." loading="lazy"><figcaption class="figure__caption">Fusion으로 설계해 직접 출력했다.</figcaption></figure></div>
+<figure class="figure figure--wide"><img class="figure__img--photo" src="../../images/robot-handle.png" alt="" loading="lazy"><figcaption class="figure__caption">Fusion으로 설계해 직접 출력했다.</figcaption></figure></div>
 <div class="contrib"><h3 class="contrib__title">연동 규격에 기대지 않고 버튼을 직접 본다</h3><p>승강기 제조사·연식마다 제어 방식이 달라 쓸 수 있는 표준이 없습니다. 그리퍼 카메라로 버튼의 글자를 읽어 직접 누르고, 층이 바뀌면 지도를 교체하고 위치추정(AMCL)을 재초기화합니다. 실패하면 4층인데 5층 지도로 달리게 되므로 따로 관리했습니다.</p></div>
-<div class="contrib"><h3 class="contrib__title">언어모델의 권한을 의도 해석에서 끊었다</h3><p>사용자는 로봇의 실패를 볼 수 없습니다. 화면에 뜨는 에러는 이 시스템에서 아무 의미가 없습니다. 음성 해석에는 GPT를 쓰되 로봇을 움직이는 결정은 맡기지 않고, 자연어와 물리적 실행 사이에 사용자가 누르는 물리 버튼 하나를 뒀습니다.</p></div>
+<div class="contrib"><h3 class="contrib__title">언어모델의 권한을 의도 해석에서 끊었다</h3><p>사용자는 로봇의 실패를 볼 수 없어서 화면에 뜨는 에러가 아무 의미가 없습니다. 음성 해석에는 GPT를 쓰되 로봇을 움직이는 결정은 맡기지 않고, 자연어와 물리적 실행 사이에 사용자가 누르는 물리 버튼 하나를 뒀습니다.</p></div>
 <div class="contrib"><h3 class="contrib__title">사용자까지 로봇의 몸으로 포함했다</h3><p>Nav2는 로봇 크기만 보므로 손잡이를 쥐고 뒤에 선 사용자가 계산에 없습니다. 로봇이 자기 몸으로 삼는 영역을 사각형 네 점으로 <strong>뒤 −0.9 m까지</strong> 확장하고, 후진은 궤적 차단과 벌점 상향으로 두 겹으로 막았습니다.</p></div>
 </section>
 <section class="detail-section" id="troubleshooting">
 <h2 class="detail-section__title">Troubleshooting</h2>
-<div class="ts-item"><h3 class="ts-item__title">아래쪽 버튼이 눌리지 않는다</h3><dl class="ts-item__rows"><dt class="ts-item__key">문제</dt><dd class="ts-item__val">인식 정답지를 걷어내도 아래쪽 층 버튼만 계속 실패했습니다.</dd><dt class="ts-item__key">원인</dt><dd class="ts-item__val">인식이 아니라 기구학이었습니다. 팔이 전후로만 늘어나 닿는 위치가 선분 하나로 고정되는데, 화면 좌표만 주는 인식기로는 닿을 수 있는지조차 판단할 수 없습니다.</dd></dl><figure class="figure figure--wide"><img class="figure__img--diagram" src="../../images/fig3-reach.svg" alt="" loading="lazy"></figure><dl class="ts-item__rows"><dt class="ts-item__key">해결</dt><dd class="ts-item__val">사진과 카메라 파라미터, 물리 통념만으로 버튼의 3차원 좌표를 복원했습니다. 촬영일·자세·거리가 다른 독립 3측정이 4.8 mm 안에서 일치했습니다.</dd><dt class="ts-item__key">결과</dt><dd class="ts-item__val">도달 가능 여부를 판단할 수 있게 되면서 베이스 이동량이 계산 대상이 됐습니다.</dd></dl></div>
+<div class="ts-item"><h3 class="ts-item__title">아래쪽 버튼이 눌리지 않는다</h3><dl class="ts-item__rows"><dt class="ts-item__key">문제</dt><dd class="ts-item__val">인식 정답지를 걷어내도 아래쪽 층 버튼만 계속 실패했습니다.</dd><dt class="ts-item__key">원인</dt><dd class="ts-item__val">인식이 아니라 기구학이었습니다. 팔이 전후로만 늘어나 닿는 위치가 선분 하나로 고정되는데, 화면 좌표만 주는 인식기로는 닿을 수 있는지조차 판단할 수 없습니다.</dd></dl><figure class="figure figure--wide"><img class="figure__img--diagram" src="../../images/fig3-reach.svg" alt="fig3 reach" loading="lazy"></figure><dl class="ts-item__rows"><dt class="ts-item__key">해결</dt><dd class="ts-item__val">사진과 카메라 파라미터, 물리 통념만으로 버튼의 3차원 좌표를 복원했습니다. 촬영일·자세·거리가 다른 독립 3측정이 4.8 mm 안에서 일치했습니다.</dd><dt class="ts-item__key">결과</dt><dd class="ts-item__val">도달 가능 여부를 판단할 수 있게 되면서 베이스 이동량이 계산 대상이 됐습니다.</dd></dl></div>
 <div class="ts-item"><h3 class="ts-item__title">자율주행 중 5초마다 멈춘다</h3><dl class="ts-item__rows"><dt class="ts-item__key">문제</dt><dd class="ts-item__val">주행이 간헐적으로 멈추는데 재현 조건이 잡히지 않았습니다.</dd><dt class="ts-item__key">원인</dt><dd class="ts-item__val">두 겹이었습니다. 주행과 엘리베이터 앱의 동시 구동(장애물 지도 갱신 838회 누락), 그리고 CPU 압박(제어 루프가 주기를 놓친 기록 33회)입니다.</dd><dt class="ts-item__key">해결</dt><dd class="ts-item__val">두 프로세스를 순차 전환하고, 대기 중에도 CPU를 43% 쓰던 시각 보조 인코딩을 요청 시점에만 돌게 옮겼습니다.</dd><dt class="ts-item__key">결과</dt><dd class="ts-item__val">대기 중 점유율이 0%에 가깝게 내려가고 간헐 멈춤이 사라졌습니다.</dd></dl></div>
-<div class="ts-item"><h3 class="ts-item__title">어디까지 됐는지</h3><p>2026년 8월, 여섯 단계가 한 번에 이어져 1층에서 5층 목적지까지 사람의 개입 없이 갔습니다. <strong>다만 정상 시나리오 1회이고 반복 성공률은 측정하지 않았습니다.</strong> 역방향은 ⑥ 이후 구간을 실기체에서 돌린 적이 없고, 사용자를 포함하려 넓힌 몸이 여유폭과 겹쳐 실효 폭 0.81 m가 되면서 엘리베이터 문 0.80 m를 1 cm 차이로 통과하지 못하는 것도 미해결입니다. 결함 239건을 목록으로 관리하며 안전 항목부터 처리하고 있습니다. 그중 23건은 다시 확인한 뒤 제가 직접 취소한 것입니다 — <strong>확증된 것과 정황만 있는 것을 같은 칸에 적지 않기로</strong> 했기 때문입니다. 목록이 길어지는 것보다 목록을 믿을 수 없게 되는 쪽이 더 큰 문제입니다.</p></div>
+<div class="ts-item"><h3 class="ts-item__title">어디까지 됐는지</h3><p>2026년 8월, 여섯 단계가 한 번에 이어져 1층에서 5층 목적지까지 갔습니다. <strong>다만 정상 시나리오 1회이고 반복 성공률은 측정하지 않았습니다.</strong> 역방향은 ⑥ 이후 구간을 실기체에서 돌린 적이 없고, 사용자를 포함하려 넓힌 몸이 여유폭과 겹쳐 실효 폭 0.81 m가 되면서 엘리베이터 문 0.80 m를 1 cm 차이로 통과하지 못하는 것도 미해결입니다. 결함 239건을 목록으로 관리하며 안전 항목부터 처리하고 있습니다. 그중 23건은 다시 확인한 뒤 제가 직접 취소한 것입니다 — <strong>확증된 것과 정황만 있는 것을 같은 칸에 적지 않기로</strong> 했기 때문입니다. 목록이 길어지는 것보다 목록을 믿을 수 없게 되는 쪽이 더 큰 문제입니다.</p></div>
 </section>
 </article>
 <nav class="pager" aria-label="다른 프로젝트">
