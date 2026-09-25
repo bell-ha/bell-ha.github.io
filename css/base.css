@@ -15,8 +15,11 @@ html {
   scroll-padding-block-start: calc(var(--header-h) + var(--sp-4));
 }
 
+/* 내용이 짧은 페이지(404)에서 푸터가 화면 한가운데 뜨지 않게 */
 body {
-  min-block-size: 100vh;
+  min-block-size: 100dvh;
+  display: flex;
+  flex-direction: column;
   background: var(--bg);
   color: var(--text-muted);
   font-family: var(--font-sans);

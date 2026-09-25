@@ -11,8 +11,7 @@
    ============================================================ */
 
 .proj-section {
-  max-inline-size: var(--container-text);   /* 구 .projects */
-  margin-block-end: 128px;   /* 구 .project-category */
+  margin-block-end: 72px;
   scroll-margin-block-start: calc(var(--header-h) + var(--sp-4));
 }
 
@@ -26,9 +25,9 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--text);
-  padding-bottom: 14px;
+  padding-bottom: 12px;
   border-bottom: var(--hairline) solid var(--rule-category);
-  margin-bottom: 36px;
+  margin-bottom: 28px;
 }
 
 .proj-section__count {
@@ -52,16 +51,20 @@
 .proj-card {
   position: relative;
   display: block;
-  margin-bottom: 56px;      /* 구 .project */
+  margin-bottom: 32px;
   color: inherit;
   text-decoration: none;
 }
 
-/* 구 .project + .project */
+/* 구 값(56+40=96px)은 카드가 상자였을 때 기준이다. 한 열 텍스트 목록으로
+   바뀌었으니 다시 잡는다 — 32+32=64px. */
 .proj-card + .proj-card {
   border-top: var(--hairline) solid var(--border-strong);
-  padding-top: 40px;
+  padding-top: 32px;
 }
+
+/* 분야의 마지막 카드 아래 여백이 섹션 여백과 겹쳐 170px까지 떴다 */
+.proj-card:last-child { margin-bottom: 0; }
 
 
 .proj-card:hover .proj-card__title { text-decoration: underline; text-underline-offset: 0.18em; }
@@ -79,8 +82,9 @@
   gap: var(--sp-2);
 }
 
+/* 날짜만 오른쪽 끝으로 밀면 가운데가 340px 빈 채널이 된다.
+   제목 위 작은 메타 줄로 왼쪽에 붙인다. */
 .proj-card__period {
-  margin-inline-start: auto;
   font-size: var(--fs-xs);
   font-variant-numeric: tabular-nums;
   color: var(--text-faint);
@@ -206,7 +210,9 @@
 
 .impact-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
+  /* auto-fit 은 빈 트랙을 접어 남은 카드를 늘린다 — 수치가 1개인 페이지에서
+     카드 하나가 872px로 퍼졌다. auto-fill 로 빈 트랙을 남겨 폭을 고정한다. */
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr));
   gap: var(--sp-3);
   margin-block: var(--sp-4);
   padding: 0;
@@ -590,6 +596,21 @@
    ============================================================ */
 
 .figure { margin-block: var(--sp-5); }
+
+/* 좁은 화면에서 도면을 통째로 줄이면 안쪽 라벨이 2~3px 얼룩이 된다.
+   줄이지 말고 원본 크기로 두고 도판 안에서만 가로로 스크롤시킨다.
+   (스크롤 영역이라 키보드로도 닿게 tabindex="0" 을 마크업에 붙여 주세요.) */
+@media (max-width: 719px) {
+  .figure--wide {
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+  }
+  .figure--wide img {
+    max-inline-size: none;
+    inline-size: auto;
+    min-inline-size: 560px;
+  }
+}
 
 /* 세로 상한. 이게 없으면 원본 비율대로 화면을 가득 채워 스크롤이 길어진다.
    구 style.css 도 .project-media img 에 max-height: 560px 을 걸어 뒀었다.

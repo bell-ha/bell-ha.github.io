@@ -81,12 +81,19 @@
 .site-nav a:hover { color: var(--text); background: var(--surface-2); }
 .site-nav a[aria-current] { color: var(--text); font-weight: var(--fw-semi); }
 
-/* 좁은 화면에서는 이름만 남기고 분야 내비를 감춘다.
-   본문에 같은 링크가 섹션 제목으로 전부 있으므로 길이 끊기지 않는다.
-   가로 스크롤되는 탭 줄은 스크롤바를 숨겨 두면 "더 있다"는 신호가
-   없어서, 없는 편이 낫다. */
+/* 좁은 화면에서 내비를 숨겼더니 분야로 갈 방법이 아예 없어졌다(햄버거도
+   없다). 구 사이트처럼 항상 두고 가로로 스크롤시킨다 — 대신 자리가 모자라면
+   이름 쪽을 접는다. 오른쪽 끝에 페이드를 둬서 "더 있다"를 알린다. */
 @media (max-width: 719px) {
-  .site-nav { display: none; }
+  .site-nav {
+    -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 24px), transparent);
+    mask-image: linear-gradient(to right, #000 calc(100% - 24px), transparent);
+  }
+  .site-nav a { padding-inline: var(--sp-2); font-size: var(--fs-xs); }
+}
+
+@media (max-width: 460px) {
+  .site-header__home { display: none; }
 }
 
 /* ---- 테마 토글 ------------------------------------------------
@@ -157,7 +164,9 @@ h2 {
 /* 구 .about / .skills / .projects 가 전부 max-width: 760px 였다.
    다만 경력 표는 네 열이라 760px에서 칸마다 줄이 쪼개진다 — 표만 예외로
    컨테이너 폭을 다 쓰게 둔다. */
-.about { max-inline-size: var(--container-text); }
+/* 폭을 두 가지로 두면(표 872px / 나머지 760px) 오른쪽 끝이 112px 어긋나
+   계단처럼 보인다. 괘선을 긋는 요소는 전부 컨테이너 폭으로 통일하고,
+   줄길이 제한은 읽는 문단에만 건다. */
 
 .about p,
 .section > p,
@@ -275,6 +284,7 @@ h2 {
    ============================================================ */
 
 .site-footer {
+  margin-block-start: auto;
   border-block-start: var(--hairline) solid var(--border);
   padding-block: var(--sp-5);
   color: var(--text-faint);

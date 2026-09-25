@@ -75,11 +75,11 @@
 <h2 class="detail-section__title">Background</h2>
 <p>시각장애인이 건물 안에서 이동할 때 가장 막히는 곳은 층을 넘어가는 구간입니다. 기존 안내 로봇은 엘리베이터 버튼 앞까지 데려다주고 누르는 것은 사용자에게 맡기는데, 버튼을 볼 수 없는 사람에게는 도움이 되지 않습니다.</p>
 <p>기능을 정하기 전에 시각장애인 당사자를 만나 이야기를 들었습니다. 층을 넘어갈 수 있어야 하고, 사람들이 지나가는 방향을 따라 움직여야 하고, 로봇이 알아서 움직이는 대신 상황을 설명하고 사용자의 결정을 따라야 한다는 세 가지였습니다. 이 셋을 설계 목표로 삼았습니다.</p>
-<figure class="figure figure--wide"><img class="figure__img--diagram" src="../../images/fig4-gap.svg" alt="fig4 gap" loading="lazy"></figure>
+<figure class="figure figure--wide" tabindex="0" role="region" aria-label="도면 — 가로로 스크롤할 수 있습니다"><img class="figure__img--diagram" src="../../images/fig4-gap.svg" alt="fig4 gap" loading="lazy"></figure>
 </section>
 <section class="detail-section" id="architecture">
 <h2 class="detail-section__title">Architecture</h2>
-<figure class="figure figure--wide"><img class="figure__img--diagram" src="../../images/fig5-architecture.svg" alt="fig5 architecture" loading="lazy"></figure>
+<figure class="figure figure--wide" tabindex="0" role="region" aria-label="도면 — 가로로 스크롤할 수 있습니다"><img class="figure__img--diagram" src="../../images/fig5-architecture.svg" alt="fig5 architecture" loading="lazy"></figure>
 <p>주행과 음성, 엘리베이터를 한 프로세스에 몰아넣지 않고 위에 상태 기계를 하나 뒀습니다. 여정의 어느 단계에서도 바퀴를 움직이는 주체가 하나만 되도록 고정했습니다.</p>
 <div class="table-wrap"><table class="md-table"><thead><tr><th scope="col">여정 단계</th><th scope="col">상태</th><th scope="col">바퀴 제어권</th></tr></thead><tbody><tr><td>승차지점 주행 · 목적지 주행</td><td>주행</td><td>Nav2</td></tr><tr><td>엘리베이터 시퀀스</td><td>잠금</td><td>엘리베이터 앱</td></tr><tr><td>층 지정 · 지도 전환 · 도착 안내</td><td>잠금</td><td>정지</td></tr></tbody></table></div>
 <p>제어권이 겹치면 팔과 바퀴가 동시에 움직입니다. 사용자가 손잡이를 쥐고 뒤에 서 있는 상태에서는 위험합니다.</p>
@@ -87,14 +87,14 @@
 <section class="detail-section" id="contributions">
 <h2 class="detail-section__title">Contributions</h2>
 <div class="contrib"><h3 class="contrib__title">직접 만든 하드웨어는 손잡이뿐이다</h3><p>로봇 본체는 상용 제품(Hello Robot Stretch SE3)이고, 그 위에 주행과 음성, 엘리베이터를 묶는 상태 기계까지 전 계층을 혼자 구현했습니다. 손잡이는 걷는 내내 쥐고 있어서 쥐는 세기로는 신호를 구분할 수 없었습니다. 세게 쥔 것과 급히 당긴 것을 힘이 올라가는 속도로 나눠서, 0.8초 안에 임계값까지 도달할 때만 당긴 것으로 보고 로봇을 멈추게 했습니다.</p>
-<figure class="figure figure--wide"><img class="figure__img--photo" src="../../images/robot-handle.png" alt="" loading="lazy"><figcaption class="figure__caption">Fusion으로 설계해 직접 출력했다.</figcaption></figure></div>
+<figure class="figure figure--wide" tabindex="0" role="region" aria-label="도면 — 가로로 스크롤할 수 있습니다"><img class="figure__img--photo" src="../../images/robot-handle.png" alt="" loading="lazy"><figcaption class="figure__caption">Fusion으로 설계해 직접 출력했다.</figcaption></figure></div>
 <div class="contrib"><h3 class="contrib__title">연동 규격에 기대지 않고 버튼을 직접 인식한다</h3><p>승강기는 제조사와 제작 연도마다 제어 방식이 달라서 쓸 수 있는 표준이 없습니다. 그리퍼에 달린 카메라로 버튼의 글자를 읽어 직접 누르도록 했습니다. 층이 바뀌면 지도를 바꾸고 위치추정을 다시 초기화하는데, 이게 어긋나면 4층에 있으면서 5층 지도로 주행하게 되므로 따로 관리했습니다.</p></div>
 <div class="contrib"><h3 class="contrib__title">음성 해석과 실행 사이에 버튼을 뒀다</h3><p>사용자는 로봇이 잘못 동작하는 것을 눈으로 확인할 수 없습니다. 음성 명령을 해석하는 데는 GPT를 쓰되 로봇을 실제로 움직이는 결정은 맡기지 않았습니다. 해석한 결과를 사용자에게 들려주고, 손잡이 버튼을 눌러야 실행됩니다.</p></div>
 <div class="contrib"><h3 class="contrib__title">사용자를 로봇의 크기에 포함했다</h3><p>Nav2는 로봇 몸체만 보고 경로를 계산하기 때문에 손잡이를 쥐고 뒤에 선 사용자가 빠져 있습니다. 로봇이 자기 크기로 삼는 영역을 사람이 서는 자리까지 뒤로 늘리고, 후진은 궤적을 끊는 설정과 벌점을 함께 걸어 막았습니다.</p></div>
 </section>
 <section class="detail-section" id="troubleshooting">
 <h2 class="detail-section__title">Troubleshooting</h2>
-<div class="ts-item"><h3 class="ts-item__title">아래쪽 버튼이 눌리지 않는다</h3><dl class="ts-item__rows"><dt class="ts-item__key">문제</dt><dd class="ts-item__val">인식 정답지를 걷어내고 나니 아래쪽 층 버튼만 계속 실패했습니다.</dd><dt class="ts-item__key">원인</dt><dd class="ts-item__val">인식 문제가 아니라 팔 구조 문제였습니다. 이 로봇의 팔은 좌우로 움직이지 못하고 앞뒤로만 늘어나서, 닿을 수 있는 위치가 선 하나로 고정됩니다. 화면 좌표만 알려주는 인식기로는 그 선 위에 있는지조차 판단할 수 없었습니다.</dd></dl><figure class="figure figure--wide"><img class="figure__img--diagram" src="../../images/fig3-reach.svg" alt="fig3 reach" loading="lazy"></figure><dl class="ts-item__rows"><dt class="ts-item__key">해결</dt><dd class="ts-item__val">사진과 카메라 파라미터만으로 버튼의 3차원 좌표를 복원했습니다. 촬영 날짜와 자세, 거리가 다른 세 번의 측정이 오차 5mm 안에서 일치하는 것으로 확인했습니다.</dd><dt class="ts-item__key">결과</dt><dd class="ts-item__val">버튼에 닿을 수 있는지 판단할 수 있게 되면서 베이스를 얼마나 옮길지도 계산할 수 있었습니다.</dd></dl></div>
+<div class="ts-item"><h3 class="ts-item__title">아래쪽 버튼이 눌리지 않는다</h3><dl class="ts-item__rows"><dt class="ts-item__key">문제</dt><dd class="ts-item__val">인식 정답지를 걷어내고 나니 아래쪽 층 버튼만 계속 실패했습니다.</dd><dt class="ts-item__key">원인</dt><dd class="ts-item__val">인식 문제가 아니라 팔 구조 문제였습니다. 이 로봇의 팔은 좌우로 움직이지 못하고 앞뒤로만 늘어나서, 닿을 수 있는 위치가 선 하나로 고정됩니다. 화면 좌표만 알려주는 인식기로는 그 선 위에 있는지조차 판단할 수 없었습니다.</dd></dl><figure class="figure figure--wide" tabindex="0" role="region" aria-label="도면 — 가로로 스크롤할 수 있습니다"><img class="figure__img--diagram" src="../../images/fig3-reach.svg" alt="fig3 reach" loading="lazy"></figure><dl class="ts-item__rows"><dt class="ts-item__key">해결</dt><dd class="ts-item__val">사진과 카메라 파라미터만으로 버튼의 3차원 좌표를 복원했습니다. 촬영 날짜와 자세, 거리가 다른 세 번의 측정이 오차 5mm 안에서 일치하는 것으로 확인했습니다.</dd><dt class="ts-item__key">결과</dt><dd class="ts-item__val">버튼에 닿을 수 있는지 판단할 수 있게 되면서 베이스를 얼마나 옮길지도 계산할 수 있었습니다.</dd></dl></div>
 <div class="ts-item"><h3 class="ts-item__title">자율주행 중 5초마다 멈춘다</h3><dl class="ts-item__rows"><dt class="ts-item__key">문제</dt><dd class="ts-item__val">주행이 간헐적으로 멈췄는데 언제 멈추는지 조건이 잡히지 않았습니다.</dd><dt class="ts-item__key">원인</dt><dd class="ts-item__val">원인이 두 개였습니다. 주행과 엘리베이터 앱을 동시에 돌리면서 주행용 장애물 지도 갱신이 밀렸고, 그다음에는 CPU가 모자라 제어 루프가 주기를 놓쳤습니다.</dd><dt class="ts-item__key">해결</dt><dd class="ts-item__val">두 프로세스를 번갈아 돌게 바꾸고, 대기 중에도 CPU를 43% 쓰던 시각 보조 기능을 요청이 있을 때만 동작하도록 옮겼습니다.</dd><dt class="ts-item__key">결과</dt><dd class="ts-item__val">대기 중 점유율이 거의 0%로 내려가고 멈춤도 사라졌습니다.</dd></dl></div>
 <div class="ts-item"><h3 class="ts-item__title">어디까지 됐는지</h3><p>2026년 8월에 여섯 단계가 한 번에 이어져 1층에서 5층 목적지까지 사람의 개입 없이 갔습니다. 다만 정상 시나리오로 한 번이고 반복 성공률은 재지 않았습니다. 5층에서 1층으로 내려오는 방향은 마지막 구간을 실기체에서 돌린 적이 없습니다. 사용자를 포함하려고 늘린 크기가 여유폭과 겹치면서 엘리베이터 문을 1cm 차이로 통과하지 못하는 것도 아직 해결하지 못했습니다. 결함은 239건을 목록으로 관리하면서 안전에 관계된 것부터 처리하고 있습니다. 그중 23건은 다시 확인한 뒤 제가 취소했습니다. 확증된 것과 정황만 있는 것을 같은 칸에 적으면 목록을 믿을 수 없게 되기 때문입니다.</p></div>
 </section>
