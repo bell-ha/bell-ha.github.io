@@ -72,13 +72,12 @@
 </section>
 <section class="detail-section" id="background">
 <h2 class="detail-section__title">Background</h2>
-<p>ITRC 과제로 만든 실내 안내 로봇입니다. 시각장애인 사용자가 손잡이를 잡고 로봇을 따라 걸으면 목적지까지 데려다줍니다.</p>
-<p>기존 안내 로봇은 엘리베이터 버튼 앞까지만 데려다주고 누르는 것은 사용자 몫으로 남깁니다. 버튼을 볼 수 없는 사람에게는 문제를 옮긴 것이지 푼 것이 아닙니다.</p>
-<figure class="figure figure--wide"><img class="figure__img--diagram" src="../../images/fig4-gap.svg" alt="" width="1020" height="600" loading="lazy"><figcaption class="figure__caption">층간 이동을 하는 로봇도, 시각장애인을 안내하는 로봇도 있다. 둘이 만나는 자리가 비어 있다.</figcaption></figure>
-<p>무엇을 만들지는 당사자 인터뷰에서 정했습니다. 요구는 셋이었습니다.</p>
-<ul><li>마주 오는 사람은 방향을 보고 피하고, 같은 방향으로 가는 사람은 따라갈 것</li><li>엘리베이터를 스스로 타고 층을 넘을 것</li><li>로봇이 알아서 움직이는 대신 상황을 설명하고 사용자의 결정을 따를 것</li></ul>
-<p>첫 번째가 이름에 붙은 &quot;사회적 규범&quot;입니다. 사람을 피해야 할 장애물로만 보지 않고, 어느 쪽으로 가는 사람인지에 따라 다르게 움직입니다.</p>
-<p>본체는 상용 제품(Hello Robot Stretch SE3)입니다. 손잡이와 그 위의 주행·사람 추적·음성·엘리베이터, 이것들을 묶는 상태 기계는 직접 만들었습니다.</p>
+<p>ITRC 과제로 만든 사회적 규범 인식 기반 실내 자율 안내 로봇 시스템입니다.<br>시각장애인 사용자가 손잡이를 잡고 로봇을 따라 걸으면 목적지까지 데려다줍니다.</p>
+<p>이전에도 시각장애인용 안내 로봇은 있었지만, 엘리베이터 버튼을 직접 누르는 것과 사회적 규범 인식(주변 사람을 추적해 피하거나 따라가는 것)은 구현되지 않았습니다.</p>
+<figure class="figure figure--wide"><img class="figure__img--diagram" src="../../images/fig4-gap.svg" alt="설계 도판" width="1020" height="600" loading="lazy"></figure>
+<p>당사자 인터뷰를 통해 기능을 구체화했습니다.</p>
+<ul><li>마주 오는 사람은 방향을 보고 피하고, 같은 방향으로 가는 사람은 따라갈 것</li><li>엘리베이터는 스스로 타고 층을 넘을 것</li><li>사람과 부딪히는 일이 없어야 하고, 움직이기 전에 사용자의 결정을 따를 것</li></ul>
+<p>상용 제품(Hello Robot Stretch SE3) 위에 손잡이를 제작해 장착하고, 주행·사람 추적·음성·엘리베이터 기능과 이것들을 묶는 상태 기계를 구현한 시스템입니다.</p>
 </section>
 <section class="detail-section" id="architecture">
 <h2 class="detail-section__title">Architecture</h2>
