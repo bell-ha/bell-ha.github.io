@@ -184,6 +184,11 @@
   background: var(--cat);
 }
 
+/* 항목 목록은 설명보다 확실히 작게. 문단은 읽는 글이고 목록은 훑는 글이다.
+   한 단(15.2 → 14.4px)만 내렸더니 차이가 5%라 나란히 놓아야 겨우 보였다.
+   두 단(→ 12.8px) 내려 16% 차이를 만든다. */
+.detail-section li { font-size: var(--fs-xs); }
+
 /* 상세 본문의 줄길이 제한. 도판·숫자 카드는 제외한다. */
 .detail-section > p,
 .detail-section > ul:not([class]),
@@ -195,7 +200,15 @@
    3. Contributions
    ============================================================ */
 
-.contrib { margin-block-end: var(--sp-5); }
+/* 절 사이는 절 안의 어떤 간격보다 넓어야 한다 — 20px 이었을 때
+   설명→항목(24px)이 절 사이보다 넓어 덩어리가 거꾸로 읽혔다. */
+/* Troubleshooting 의 .ts-item 과 같은 방식 — 카드로 띄우지 않고 왼쪽 선 하나로
+   묶는다. 절이 어디서 시작해 어디서 끝나는지가 여백만으로는 약했다. */
+.contrib {
+  margin-block-end: var(--sp-7);
+  padding-inline-start: var(--sp-5);
+  border-inline-start: var(--hairline) solid var(--border-strong);
+}
 
 .contrib__title {
   margin-block-end: var(--sp-2);
@@ -287,3 +300,77 @@
 
 .detail-section .figure:first-child { margin-block-start: 0; }
 .detail-section .figure:last-child { margin-block-end: 0; }
+
+/* ---- 글 옆에 세우는 도판 ---------------------------------------
+   글이 짧은 절에서 도판을 아래에 깔면 사진만 덩그러니 남는다.
+   좁아지면 글 아래로 내려간다 — 한 칸에 둘을 욱여넣으면 둘 다 못 읽는다.
+   ---------------------------------------------------------------- */
+/* 도판·수치 카드와 오른쪽 끝을 맞춘다. 읽는 폭(--measure)으로 묶어 두었더니
+   글 옆에 세운 절만 172px 짧아서 오른쪽 가장자리가 계단처럼 어긋났다.
+   글 칸은 어차피 사진 칸을 뺀 나머지라 읽는 폭을 넘지 않는다. */
+.contrib-side {
+  display: grid;
+  gap: var(--sp-5);
+  align-items: start;
+}
+
+.contrib-side__text > :first-child { margin-block-start: 0; }
+.contrib-side__text .contrib__title { margin-block-end: var(--sp-3); }
+.contrib-side .figure { margin-block: 0; }
+
+@media (min-width: 640px) {
+  .contrib-side {
+    /* 사진 칸 폭 = 글 높이 × 사진 비율 이어야 사진이 세로를 꽉 채운다.
+       24% 였을 때는 폭이 먼저 걸려서 위아래에 18px 씩 빈 자리가 생겼다. */
+    grid-template-columns: minmax(0, 1fr) minmax(0, 32%);
+    align-items: stretch;
+  }
+
+  /* 사진 높이를 옆 글 높이에 맞춘다. 절대 배치라 사진이 행 높이를 만들지
+     않으므로, 행 높이는 글이 정하고 사진은 그 안에 비율을 지켜 들어간다. */
+  .contrib-side .figure { position: relative; }
+  .contrib-side .figure img {
+    position: absolute;
+    inset: 0;
+    inline-size: 100%;
+    block-size: 100%;
+    max-inline-size: none;
+    max-block-size: none;
+    object-fit: contain;
+  }
+
+  /* 가로로 긴 사진은 글 높이를 채울 수 없다 — 칸을 넓히면 글 칸이 좁아져
+     글이 더 길어지고, 사진은 또 모자란다. 늘리지 말고 제 비율대로 위에 붙인다. */
+  .contrib-side--wide { grid-template-columns: minmax(0, 1fr) minmax(0, 42%); }
+  .contrib-side--wide .figure { position: static; align-self: start; }
+  .contrib-side--wide .figure img {
+    position: static;
+    inline-size: 100%;
+    block-size: auto;
+  }
+}
+
+/* ============================================================
+   6. 아키텍처 도면만 본문 단을 벗어나게
+   ------------------------------------------------------------
+   archify 가 글자 크기를 상수로 박아 둔다(노드 제목 11 units · 엣지 라벨 8).
+   캔버스가 1200 units 인데 본문 단이 872px 이면 축소율이 0.73 이라 제목이 8px 로
+   그려진다 — 정렬은 맞지만 못 읽는다. 이 도면 하나만 화면 폭까지 쓰게 한다.
+
+   대가: 왼쪽 끝이 나머지 요소와 어긋난다. 도면은 읽는 대상이라 그 값을 치른다.
+   되돌리려면 이 블록만 지우면 된다.
+   ============================================================ */
+@media (min-width: 1000px) {
+  .detail-section .figure:has(.figure__img--arch) {
+    inline-size: min(1400px, calc(100vw - 2 * var(--gutter)));
+    max-inline-size: none;
+    margin-inline-start: 50%;
+    transform: translateX(-50%);
+  }
+
+  /* 세로 상한을 푼다 — 두면 거의 정사각형인 이 도면은 높이가 먼저 걸려
+     폭이 1400 까지 가지 못한다. */
+  .detail-section .figure:has(.figure__img--arch) img.figure__img--arch {
+    max-block-size: none;
+  }
+}

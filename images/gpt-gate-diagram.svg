@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 330" width="640" height="330"
+     font-family="Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif">
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#111"/>
+    </marker>
+    <marker id="ad" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#8a8a8a"/>
+    </marker>
+  </defs>
+
+  <!-- 위: 말이 의도로 바뀌는 데까지 -->
+  <rect x="24" y="30" width="118" height="58" rx="8" fill="none" stroke="#111" stroke-width="2"/>
+  <text x="83" y="66" text-anchor="middle" font-size="26" fill="#111">STT</text>
+
+  <line x1="142" y1="59" x2="186" y2="59" stroke="#111" stroke-width="2" marker-end="url(#a)"/>
+
+  <rect x="192" y="30" width="248" height="58" rx="8" fill="none" stroke="#111" stroke-width="2"/>
+  <text x="316" y="66" text-anchor="middle" font-size="26" fill="#111">GPT 의도 해석</text>
+
+  <!-- 제안은 경계까지만 -->
+  <line x1="316" y1="88" x2="316" y2="152" stroke="#8a8a8a" stroke-width="2"
+        stroke-dasharray="7 6" marker-end="url(#ad)"/>
+  <text x="332" y="124" font-size="24" fill="#555">제안</text>
+
+  <!-- 경계 -->
+  <line x1="16" y1="163" x2="624" y2="163" stroke="#111" stroke-width="2" stroke-dasharray="10 8"/>
+  <text x="624" y="151" text-anchor="end" font-size="24" fill="#111" font-weight="600">GPT는 여기까지</text>
+
+  <!-- 아래: 사람이 눌러야 넘어간다 -->
+  <line x1="316" y1="174" x2="316" y2="236" stroke="#111" stroke-width="2.5" marker-end="url(#a)"/>
+  <text x="332" y="210" font-size="24" fill="#111">사람이 누름</text>
+
+  <rect x="192" y="242" width="248" height="58" rx="8" fill="none" stroke="#111" stroke-width="2.5"/>
+  <text x="316" y="278" text-anchor="middle" font-size="26" fill="#111">버튼 누름</text>
+
+  <line x1="440" y1="271" x2="484" y2="271" stroke="#111" stroke-width="2" marker-end="url(#a)"/>
+
+  <rect x="490" y="242" width="134" height="58" rx="8" fill="none" stroke="#111" stroke-width="2"/>
+  <text x="557" y="278" text-anchor="middle" font-size="26" fill="#111">실행</text>
+</svg>

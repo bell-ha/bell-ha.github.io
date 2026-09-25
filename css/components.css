@@ -753,6 +753,7 @@
 .figure:has(img + img) .figure__caption { grid-column: 1 / -1; }
 .figure:has(img + img) img { max-inline-size: 100%; inline-size: 100%; }
 
+
 /* 모노크롬 도면에 한해 옵트인하는 반전 */
 .figure__img--invert {
   padding: var(--sp-3);
@@ -1019,3 +1020,24 @@
   .rec-table__date { margin-block-end: 4px; color: var(--text-faint); font-size: var(--fs-xs); }
   .rec-table tbody th { margin-block-end: 2px; }
 }
+
+/* 사진과 영상이 섞이면 :has(img + img) 가 안 맞는다 — 빌더가 붙이는 클래스로 잡는다 */
+.figure--pair {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+  gap: 12px;
+  align-items: start;
+}
+/* 비율이 제각각인 사진을 나란히 놓으면 윗변만 맞고 아랫변이 들쭉날쭉하다.
+   파일을 자르지 않고 같은 비율로 보이게 잘라 넣는다. */
+.figure.figure--pair > img,
+.figure.figure--pair > video {
+  inline-size: 100%;
+  max-inline-size: 100%;
+  max-block-size: none;
+  aspect-ratio: 4 / 3;
+  block-size: auto;
+  object-fit: cover;
+  border-radius: var(--r-sm);
+}
+.figure--pair .figure__caption { grid-column: 1 / -1; }

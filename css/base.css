@@ -78,6 +78,14 @@ p, li, td, th, dd, figcaption, .impact-item__label, .ts-item__val,
    12px이면 행간(24.3px)의 절반이라 문단 구분이 흐려진다 — 약 0.75줄로 둔다. */
 p + p { margin-block-start: 1.15em; }
 
+/* 문단 다음에 오는 목록도 같이 띄운다. * { margin: 0 } 뒤로 ul 에 여백이
+   하나도 없어서 설명과 항목이 붙어 한 덩어리로 읽혔다 — 문단보다 한 단 더
+   벌린다. 목록은 문단이 아니라 다른 덩어리다. */
+p + ul, p + ol { margin-block-start: var(--sp-4); }
+/* 목록이 끝나고 다시 문단이 시작될 때도 같은 만큼 띄운다 — 여기가 0 이라
+   마지막 항목과 다음 문단이 붙어 있었다. */
+ul + p, ol + p { margin-block-start: var(--sp-4); }
+
 strong, b { font-weight: var(--fw-semi); color: var(--text); }
 
 ul, ol { padding-inline-start: 1.2em; }
