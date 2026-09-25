@@ -72,6 +72,10 @@
 <h2 class="detail-section__title">Background</h2>
 <p>감정을 다루는 음성 합성 연구는 행복이나 슬픔 같은 태그를 미리 정해 입력으로 넣는 방식입니다. 그러면 감정을 만들기 전에 먼저 정해 둬야 합니다. 말하는 사람의 표정에 그 정보가 실시간으로 들어 있는데도 쓰이지 않아서, 표정을 읽어 감정을 추정하고 그대로 합성 목소리에 반영하는 방법을 제안했습니다.</p>
 </section>
+<section class="detail-section" id="architecture">
+<h2 class="detail-section__title">Architecture</h2>
+<figure class="figure figure--wide" tabindex="0" role="region" aria-label="도면 — 가로로 스크롤할 수 있습니다"><img class="figure__img--arch" src="../../images/tts-arch.png" alt="" width="2421" height="638" loading="lazy"><figcaption class="figure__caption">표정 판정은 프레임마다 흔들리므로, 눌러서 정한 다음에야 합성으로 넘어간다.</figcaption></figure>
+</section>
 <section class="detail-section" id="contributions">
 <h2 class="detail-section__title">Contributions</h2>
 <div class="contrib"><h3 class="contrib__title">프레임마다 튀는 인식 값 안정화</h3><p>표정 인식은 프레임 단위로 판정하기 때문에 같은 표정을 유지해도 결과가 계속 바뀝니다. 그 값을 바로 합성에 넘기면 한 문장 안에서 감정이 여러 번 달라집니다. 지수이동평균으로 값을 누르고 다수결 투표를 겹쳐서, 짧게 스쳐 간 오판정이 문장 전체의 감정을 바꾸지 못하게 했습니다.</p></div>

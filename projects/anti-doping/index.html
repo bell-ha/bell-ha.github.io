@@ -63,6 +63,10 @@
 <h2 class="detail-section__title">Background</h2>
 <p>도핑 예방 교육은 모든 선수에게 같은 자료를 나눠 주는 방식이었습니다. 종목과 경력, 복용 이력이 다른데 같은 내용을 받으면 자기 상황에 해당하는 부분을 선수가 직접 찾아야 합니다. 선수 데이터와 생성형 AI를 결합해 선수별로 다른 교육 자료를 만드는 시스템입니다.</p>
 </section>
+<section class="detail-section" id="architecture">
+<h2 class="detail-section__title">Architecture</h2>
+<figure class="figure figure--wide" tabindex="0" role="region" aria-label="도면 — 가로로 스크롤할 수 있습니다"><img class="figure__img--arch" src="../../images/doping-arch.png" alt="" width="2562" height="719" loading="lazy"><figcaption class="figure__caption">예방교육 데이터베이스를 먼저 찾고, 그 내용을 근거로만 답한다.</figcaption></figure>
+</section>
 <section class="detail-section" id="contributions">
 <h2 class="detail-section__title">Contributions</h2>
 <div class="contrib"><h3 class="contrib__title">교육 자료를 근거로 삼는 응답</h3><p>생성형 AI가 아는 대로 답하면 예방 교육이라고 할 수 없습니다. 예방교육 데이터베이스를 먼저 검색하고 그 내용을 근거로만 답하도록 RAG 파이프라인을 만들었고, 선수 프로파일과 사용자 역할에 따라 같은 질문에도 다른 수준의 답이 나가도록 프롬프트를 설계했습니다.</p></div>
