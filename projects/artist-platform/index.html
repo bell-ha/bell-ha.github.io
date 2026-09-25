@@ -10,18 +10,18 @@
 <meta property="og:title" content="아티스트 홍보 웹사이트 | Jongha Lee">
 <meta property="og:description" content="음악 아티스트 프로필 웹 서비스">
 <meta property="og:url" content="https://bell-ha.github.io/projects/artist-platform/">
-<meta property="og:image" content="https://bell-ha.github.io/images/og.jpg">
+<meta property="og:image" content="https://bell-ha.github.io/assets/img/common/og.jpg">
 <meta property="og:locale" content="ko_KR">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-<link rel="stylesheet" href="../../css/fonts.css">
-<link rel="stylesheet" href="../../css/tokens.css">
-<link rel="stylesheet" href="../../css/base.css">
-<link rel="stylesheet" href="../../css/layout.css">
-<link rel="stylesheet" href="../../css/components.css">
-<link rel="stylesheet" href="../../css/detail.css">
-<link rel="stylesheet" href="../../css/print.css" media="print">
+<link rel="stylesheet" href="../../assets/css/fonts.css">
+<link rel="stylesheet" href="../../assets/css/tokens.css">
+<link rel="stylesheet" href="../../assets/css/base.css">
+<link rel="stylesheet" href="../../assets/css/layout.css">
+<link rel="stylesheet" href="../../assets/css/components.css">
+<link rel="stylesheet" href="../../assets/css/detail.css">
+<link rel="stylesheet" href="../../assets/css/print.css" media="print">
 <script>
 (function(){try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
 </script>
@@ -75,12 +75,12 @@
 <h2 class="detail-section__title">Background</h2>
 <p>음악 아티스트는 자기 작업을 모아 보여줄 곳이 마땅치 않습니다. 인스타그램은 흘러가고 사운드클라우드는 음원만 담기고 웹사이트는 직접 만들기 어렵습니다. 코드를 쓰지 않고 자기 페이지를 만들어 공개하는 서비스를 2인 팀으로 만들어 실사용자를 받았습니다.</p>
 <p>까다로웠던 부분은 아티스트마다 보여줄 것이 다르다는 점이었습니다. 세션 연주자는 참여 앨범 이력이 중심이고 미디어아트 작가는 전시 사진이 중심입니다.</p>
-<figure class="figure figure--wide"><img class="figure__img--screen" src="../../images/seihi-t1.jpg" alt="" width="700" height="434" loading="lazy"><figcaption class="figure__caption">템플릿 1 — 이력과 음원이 중심이다.</figcaption></figure>
-<figure class="figure figure--wide"><img class="figure__img--screen" src="../../images/seihi-t2.jpg" alt="" width="700" height="434" loading="lazy"><figcaption class="figure__caption">템플릿 2 — 전시 이미지가 격자로 묶인다.</figcaption></figure>
+<figure class="figure figure--wide"><img class="figure__img--screen" src="../../assets/img/artist-platform/seihi-t1.jpg" alt="" width="700" height="434" loading="lazy"><figcaption class="figure__caption">템플릿 1 — 이력과 음원이 중심이다.</figcaption></figure>
+<figure class="figure figure--wide"><img class="figure__img--screen" src="../../assets/img/artist-platform/seihi-t2.jpg" alt="" width="700" height="434" loading="lazy"><figcaption class="figure__caption">템플릿 2 — 전시 이미지가 격자로 묶인다.</figcaption></figure>
 </section>
 <section class="detail-section" id="architecture">
 <h2 class="detail-section__title">Architecture</h2>
-<figure class="figure figure--wide"><img class="figure__img--arch" src="../../images/artist-arch.png" alt="" width="2487" height="953" loading="lazy"><figcaption class="figure__caption">가입은 이메일 확인을 먼저 통과해야 하고, 템플릿마다 테이블을 따로 둔다.</figcaption></figure>
+<figure class="figure figure--wide"><img class="figure__img--arch" src="../../assets/img/artist-platform/artist-arch.png" alt="" width="2487" height="953" loading="lazy"><figcaption class="figure__caption">가입은 이메일 확인을 먼저 통과해야 하고, 템플릿마다 테이블을 따로 둔다.</figcaption></figure>
 <p>가입 경로는 이메일과 Google OAuth 둘로 갈리고 이메일 쪽에는 OTP 인증이 앞에 붙지만, 그 뒤의 모든 요청은 하나의 JWT로 모입니다. 인증을 지난 다음에야 템플릿 1과 2의 테이블로 다시 갈립니다.</p>
 </section>
 <section class="detail-section" id="contributions">
@@ -106,6 +106,6 @@
     <p>Jongha Lee · <a href="mailto:jongha8273@gmail.com">jongha8273@gmail.com</a> · <a href="https://github.com/bell-ha" target="_blank" rel="noopener">GitHub</a></p>
   </div>
 </footer>
-<script src="../../js/theme.js" defer></script>
+<script src="../../assets/js/theme.js" defer></script>
 </body>
 </html>
