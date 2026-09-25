@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>악력 재활 훈련 시스템 — 이종하</title>
-<meta name="description" content="쥐는 힘이 그대로 게임 입력이 되는 훈련기">
+<title>악력 재활 훈련 시스템 | Jongha Lee</title>
+<meta name="description" content="악력으로 조작하는 재활 훈련 게임">
 <link rel="canonical" href="https://bell-ha.github.io/projects/grip-rehab/">
 <meta property="og:type" content="article">
-<meta property="og:title" content="악력 재활 훈련 시스템 — 이종하">
-<meta property="og:description" content="쥐는 힘이 그대로 게임 입력이 되는 훈련기">
+<meta property="og:title" content="악력 재활 훈련 시스템 | Jongha Lee">
+<meta property="og:description" content="악력으로 조작하는 재활 훈련 게임">
 <meta property="og:url" content="https://bell-ha.github.io/projects/grip-rehab/">
 <meta property="og:image" content="https://bell-ha.github.io/images/og.jpg">
 <meta property="og:locale" content="ko_KR">
@@ -30,7 +30,7 @@
 <a class="skip-link" href="#main">본문으로 건너뛰기</a>
 <header class="site-header">
   <div class="container site-header__inner">
-    <a class="site-header__home" href="../../">이종하</a>
+    <a class="site-header__home" href="../../">Jongha Lee</a>
     <nav class="site-nav" aria-label="분야">
       <a href="../../#robotics">Robotics &amp; Embedded</a>
       <a href="../../#software">Software &amp; AI</a>
@@ -48,10 +48,10 @@
 <header class="detail-header">
 <p class="detail-breadcrumb"><a href="../../#robotics">Robotics &amp; Embedded</a></p>
 <h1 class="detail-title">악력 재활 훈련 시스템</h1>
-<p class="detail-oneline">쥐는 힘이 그대로 게임 입력이 되는 훈련기</p>
+<p class="detail-oneline">악력으로 조작하는 재활 훈련 게임</p>
 <dl class="detail-meta">
 <dt class="meta-key">기간</dt><dd>2026.04 ~ 2026.09</dd>
-<dt class="meta-key">역할</dt><dd>2인 팀 · 소프트웨어 전담 (20커밋 중 19)</dd>
+<dt class="meta-key">역할</dt><dd>2인 팀 · 소프트웨어 담당</dd>
 </dl>
 <ul class="detail-links">
 <li><a href="https://github.com/bell-ha/grip-rehab-system" target="_blank" rel="noopener">GitHub</a></li>
@@ -67,30 +67,30 @@
 </header>
 <section class="detail-section" id="impact">
 <h2 class="detail-section__title">Impact</h2>
-<ul class="impact-grid"><li class="impact-item"><span class="impact-item__num">4<span class="impact-item__unit">단</span></span><span class="impact-item__label">스파이크 제거 → 중간값 → 이동평균 → 데드존으로 손떨림을 걸러냄</span></li><li class="impact-item"><span class="impact-item__num">3<span class="impact-item__unit">종</span></span><span class="impact-item__label">센서를 추상화해 로드셀 없이도 게임 로직을 개발</span></li><li class="impact-item"><span class="impact-item__num">80<span class="impact-item__unit">Hz</span></span><span class="impact-item__label">센서 샘플링과 게임 루프 60 FPS를 스레드로 분리</span></li></ul>
+<ul class="impact-grid"><li class="impact-item"><span class="impact-item__num">4<span class="impact-item__unit">단</span></span><span class="impact-item__label">스파이크 제거 → 중간값 → 이동평균 → 데드존으로 손떨림을 걸러냄</span></li><li class="impact-item"><span class="impact-item__num">3<span class="impact-item__unit">종</span></span><span class="impact-item__label">센서를 추상화해 로드셀 없이도 게임 로직을 개발</span></li><li class="impact-item"><span class="impact-item__num">100<span class="impact-item__unit">Hz</span></span><span class="impact-item__label">아두이노가 보내는 속도와 게임 루프 60 FPS를 스레드로 분리</span></li></ul>
 </section>
 <section class="detail-section" id="background">
 <h2 class="detail-section__title">Background</h2>
-<p>악력 재활 훈련은 반복적이고 지루해 지속률이 낮습니다. 쥐는 힘을 실시간으로 읽어 게임과 소리로 되돌려주자는 것이 출발점이었습니다.</p>
-<p>그런데 핵심은 게임이 아니라 신호였습니다. 로드셀(무게를 전기신호로 바꾸는 센서) 원신호는 손이 닿는 순간 수십 kg짜리 스파이크가 튀고, 힘을 유지해도 값이 계속 진동해 게임 입력으로 바로 쓸 수 없습니다.</p>
+<p>악력을 회복해야 하는 환자의 재활 훈련은 반복적이고 지루해서 오래 하기 어렵습니다. 쥐는 힘을 실시간으로 읽어 게임과 소리로 돌려주면 훈련을 이어갈 수 있을 것이라고 봤습니다.</p>
+<p>만들어 보니 게임보다 신호 쪽이 어려웠습니다. 로드셀에서 나오는 원신호는 손이 닿는 순간 수십 킬로그램짜리 값이 튀고, 힘을 유지해도 값이 계속 흔들려서 게임 입력으로 바로 쓸 수 없었습니다.</p>
 </section>
 <section class="detail-section" id="architecture">
 <h2 class="detail-section__title">Architecture</h2>
 <figure class="figure figure--wide"><img class="figure__img--photo" src="../../images/grip-pipeline.png" alt="grip pipeline" loading="lazy"></figure>
-<p>아두이노는 HX711로 로드셀을 읽어 보내기만 하고 판단은 라즈베리파이의 파이썬이 합니다. 센서 읽기는 별도 스레드에 두고, 게임 루프는 그 스레드가 갱신한 <strong>최신값 하나</strong>만 읽어 갑니다.</p>
+<p>아두이노는 HX711로 로드셀을 읽어 보내기만 하고 판단은 라즈베리파이의 파이썬이 합니다. 센서 읽기는 별도 스레드에 두고, 게임 루프는 그 스레드가 갱신한 최신값 하나만 읽어 갑니다.</p>
 </section>
 <section class="detail-section" id="contributions">
 <h2 class="detail-section__title">Contributions</h2>
-<div class="contrib"><h3 class="contrib__title">4단 필터 — 순서가 설계였다</h3><p>스파이크 제거 → 중간값 → 이동평균 → 데드존 순서로 걸렀습니다. 스파이크를 먼저 버리지 않으면 뒤의 윈도우가 오염되고, 데드존을 먼저 걸면 스파이크가 그대로 통과합니다. 급히 <strong>오르는</strong> 값만 막고 내려가는 값은 통과시켰습니다 — 손을 빨리 놓는 것은 정상 동작이기 때문입니다.</p></div>
-<div class="contrib"><h3 class="contrib__title">큐를 일부러 쓰지 않았다</h3><p>아두이노는 100 Hz로 보내고 게임 루프는 60 Hz로 돕니다. 센서가 더 빠르니 큐에 쌓으면 지연이 누적돼 화면이 손보다 늦게 반응합니다. 그래서 잠금으로 보호한 최신값 하나만 읽고, 큐는 반대 방향(진동 모터 명령)에만 씁니다.</p></div>
-<div class="contrib"><h3 class="contrib__title">사용자마다 기준을 다시 잡는다</h3><p>시작할 때 영점과 최대 악력을 측정해 그 사람 기준으로 난이도를 맞춥니다. 측정 구간은 사용자가 준비됐을 때 직접 넘기는 방식입니다 — 환자마다 손을 올리고 힘을 주기까지 걸리는 시간이 달라 타이머로 끊으면 준비가 안 된 값이 기준이 됩니다.</p></div>
-<div class="contrib"><h3 class="contrib__title">하드웨어 없이 게임을 개발할 수 있게 했다</h3><p><code>GripSensor</code> 추상 인터페이스에 Mock(키보드)·Arduino(USB)·라즈베리파이(GPIO) 세 구현을 뒀습니다. 로드셀이 없어도 게임 로직을 개발·디버깅할 수 있고, 두 사람이 하나의 하드웨어를 기다리지 않아도 됩니다.</p></div>
+<div class="contrib"><h3 class="contrib__title">필터 네 단계의 순서를 정했다</h3><p>스파이크 제거, 중간값, 이동평균, 데드존 순서로 걸렀습니다. 스파이크를 먼저 버리지 않으면 뒤의 중간값과 이동평균이 계산에 쓰는 구간이 오염되고, 데드존을 먼저 걸면 스파이크가 그대로 지나갑니다. 급히 올라가는 값만 막고 내려가는 값은 통과시켰는데, 손을 빨리 놓는 것은 정상 동작이기 때문입니다.</p></div>
+<div class="contrib"><h3 class="contrib__title">큐를 쓰지 않았다</h3><p>아두이노는 100Hz로 보내고 게임 루프는 60Hz로 돕니다. 센서가 더 빠르니 큐에 쌓으면 지연이 누적돼 화면이 손보다 늦게 반응합니다. 그래서 잠금으로 보호한 최신값 하나만 읽고, 큐는 진동 모터 명령을 보내는 반대 방향에만 썼습니다.</p></div>
+<div class="contrib"><h3 class="contrib__title">사용자마다 기준을 다시 잡는다</h3><p>시작할 때 영점과 최대 악력을 측정해 그 사람 기준으로 난이도를 맞춥니다. 측정 구간은 사용자가 준비됐을 때 직접 넘기게 했습니다. 환자마다 손을 올리고 힘을 주기까지 걸리는 시간이 달라서 타이머로 끊으면 준비가 되지 않은 값이 기준이 됩니다.</p></div>
+<div class="contrib"><h3 class="contrib__title">하드웨어 없이 게임을 개발할 수 있게 했다</h3><p><code>GripSensor</code> 인터페이스에 키보드와 아두이노, 라즈베리파이 세 가지 구현을 뒀습니다. 로드셀이 없어도 게임 로직을 개발하고 디버깅할 수 있어서, 두 사람이 하나의 하드웨어를 기다리지 않아도 됐습니다.</p></div>
 </section>
 <section class="detail-section" id="troubleshooting">
 <h2 class="detail-section__title">Troubleshooting</h2>
-<div class="ts-item"><h3 class="ts-item__title">진동이 울리면 오른손 센서가 끊긴다</h3><dl class="ts-item__rows"><dt class="ts-item__key">문제</dt><dd class="ts-item__val">진동 모터가 돌 때만 한쪽 로드셀 값이 사라졌습니다.</dd><dt class="ts-item__key">원인</dt><dd class="ts-item__val">신호 간섭이 아니라 전류 부하였습니다. 모터를 아두이노 핀에서 직접 구동하면서 센서 쪽 전원이 흔들렸습니다.</dd><dt class="ts-item__key">해결</dt><dd class="ts-item__val">NPN 트랜지스터로 모터 구동 회로를 분리했습니다. 모터는 켜고 끄기만 하고 세기를 조절하지는 않습니다.</dd><dt class="ts-item__key">결과</dt><dd class="ts-item__val">진동을 쓰면서도 양손 값이 함께 유지됩니다.</dd></dl></div>
-<div class="ts-item"><h3 class="ts-item__title">원신호를 그대로 쓰면 조작이 안 된다</h3><dl class="ts-item__rows"><dt class="ts-item__key">문제</dt><dd class="ts-item__val">손이 닿는 순간의 스파이크가 최대 악력으로 기록돼 캘리브레이션이 망가지고, 유지 구간에서도 캐릭터가 떨었습니다.</dd><dt class="ts-item__key">원인</dt><dd class="ts-item__val">원신호에 접촉 충격과 진동이 함께 들어 있고 둘의 대처 방법이 다릅니다.</dd><dt class="ts-item__key">해결</dt><dd class="ts-item__val">위의 4단 필터를 순서까지 고정해 적용하고, 캘리브레이션은 필터를 통과한 값으로만 잡았습니다.</dd><dt class="ts-item__key">결과</dt><dd class="ts-item__val">쥐는 힘이 그대로 입력이 됐습니다. 게임 3종과 신디사이저는 요구하는 입력 특성이 서로 달라(유지·순간·좌우 차이·연속 변화) 필터 검증에 그대로 썼습니다.</dd></dl></div>
-<div class="ts-item"><h3 class="ts-item__title">직접 만든 것과 아닌 것</h3><p>로드셀 마운트는 3D 모델링해 출력했고 아두이노 시리얼 프로토콜도 직접 설계했습니다. 다만 출력물 중 직접 설계한 것으로 확인되는 것은 베이스 부품이고, 나머지는 출처가 확인되지 않아 전부 직접 설계했다고 말하지 않습니다.</p></div>
+<div class="ts-item"><h3 class="ts-item__title">진동이 울리면 오른손 센서가 끊긴다</h3><dl class="ts-item__rows"><dt class="ts-item__key">문제</dt><dd class="ts-item__val">진동 모터가 돌 때만 한쪽 로드셀 값이 사라졌습니다.</dd><dt class="ts-item__key">원인</dt><dd class="ts-item__val">신호 간섭이 아니라 전류 부하였습니다. 모터를 아두이노 핀에서 직접 구동하면서 센서 쪽 전원이 흔들렸습니다.</dd><dt class="ts-item__key">해결</dt><dd class="ts-item__val">NPN 트랜지스터로 모터 구동 회로를 분리했습니다. 모터는 켜고 끄기만 하고 세기는 조절하지 않습니다.</dd><dt class="ts-item__key">결과</dt><dd class="ts-item__val">진동을 쓰면서도 양손 값이 함께 유지됩니다.</dd></dl></div>
+<div class="ts-item"><h3 class="ts-item__title">원신호를 그대로 쓰면 조작이 안 된다</h3><dl class="ts-item__rows"><dt class="ts-item__key">문제</dt><dd class="ts-item__val">손이 닿는 순간의 값이 최대 악력으로 기록돼 캘리브레이션이 망가지고, 힘을 유지하는 구간에서도 캐릭터가 떨었습니다.</dd><dt class="ts-item__key">원인</dt><dd class="ts-item__val">원신호에 접촉 충격과 진동이 함께 들어 있는데 둘의 대처 방법이 다릅니다.</dd><dt class="ts-item__key">해결</dt><dd class="ts-item__val">위의 네 단계 필터를 순서까지 고정해 적용하고, 캘리브레이션은 필터를 통과한 값으로만 잡았습니다.</dd><dt class="ts-item__key">결과</dt><dd class="ts-item__val">쥐는 힘이 그대로 입력이 됐습니다. 게임 3종과 신디사이저는 요구하는 입력 특성이 서로 달라서 필터 검증에 그대로 썼습니다.</dd></dl></div>
+<div class="ts-item"><h3 class="ts-item__title">직접 만든 것과 아닌 것</h3><p>로드셀 마운트는 3D 모델링해서 출력했고 아두이노 시리얼 프로토콜도 직접 설계했습니다. 다만 출력물 중에 직접 설계한 것으로 확인되는 것은 베이스 부품이고 나머지는 출처가 확인되지 않습니다.</p></div>
 </section>
 </article>
 <nav class="pager" aria-label="다른 프로젝트">
@@ -100,7 +100,7 @@
 </main>
 <footer class="site-footer">
   <div class="container">
-    <p>이종하 · <a href="mailto:jongha8273@gmail.com">jongha8273@gmail.com</a> · <a href="https://github.com/bell-ha" target="_blank" rel="noopener">GitHub</a></p>
+    <p>Jongha Lee · <a href="mailto:jongha8273@gmail.com">jongha8273@gmail.com</a> · <a href="https://github.com/bell-ha" target="_blank" rel="noopener">GitHub</a></p>
   </div>
 </footer>
 <script src="../../js/theme.js" defer></script>

@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DelRev — 3D 잠입 액션 게임 — 이종하</title>
-<meta name="description" content="위험도를 눈이 아니라 귀로 옮긴 잠입 게임">
+<title>DelRev — 3D 잠입 액션 게임 | Jongha Lee</title>
+<meta name="description" content="3D 잠입 액션 게임">
 <link rel="canonical" href="https://bell-ha.github.io/projects/delrev/">
 <meta property="og:type" content="article">
-<meta property="og:title" content="DelRev — 3D 잠입 액션 게임 — 이종하">
-<meta property="og:description" content="위험도를 눈이 아니라 귀로 옮긴 잠입 게임">
+<meta property="og:title" content="DelRev — 3D 잠입 액션 게임 | Jongha Lee">
+<meta property="og:description" content="3D 잠입 액션 게임">
 <meta property="og:url" content="https://bell-ha.github.io/projects/delrev/">
 <meta property="og:image" content="https://bell-ha.github.io/images/og.jpg">
 <meta property="og:locale" content="ko_KR">
@@ -30,7 +30,7 @@
 <a class="skip-link" href="#main">본문으로 건너뛰기</a>
 <header class="site-header">
   <div class="container site-header__inner">
-    <a class="site-header__home" href="../../">이종하</a>
+    <a class="site-header__home" href="../../">Jongha Lee</a>
     <nav class="site-nav" aria-label="분야">
       <a href="../../#robotics">Robotics &amp; Embedded</a>
       <a href="../../#software">Software &amp; AI</a>
@@ -48,10 +48,10 @@
 <header class="detail-header">
 <p class="detail-breadcrumb"><a href="../../#game">Game</a></p>
 <h1 class="detail-title">DelRev — 3D 잠입 액션 게임</h1>
-<p class="detail-oneline">위험도를 눈이 아니라 귀로 옮긴 잠입 게임</p>
+<p class="detail-oneline">3D 잠입 액션 게임</p>
 <dl class="detail-meta">
 <dt class="meta-key">기간</dt><dd>2025.04 ~ 2026.01</dd>
-<dt class="meta-key">역할</dt><dd>4인으로 시작해 2025년 7월부터 3인 · 조장 · 플레이어 · 맵·위험게이지 · 방해자 AI · 사운드</dd>
+<dt class="meta-key">역할</dt><dd>4인으로 시작해 2025년 7월부터 3인 · 조장 · 플레이어 · 맵·위험게이지 · 방해자 AI · 사운드 담당</dd>
 </dl>
 <ul class="detail-links">
 <li><a href="https://github.com/hitori839/DelRev" target="_blank" rel="noopener">GitHub</a></li>
@@ -68,30 +68,30 @@
 </header>
 <section class="detail-section" id="impact">
 <h2 class="detail-section__title">Impact</h2>
-<ul class="impact-grid"><li class="impact-item"><span class="impact-item__num">88<span class="impact-item__unit">%</span></span><span class="impact-item__label">플레이어 시스템 1,080줄 중 956줄 직접 작성 · 맵과 위험게이지는 83%</span></li><li class="impact-item"><span class="impact-item__num">4<span class="impact-item__unit">구간</span></span><span class="impact-item__label">위험도를 틱 간격과 볼륨으로 나눠 화면 대신 귀로 전달</span></li><li class="impact-item"><span class="impact-item__num">57<span class="impact-item__unit">개</span></span><span class="impact-item__label">게임 사운드를 직접 만들고 재생 시점까지 코드로 연결</span></li></ul>
+<ul class="impact-grid"><li class="impact-item"><span class="impact-item__num">4<span class="impact-item__unit">구간</span></span><span class="impact-item__label">위험도를 틱 간격과 볼륨으로 나눠 화면 대신 귀로 전달</span></li><li class="impact-item"><span class="impact-item__num">11<span class="impact-item__unit">종</span></span><span class="impact-item__label">방해자 상태 기계 — 연구소 3종은 맵을 끝내지 못해 빌드에 넣지 못함</span></li><li class="impact-item"><span class="impact-item__num">57<span class="impact-item__unit">개</span></span><span class="impact-item__label">게임 사운드를 직접 만들고 재생 시점까지 코드로 연결</span></li></ul>
 </section>
 <section class="detail-section" id="background">
 <h2 class="detail-section__title">Background</h2>
-<p>잠입 게임의 긴장은 적이 아니라 욕심에서 옵니다. 맵을 끝까지 털면 날짜가 가고, 빨리 나오면 할당량이 모자랍니다.</p>
-<p>문제는 플레이어가 위험도 게이지를 보지 않는다는 것이었습니다. 잠입 중에는 적을 보고 있고 다음에 어디로 숨을지 생각합니다. 조장을 맡았고 시스템별로 플레이어 88% · 맵·위험게이지 83% · 방해자 AI 49%를 작성했습니다.</p>
+<p>도우미 로봇으로 위장한 스파이가 집과 유치원, 공장에 잠입해 정보를 모으는 게임입니다. 맵을 오래 뒤질수록 얻는 것은 많아지지만 날짜가 가기 때문에, 언제 빠져나올지를 플레이어가 계속 저울질하게 만드는 것이 목표였습니다.</p>
+<p>조장을 맡아 일정과 역할을 배분했고 플레이어 시스템과 맵, 위험게이지, 방해자 AI, 사운드를 담당했습니다. 공장 로봇 계열과 세이브·상점은 권예진, 유치원 방해자 계열은 김도현이 만든 파일 위에 이어서 작업했습니다.</p>
 </section>
 <section class="detail-section" id="contributions">
 <h2 class="detail-section__title">Contributions</h2>
-<div class="contrib"><h3 class="contrib__title">위험도를 소리로 옮겼다</h3><p>값에 정비례해 줄이면 변화를 알아채지 못합니다. 단계가 바뀌는 순간이 있어야 몸이 반응하므로 4구간으로 끊었고, 경계 수치는 플레이테스트로 잡았습니다.</p>
+<div class="contrib"><h3 class="contrib__title">위험도를 소리로 알렸다</h3><p>만들어 놓고 직접 플레이해 보니 잠입 중에는 화면 구석의 게이지를 볼 여유가 없었습니다. 그래서 위험도를 틱 사운드로 옮겼습니다. 값에 비례해 간격을 줄이면 변화를 느끼지 못해서 네 구간으로 끊었고, 경계 수치는 플레이테스트로 잡았습니다.</p>
 <figure class="figure figure--wide"><img class="figure__img--diagram" src="../../images/delrev-danger-gauge.svg" alt="delrev danger gauge" loading="lazy"></figure></div>
-<div class="contrib"><h3 class="contrib__title">게이지와 방해자를 인터페이스로 끊었다</h3><p>게이지가 100%에 닿을 때의 반응은 맵마다 다릅니다. 게이지가 그 차이를 전부 알면 맵을 붙일 때마다 게이지를 고쳐야 하므로, <code>IDangerTarget</code>으로 의존을 끊어 방해자를 늘려도 게이지는 그대로 뒀습니다.</p></div>
-<div class="contrib"><h3 class="contrib__title">감지하는 객체와 쫓아오는 객체를 분리했다</h3><p>제일 화가 나는 순간은 왜 들켰는지 모를 때입니다. 보는 쪽과 쫓는 쪽을 갈라, 감시 장치를 피하는 것만으로 추격을 끊게 했습니다. 다만 유예 시간이 맵마다 다릅니다 — 공장 포탑 0.5초, 연구소 CCTV 3초, <strong>가정주택 카메라는 타이머 없이 즉시</strong>입니다. 스쳐 지나감과 들킴을 구분해 주려던 의도가 가정주택에는 아직 적용되지 않았습니다.</p></div>
-<div class="contrib"><h3 class="contrib__title">방해자마다 상태 집합을 따로 뒀다</h3><p>공통 부모 클래스를 두지 않았습니다. 유치원 Director는 순찰 앞에 <code>Greeting</code>을 둬서 인사부터 하고 의심하고(93% 작성), 공장 Security_B는 플래시로 시야를 마비시킵니다(공장 계열 85~91%). 같은 FSM을 돌려쓰면 상태 이름이 그 방해자의 성격이 되지 못합니다.</p></div>
+<div class="contrib"><h3 class="contrib__title">게이지와 방해자를 인터페이스로 분리했다</h3><p>게이지가 가득 찼을 때의 반응이 맵마다 달랐습니다. 게이지가 그 차이를 전부 알게 만들면 맵을 추가할 때마다 게이지를 고쳐야 해서, <code>IDangerTarget</code> 인터페이스로 의존을 끊었습니다. 방해자를 늘려도 게이지 쪽은 건드리지 않습니다.</p></div>
+<div class="contrib"><h3 class="contrib__title">감지하는 쪽과 쫓아오는 쪽을 나눴다</h3><p>플레이어가 왜 들켰는지 모르면 가장 답답합니다. 보는 객체와 쫓는 객체를 나눠서 감시 장치만 피하면 추격이 끊기도록 했습니다. 다만 유예 시간이 맵마다 다릅니다. 공장 포탑은 0.5초, 연구소 CCTV는 3초를 주는데 가정주택 카메라는 타이머 없이 바로 반응합니다. 스쳐 지나가는 것과 들키는 것을 구분해 주려던 의도가 가정주택에는 아직 적용되지 않았습니다.</p></div>
+<div class="contrib"><h3 class="contrib__title">방해자마다 상태를 따로 정의했다</h3><p>공통 부모 클래스를 두지 않았습니다. 유치원 Director는 순찰 앞에 <code>Greeting</code> 상태를 둬서 인사를 하고 나서 의심하도록 했고, 공장 Security_B는 플래시로 플레이어 시야를 마비시킵니다. 같은 FSM을 돌려쓰면 상태 이름이 그 방해자의 성격을 담지 못합니다.</p></div>
 </section>
 <section class="detail-section" id="troubleshooting">
 <h2 class="detail-section__title">Troubleshooting</h2>
-<div class="ts-item"><h3 class="ts-item__title">씬을 넘어갈 때 아이템이 사라지거나 두 개가 된다</h3><dl class="ts-item__rows"><dt class="ts-item__key">문제</dt><dd class="ts-item__val">Unity는 씬을 언로드하며 그 씬의 오브젝트를 전부 파괴합니다. 들고 있던 아이템도 트레일러에 실어 둔 아이템도 같이 사라졌고, 매번 일어나지 않아 재현부터 어려웠습니다.</dd><dt class="ts-item__key">원인</dt><dd class="ts-item__val">네 겹이었습니다. ① <code>DontDestroyOnLoad</code>는 루트 오브젝트에만 걸리고 자식에 호출하면 조용히 무시됩니다 ② 트레일러에 실으면 다시 자식이 됩니다 ③ 씬을 재로드하면 사본이 공존합니다 ④ 중복 판별 전에 트리거가 발동합니다.</dd><dt class="ts-item__key">해결</dt><dd class="ts-item__val">순서가 핵심이었습니다. <code>SetParent(null)</code>로 루트를 떼어낸 <strong>다음</strong> <code>DontDestroyOnLoad</code>를 부릅니다(<code>1.Player/InventoryUI.cs:18-19</code>). 나머지 셋은 각각 보호·<code>scene.name</code> 판별·유효성 플래그로 막았습니다.</dd><dt class="ts-item__key">결과</dt><dd class="ts-item__val">이후 재발하지 않았습니다. 고칠 때마다 다른 증상이 남는 것이 원인이 여럿이라는 신호였습니다.</dd></dl></div>
-<div class="ts-item"><h3 class="ts-item__title">네 맵을 한 씬에 둘 것인가, 맵마다 나눌 것인가</h3><dl class="ts-item__rows"><dt class="ts-item__key">문제</dt><dd class="ts-item__val">처음에는 네 맵을 한 씬에 두고 플레이어를 순간이동시킬 계획이었는데, 옮길 때마다 위치와 상태를 맞추는 일이 까다로웠습니다.</dd><dt class="ts-item__key">원인</dt><dd class="ts-item__val">한 씬에 모으면 상태 동기화 비용, 씬을 나누면 씬 간 데이터 보존 비용입니다. 둘 중 하나는 반드시 떠안습니다.</dd><dt class="ts-item__key">해결</dt><dd class="ts-item__val">맵마다 씬을 나누고 플레이어는 항상 원점에 두는 쪽을 골랐습니다.</dd><dt class="ts-item__key">결과</dt><dd class="ts-item__val">위의 아이템 소실이 정확히 그 대가였습니다. 설계는 더 나은 쪽을 고르는 일이 아니라 따라올 대가를 감당하는 일이었습니다.</dd></dl></div>
-<div class="ts-item"><h3 class="ts-item__title">남은 것</h3><p>스테이지는 넷을 설계해 셋이 빌드에 들어갔습니다(연구소 씬 없음, 맵 선택 코드에 <code>/* 연구소 생기면 추가 case 4 */</code> 주석). 할당량 미달 시의 판정은 구현하지 않았습니다.</p></div>
+<div class="ts-item"><h3 class="ts-item__title">씬을 넘어갈 때 아이템이 사라지거나 두 개가 된다</h3><dl class="ts-item__rows"><dt class="ts-item__key">문제</dt><dd class="ts-item__val">맵을 옮길 때마다 씬을 새로 불러오는데, Unity는 씬을 내리면서 그 씬의 오브젝트를 전부 파괴합니다. 들고 있던 아이템도 트레일러에 실어 둔 아이템도 같이 사라졌고, 매번 일어나지 않아 재현부터 어려웠습니다.</dd><dt class="ts-item__key">원인</dt><dd class="ts-item__val">원인이 네 개였습니다. <code>DontDestroyOnLoad</code>가 루트 오브젝트에만 걸리는데 아이템은 플레이어의 자식이었고, 트레일러에 실으면 다시 자식이 됐습니다. 씬을 다시 불러오면 원래 배치된 사본과 넘어온 사본이 함께 남았고, 중복을 정리하기 전에 트리거가 먼저 발동했습니다.</dd><dt class="ts-item__key">해결</dt><dd class="ts-item__val">순서를 고쳤습니다. <code>SetParent(null)</code>로 루트를 떼어낸 다음 <code>DontDestroyOnLoad</code>를 호출합니다(<code>1.Player/InventoryUI.cs:18-19</code>). 트레일러에 실을 때도 각각 보호하고, 씬 이름으로 사본을 판별해 제거하고, 준비가 끝나기 전에는 트리거가 동작하지 않게 막았습니다.</dd><dt class="ts-item__key">결과</dt><dd class="ts-item__val">이후 재발하지 않았습니다.</dd></dl></div>
+<div class="ts-item"><h3 class="ts-item__title">네 맵을 한 씬에 둘 것인가, 맵마다 나눌 것인가</h3><dl class="ts-item__rows"><dt class="ts-item__key">문제</dt><dd class="ts-item__val">처음에는 네 맵을 한 씬에 배치하고 플레이어를 순간이동으로 옮기려 했는데, 옮길 때마다 위치와 상태를 맞추는 일이 까다로웠습니다.</dd><dt class="ts-item__key">원인</dt><dd class="ts-item__val">한 씬에 모으면 상태를 계속 동기화해야 하고, 씬을 나누면 씬 사이에 데이터를 보존해야 합니다. 어느 쪽이든 비용이 따라옵니다.</dd><dt class="ts-item__key">해결</dt><dd class="ts-item__val">맵마다 씬을 나누고 플레이어는 항상 원점에 두는 쪽으로 정했습니다.</dd><dt class="ts-item__key">결과</dt><dd class="ts-item__val">시작 지점이 일정해진 대신 위의 아이템 소실 문제를 떠안았습니다.</dd></dl></div>
+<div class="ts-item"><h3 class="ts-item__title">남은 것</h3><p>스테이지는 네 개를 설계해 셋을 빌드에 넣었습니다. 연구소 씬을 끝내지 못해 맵 선택 코드에 <code>/* 연구소 생기면 추가 case 4 */</code> 주석이 남아 있습니다. 할당량을 못 채웠을 때의 판정도 구현하지 않았습니다.</p></div>
 </section>
 <section class="detail-section" id="related">
 <h2 class="detail-section__title">Related</h2>
-<p>소리로 상태를 알리는 판단은 <a href="../sound-packs/">게임 사운드팩</a>에서 먼저 정리했고, <a href="../grip-rehab/">악력 재활 훈련 시스템</a>은 반대로 센서 신호를 게임 입력으로 만드는 쪽입니다.</p>
+<p>소리로 상태를 알리는 방식은 <a href="../sound-packs/">게임 사운드팩</a>에서 먼저 다뤘고, <a href="../grip-rehab/">악력 재활 훈련 시스템</a>에서는 센서 신호를 게임 입력으로 만드는 작업을 했습니다.</p>
 </section>
 </article>
 <nav class="pager" aria-label="다른 프로젝트">
@@ -101,7 +101,7 @@
 </main>
 <footer class="site-footer">
   <div class="container">
-    <p>이종하 · <a href="mailto:jongha8273@gmail.com">jongha8273@gmail.com</a> · <a href="https://github.com/bell-ha" target="_blank" rel="noopener">GitHub</a></p>
+    <p>Jongha Lee · <a href="mailto:jongha8273@gmail.com">jongha8273@gmail.com</a> · <a href="https://github.com/bell-ha" target="_blank" rel="noopener">GitHub</a></p>
   </div>
 </footer>
 <script src="../../js/theme.js" defer></script>

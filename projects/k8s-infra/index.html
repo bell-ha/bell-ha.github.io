@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>쿠버네티스 클러스터 인프라 구축 — 이종하</title>
-<meta name="description" content="공인 IP 하나로 운영하는 3노드 클러스터">
+<title>쿠버네티스 클러스터 인프라 구축 | Jongha Lee</title>
+<meta name="description" content="사설 클라우드에 쿠버네티스 클러스터 구축">
 <link rel="canonical" href="https://bell-ha.github.io/projects/k8s-infra/">
 <meta property="og:type" content="article">
-<meta property="og:title" content="쿠버네티스 클러스터 인프라 구축 — 이종하">
-<meta property="og:description" content="공인 IP 하나로 운영하는 3노드 클러스터">
+<meta property="og:title" content="쿠버네티스 클러스터 인프라 구축 | Jongha Lee">
+<meta property="og:description" content="사설 클라우드에 쿠버네티스 클러스터 구축">
 <meta property="og:url" content="https://bell-ha.github.io/projects/k8s-infra/">
 <meta property="og:image" content="https://bell-ha.github.io/images/og.jpg">
 <meta property="og:locale" content="ko_KR">
@@ -30,7 +30,7 @@
 <a class="skip-link" href="#main">본문으로 건너뛰기</a>
 <header class="site-header">
   <div class="container site-header__inner">
-    <a class="site-header__home" href="../../">이종하</a>
+    <a class="site-header__home" href="../../">Jongha Lee</a>
     <nav class="site-nav" aria-label="분야">
       <a href="../../#robotics">Robotics &amp; Embedded</a>
       <a href="../../#software">Software &amp; AI</a>
@@ -48,7 +48,7 @@
 <header class="detail-header">
 <p class="detail-breadcrumb"><a href="../../#software">Software &amp; AI</a></p>
 <h1 class="detail-title">쿠버네티스 클러스터 인프라 구축</h1>
-<p class="detail-oneline">공인 IP 하나로 운영하는 3노드 클러스터</p>
+<p class="detail-oneline">사설 클라우드에 쿠버네티스 클러스터 구축</p>
 <dl class="detail-meta">
 <dt class="meta-key">기간</dt><dd>2025.09 ~ 2025.12</dd>
 <dt class="meta-key">역할</dt><dd>단독 · 설계 및 구축</dd>
@@ -66,11 +66,11 @@
 </header>
 <section class="detail-section" id="impact">
 <h2 class="detail-section__title">Impact</h2>
-<ul class="impact-grid"><li class="impact-item"><span class="impact-item__num">20<span class="impact-item__unit">개</span></span><span class="impact-item__label">네트워크·방화벽·VM·포트포워딩을 Terraform 선언으로</span></li><li class="impact-item"><span class="impact-item__num">5<span class="impact-item__unit">개</span></span><span class="impact-item__label">Ansible 롤로 기동 순서를 고정 — 마스터 → CNI → 워커 → MetalLB → 앱</span></li><li class="impact-item"><span class="impact-item__num">3<span class="impact-item__unit">대</span></span><span class="impact-item__label">CloudStack VM 위에 K8s v1.30 클러스터를 재현 가능하게 구축</span></li></ul>
+<ul class="impact-grid"><li class="impact-item"><span class="impact-item__num">IP 1개</span><span class="impact-item__label">공인 IP 하나를 포트 규약으로 갈라 노드 3대와 서비스 3개를 노출</span></li><li class="impact-item"><span class="impact-item__num">5<span class="impact-item__unit">단계</span></span><span class="impact-item__label">Ansible 롤에 실행 가드를 걸어 몇 번 돌려도 같은 상태가 되게 함</span></li></ul>
 </section>
 <section class="detail-section" id="background">
 <h2 class="detail-section__title">Background</h2>
-<p>사설 CloudStack 위에 3노드 쿠버네티스 클러스터를 세우고 커밋이 배포까지 이어지는 파이프라인을 붙였습니다. 퍼블릭 클라우드가 아니라는 것이 제약의 대부분이었습니다 — <strong>로드밸런서를 대신 만들어 주는 장치가 없고 공인 IP는 하나만 받습니다.</strong></p>
+<p>사설 CloudStack 위에 3노드 쿠버네티스 클러스터를 세우고 커밋이 배포까지 이어지는 파이프라인을 붙였습니다. 퍼블릭 클라우드가 아니라서 로드밸런서를 대신 만들어 주는 장치가 없고 공인 IP도 하나만 받는데, 이 두 가지가 제약의 대부분이었습니다.</p>
 </section>
 <section class="detail-section" id="architecture">
 <h2 class="detail-section__title">Architecture</h2>
@@ -78,9 +78,9 @@
 </section>
 <section class="detail-section" id="contributions">
 <h2 class="detail-section__title">Contributions</h2>
-<div class="contrib"><h3 class="contrib__title">IP 하나 위에서 포트로 모든 것을 가른다</h3><p>공인 IP가 하나이므로 포트 규약을 먼저 정했습니다. SSH는 22 · 2201 · 2202로 노드를 가르고, 서비스는 쿠버네티스가 노드에 여는 포트(NodePort) 번호를 그대로 외부 포트로 통과시켰습니다. 규약을 나중에 정하면 서비스가 늘 때마다 포트가 충돌합니다.</p></div>
-<div class="contrib"><h3 class="contrib__title">몇 번을 돌려도 같은 상태가 되게 했다</h3><p>Terraform으로 노드를 만들고 Ansible로 설정합니다. 마스터 준비 → Calico → 워커 조인 → MetalLB → 앱 배포 다섯 단계인데, 마스터가 준비된 뒤에야 워커가 조인할 수 있으므로 플레이를 쪼개 경계를 뒀습니다. 초기화와 조인은 이미 끝났으면 건너뜁니다. 조인 토큰은 파일 대신 메모리로 넘겼습니다.</p></div>
-<div class="contrib"><h3 class="contrib__title">LoadBalancer가 없는 환경을 정직하게 다뤘다</h3><p><code>type: LoadBalancer</code> 서비스는 클라우드 제공자가 로드밸런서를 만들어 준다는 전제 위에 있는데 사설 CloudStack에는 그 장치가 없습니다. MetalLB를 설치해 IP 풀과 L2Advertisement까지 구성해 뒀지만 <strong>거기까지입니다</strong> — 실제 외부 접근은 공인 IP 하나에 포트포워딩을 걸어 NodePort로 내려보내고, 클러스터에 LoadBalancer 타입 서비스는 하나도 없습니다. 노드 3대에 마스터 1대라 마스터가 죽으면 멈추는 구성이고, 운영 환경과 같은 이중화는 아닙니다.</p></div>
+<div class="contrib"><h3 class="contrib__title">IP 하나 위에서 포트로 구분했다</h3><p>공인 IP가 하나라 포트 규약을 먼저 정했습니다. SSH는 22, 2201, 2202로 노드를 나누고 서비스는 쿠버네티스가 노드에 여는 NodePort 번호를 그대로 외부 포트로 통과시켰습니다. 규약을 나중에 정하면 서비스가 늘 때마다 포트가 충돌합니다.</p></div>
+<div class="contrib"><h3 class="contrib__title">몇 번을 돌려도 같은 상태가 되게 했다</h3><p>Terraform으로 노드를 만들고 Ansible로 설정합니다. 마스터 준비, Calico, 워커 조인, MetalLB, 앱 배포 순서인데 마스터가 준비된 뒤에야 워커가 조인할 수 있어서 플레이를 나눠 경계를 뒀습니다. 초기화와 조인은 이미 끝났으면 건너뜁니다. 조인 토큰은 파일 대신 메모리로 넘겼습니다.</p></div>
+<div class="contrib"><h3 class="contrib__title">외부 노출은 NodePort로 처리했다</h3><p><code>type: LoadBalancer</code> 서비스는 클라우드 제공자가 로드밸런서를 만들어 준다는 전제 위에 있는데 사설 CloudStack에는 그 장치가 없습니다. MetalLB를 설치해 IP 풀과 L2Advertisement까지 구성했지만 거기까지이고, 실제 외부 접근은 공인 IP 하나에 포트포워딩을 걸어 NodePort로 내려보냅니다. 노드가 3대이고 마스터가 1대라 마스터가 멈추면 클러스터도 멈춥니다.</p></div>
 </section>
 </article>
 <nav class="pager" aria-label="다른 프로젝트">
@@ -90,7 +90,7 @@
 </main>
 <footer class="site-footer">
   <div class="container">
-    <p>이종하 · <a href="mailto:jongha8273@gmail.com">jongha8273@gmail.com</a> · <a href="https://github.com/bell-ha" target="_blank" rel="noopener">GitHub</a></p>
+    <p>Jongha Lee · <a href="mailto:jongha8273@gmail.com">jongha8273@gmail.com</a> · <a href="https://github.com/bell-ha" target="_blank" rel="noopener">GitHub</a></p>
   </div>
 </footer>
 <script src="../../js/theme.js" defer></script>

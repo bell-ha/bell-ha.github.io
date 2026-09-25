@@ -131,31 +131,39 @@
    ============================================================ */
 
 main.container {
-  padding-block: clamp(1.75rem, 1.3rem + 2.2vw, 3rem) var(--sp-9);
+  padding-block: clamp(48px, 11vw, 96px);   /* 구 .container 상하 */
 }
 
-.section { margin-block-end: var(--section-gap); }
+/* 구 사이트는 전역 선택자로 걸었다. .about 처럼 클래스 없는 section·h2 가
+   있으므로 클래스로 좁히면 빠진다 — 실제로 About 제목의 아래 여백과
+   섹션 간격이 그렇게 빠져 있었다. */
+section { margin-block-end: var(--section-gap); }
 
-/* 분야 제목(.proj-section__title)과 같은 형식으로 맞춘다.
-   프로젝트 분야를 작은 대문자 라벨로 내렸더니 Awards·Certifications 같은
-   보조 목록의 제목이 본체인 프로젝트 제목보다 커지는 위계 역전이 났다.
-   둘 다 최상위 섹션이므로 같은 표기를 쓴다. */
-.section__title {
-  margin-block-end: var(--sp-4);
-  padding-block-end: var(--sp-3);
-  border-block-end: var(--hairline) solid var(--border-strong);
-  font-size: var(--fs-body);
+h2 {
+  margin-block-end: 28px;
+  font-size: var(--fs-h2);
   font-weight: var(--fw-semi);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  color: var(--text);
   scroll-margin-block-start: calc(var(--header-h) + var(--sp-4));
 }
 
-/* 읽는 글은 줄길이를 제한한다 — 660px에서 한글 약 38자 / 로마자 약 70자 */
+.section__title {
+  letter-spacing: normal;
+  text-transform: none;
+  border: 0;
+  padding: 0;
+}
+
+/* 구 .about / .skills / .projects 가 전부 max-width: 760px 였다.
+   다만 경력 표는 네 열이라 760px에서 칸마다 줄이 쪼개진다 — 표만 예외로
+   컨테이너 폭을 다 쓰게 둔다. */
+.about { max-inline-size: var(--container-text); }
+
+.about p,
 .section > p,
 .section > ul:not([class]),
 .section > ol:not([class]) {
-  max-inline-size: var(--container-text);
+  max-inline-size: var(--measure-prose);
 }
 
 .about__lead {
@@ -168,73 +176,99 @@ main.container {
 }
 
 /* ============================================================
-   히어로
+   프로필 — 구 style.css 의 .profile 블록을 값 그대로 옮겼다.
+   사진 크기(clamp 140~280px)와 18% 라운드가 사용자가 말한 "이전 사진 크기"다.
    ============================================================ */
 
-.hero {
+.profile {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: clamp(1rem, 0.7rem + 1.5vw, 1.75rem);
-  margin-block-end: var(--section-gap);
+  gap: clamp(24px, 4vw, 48px);
+  margin-bottom: clamp(64px, 10vw, 120px);
 }
 
-.hero__photo {
-  flex: none;
-  inline-size: clamp(76px, 18vw, 112px);
-  block-size: auto;
-  aspect-ratio: 1;
+.profile-img {
+  width: clamp(140px, 30vw, 280px);
+  aspect-ratio: 1 / 1;
+  height: auto;
+  border-radius: 18%;
   object-fit: cover;
   object-position: center top;
-  border-radius: var(--r-lg);
-  border: var(--hairline) solid var(--border);
+  flex-shrink: 0;
 }
 
-.hero__body { min-inline-size: 0; flex: 1 1 18rem; }
+.profile-info { min-width: 0; }
 
-.hero__name {
+.name {
   font-size: var(--fs-display);
-  letter-spacing: -0.03em;
-}
-
-.hero__tagline {
-  margin-block-start: var(--sp-2);
-  max-inline-size: var(--container-text);
-  font-size: var(--fs-lead);
-  line-height: var(--lh-snug);
+  font-weight: var(--fw-semi);
   color: var(--text);
+  margin-bottom: 16px;
+  text-wrap: balance;
 }
 
-.hero__status {
-  margin-block-start: var(--sp-2);
-  font-size: var(--fs-sm);
-  color: var(--text-faint);
+.roles p {
+  font-size: 0.95rem;
+  margin-bottom: 6px;
 }
 
-.hero__links {
+.links {
+  margin-top: 24px;
   display: flex;
   flex-wrap: wrap;
-  gap: var(--sp-1) var(--sp-2);
-  margin-block-start: var(--sp-3);
-  padding: 0;
-  list-style: none;
+  gap: 10px 20px;
 }
-.hero__links li { margin-block-start: 0; }
 
-.hero__links a {
-  display: inline-flex;
-  align-items: center;
-  min-block-size: var(--tap);
-  padding-inline: var(--sp-3);
-  border: var(--hairline) solid var(--border-strong);
-  border-radius: var(--r-sm);
-  font-size: var(--fs-sm);
-  color: var(--text);
-  text-decoration: none;
+.links a {
+  color: var(--text-muted);
+  font-size: 0.9rem;
   overflow-wrap: anywhere;
-  transition: border-color var(--dur) var(--ease), color var(--dur) var(--ease);
 }
-.hero__links a:hover { color: var(--text); border-color: var(--text); }
+
+.resume { margin-top: 28px; }
+
+.resume-btn {
+  display: inline-block;
+  padding: 10px 22px;
+  border: var(--hairline) solid var(--border);
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--text);
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+}
+
+@media (hover: hover) {
+  .resume-btn:hover {
+    background: var(--text);
+    color: var(--bg);
+    border-color: var(--text);
+  }
+}
+
+.resume-btn:active { transform: scale(0.97); }
+
+/* ===== About ===== */
+.about p {
+  font-size: var(--fs-body);
+  margin-bottom: 8px;
+}
+
+.about-lead,
+.about__lead {
+  font-size: 1.06rem;
+  font-weight: var(--fw-semi);
+  color: var(--text);
+  line-height: 1.5;
+  margin-bottom: 16px;
+  max-inline-size: none;
+}
+
+.about p + p { margin-top: 12px; }
+
+@media (max-width: 700px) {
+  .profile { flex-direction: column; }
+  .profile-img { width: clamp(140px, 45vw, 200px); }
+}
 
 /* ============================================================
    푸터

@@ -44,8 +44,16 @@ h2 { font-size: var(--fs-h2); }
 h3 { font-size: var(--fs-h3); }
 
 /* ---- 본문 ---------------------------------------------------- */
-p { text-wrap: pretty; }
-p + p { margin-block-start: var(--sp-3); }
+/* 마지막 줄에 한두 글자만 남는 것을 브라우저가 피하게 한다.
+   경력 표의 링크 줄이 "·" 하나만 남기고 넘어가던 것이 이 경우다. */
+p, li, td, th, dd, figcaption, .impact-item__label, .ts-item__val,
+.exp-table__projects, .proj-card__oneline, .proj-row__oneline {
+  text-wrap: pretty;
+}
+
+/* 문단 사이는 줄 사이보다 확실히 넓어야 덩어리가 보인다.
+   12px이면 행간(24.3px)의 절반이라 문단 구분이 흐려진다 — 약 0.75줄로 둔다. */
+p + p { margin-block-start: 1.15em; }
 
 strong, b { font-weight: var(--fw-semi); color: var(--text); }
 

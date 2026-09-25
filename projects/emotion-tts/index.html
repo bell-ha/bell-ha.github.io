@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>감정 기반 TTS 보컬 합성 시스템 — 이종하</title>
-<meta name="description" content="표정을 읽어 목소리에 감정을 싣는다">
+<title>감정 기반 TTS 보컬 합성 시스템 | Jongha Lee</title>
+<meta name="description" content="표정으로 감정을 추정해 반영하는 TTS">
 <link rel="canonical" href="https://bell-ha.github.io/projects/emotion-tts/">
 <meta property="og:type" content="article">
-<meta property="og:title" content="감정 기반 TTS 보컬 합성 시스템 — 이종하">
-<meta property="og:description" content="표정을 읽어 목소리에 감정을 싣는다">
+<meta property="og:title" content="감정 기반 TTS 보컬 합성 시스템 | Jongha Lee">
+<meta property="og:description" content="표정으로 감정을 추정해 반영하는 TTS">
 <meta property="og:url" content="https://bell-ha.github.io/projects/emotion-tts/">
 <meta property="og:image" content="https://bell-ha.github.io/images/og.jpg">
 <meta property="og:locale" content="ko_KR">
@@ -30,7 +30,7 @@
 <a class="skip-link" href="#main">본문으로 건너뛰기</a>
 <header class="site-header">
   <div class="container site-header__inner">
-    <a class="site-header__home" href="../../">이종하</a>
+    <a class="site-header__home" href="../../">Jongha Lee</a>
     <nav class="site-nav" aria-label="분야">
       <a href="../../#robotics">Robotics &amp; Embedded</a>
       <a href="../../#software">Software &amp; AI</a>
@@ -48,10 +48,10 @@
 <header class="detail-header">
 <p class="detail-breadcrumb"><a href="../../#software">Software &amp; AI</a></p>
 <h1 class="detail-title">감정 기반 TTS 보컬 합성 시스템</h1>
-<p class="detail-oneline">표정을 읽어 목소리에 감정을 싣는다</p>
+<p class="detail-oneline">표정으로 감정을 추정해 반영하는 TTS</p>
 <dl class="detail-meta">
 <dt class="meta-key">기간</dt><dd>2025.06 ~ 2025.12</dd>
-<dt class="meta-key">역할</dt><dd>단독 · 학사학위 논문 (2025.11 제출)</dd>
+<dt class="meta-key">역할</dt><dd>단독 · 학사학위 논문</dd>
 </dl>
 <ul class="detail-links">
 <li><a href="../../papers/이종하_32203482_실시간표정인식을이용한감정기반TTS보컬합성시스템연구.pdf">논문</a></li>
@@ -70,12 +70,12 @@
 </section>
 <section class="detail-section" id="background">
 <h2 class="detail-section__title">Background</h2>
-<p>감정을 다루는 TTS 연구는 &quot;행복·슬픔·분노&quot; 같은 태그를 미리 정해 입력으로 넣는 방식입니다. 그러면 감정은 만들기 전에 결정돼 있어야 합니다. 말하는 사람의 표정에는 그 정보가 실시간으로 들어 있는데도 쓰이지 않습니다.</p>
+<p>감정을 다루는 음성 합성 연구는 행복이나 슬픔 같은 태그를 미리 정해 입력으로 넣는 방식입니다. 그러면 감정을 만들기 전에 먼저 정해 둬야 합니다. 말하는 사람의 표정에 그 정보가 실시간으로 들어 있는데도 쓰이지 않아서, 표정을 읽어 감정을 추정하고 그대로 합성 목소리에 반영하는 방법을 제안했습니다.</p>
 </section>
 <section class="detail-section" id="contributions">
 <h2 class="detail-section__title">Contributions</h2>
-<div class="contrib"><h3 class="contrib__title">표정 인식 값을 그대로 쓰면 목소리가 떨린다</h3><p>표정 인식은 프레임 단위로 판정하므로 같은 표정을 유지해도 결과가 튑니다. 그 값을 바로 합성에 넘기면 한 문장 안에서 감정이 여러 번 바뀝니다. 지수이동평균으로 값을 눌러 주고 다수결 투표를 겹쳐, 짧게 스쳐 간 오판정이 문장의 감정을 바꾸지 못하게 했습니다. <strong>인식 정확도보다 안정화가 먼저 필요했습니다.</strong></p></div>
-<div class="contrib"><h3 class="contrib__title">감정과 합성 사이를 서버로 끊고, 추정을 제안으로 뒀다</h3><p>MediaPipe로 얼굴을 검출하고 CNN으로 표정을 분류해, 추정된 감정을 JSON으로 Flask 서버에 넘기면 서버가 TTS를 호출할 때 프롬프트 입력으로 반영합니다. 웹 UI에서는 문장 종결부마다 감정 태그가 자동 삽입되고, 사용자는 태그를 직접 고르는 대신 붙은 결과를 보고 고칩니다.</p></div>
+<div class="contrib"><h3 class="contrib__title">인식 값을 그대로 쓰면 목소리가 흔들린다</h3><p>표정 인식은 프레임 단위로 판정하기 때문에 같은 표정을 유지해도 결과가 계속 바뀝니다. 그 값을 바로 합성에 넘기면 한 문장 안에서 감정이 여러 번 달라집니다. 지수이동평균으로 값을 누르고 다수결 투표를 겹쳐서, 짧게 스쳐 간 오판정이 문장 전체의 감정을 바꾸지 못하게 했습니다.</p></div>
+<div class="contrib"><h3 class="contrib__title">감정과 합성 사이를 서버로 나눴다</h3><p>MediaPipe로 얼굴을 찾고 CNN으로 표정을 분류한 뒤, 추정한 감정을 JSON으로 Flask 서버에 넘기면 서버가 TTS를 호출할 때 프롬프트로 반영합니다. 웹 화면에서는 문장 종결부마다 감정 태그가 자동으로 붙고, 사용자가 그 결과를 보고 고칠 수 있습니다.</p></div>
 </section>
 </article>
 <nav class="pager" aria-label="다른 프로젝트">
@@ -85,7 +85,7 @@
 </main>
 <footer class="site-footer">
   <div class="container">
-    <p>이종하 · <a href="mailto:jongha8273@gmail.com">jongha8273@gmail.com</a> · <a href="https://github.com/bell-ha" target="_blank" rel="noopener">GitHub</a></p>
+    <p>Jongha Lee · <a href="mailto:jongha8273@gmail.com">jongha8273@gmail.com</a> · <a href="https://github.com/bell-ha" target="_blank" rel="noopener">GitHub</a></p>
   </div>
 </footer>
 <script src="../../js/theme.js" defer></script>

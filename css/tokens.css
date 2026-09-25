@@ -21,17 +21,19 @@
   color-scheme: light;
 
   /* ---- 팔레트: 다크 값 원본 (여기 한 곳에만 적는다) ------------- */
-  --d-bg:            #121316;
-  --d-surface:       #121316;   /* 카드 단차 없음 — 구분은 선과 여백으로 */
-  --d-surface-2:     #1c1f25;
-  --d-surface-sunk:  #121317;
-  --d-text:          #ededf0;
-  --d-text-muted:    #a6a6b0;
-  --d-text-faint:    #8b8b96;
-  --d-border:        #2b2e36;
-  --d-border-strong: #454a55;
-  --d-accent:        #79b0ff;
-  --d-accent-weak:   #1a2740;
+  --d-bg:            #111215;
+  --d-surface:       #111215;
+  --d-surface-2:     #1a1c20;
+  --d-surface-sunk:  #16181c;
+  --d-text:          #ececec;   /* 구 --text-primary */
+  --d-text-muted:    #a3a3a3;   /* 구 --text-secondary */
+  --d-text-faint:    #8f8f96;
+  --d-border:        #2c2e33;   /* 구 --border-color */
+  --d-border-strong: #3a3d44;   /* 구 --rule-card */
+  --d-rule-category: #ececec;   /* 구 --rule-category */
+  --d-hover-tint:    rgba(255, 255, 255, 0.06);
+  --d-accent:        #ececec;   /* 구 사이트는 포커스 링에 --text-primary 를 썼다 */
+  --d-accent-weak:   #1a1c20;
 
 
 
@@ -43,17 +45,19 @@
   --d-shadow-lift: none;
 
   /* ---- 라이트 값 = 실제 사용 토큰의 기본값 --------------------- */
-  --bg:            #ffffff;
-  --surface:       #ffffff;   /* 카드 단차 없음 — 구분은 선과 여백으로 */
-  --surface-2:     #f4f4f5;
-  --surface-sunk:  #fbfbfc;
-  --text:          #18181b;
-  --text-muted:    #52525b;
-  --text-faint:    #6b6b74;
-  --border:        #dcdce0;
-  --border-strong: #b8b8c0;
-  --accent:        #1a5fd0;
-  --accent-weak:   #e8effb;
+  --bg:            #ffffff;   /* 구 --bg-color */
+  --surface:       #ffffff;
+  --surface-2:     #fafafa;
+  --surface-sunk:  #fcfcfc;
+  --text:          #111111;   /* 구 --text-primary */
+  --text-muted:    #555555;   /* 구 --text-secondary */
+  --text-faint:    #666666;
+  --border:        #e6e6e6;   /* 구 --border-color */
+  --border-strong: #d0d0d0;   /* 구 --rule-card */
+  --rule-category: #111111;   /* 구 --rule-category — 분야 제목 밑줄 */
+  --hover-tint:    rgba(17, 17, 17, 0.05);
+  --accent:        #111111;   /* 포커스 링. 구 사이트도 --text-primary 였다 */
+  --accent-weak:   #fafafa;
 
 
 
@@ -67,8 +71,8 @@
      색까지 쓰면 "텍스트 중심"이 아니라 색으로 분류한 대시보드가 된다.
      --cat 은 이름만 남기고 값은 중립 선 색이다. 카드 상단 바, 섹션 밑줄,
      수치 카드 왼쪽 선이 전부 이 하나를 쓴다. */
-  --cat: var(--border-strong);
-  --cat-tint: var(--surface-2);
+  --cat: var(--rule-category);
+  --cat-tint: transparent;
 
   /* ---- 타이포 ------------------------------------------------- */
   /* 서브셋을 맨 앞에 둔다. 서브셋에 없는 글자는 브라우저가 글자 단위로
@@ -84,10 +88,10 @@
          이름 clamp(1.8,…,2.6)rem · 섹션제목 clamp(1.35,…,1.6)rem · 수치 1.3rem
      재설계 1차가 이보다 본문 +14%, 리드 +37%, 수치 +77% 커져 있었다. */
   --fs-display: clamp(1.8rem, 1.35rem + 2.2vw, 2.6rem);  /* 구 .name */
-  --fs-h1:      clamp(1.55rem, 1.3rem + 1.1vw, 2.1rem);  /* 상세 제목 */
+  --fs-h1:      clamp(1.8rem, 1.35rem + 2.2vw, 2.6rem);  /* 상세 제목 = 구 .name 과 같은 단계 */
   --fs-h2:      clamp(1.35rem, 1.1rem + 1.1vw, 1.6rem);  /* 구 h2 */
   --fs-h3:      1.1rem;                                   /* 구 .project h4 */
-  --fs-lead:    1.06rem;                                  /* 구 .about-lead */
+  --fs-lead:    1.1rem;      /* .about-lead · .detail-oneline — h3 와 같은 단계로 묶었다 */
   --fs-body:    0.95rem;                                  /* 구 .about p */
   --fs-sm:      0.9rem;                                   /* 구 .summary */
   --fs-xs:      0.8rem;                                   /* 구 캡션·태그 */
@@ -95,7 +99,7 @@
 
   --lh-tight: 1.25;
   --lh-snug:  1.4;
-  --lh-body:  1.6;    /* 구 .about p 와 동일 */
+  --lh-body:  1.65;   /* 구 body */
 
   --fw-normal: 400;
   --fw-medium: 500;
@@ -109,15 +113,16 @@
   --sp-5:  1.25rem;  --sp-6:  1.5rem;   --sp-7: 2rem;     --sp-8: 2.5rem;
   --sp-9:  3rem;     --sp-10: 4rem;     --sp-11: 5rem;    --sp-12: 6rem;
 
-  --section-gap: clamp(2.25rem, 1.6rem + 3vw, 3.5rem);   /* 36~56px */
+  --section-gap: clamp(72px, 10vw, 120px);   /* 구 section margin-bottom */   /* 36~56px */
   --card-pad:    clamp(0.95rem, 0.85rem + 0.5vw, 1.15rem);
 
   /* ---- 레이아웃 ----------------------------------------------- */
-  --container:      1080px;
-  /* 본문 줄길이. 본문이 15.2px로 내려갔으므로 폭도 같이 줄인다 —
-     600px에서 한글 약 39자 / 로마자 약 72자. */
-  --container-text: 600px;
-  --gutter:         clamp(1rem, 0.6rem + 2vw, 2rem);
+  --container:      920px;    /* 구 .container */
+  --container-text: 760px;   /* 구 .projects · .about · .skills max-width */
+  /* 읽는 문단만 더 좁게. 760px에서는 한글 52자/줄이라 눈이 다음 줄을
+     찾기 어렵다(실측). 700px이면 약 48자로 40~50자 범위에 든다. */
+  --measure-prose:  700px;
+  --gutter:         clamp(20px, 5vw, 24px);   /* 구 .container 좌우 */
   --header-h:       56px;
 
   /* ---- 반경 · 선 ---------------------------------------------- */
@@ -128,7 +133,7 @@
      (522px짜리 사진이 컨테이너 폭까지 늘어나 942px로 그려지고 있었다).
      상한을 더 조이면 글자가 든 도면까지 같이 줄어 못 읽게 되므로
      뷰포트 기준으로만 걸고 절대값은 느슨하게 둔다. */
-  --figure-max-h: min(70vh, 620px);
+  --figure-max-h: 560px;   /* 구 .project-media img max-height */
   --cat-bar: 2px;
 
   /* ---- 포커스 ------------------------------------------------- */
@@ -164,6 +169,10 @@
     --border-strong: var(--d-border-strong);
     --accent:        var(--d-accent);
     --accent-weak:   var(--d-accent-weak);
+  --rule-category: var(--d-rule-category);
+  --hover-tint:    var(--d-hover-tint);
+    --rule-category: var(--d-rule-category);
+    --hover-tint:    var(--d-hover-tint);
 
 
 
@@ -190,6 +199,8 @@
   --border-strong: var(--d-border-strong);
   --accent:        var(--d-accent);
   --accent-weak:   var(--d-accent-weak);
+  --rule-category: var(--d-rule-category);
+  --hover-tint:    var(--d-hover-tint);
 
 
 

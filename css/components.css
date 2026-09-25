@@ -11,23 +11,24 @@
    ============================================================ */
 
 .proj-section {
-  margin-block-end: var(--section-gap);
+  max-inline-size: var(--container-text);   /* 구 .projects */
+  margin-block-end: 128px;   /* 구 .project-category */
   scroll-margin-block-start: calc(var(--header-h) + var(--sp-4));
 }
 
-/* 구 사이트의 .category-title 과 같은 무게로 되돌렸다 —
-   큰 제목이 아니라 작은 대문자 라벨. 한 화면에 카드가 더 들어온다. */
+/* 구 .category-title 값 그대로 */
 .proj-section__title {
   display: flex;
   align-items: baseline;
   gap: var(--sp-3);
-  margin-block-end: var(--sp-5);
-  padding-block-end: var(--sp-3);
-  border-block-end: var(--hairline) solid var(--cat);
-  font-size: var(--fs-body);
+  font-size: 0.95rem;
   font-weight: var(--fw-semi);
   letter-spacing: 0.1em;
   text-transform: uppercase;
+  color: var(--text);
+  padding-bottom: 14px;
+  border-bottom: var(--hairline) solid var(--rule-category);
+  margin-bottom: 36px;
 }
 
 .proj-section__count {
@@ -43,58 +44,27 @@
    2. 프로젝트 카드 — <a class="proj-card"> 통째로 링크
    ============================================================ */
 
-.proj-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--sp-4);
-}
+/* 구 사이트는 프로젝트를 상자에 담지 않고 한 열로 세로로 늘어놓고
+   사이를 선으로만 갈랐다. 그 형태로 되돌린다. */
+.proj-grid { display: block; }
 
-/* 카드가 하나뿐인 분야(Game)는 2열로 두면 오른쪽 절반이 통째로 빈다 */
-@media (min-width: 680px) {
-  .proj-grid:has(> :only-child) { grid-template-columns: 1fr; }
-}
 
-@media (min-width: 680px) {
-  .proj-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--sp-4);
-    /* 카드를 늘려 높이를 맞추지 않는다. 수치 블록이 없는 카드(두리·사운드팩 등)가
-       옆 카드 높이에 끌려가면 가운데가 텅 빈다 — 면과 그림자를 걷어낸 뒤로는
-       그 빈칸이 그대로 구멍으로 보인다. 내용만큼만 차지하게 둔다. */
-    align-items: start;
-  }
-}
-
-/* 구분은 얇은 선과 여백으로만 만든다. 배경 단차와 그림자, 호버 들림은
-   뺐다 — 텍스트 중심이라는 요구에서 장식은 덜어내는 쪽이 맞다.
-   남긴 것: 1px 테두리 + 상단 2px 분야 바 + 여백. */
 .proj-card {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-2);
-  padding: var(--card-pad);
-  padding-block-start: calc(var(--card-pad) + var(--cat-bar));
-  background: var(--surface);
-  border: var(--hairline) solid var(--border);
-  border-radius: var(--r-sm);
+  display: block;
+  margin-bottom: 56px;      /* 구 .project */
   color: inherit;
   text-decoration: none;
-  transition: border-color var(--dur) var(--ease);
 }
 
-.proj-card::before {
-  content: "";
-  position: absolute;
-  inset-block-start: 0;
-  inset-inline: 0;
-  block-size: var(--cat-bar);
-  background: var(--cat);
-  border-start-start-radius: var(--r-sm);
-  border-start-end-radius: var(--r-sm);
+/* 구 .project + .project */
+.proj-card + .proj-card {
+  border-top: var(--hairline) solid var(--border-strong);
+  padding-top: 40px;
 }
 
-.proj-card:hover { border-color: var(--text); }
+
+.proj-card:hover .proj-card__title { text-decoration: underline; text-underline-offset: 0.18em; }
 
 .proj-card:focus-visible {
   outline: var(--focus-w) solid var(--focus-ring);
@@ -119,14 +89,15 @@
 
 /* ---- 제목 · 한 줄 --------------------------------------------- */
 .proj-card__title {
-  font-size: var(--fs-h3);
+  font-size: 1.1rem;          /* 구 .project h4 */
+  margin-bottom: 10px;
   color: var(--text);
-  transition: color var(--dur) var(--ease);
+  text-wrap: balance;
 }
 
 .proj-card__oneline {
-  font-size: var(--fs-sm);
-  line-height: var(--lh-snug);
+  font-size: 0.9rem;          /* 구 .project .summary */
+  margin-bottom: 12px;
   color: var(--text-muted);
 }
 
@@ -149,10 +120,11 @@
   display: grid;
   gap: var(--sp-2);
   margin-block-start: var(--sp-1);
-  padding: var(--sp-3);
+  padding: 12px 14px;              /* 구 .stat */
+  margin: 16px 0 18px;
   list-style: none;
-  background: var(--cat-tint);
-  border-radius: var(--r-sm);
+  border: var(--hairline) solid var(--border);
+  border-radius: 8px;
 }
 
 .proj-card__impact .impact-item {
@@ -220,7 +192,7 @@
 
 .impact-item__unit {
   margin-inline-start: 1px;
-  font-size: 0.6em;
+  font-size: 0.615em;   /* 20.8px 기준 12.8px — --fs-xs 와 같은 단계 */
   font-weight: var(--fw-medium);
   letter-spacing: 0;
   color: var(--text-muted);
@@ -257,21 +229,22 @@
    4. 태그 · 배지
    ============================================================ */
 
+/* 구 .award */
 .tag {
   display: inline-block;
-  padding: 3px var(--sp-2);
-  font-size: var(--fs-xs);
+  padding: 4px 12px;
+  font-size: 0.8rem;
   line-height: 1.5;
-  color: var(--text-muted);
+  color: var(--text);
   background: var(--surface-2);
   border: var(--hairline) solid var(--border);
-  border-radius: var(--r-sm);
+  border-radius: 999px;
   white-space: nowrap;
 }
 
 /* "+3" — 마크업이 class="tag tag-more" 라 뒤에 와서 덮는다 */
 .tag-more {
-  color: var(--text-faint);
+  color: var(--text-muted);
   background: transparent;
   border-style: dashed;
   border-color: var(--border-strong);
@@ -468,6 +441,7 @@
   display: block;
   margin-block-start: var(--sp-2);
   font-size: var(--fs-xs);
+  line-height: 1.55;
   color: var(--text-faint);
 }
 .exp-table__projects a { color: var(--text-muted); }
@@ -730,3 +704,59 @@
 
 /* 한쪽만 있을 때 반대쪽 자리를 비운다 */
 .pager__next:only-child { margin-inline-start: auto; flex-grow: 0; }
+
+/* ============================================================
+   11. 본문 표 (.md-table) — 마크다운 표에서 변환된 것
+   구 style.css 의 .flow-table 값을 그대로 옮겼다.
+   .table-wrap 이 가로 스크롤을 받아 좁은 화면에서 문서가
+   통째로 밀리는 것을 막는다(구 사이트에서는 이 래퍼가 없어
+   320px에서 "원인과 대응" 표가 페이지를 넘치게 했다).
+   ============================================================ */
+
+.table-wrap {
+  max-inline-size: var(--container-text);
+  margin: 20px 0 18px;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+}
+
+.md-table {
+  inline-size: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-sm);
+  font-variant-numeric: tabular-nums;
+}
+
+.md-table caption {
+  text-align: start;
+  font-size: 0.78rem;
+  font-weight: var(--fw-semi);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding-block-end: 8px;
+}
+
+.md-table th {
+  text-align: start;
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-medium);
+  color: var(--text-muted);
+  padding: 0 10px 6px 0;
+  border-block-end: var(--hairline) solid var(--border);
+  white-space: nowrap;
+}
+
+.md-table td {
+  padding: 9px 10px 9px 0;
+  border-block-end: var(--hairline) solid var(--border);
+  color: var(--text-muted);
+  vertical-align: baseline;
+}
+
+.md-table td:first-child { color: var(--text); }
+
+.md-table tbody tr:last-child td { border-block-end: 0; }
+
+/* 긴 식별자가 든 칸이 칸을 넘기지 않게 — base.css 의 code 규칙과 같은 이유 */
+.md-table code { overflow-wrap: anywhere; }
