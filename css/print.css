@@ -36,16 +36,9 @@
   --paper:         #fff;
   --paper-edge:    #bbb;
 
-  --cat:      #333;
+  --cat:      #666;
   --cat-tint: #fff;
-  --cat-robotics: #333; --cat-software: #333;
-  --cat-game:     #333; --cat-music:    #333;
-  --cat-robotics-tint: #fff; --cat-software-tint: #fff;
-  --cat-game-tint:     #fff; --cat-music-tint:    #fff;
 
-  --badge-live-fg: #000; --badge-live-bg: #fff;
-  --badge-wip-fg:  #000; --badge-wip-bg:  #fff;
-  --badge-done-fg: #000; --badge-done-bg: #fff;
 
   --shadow-card: none;
   --shadow-lift: none;

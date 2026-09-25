@@ -6,7 +6,8 @@
 /* ============================================================
    1. 프로젝트 섹션
    <section class="proj-section" id="robotics" data-category="robotics">
-   data-category 하나로 그 안의 카드·수치가 분야색을 따라온다.
+   data-category 는 마크업에 남아 있지만 색으로 쓰지 않는다 —
+   분야 구분은 섹션 제목과 순서가 이미 하고 있다.
    ============================================================ */
 
 .proj-section {
@@ -88,8 +89,8 @@
   border-start-end-radius: var(--r-sm);
 }
 
-.proj-card:hover { border-color: var(--cat); }
-.proj-card:hover .proj-card__title { color: var(--cat); }
+.proj-card:hover { border-color: var(--accent); }
+.proj-card:hover .proj-card__title { color: var(--accent); }
 
 .proj-card:focus-visible {
   outline: var(--focus-w) solid var(--focus-ring);
@@ -297,9 +298,12 @@
   background: currentcolor;
 }
 
-.badge--live { color: var(--badge-live-fg); background: var(--badge-live-bg); }
-.badge--wip  { color: var(--badge-wip-fg);  background: var(--badge-wip-bg); }
-.badge--done { color: var(--badge-done-fg); background: var(--badge-done-bg); }
+/* 상태색(초록·호박·회색)도 걷어냈다. 배지 글자가 "진행 중" · "완료" ·
+   "운영 중" 이라고 이미 말하므로 색이 더 얹을 정보가 없다.
+   구분은 앞의 점 표식이 채워졌는지 비었는지로만 한다. */
+.badge--live,
+.badge--wip,
+.badge--done { color: var(--text-muted); background: var(--surface-2); }
 
 /* 끝난 것에 채운 점을 찍으면 진행 중처럼 읽힌다. 속을 비운다. */
 .badge--done::before { background: none; box-shadow: inset 0 0 0 1.5px currentcolor; }
@@ -337,7 +341,7 @@
   text-decoration: none;
 }
 .proj-row > a:hover { background: var(--surface-2); }
-.proj-row > a:hover .proj-row__title { color: var(--cat); }
+.proj-row > a:hover .proj-row__title { color: var(--accent); }
 
 @media (min-width: 720px) {
   .proj-row > a {
@@ -400,7 +404,7 @@
   color: var(--text-faint);
 }
 
-.proj-list--xref .proj-row > a:hover .proj-row__title { color: var(--cat); }
+.proj-list--xref .proj-row > a:hover .proj-row__title { color: var(--accent); }
 
 /* ============================================================
    6. 경력 표

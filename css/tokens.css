@@ -33,18 +33,7 @@
   --d-accent:        #79b0ff;
   --d-accent-weak:   #1a2740;
 
-  --d-cat-robotics:  #79b0ff;
-  --d-cat-software:  #4fc7ac;
-  --d-cat-game:      #c3a3ff;
-  --d-cat-music:     #e8b761;
-  --d-cat-robotics-tint: #141d2c;
-  --d-cat-software-tint: #10231f;
-  --d-cat-game-tint:     #1d1730;
-  --d-cat-music-tint:    #251f10;
 
-  --d-badge-live-fg: #4ad3a4;  --d-badge-live-bg: #12241d;
-  --d-badge-wip-fg:  #e8b761;  --d-badge-wip-bg:  #26200f;
-  --d-badge-done-fg: #a6a6b0;  --d-badge-done-bg: #20232a;
 
   /* 다크에서도 종이처럼 밝게 두는 도면 바닥. filter 반전을 대신한다. */
   --d-paper:      #f2f2f4;
@@ -66,19 +55,7 @@
   --accent:        #1a5fd0;
   --accent-weak:   #e8effb;
 
-  /* 분야색. 의미를 색 하나로만 나르지 않는다 — 항상 글자가 같이 간다. */
-  --cat-robotics:  #1a5fd0;
-  --cat-software:  #0f6b5c;
-  --cat-game:      #6d3bc4;
-  --cat-music:     #94540a;
-  --cat-robotics-tint: #eaf1fc;
-  --cat-software-tint: #e7f4f1;
-  --cat-game-tint:     #f1ecfb;
-  --cat-music-tint:    #faf1e2;
 
-  --badge-live-fg: #116149;  --badge-live-bg: #e7f5ef;
-  --badge-wip-fg:  #8a5300;  --badge-wip-bg:  #fbf1de;
-  --badge-done-fg: #52525b;  --badge-done-bg: #f1f1f3;
 
   --paper:      #ffffff;
   --paper-edge: #dcdce0;
@@ -86,9 +63,12 @@
   --shadow-card: none;
   --shadow-lift: none;
 
-  /* 섹션이 data-cat을 안 달았을 때의 기본 분야색 */
-  --cat: var(--accent);
-  --cat-tint: var(--accent-weak);
+  /* 분야를 색으로 구분하지 않는다. 분야는 섹션 제목과 순서로 이미 구분되고,
+     색까지 쓰면 "텍스트 중심"이 아니라 색으로 분류한 대시보드가 된다.
+     --cat 은 이름만 남기고 값은 중립 선 색이다. 카드 상단 바, 섹션 밑줄,
+     수치 카드 왼쪽 선이 전부 이 하나를 쓴다. */
+  --cat: var(--border-strong);
+  --cat-tint: var(--surface-2);
 
   /* ---- 타이포 ------------------------------------------------- */
   /* 서브셋을 맨 앞에 둔다. 서브셋에 없는 글자는 브라우저가 글자 단위로
@@ -185,18 +165,7 @@
     --accent:        var(--d-accent);
     --accent-weak:   var(--d-accent-weak);
 
-    --cat-robotics:  var(--d-cat-robotics);
-    --cat-software:  var(--d-cat-software);
-    --cat-game:      var(--d-cat-game);
-    --cat-music:     var(--d-cat-music);
-    --cat-robotics-tint: var(--d-cat-robotics-tint);
-    --cat-software-tint: var(--d-cat-software-tint);
-    --cat-game-tint:     var(--d-cat-game-tint);
-    --cat-music-tint:    var(--d-cat-music-tint);
 
-    --badge-live-fg: var(--d-badge-live-fg);  --badge-live-bg: var(--d-badge-live-bg);
-    --badge-wip-fg:  var(--d-badge-wip-fg);   --badge-wip-bg:  var(--d-badge-wip-bg);
-    --badge-done-fg: var(--d-badge-done-fg);  --badge-done-bg: var(--d-badge-done-bg);
 
     --paper:      var(--d-paper);
     --paper-edge: var(--d-paper-edge);
@@ -222,18 +191,7 @@
   --accent:        var(--d-accent);
   --accent-weak:   var(--d-accent-weak);
 
-  --cat-robotics:  var(--d-cat-robotics);
-  --cat-software:  var(--d-cat-software);
-  --cat-game:      var(--d-cat-game);
-  --cat-music:     var(--d-cat-music);
-  --cat-robotics-tint: var(--d-cat-robotics-tint);
-  --cat-software-tint: var(--d-cat-software-tint);
-  --cat-game-tint:     var(--d-cat-game-tint);
-  --cat-music-tint:    var(--d-cat-music-tint);
 
-  --badge-live-fg: var(--d-badge-live-fg);  --badge-live-bg: var(--d-badge-live-bg);
-  --badge-wip-fg:  var(--d-badge-wip-fg);   --badge-wip-bg:  var(--d-badge-wip-bg);
-  --badge-done-fg: var(--d-badge-done-fg);  --badge-done-bg: var(--d-badge-done-bg);
 
   --paper:      var(--d-paper);
   --paper-edge: var(--d-paper-edge);
@@ -247,16 +205,11 @@
 :root[data-theme="light"] { color-scheme: light; }
 
 /* ------------------------------------------------------------
-   분야색 스코프
-   .proj-section[data-cat="robotics"] 처럼 한 번만 달면
-   그 안의 카드·배지·임팩트가 전부 var(--cat)으로 따라온다.
-   카드마다 클래스를 붙일 필요가 없다.
+   분야 스코프
+   마크업의 data-category 는 그대로 두지만 색을 입히지 않는다.
+   분야별 색으로 되돌리려면 여기에 네 줄을 다시 넣고
+   --cat / --cat-tint 를 분야색으로 매핑하면 된다.
    ------------------------------------------------------------ */
-/* 마크업은 data-category 를 씁니다. data-cat 도 같이 받아 둡니다. */
-[data-category="robotics"], [data-cat="robotics"] { --cat: var(--cat-robotics); --cat-tint: var(--cat-robotics-tint); }
-[data-category="software"], [data-cat="software"] { --cat: var(--cat-software); --cat-tint: var(--cat-software-tint); }
-[data-category="game"],     [data-cat="game"]     { --cat: var(--cat-game);     --cat-tint: var(--cat-game-tint); }
-[data-category="music"],    [data-cat="music"]    { --cat: var(--cat-music);    --cat-tint: var(--cat-music-tint); }
 
 /* 모션을 줄여 달라고 한 사람에게는 duration을 0으로 준다.
    각 컴포넌트가 var(--dur)만 쓰면 여기 한 줄로 전부 꺼진다. */

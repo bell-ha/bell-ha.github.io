@@ -83,7 +83,7 @@
 <h2 class="detail-section__title">Contributions</h2>
 <div class="contrib"><h3 class="contrib__title">V1 — 위치추정 파이프라인 3단</h3><p>어안 보정 → 마커 검출 → SolvePnP(평면 마커 네 점으로 상대 자세를 푸는 계산) → 회귀 보정층 → 칼만 필터로 쌓았습니다. 오차가 거리·각도에 따라 <strong>일정하게 치우치는</strong> 것을 확인해, 편향 자체를 학습으로 상쇄하는 보정층을 붙였습니다. 8단계 중 7단계가 실기체에서 동작했습니다.</p></div>
 <div class="contrib"><h3 class="contrib__title">V1을 접은 판단</h3><p>깎아서 될 문제가 아니었습니다. 어라운드뷰는 차량 바로 주변을 보라고 달린 장치인데 휠체어는 그 밖에서 출발합니다. <strong>보정은 왜곡을 펴는 것이지 찍히지 않은 곳을 보이게 하지 못합니다.</strong> 그래서 카메라를 움직이는 쪽에 실었습니다 — 대상까지의 거리가 항상 가까우면 이 문제 자체가 생기지 않습니다.</p>
-<figure class="figure figure--wide"><img class="figure__img--diagram" src="../../images/wc-v1-coverage.svg" alt="어라운드뷰는 차량 바로 주변을 보라고 달린 장치다. 점선이 위치를 모르는 구간이고, 휠체어는 그 밖에서 출발한다." loading="lazy"><figcaption class="figure__caption">어라운드뷰는 차량 바로 주변을 보라고 달린 장치다. 점선이 위치를 모르는 구간이고, 휠체어는 그 밖에서 출발한다.</figcaption></figure></div>
+<figure class="figure figure--wide"><img class="figure__img--diagram" src="../../images/wc-v1-coverage.svg" alt="" loading="lazy"></figure></div>
 <div class="contrib"><h3 class="contrib__title">V2 — 차량 부위 6종을 따로 탐지하고 번호판을 기준자로 삼았다</h3><p>공개 데이터셋은 차량을 상자 하나로만 잡아 정렬 기준이 없었습니다. 실차 121장과 목업 60장을 직접 촬영·라벨링해 YOLOv8을 다시 학습시켜 6종을 개별 탐지했습니다(mAP50 0.995는 6종 중 최고값). 카메라가 한 대라 절대 거리를 알 수 없어, 규격이 정해진 번호판 335 × 155 mm를 기준자로 삼고 핀홀 모델로 거리와 각도를 계산했습니다.</p></div>
 </section>
 <section class="detail-section" id="troubleshooting">
