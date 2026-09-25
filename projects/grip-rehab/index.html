@@ -67,24 +67,26 @@
 </header>
 <section class="detail-section" id="impact">
 <h2 class="detail-section__title">Impact</h2>
-<ul class="impact-grid"><li class="impact-item"><span class="impact-item__num">4<span class="impact-item__unit">단</span></span><span class="impact-item__label">스파이크 제거 → 중간값 → 이동평균 → 데드존으로 손떨림을 걸러냄</span></li><li class="impact-item"><span class="impact-item__num">3<span class="impact-item__unit">종</span></span><span class="impact-item__label">센서를 추상화해 로드셀 없이도 게임 로직을 개발</span></li><li class="impact-item"><span class="impact-item__num">100<span class="impact-item__unit">Hz</span></span><span class="impact-item__label">아두이노가 보내는 속도와 게임 루프 60 FPS를 스레드로 분리</span></li></ul>
+<ul class="impact-grid"><li class="impact-item"><span class="impact-item__num">4<span class="impact-item__unit">단</span></span><span class="impact-item__label">스파이크 제거 → 중간값 → 이동평균 → 데드존으로 손떨림을 걸러냄</span></li><li class="impact-item"><span class="impact-item__num">3<span class="impact-item__unit">종</span></span><span class="impact-item__label">센서 구현을 키보드·아두이노·라즈베리파이로 나눠 로드셀 없이도 게임을 개발</span></li><li class="impact-item"><span class="impact-item__num">100<span class="impact-item__unit">Hz</span></span><span class="impact-item__label">아두이노가 보내는 속도와 게임 루프 60 FPS를 스레드로 분리</span></li></ul>
 </section>
 <section class="detail-section" id="background">
 <h2 class="detail-section__title">Background</h2>
 <p>악력을 회복해야 하는 환자의 재활 훈련은 반복적이고 지루해서 오래 하기 어렵습니다. 쥐는 힘을 실시간으로 읽어 게임과 소리로 돌려주면 훈련을 이어갈 수 있을 것이라고 봤습니다.</p>
 <p>만들어 보니 게임보다 신호 쪽이 어려웠습니다. 로드셀에서 나오는 원신호는 손이 닿는 순간 수십 킬로그램짜리 값이 튀고, 힘을 유지해도 값이 계속 흔들려서 게임 입력으로 바로 쓸 수 없었습니다.</p>
+<figure class="figure figure--wide figure--video"><div class="video-embed"><iframe src="https://www.youtube-nocookie.com/embed/_I-ejlEAkNM" title="쥐는 힘이 그대로 게임 입력이 된다." loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><figcaption class="figure__caption">쥐는 힘이 그대로 게임 입력이 된다.</figcaption></figure>
 </section>
 <section class="detail-section" id="architecture">
 <h2 class="detail-section__title">Architecture</h2>
-<figure class="figure figure--wide" tabindex="0" role="region" aria-label="도면 — 가로로 스크롤할 수 있습니다"><img class="figure__img--diagram" src="../../images/grip-pipeline.svg" alt="grip pipeline" loading="lazy"></figure>
+<figure class="figure figure--wide" tabindex="0" role="region" aria-label="도면 — 가로로 스크롤할 수 있습니다"><img class="figure__img--arch" src="../../images/grip-arch.png" alt="grip arch" loading="lazy"></figure>
 <p>아두이노는 HX711로 로드셀을 읽어 보내기만 하고 판단은 라즈베리파이의 파이썬이 합니다. 센서 읽기는 별도 스레드에 두고, 게임 루프는 그 스레드가 갱신한 최신값 하나만 읽어 갑니다.</p>
+<figure class="figure figure--wide" tabindex="0" role="region" aria-label="도면 — 가로로 스크롤할 수 있습니다"><img class="figure__img--photo" src="../../images/grip-hardware.jpg" alt="" loading="lazy"><figcaption class="figure__caption">3D 출력한 로드셀 마운트에 HX711과 아두이노를 얹었다.</figcaption></figure>
 </section>
 <section class="detail-section" id="contributions">
 <h2 class="detail-section__title">Contributions</h2>
-<div class="contrib"><h3 class="contrib__title">필터 네 단계의 순서를 정했다</h3><p>스파이크 제거, 중간값, 이동평균, 데드존 순서로 걸렀습니다. 스파이크를 먼저 버리지 않으면 뒤의 중간값과 이동평균이 계산에 쓰는 구간이 오염되고, 데드존을 먼저 걸면 스파이크가 그대로 지나갑니다. 급히 올라가는 값만 막고 내려가는 값은 통과시켰는데, 손을 빨리 놓는 것은 정상 동작이기 때문입니다.</p></div>
-<div class="contrib"><h3 class="contrib__title">큐를 쓰지 않았다</h3><p>아두이노는 100Hz로 보내고 게임 루프는 60Hz로 돕니다. 센서가 더 빠르니 큐에 쌓으면 지연이 누적돼 화면이 손보다 늦게 반응합니다. 그래서 잠금으로 보호한 최신값 하나만 읽고, 큐는 진동 모터 명령을 보내는 반대 방향에만 썼습니다.</p></div>
-<div class="contrib"><h3 class="contrib__title">사용자마다 기준을 다시 잡는다</h3><p>시작할 때 영점 3초, 최대 악력 5초를 측정해 그 사람 기준으로 난이도를 맞춥니다. 한 번 잡은 값은 파일로 남겨서 다음 실행에서는 건너뜁니다. 매번 다시 재게 하면 게임을 켜는 것 자체가 일이 됩니다.</p></div>
-<div class="contrib"><h3 class="contrib__title">하드웨어 없이 게임을 개발할 수 있게 했다</h3><p><code>GripSensor</code> 인터페이스에 키보드와 아두이노, 라즈베리파이 세 가지 구현을 뒀습니다. 로드셀이 없어도 게임 로직을 개발하고 디버깅할 수 있어서, 두 사람이 하나의 하드웨어를 기다리지 않아도 됐습니다.</p></div>
+<div class="contrib"><h3 class="contrib__title">4단 필터 — 순서가 설계</h3><p>스파이크 제거, 중간값, 이동평균, 데드존 순서로 걸렀습니다. 스파이크를 먼저 버리지 않으면 뒤의 중간값과 이동평균이 계산에 쓰는 구간이 오염되고, 데드존을 먼저 걸면 스파이크가 그대로 지나갑니다. 급히 올라가는 값만 막고 내려가는 값은 통과시켰는데, 손을 빨리 놓는 것은 정상 동작이기 때문입니다.</p></div>
+<div class="contrib"><h3 class="contrib__title">큐 없이 최신값 하나</h3><p>아두이노는 100Hz로 보내고 게임 루프는 60Hz로 돕니다. 센서가 더 빠르니 큐에 쌓으면 지연이 누적돼 화면이 손보다 늦게 반응합니다. 그래서 잠금으로 보호한 최신값 하나만 읽고, 큐는 진동 모터 명령을 보내는 반대 방향에만 썼습니다.</p></div>
+<div class="contrib"><h3 class="contrib__title">사용자별 캘리브레이션</h3><p>시작할 때 영점 3초, 최대 악력 5초를 측정해 그 사람 기준으로 난이도를 맞춥니다. 한 번 잡은 값은 파일로 남겨서 다음 실행에서는 건너뜁니다. 매번 다시 재게 하면 게임을 켜는 것 자체가 일이 됩니다.</p></div>
+<div class="contrib"><h3 class="contrib__title">하드웨어 없이 개발 가능한 구조</h3><p><code>GripSensor</code> 인터페이스에 키보드와 아두이노, 라즈베리파이 세 가지 구현을 뒀습니다. 로드셀이 없어도 게임 로직을 개발하고 디버깅할 수 있어서, 두 사람이 하나의 하드웨어를 기다리지 않아도 됐습니다.</p></div>
 </section>
 <section class="detail-section" id="troubleshooting">
 <h2 class="detail-section__title">Troubleshooting</h2>

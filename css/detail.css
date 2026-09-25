@@ -194,8 +194,8 @@
 
 /* 카드로 띄우지 않고 왼쪽 선 하나로 묶는다 — 장식을 덜어내는 쪽. */
 .ts-item {
-  padding-inline-start: var(--sp-4);
-  margin-block-end: var(--sp-5);
+  padding-inline-start: var(--sp-5);
+  margin-block-end: var(--sp-8);
   border-inline-start: var(--hairline) solid var(--border-strong);
 }
 
@@ -215,14 +215,17 @@
 
 @media (min-width: 560px) {
   .ts-item__rows {
-    grid-template-columns: 3.25rem minmax(0, 1fr);
-    gap: var(--sp-2) var(--sp-4);
+    grid-template-columns: 3.5rem minmax(0, 1fr);
+    gap: var(--sp-4) var(--sp-5);   /* 행 사이를 벌려 네 항목이 따로 읽히게 */
   }
 }
 
+/* 키와 값이 붙어 한 덩어리로 보였다. 키는 더 작고 옅게, 대문자 간격을 줘서
+   "라벨"로 읽히게 하고 값과의 대비를 키운다. */
 .ts-item__key {
   font-size: var(--fs-xs);
-  font-weight: var(--fw-semi);
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.06em;
   color: var(--text-faint);
   white-space: nowrap;
 }
@@ -235,8 +238,8 @@
 
 .ts-item__val {
   margin: 0;
-  font-size: var(--fs-sm);
-  line-height: var(--lh-body);
+  font-size: var(--fs-body);
+  line-height: 1.7;
   color: var(--text-muted);
   max-inline-size: var(--measure);
 }

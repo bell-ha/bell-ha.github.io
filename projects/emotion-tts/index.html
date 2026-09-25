@@ -74,8 +74,8 @@
 </section>
 <section class="detail-section" id="contributions">
 <h2 class="detail-section__title">Contributions</h2>
-<div class="contrib"><h3 class="contrib__title">인식 값을 그대로 쓰면 목소리가 흔들린다</h3><p>표정 인식은 프레임 단위로 판정하기 때문에 같은 표정을 유지해도 결과가 계속 바뀝니다. 그 값을 바로 합성에 넘기면 한 문장 안에서 감정이 여러 번 달라집니다. 지수이동평균으로 값을 누르고 다수결 투표를 겹쳐서, 짧게 스쳐 간 오판정이 문장 전체의 감정을 바꾸지 못하게 했습니다.</p></div>
-<div class="contrib"><h3 class="contrib__title">감정과 합성 사이를 서버로 나눴다</h3><p>MediaPipe로 얼굴을 찾고 CNN으로 표정을 분류한 뒤, 추정한 감정을 JSON으로 Flask 서버에 넘기면 서버가 TTS를 호출할 때 프롬프트로 반영합니다. 웹 화면에서는 문장 종결부마다 감정 태그가 자동으로 붙고, 사용자가 그 결과를 보고 고칠 수 있습니다.</p></div>
+<div class="contrib"><h3 class="contrib__title">프레임마다 튀는 인식 값 안정화</h3><p>표정 인식은 프레임 단위로 판정하기 때문에 같은 표정을 유지해도 결과가 계속 바뀝니다. 그 값을 바로 합성에 넘기면 한 문장 안에서 감정이 여러 번 달라집니다. 지수이동평균으로 값을 누르고 다수결 투표를 겹쳐서, 짧게 스쳐 간 오판정이 문장 전체의 감정을 바꾸지 못하게 했습니다.</p></div>
+<div class="contrib"><h3 class="contrib__title">감정 추정과 합성 분리</h3><p>MediaPipe로 얼굴을 찾고 CNN으로 표정을 분류한 뒤, 추정한 감정을 JSON으로 Flask 서버에 넘기면 서버가 TTS를 호출할 때 프롬프트로 반영합니다. 웹 화면에서는 문장 종결부마다 감정 태그가 자동으로 붙고, 사용자가 그 결과를 보고 고칠 수 있습니다.</p></div>
 </section>
 </article>
 <nav class="pager" aria-label="다른 프로젝트">

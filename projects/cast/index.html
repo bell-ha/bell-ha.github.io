@@ -76,13 +76,13 @@
 </section>
 <section class="detail-section" id="architecture">
 <h2 class="detail-section__title">Architecture</h2>
-<figure class="figure figure--wide" tabindex="0" role="region" aria-label="도면 — 가로로 스크롤할 수 있습니다"><img class="figure__img--diagram" src="../../images/cast-flow.svg" alt="cast flow" loading="lazy"></figure>
+<figure class="figure figure--wide" tabindex="0" role="region" aria-label="도면 — 가로로 스크롤할 수 있습니다"><img class="figure__img--arch" src="../../images/cast-arch.png" alt="cast arch" loading="lazy"></figure>
 </section>
 <section class="detail-section" id="contributions">
 <h2 class="detail-section__title">Contributions</h2>
-<div class="contrib"><h3 class="contrib__title">배정을 정수최적화 문제로 세웠다</h3><p>슬롯마다 들어온 작업을 8개 리전에 배정합니다. 목적함수는 탄소집약도와 네트워크 지연의 가중합이고 제약은 리전별 동시 실행 한도와 전량 처리입니다. 어느 리전에도 넣을 수 없는 작업이 생기면 해가 사라지기 때문에, 미배정을 허용하는 변수를 따로 두고 비용을 물렸습니다.</p></div>
-<div class="contrib"><h3 class="contrib__title">솔버를 건너뛰어도 되는 구간을 판별했다</h3><p>1년치를 전부 돌리는 실험에서는 슬롯마다 솔버를 부르는 비용이 그대로 실험 시간이 됩니다. 모든 리전의 가용량이 배치 크기보다 크면 용량 제약이 아무것도 묶지 않아서, 각 작업이 따로 가장 싼 리전을 고르는 것과 결과가 같습니다. 그 조건을 판별해 솔버를 건너뛰게 했습니다.</p></div>
-<div class="contrib"><h3 class="contrib__title">예측으로 옮기고 실측으로 정산한다</h3><p>처음에는 감축 효과가 실제보다 크게 나왔습니다. 작업을 옮길 때 쓴 예측 탄소집약도로 감축량까지 계산하고 있어서 예측이 빗나간 만큼이 감축으로 들어갔기 때문입니다. 라우팅은 예측값으로 하고 정산은 같은 시간의 실측값으로만 하도록 입력을 나눴습니다.</p></div>
+<div class="contrib"><h3 class="contrib__title">배정을 정수최적화 문제로</h3><p>슬롯마다 들어온 작업을 8개 리전에 배정합니다. 목적함수는 탄소집약도와 네트워크 지연의 가중합이고 제약은 리전별 동시 실행 한도와 전량 처리입니다. 어느 리전에도 넣을 수 없는 작업이 생기면 해가 사라지기 때문에, 미배정을 허용하는 변수를 따로 두고 비용을 물렸습니다.</p></div>
+<div class="contrib"><h3 class="contrib__title">솔버를 건너뛰어도 되는 구간</h3><p>1년치를 전부 돌리는 실험에서는 슬롯마다 솔버를 부르는 비용이 그대로 실험 시간이 됩니다. 모든 리전의 가용량이 배치 크기보다 크면 용량 제약이 아무것도 묶지 않아서, 각 작업이 따로 가장 싼 리전을 고르는 것과 결과가 같습니다. 그 조건을 판별해 솔버를 건너뛰게 했습니다.</p></div>
+<div class="contrib"><h3 class="contrib__title">예측으로 라우팅, 실측으로 정산</h3><p>처음에는 감축 효과가 실제보다 크게 나왔습니다. 작업을 옮길 때 쓴 예측 탄소집약도로 감축량까지 계산하고 있어서 예측이 빗나간 만큼이 감축으로 들어갔기 때문입니다. 라우팅은 예측값으로 하고 정산은 같은 시간의 실측값으로만 하도록 입력을 나눴습니다.</p></div>
 <div class="contrib"><h3 class="contrib__title">결과</h3><p>8개 리전에 1년치 작업 146,000건을 돌렸을 때 탄소가 56.9% 줄고 지연이 36.2ms 늘었습니다. 이 수치는 팀 전체 구성 기준이고, 제가 맡은 로드밸런서만 적용하면 56.7%입니다. 탄소와 지연의 가중치는 고정하지 않고 매 슬롯 파레토 곡선의 무릎점에서 자동으로 고르게 했습니다.</p></div>
 </section>
 </article>

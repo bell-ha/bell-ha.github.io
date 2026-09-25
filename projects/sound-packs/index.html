@@ -54,7 +54,7 @@
 <dt class="meta-key">역할</dt><dd>QLAUDIO 프리랜서 · 기획 · 제작 · 규격</dd>
 </dl>
 <ul class="detail-links">
-<li><a href="https://qlaudio.co.kr/" target="_blank" rel="noopener">store</a></li>
+<li><a href="https://qlaudio.co.kr/" target="_blank" rel="noopener">판매 페이지</a></li>
 </ul>
 <ul class="detail-tags">
 <li class="tag">Logic Pro X</li>
@@ -69,15 +69,15 @@
 <h2 class="detail-section__title">Background</h2>
 <p>게임 사운드·음악 제작사 QLAUDIO에서 2024년 한 해 동안 프리랜서로 일했습니다. 특정 게임에 납품한 것이 아니라 여섯 장르의 사운드팩을 만들어 상품으로 판매했습니다.</p>
 <p>장르마다 필요한 소리가 다릅니다. 같은 동작이라도 장르가 바뀌면 플레이어가 그 순간 알고 싶어 하는 것이 달라집니다. 그래서 장르별로 어떤 소리가 있어야 하는지를 먼저 정하고 한 벌씩 채워 넣었습니다.</p>
-<figure class="figure figure--wide" tabindex="0" role="region" aria-label="도면 — 가로로 스크롤할 수 있습니다"><img class="figure__img--photo" src="../../images/qlaudio-gamepacks.jpg" alt="" loading="lazy"><figcaption class="figure__caption">QLAUDIO 판매 페이지. 장르가 곧 상품 단위여서 여섯 종으로 나뉘어 있다.</figcaption></figure>
+<figure class="figure figure--wide" tabindex="0" role="region" aria-label="도면 — 가로로 스크롤할 수 있습니다"><img class="figure__img--screen" src="../../images/qlaudio-gamepacks.jpg" alt="" loading="lazy"><figcaption class="figure__caption">QLAUDIO 판매 페이지. 장르가 곧 상품 단위여서 여섯 종으로 나뉘어 있다.</figcaption></figure>
 </section>
 <section class="detail-section" id="contributions">
 <h2 class="detail-section__title">Contributions</h2>
 <div class="contrib"><h3 class="contrib__title">장르별로 먼저 정한 것</h3><p>아래 개수는 사이트에 공개한 목록 기준이고, 여섯 중 다섯 팩 1,456개를 담고 있습니다.</p>
 <div class="table-wrap"><table class="md-table"><thead><tr><th scope="col">사운드팩</th><th scope="col">개수</th><th scope="col">담은 소리</th></tr></thead><tbody><tr><td>카드 전략</td><td>344</td><td>뽑기, 내기, 파괴. 화면을 보지 않아도 무엇이 일어났는지 구별되게 만들었다</td></tr><tr><td>뱀서라이크</td><td>329</td><td>몰려오는 적을 상대하는 장르라 전투음과 이벤트음, 몬스터음이 함께 필요하다</td></tr><tr><td>FPS</td><td>312</td><td>발사, 피격, 재장전. 같은 총이라도 원거리와 근거리, 실내를 따로 만들었다</td></tr><tr><td>시뮬레이션</td><td>276</td><td>캐릭터 동작음과 생물 소리가 절반 이상</td></tr><tr><td>퍼즐</td><td>195</td><td>성공과 실패 같은 이벤트음과 UI음. 수백 번 반복되므로 짧고 다양하게</td></tr><tr><td>액션 격투</td><td>—</td><td>타격음. 공개 목록에는 포함되지 않았다</td></tr></tbody></table></div></div>
-<div class="contrib"><h3 class="contrib__title">카테고리에 무엇을 넣지 않을지가 장르를 갈랐다</h3><p>접두사 여섯 개로 분류를 고정했습니다. FPS에는 이벤트음과 몬스터음이 한 개도 없고 전투음 149개와 캐릭터 동작음 122개에 몰려 있습니다. 퍼즐은 반대로 이벤트음 163개가 그 팩의 84%이고 전투음과 캐릭터음, 몬스터음이 없습니다.</p></div>
-<div class="contrib"><h3 class="contrib__title">모노와 스테레오를 용도로 나눴다</h3><p>전체는 스테레오 978개에 모노 478개인데, 모노가 절반을 넘는 카테고리는 캐릭터 동작음 하나뿐입니다. 게임 안에서 3차원 위치를 갖는 소리라 스테레오로 만들면 엔진의 위치 계산과 충돌합니다.</p></div>
-<div class="contrib"><h3 class="contrib__title">이름 규칙을 제작 전에 정했다</h3><p>이름을 만들면서 붙이면 작업 순서가 그대로 이름에 남아서 구매자가 팩 안에서 원하는 소리를 찾기 어렵습니다. 분류 체계를 먼저 확정하고 제작물을 거기에 맞춰 넣었고, 이름 정리와 포맷 변환은 파이썬 스크립트로 처리했습니다.</p></div>
+<div class="contrib"><h3 class="contrib__title">빈 칸이 곧 장르 설계</h3><p>접두사 여섯 개로 분류를 고정했습니다. FPS에는 이벤트음과 몬스터음이 한 개도 없고 전투음 149개와 캐릭터 동작음 122개에 몰려 있습니다. 퍼즐은 반대로 이벤트음 163개가 그 팩의 84%이고 전투음과 캐릭터음, 몬스터음이 없습니다.</p></div>
+<div class="contrib"><h3 class="contrib__title">모노와 스테레오는 용도로 구분</h3><p>전체는 스테레오 978개에 모노 478개인데, 모노가 절반을 넘는 카테고리는 캐릭터 동작음 하나뿐입니다. 게임 안에서 3차원 위치를 갖는 소리라 스테레오로 만들면 엔진의 위치 계산과 충돌합니다.</p></div>
+<div class="contrib"><h3 class="contrib__title">이름 규칙은 제작 전에</h3><p>이름을 만들면서 붙이면 작업 순서가 그대로 이름에 남아서 구매자가 팩 안에서 원하는 소리를 찾기 어렵습니다. 분류 체계를 먼저 확정하고 제작물을 거기에 맞춰 넣었고, 이름 정리와 포맷 변환은 파이썬 스크립트로 처리했습니다.</p></div>
 </section>
 </article>
 <nav class="pager" aria-label="다른 프로젝트">

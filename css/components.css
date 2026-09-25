@@ -176,7 +176,7 @@
 .proj-card__tags {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--sp-2);
+  gap: 6px;
   margin-block-start: var(--sp-1);
   padding: var(--sp-1) 0 0;
   list-style: none;
@@ -245,10 +245,11 @@
    4. 태그 · 배지
    ============================================================ */
 
-/* 구 .award */
+/* 구 .award — 카드 안에서 마지막 "+N" 하나만 다음 줄로 떨어지지 않게
+   좌우 여백을 조금 줄였다(12px → 9px). */
 .tag {
   display: inline-block;
-  padding: 4px 12px;
+  padding: 4px 9px;
   font-size: 0.8rem;
   line-height: 1.5;
   color: var(--text);
@@ -399,8 +400,6 @@
   color: var(--text-faint);
 }
 
-.proj-list--xref 
-
 /* ============================================================
    6. 경력 표
    ------------------------------------------------------------
@@ -467,7 +466,12 @@
 .exp-table tbody tr:last-child td { border-block-end: 0; }
 
 @media (min-width: 680px) {
-  .exp-table tbody th { inline-size: 32%; }
+  /* 가장 긴 소속("단국대학교 배리어프리 ICT기술 연구센터(ITRC)")이 한 줄에
+     들어가는 폭. 32%(279px)에서는 두 줄로 접혔다. */
+  .exp-table tbody th { inline-size: 39%; }
+  /* 직위·기간은 내용 길이에 맞춰 최소로 — 남는 폭을 "하는 일"에 준다 */
+  .exp-table td:nth-of-type(1) { inline-size: 1%; white-space: nowrap; }
+  .exp-table td:nth-of-type(2) { inline-size: 1%; }
 }
 
 @media (max-width: 679px) {
@@ -607,20 +611,9 @@
 
 .figure { margin-block: var(--sp-5); }
 
-/* 좁은 화면에서 도면을 통째로 줄이면 안쪽 라벨이 2~3px 얼룩이 된다.
-   줄이지 말고 원본 크기로 두고 도판 안에서만 가로로 스크롤시킨다.
-   (스크롤 영역이라 키보드로도 닿게 tabindex="0" 을 마크업에 붙여 주세요.) */
-@media (max-width: 719px) {
-  .figure--wide {
-    overflow-x: auto;
-    overscroll-behavior-inline: contain;
-  }
-  .figure--wide img {
-    max-inline-size: none;
-    inline-size: auto;
-    min-inline-size: 560px;
-  }
-}
+/* 좁은 화면에서 도면을 가로 스크롤로 두었더니 "잘렸다"로 읽혔다.
+   게다가 max-block-size 와 겹쳐 1020×600 도면이 934px까지 커져
+   335px 칸을 599px 넘겼다. 스크롤을 걷고 폭에 맞춰 줄인다. */
 
 /* 세로 상한. 이게 없으면 원본 비율대로 화면을 가득 채워 스크롤이 길어진다.
    구 style.css 도 .project-media img 에 max-height: 560px 을 걸어 뒀었다.
@@ -635,17 +628,87 @@
   border-radius: var(--r-sm);
 }
 
-.figure__img--photo {
-  border: var(--hairline) solid var(--border-strong);
-  background: var(--surface-2);
+/* ---- 도판 등급 -------------------------------------------------
+   종류마다 필요한 크기가 다르다. 선택자는 전부 `.figure img.…` (0,2,1) 로
+   쓴다 — 클래스만 쓰면 (0,1,0)이라 바로 위 `.figure img` (0,1,1) 에 져서
+   폭 제한이 통째로 무시된다(두 라운드 동안 사진이 100%로 그려진 원인).
+
+     --arch     아키텍처 도면    폭 100% · 세로 넉넉히 (그룹 박스·계층이 있어 작으면 못 읽는다)
+     --diagram  직접 그린 도판   폭 100% · 세로 560px
+     --screen   화면 캡처        폭 72%  · 세로 480px
+     --photo    실물 사진        폭 44%  · 세로 420px
+   ---------------------------------------------------------------- */
+
+.figure img.figure__img--arch {
+  max-inline-size: 100%;
+  max-block-size: min(88vh, 760px);
+  padding: var(--sp-4);
+  background: var(--paper);
+  border: var(--hairline) solid var(--paper-edge);
 }
 
-/* 도면 기본형 — 밝은 판 위. 어느 테마에서도 반전하지 않는다. */
-.figure__img--diagram {
+.figure img.figure__img--diagram {
+  max-inline-size: 100%;
+  max-block-size: var(--figure-max-h);
   padding: var(--sp-3);
   background: var(--paper);
   border: var(--hairline) solid var(--paper-edge);
 }
+
+.figure img.figure__img--screen {
+  max-inline-size: 72%;
+  max-block-size: 480px;
+  border: var(--hairline) solid var(--border-strong);
+  background: var(--surface-2);
+}
+
+.figure img.figure__img--photo {
+  max-inline-size: 40%;
+  /* 세로로 긴 사진은 폭만 제한해서는 여전히 크다 — 높이도 함께 묶는다 */
+  max-block-size: 250px;
+  inline-size: auto;
+  border: var(--hairline) solid var(--border-strong);
+  background: var(--surface-2);
+}
+
+@media (max-width: 719px) {
+  /* 좁은 화면에서는 등급 차이를 좁힌다 — 안 그러면 캡처·사진이 손톱만 해진다 */
+  .figure img.figure__img--screen { max-inline-size: 100%; }
+  .figure img.figure__img--photo  { max-inline-size: 78%; }
+}
+
+/* ---- 영상 임베드 — 구 style.css .video-embed 그대로.
+   아키텍처 도면과 같은 급으로 크게 둔다. ---------------------------- */
+
+.video-embed {
+  position: relative;
+  inline-size: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #000;
+}
+
+.video-embed iframe {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  border: 0;
+}
+
+.figure--video { margin-block: var(--sp-6); }
+
+/* 사진 여러 장은 세로로 쌓지 말고 나란히 —
+   한 <figure> 안에 <img> 를 두세 장 넣으면 자동으로 배분된다. */
+.figure:has(img + img) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
+  gap: 12px;
+  align-items: start;
+}
+.figure:has(img + img) .figure__caption { grid-column: 1 / -1; }
+.figure:has(img + img) img { max-inline-size: 100%; inline-size: 100%; }
 
 /* 모노크롬 도면에 한해 옵트인하는 반전 */
 .figure__img--invert {
@@ -692,49 +755,41 @@
    방향 라벨이 내부 <span> 이므로 ::before 로 또 넣지 않는다.
    ============================================================ */
 
+/* 큰 상자 두 개는 무게가 과하다. 구 사이트의 .pager 처럼 작은 텍스트 링크로. */
 .pager {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--sp-3);
+  gap: var(--sp-4);
+  justify-content: space-between;
+  align-items: baseline;
   margin-block-start: var(--sp-8);
   padding-block-start: var(--sp-4);
-  border-block-start: var(--hairline) solid var(--border-strong);
+  border-block-start: var(--hairline) solid var(--border);
 }
 
 .pager__prev,
 .pager__next {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 2px;
-  flex: 1 1 14rem;
-  min-inline-size: 0;
-  min-block-size: var(--tap);
-  padding: var(--sp-3) var(--sp-4);
+  display: inline-block;
+  padding-block: 6px;
   font-size: var(--fs-sm);
-  font-weight: var(--fw-semi);
-  color: var(--text);
+  color: var(--text-muted);
   text-decoration: none;
-  background: var(--surface);
-  border: var(--hairline) solid var(--border);
-  border-radius: var(--r-sm);
-  transition: border-color var(--dur) var(--ease), color var(--dur) var(--ease);
+  max-inline-size: 22em;
 }
 
 .pager__prev > span,
 .pager__next > span {
+  display: block;
   font-size: var(--fs-xs);
-  font-weight: var(--fw-normal);
   color: var(--text-faint);
 }
 
-.pager__next { text-align: end; align-items: flex-end; }
+.pager__next { text-align: end; margin-inline-start: auto; }
 
-.pager__prev:hover,
-.pager__next:hover { border-color: var(--text); }
-
-/* 한쪽만 있을 때 반대쪽 자리를 비운다 */
-.pager__next:only-child { margin-inline-start: auto; flex-grow: 0; }
+@media (hover: hover) {
+  .pager__prev:hover,
+  .pager__next:hover { color: var(--text); text-decoration: underline; text-underline-offset: 0.18em; }
+}
 
 /* ============================================================
    11. 본문 표 (.md-table) — 마크다운 표에서 변환된 것
