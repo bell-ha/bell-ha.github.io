@@ -75,26 +75,26 @@
 </section>
 <section class="detail-section" id="architecture">
 <h2 class="detail-section__title">Architecture</h2>
-<figure class="figure figure--wide" tabindex="0" role="region" aria-label="도면 — 가로로 스크롤할 수 있습니다"><a class="figure__zoom" href="../../images/wc-system.png" target="_blank" rel="noopener" aria-label="원본 크기로 열기"><img class="figure__img--arch" src="../../images/wc-system.png" alt="wc system" width="2840" height="1193" loading="lazy"></a></figure>
+<figure class="figure figure--wide"><img class="figure__img--arch" src="../../images/wc-system.png" alt="" width="2840" height="1193" loading="lazy"><figcaption class="figure__caption">사람이 한 번 가르친 자세를 기준으로, 매 프레임 지금 보이는 모습과의 차이를 줄인다.</figcaption></figure>
 <p>휠체어에 실은 카메라가 차량 부위를 탐지하면 번호판 크기를 기준으로 거리와 각도를 계산하고, 그 값으로 정렬기가 바퀴를 움직입니다. 가까워지면 카메라로는 잘 보이지 않아 초음파가 기준을 넘겨받습니다.</p>
 </section>
 <section class="detail-section" id="contributions">
 <h2 class="detail-section__title">Contributions</h2>
 <div class="contrib"><h3 class="contrib__title">V1 — 차량 카메라로 위치 추정</h3><p>어안 렌즈 보정, 마커 검출, SolvePnP로 자세를 구한 뒤 회귀 보정층과 칼만 필터를 얹었습니다. 오차가 거리와 각도에 따라 일정한 방향으로 치우치는 것을 확인하고, 그 편향을 학습으로 상쇄하는 보정층을 설계했습니다. 8단계 중 7단계가 실기체에서 동작했습니다.</p>
-<figure class="figure figure--wide" tabindex="0" role="region" aria-label="도면 — 가로로 스크롤할 수 있습니다"><img class="figure__img--photo" src="../../images/wheelchair-v1.jpg" alt="wheelchair v1" width="929" height="335" loading="lazy"></figure>
+<figure class="figure figure--wide"><img class="figure__img--photo" src="../../images/wheelchair-v1.jpg" alt="" width="929" height="335" loading="lazy"><figcaption class="figure__caption">V1 실기체. 차량에 달린 어안 카메라 두 대로 휠체어의 마커를 좇았다.</figcaption></figure>
 <figure class="figure figure--wide figure--video"><div class="video-embed"><iframe src="https://www.youtube-nocookie.com/embed/o30saxUv7JM" title="V1 실기체 테스트. 어안 2뷰로 마커를 추적해 탑뷰 맵에 위치를 찍는다." loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><figcaption class="figure__caption">V1 실기체 테스트. 어안 2뷰로 마커를 추적해 탑뷰 맵에 위치를 찍는다.</figcaption></figure></div>
 <div class="contrib"><h3 class="contrib__title">V1에서 V2로 — 카메라를 옮긴 이유</h3><p>어라운드뷰는 차량 바로 주변을 보라고 달린 장치인데 휠체어는 그 바깥에서 출발합니다. 멀어질수록 마커가 작아지고 렌즈 가장자리로 밀려서, 보정으로는 채울 수 없는 구간이 남았습니다. 캘리브레이션은 왜곡을 펴는 작업이지 찍히지 않은 곳을 보이게 하지는 못합니다. 그래서 카메라를 휠체어에 실어 대상까지의 거리가 항상 가깝게 만들었습니다.</p>
-<figure class="figure figure--wide" tabindex="0" role="region" aria-label="도면 — 가로로 스크롤할 수 있습니다"><a class="figure__zoom" href="../../images/wc-v1-coverage.svg" target="_blank" rel="noopener" aria-label="원본 크기로 열기"><img class="figure__img--diagram" src="../../images/wc-v1-coverage.svg" alt="wc v1 coverage" width="1020" height="600" loading="lazy"></a></figure>
-<figure class="figure figure--wide" tabindex="0" role="region" aria-label="도면 — 가로로 스크롤할 수 있습니다"><a class="figure__zoom" href="../../images/wc-where-camera.svg" target="_blank" rel="noopener" aria-label="원본 크기로 열기"><img class="figure__img--diagram" src="../../images/wc-where-camera.svg" alt="wc where camera" width="1020" height="600" loading="lazy"></a></figure></div>
-<div class="contrib"><h3 class="contrib__title">V2 — 부위 6종 탐지와 번호판 기준자</h3><p>공개 데이터셋은 차량을 상자 하나로만 잡아서 정렬에 쓸 기준이 없었습니다. 실차 121장과 목업 60장을 직접 촬영하고 라벨링해 YOLOv8을 다시 학습시켜 사이드미러와 번호판, 후미등 등 6종을 개별 탐지했습니다. 목업을 더 학습시킨 뒤 같은 영상 2,513프레임에서 번호판 검출이 118건에서 718건으로 늘었고 평균 신뢰도도 0.26에서 0.89가 됐습니다.</p>
-<figure class="figure figure--wide" tabindex="0" role="region" aria-label="도면 — 가로로 스크롤할 수 있습니다"><a class="figure__zoom" href="../../images/wc-detect-compare.jpg" target="_blank" rel="noopener" aria-label="원본 크기로 열기"><img class="figure__img--screen" src="../../images/wc-detect-compare.jpg" alt="" width="1280" height="360" loading="lazy"></a><figcaption class="figure__caption">왼쪽이 공개 데이터셋만 쓴 모델, 오른쪽이 직접 촬영분을 더 학습시킨 모델. 같은 프레임에서 번호판·후미등·엠블럼을 각각 잡는다.</figcaption></figure>
+<figure class="figure figure--wide"><img class="figure__img--diagram" src="../../images/wc-v1-coverage.svg" alt="" width="1020" height="600" loading="lazy"><figcaption class="figure__caption">어라운드뷰는 차량 바로 주변을 보라고 달린 장치다. 휠체어는 그 밖에서 출발한다.</figcaption></figure>
+<figure class="figure figure--wide"><img class="figure__img--diagram" src="../../images/wc-where-camera.svg" alt="" width="1020" height="600" loading="lazy"><figcaption class="figure__caption">카메라를 차량에 두느냐 휠체어에 두느냐 — 이 선택이 두 버전을 갈랐다.</figcaption></figure></div>
+<div class="contrib"><h3 class="contrib__title">V2 — 부위 6종 탐지와 번호판 기준자</h3><p>공개 데이터셋은 차량을 상자 하나로만 잡아서 정렬에 쓸 기준이 없었습니다. 실차 121장과 목업 60장을 직접 촬영하고 라벨링해 YOLOv8을 다시 학습시켜 사이드미러와 번호판, 후미등 등 6종을 개별 탐지했습니다. 목업을 더 학습시킨 뒤 같은 영상 2,513프레임에서 번호판 검출이 118건에서 718건으로 늘었고 평균 신뢰도도 0.26에서 0.89가 됐습니다. 다만 이 영상은 학습에 쓴 촬영분과 같은 세션이라 홀드아웃이 아닙니다. 검출 건수와 신뢰도가 오른 것이지 정밀도를 잰 값은 아니고, 실차 성능은 아직 재검증하지 못했습니다.</p>
+<figure class="figure figure--wide"><img class="figure__img--screen" src="../../images/wc-detect-compare.jpg" alt="" width="1280" height="360" loading="lazy"><figcaption class="figure__caption">왼쪽이 공개 데이터셋만 쓴 모델, 오른쪽이 직접 촬영분을 더 학습시킨 모델. 같은 프레임에서 번호판·후미등·엠블럼을 각각 잡는다.</figcaption></figure>
 <p>카메라가 한 대라 절대 거리를 알 수 없어서, 국가 표준으로 크기가 정해진 번호판을 기준자로 삼고 핀홀 모델로 거리와 각도를 계산했습니다. 실차는 단형(335 × 155 mm), 목업은 장형(520 × 110 mm)이라 규격을 따로 넣었습니다.</p></div>
 </section>
 <section class="detail-section" id="troubleshooting">
 <h2 class="detail-section__title">Troubleshooting</h2>
 <div class="ts-item"><h3 class="ts-item__title">튜닝으로 풀 문제와 설계를 바꿔야 하는 문제</h3><dl class="ts-item__rows"><dt class="ts-item__key">문제</dt><dd class="ts-item__val">V1에서 보정층과 칼만 필터를 계속 붙였는데도 먼 구간의 오차가 줄지 않았습니다.</dd><dt class="ts-item__key">원인</dt><dd class="ts-item__val">파라미터 문제가 아니라 그 구간이 아예 찍히지 않는 것이었습니다. 이미 7단계까지 동작하던 상태라 버리기 아까웠고, 팀에서도 아무도 먼저 말을 꺼내지 않았습니다.</dd><dt class="ts-item__key">해결</dt><dd class="ts-item__val">마커를 더 키울 수도 보정으로 메울 수도 없다는 근거를 정리해서 카메라를 휠체어로 옮기자고 제안했습니다. 바뀌는 부분이 제 담당이었기 때문에 시뮬레이션을 실물로 옮기는 작업까지 맡았습니다.</dd><dt class="ts-item__key">결과</dt><dd class="ts-item__val">경로 생성은 그대로 쓸 수 있어서 팀원의 작업은 영향을 받지 않았습니다.</dd></dl></div>
 <div class="ts-item"><h3 class="ts-item__title">Jetson Nano에서 프리징</h3><dl class="ts-item__rows"><dt class="ts-item__key">문제</dt><dd class="ts-item__val">추론을 돌리면 보드가 멈춰서 아무 응답이 없었습니다.</dd><dt class="ts-item__key">원인</dt><dd class="ts-item__val">메모리가 모자라 스왑이 부족해진 것이었습니다.</dd><dt class="ts-item__key">해결</dt><dd class="ts-item__val">스왑을 4GB로 늘리고 입력 해상도를 320픽셀로 낮췄습니다.</dd><dt class="ts-item__key">결과</dt><dd class="ts-item__val">15FPS로 지속 구동했고 추론에 42ms가 걸렸습니다.</dd></dl></div>
-<div class="ts-item"><h3 class="ts-item__title">어디까지 됐는지</h3><figure class="figure figure--wide" tabindex="0" role="region" aria-label="도면 — 가로로 스크롤할 수 있습니다"><a class="figure__zoom" href="../../images/wc-parking-9step.svg" target="_blank" rel="noopener" aria-label="원본 크기로 열기"><img class="figure__img--diagram" src="../../images/wc-parking-9step.svg" alt="wc parking 9step" width="1020" height="660" loading="lazy"></a></figure><p>주차 9단계를 실기체에서 확인했지만 자동으로 도는 것은 정렬 1·2단계까지이고 3단계부터는 수동으로 조작합니다. 출차 경로는 설계까지 했습니다. 휠체어에 붙는 장치가 계속 늘고 카메라와 초음파가 동시에 놓치면 복구할 방법이 없어서 UWB 측위를 검토하고 있습니다.</p></div>
+<div class="ts-item"><h3 class="ts-item__title">어디까지 됐는지</h3><figure class="figure figure--wide"><img class="figure__img--diagram" src="../../images/wc-parking-9step.svg" alt="" width="1020" height="660" loading="lazy"><figcaption class="figure__caption">주차 9단계와 각 단계가 근거로 삼는 센서. 출차는 이 순서를 뒤집은 7단계다.</figcaption></figure><p>주차 9단계를 실기체에서 확인했지만 자동으로 도는 것은 정렬 1·2단계까지이고 3단계부터는 수동으로 조작합니다. 출차 경로는 설계까지 했습니다. 휠체어에 붙는 장치가 계속 늘고 카메라와 초음파가 동시에 놓치면 복구할 방법이 없어서 UWB 측위를 검토하고 있습니다.</p></div>
 </section>
 </article>
 <nav class="pager" aria-label="다른 프로젝트">
@@ -104,6 +104,7 @@
 </main>
 <footer class="site-footer">
   <div class="container">
+    <p><a class="to-top" href="#main">↑ 맨 위로</a></p>
     <p>Jongha Lee · <a href="mailto:jongha8273@gmail.com">jongha8273@gmail.com</a> · <a href="https://github.com/bell-ha" target="_blank" rel="noopener">GitHub</a></p>
   </div>
 </footer>

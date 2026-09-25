@@ -66,7 +66,7 @@
 </header>
 <section class="detail-section" id="impact">
 <h2 class="detail-section__title">Impact</h2>
-<ul class="impact-grid"><li class="impact-item"><span class="impact-item__num">6<span class="impact-item__unit">갈래</span></span><span class="impact-item__label">공인 IP 하나를 SSH 3개·NodePort 3개로 갈라 노드와 서비스를 노출</span></li><li class="impact-item"><span class="impact-item__num">5<span class="impact-item__unit">단계</span></span><span class="impact-item__label">Ansible 롤에 실행 가드를 걸어 몇 번 돌려도 같은 상태가 되게 함</span></li></ul>
+<ul class="impact-grid"><li class="impact-item"><span class="impact-item__num">6<span class="impact-item__unit">갈래</span></span><span class="impact-item__label">공인 IP 하나를 SSH 3개·NodePort 3개로 갈라 노드와 서비스를 노출</span></li><li class="impact-item"><span class="impact-item__num">5<span class="impact-item__unit">단계</span></span><span class="impact-item__label">마스터 초기화 → CNI → 워커 합류 → LB → 앱 순으로 롤을 끊어 순서를 고정</span></li></ul>
 </section>
 <section class="detail-section" id="background">
 <h2 class="detail-section__title">Background</h2>
@@ -74,7 +74,7 @@
 </section>
 <section class="detail-section" id="architecture">
 <h2 class="detail-section__title">Architecture</h2>
-<figure class="figure figure--wide" tabindex="0" role="region" aria-label="도면 — 가로로 스크롤할 수 있습니다"><a class="figure__zoom" href="../../images/k8s-arch.png" target="_blank" rel="noopener" aria-label="원본 크기로 열기"><img class="figure__img--arch" src="../../images/k8s-arch.png" alt="k8s arch" width="2826" height="1024" loading="lazy"></a></figure>
+<figure class="figure figure--wide"><img class="figure__img--arch" src="../../images/k8s-arch.png" alt="" width="2826" height="1024" loading="lazy"><figcaption class="figure__caption">Terraform이 VM을 만들고 Ansible이 정해진 순서로 세운다. 공인 IP 하나를 여섯 갈래로 가른다.</figcaption></figure>
 </section>
 <section class="detail-section" id="contributions">
 <h2 class="detail-section__title">Contributions</h2>
@@ -90,6 +90,7 @@
 </main>
 <footer class="site-footer">
   <div class="container">
+    <p><a class="to-top" href="#main">↑ 맨 위로</a></p>
     <p>Jongha Lee · <a href="mailto:jongha8273@gmail.com">jongha8273@gmail.com</a> · <a href="https://github.com/bell-ha" target="_blank" rel="noopener">GitHub</a></p>
   </div>
 </footer>
