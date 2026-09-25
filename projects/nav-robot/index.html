@@ -72,11 +72,13 @@
 </section>
 <section class="detail-section" id="background">
 <h2 class="detail-section__title">Background</h2>
-<p>실내 이동에서 가장 막히는 구간은 층을 넘어갈 때입니다. 기존 안내 로봇은 버튼 앞까지만 데려다주고 누르는 것은 사용자 몫으로 남깁니다.</p>
+<p>ITRC 과제로 만든 실내 안내 로봇입니다. 시각장애인 사용자가 손잡이를 잡고 로봇을 따라 걸으면 목적지까지 데려다줍니다.</p>
+<p>기존 안내 로봇은 엘리베이터 버튼 앞까지만 데려다주고 누르는 것은 사용자 몫으로 남깁니다. 버튼을 볼 수 없는 사람에게는 문제를 옮긴 것이지 푼 것이 아닙니다.</p>
 <figure class="figure figure--wide"><img class="figure__img--diagram" src="../../images/fig4-gap.svg" alt="" width="1020" height="600" loading="lazy"><figcaption class="figure__caption">층간 이동을 하는 로봇도, 시각장애인을 안내하는 로봇도 있다. 둘이 만나는 자리가 비어 있다.</figcaption></figure>
-<p>당사자 인터뷰에서 나온 요구는 셋이었습니다.</p>
-<ul><li>층을 넘어갈 수 있어야 한다</li><li>사람들이 지나가는 방향을 따라 움직여야 한다</li><li>로봇이 알아서 움직이는 대신 상황을 설명하고 사용자의 결정을 따라야 한다</li></ul>
-<p>본체는 상용 제품(Hello Robot Stretch SE3)이고, 그 위의 주행·음성·엘리베이터와 이것들을 묶는 상태 기계까지 혼자 구현했습니다.</p>
+<p>무엇을 만들지는 당사자 인터뷰에서 정했습니다. 요구는 셋이었습니다.</p>
+<ul><li>마주 오는 사람은 방향을 보고 피하고, 같은 방향으로 가는 사람은 따라갈 것</li><li>엘리베이터를 스스로 타고 층을 넘을 것</li><li>로봇이 알아서 움직이는 대신 상황을 설명하고 사용자의 결정을 따를 것</li></ul>
+<p>첫 번째가 이름에 붙은 &quot;사회적 규범&quot;입니다. 사람을 피해야 할 장애물로만 보지 않고, 어느 쪽으로 가는 사람인지에 따라 다르게 움직입니다.</p>
+<p>본체는 상용 제품(Hello Robot Stretch SE3)입니다. 손잡이와 그 위의 주행·사람 추적·음성·엘리베이터, 이것들을 묶는 상태 기계는 직접 만들었습니다.</p>
 </section>
 <section class="detail-section" id="architecture">
 <h2 class="detail-section__title">Architecture</h2>
