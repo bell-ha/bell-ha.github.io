@@ -91,14 +91,13 @@
   --fs-h1:      clamp(1.8rem, 1.35rem + 2.2vw, 2.6rem);  /* 상세 제목 = 구 .name 과 같은 단계 */
   --fs-h2:      clamp(1.35rem, 1.1rem + 1.1vw, 1.6rem);  /* 구 h2 */
   --fs-h3:      1.1rem;                                   /* 구 .project h4 */
-  --fs-lead:    1.1rem;      /* .about-lead · .detail-oneline — h3 와 같은 단계로 묶었다 */
   --fs-body:    0.95rem;                                  /* 구 .about p */
   --fs-sm:      0.9rem;                                   /* 구 .summary */
   --fs-xs:      0.8rem;                                   /* 구 캡션·태그 */
   --fs-num:     1.3rem;                                   /* 구 .stat-value */
 
   --lh-tight: 1.25;
-  --lh-snug:  1.4;
+  --lh-snug:  1.55;  /* 작은 글·캡션·알약 — 1.4 / 1.5 / 1.55 로 갈려 있던 것을 하나로 */
   --lh-body:  1.65;   /* 구 body */
 
   --fw-normal: 400;

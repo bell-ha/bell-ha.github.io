@@ -106,7 +106,7 @@
    한 단 더 줄여 넷이 모두 제 자리에서 눌리게 한다. */
 @media (max-width: 360px) {
   .site-nav { gap: 0; }
-  .site-nav a { padding-inline: 5px; font-size: 0.72rem; }
+  .site-nav a { padding-inline: 5px; font-size: 0.72rem; }  /* 320px 전용 */
   .theme-toggle { padding-inline: var(--sp-2); }
 }
 
@@ -189,15 +189,6 @@ h2 {
   max-inline-size: var(--measure-prose);
 }
 
-.about__lead {
-  max-inline-size: var(--container-text);
-  font-size: var(--fs-lead);
-  font-weight: var(--fw-semi);
-  line-height: var(--lh-snug);
-  color: var(--text);
-  margin-block-end: var(--sp-4);
-}
-
 /* ============================================================
    프로필 — 구 style.css 의 .profile 블록을 값 그대로 옮겼다.
    사진 크기(clamp 140~280px)와 18% 라운드가 사용자가 말한 "이전 사진 크기"다.
@@ -230,7 +221,7 @@ h2 {
 }
 
 .roles p {
-  font-size: 0.95rem;
+  font-size: var(--fs-body);
   margin-bottom: 6px;
 }
 
@@ -243,7 +234,7 @@ h2 {
 
 .links a {
   color: var(--text-muted);
-  font-size: 0.9rem;
+  font-size: var(--fs-sm);
   overflow-wrap: anywhere;
 }
 
@@ -256,7 +247,7 @@ h2 {
   border-radius: 8px;
   text-decoration: none;
   color: var(--text);
-  font-size: 0.9rem;
+  font-size: var(--fs-sm);
   transition: background-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
 }
 
@@ -275,16 +266,12 @@ h2 {
    리드 문장도 이 규칙에 덮여 1.6 으로 나왔다 — 선택자가 더 구체적이라서다. */
 .about p {
   font-size: var(--fs-body);
-  line-height: 1.6;
   margin-bottom: 8px;
 }
 
-.about-lead,
-.about__lead {
-  font-size: 1.06rem;
+.about-lead {
   font-weight: var(--fw-semi);
   color: var(--text);
-  line-height: 1.5;
   margin-bottom: 16px;
   max-inline-size: none;
 }
