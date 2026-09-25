@@ -71,12 +71,12 @@
 <section class="detail-section" id="background">
 <h2 class="detail-section__title">Background</h2>
 <p>같은 연산이라도 어느 지역에서 몇 시에 돌리는지에 따라 배출되는 탄소가 달라집니다. 급하지 않은 작업을 전기가 깨끗한 리전과 시간대로 옮기는 스케줄러입니다. 4인 팀이고 역할은 이렇게 나눴습니다.</p>
-<ul><li><strong>팀원</strong> — 작업을 미뤄서 깨끗한 시간대로 옮기는 스케줄러 본체, 탄소집약도를 예측하는 LSTM</li><li><strong>본인</strong> — 리전 배정 ILP 로드밸런서, 용량을 고려한 온라인 확장, 선행연구 5종 재현, 재현성 확인용 실행 하네스</li></ul>
+<ul><li><strong>팀원</strong> — 작업을 미뤄서 깨끗한 시간대로 옮기는 스케줄러 본체, 탄소집약도를 예측하는 LSTM</li><li><strong>본인</strong> — 리전 배정 ILP 로드밸런서, 용량을 고려한 온라인 확장, 선행연구 5종 재현, 재현성 확인용 실행 하네스</li></ul>
 <p>8개 리전의 1년치 실측 탄소집약도 위에 작업 146,000건을 합성해 돌린 시뮬레이션입니다. 탄소집약도는 실측값이고 작업 목록은 생성한 것입니다.</p>
 </section>
 <section class="detail-section" id="architecture">
 <h2 class="detail-section__title">Architecture</h2>
-<figure class="figure figure--wide"><img class="figure__img--arch" src="../../images/cast-arch.png" alt="" width="2491" height="1229" loading="lazy"><figcaption class="figure__caption">배정은 한 시간 전 예측으로 하고, 정산은 같은 시각 실측으로만 한다.</figcaption></figure>
+<figure class="figure figure--wide"><img class="figure__img--arch" src="../../images/cast-arch.png" alt="" width="2491" height="1229" loading="lazy"><figcaption class="figure__caption">배정은 한 시간 전 예측으로 하고, 정산은 같은 시각 실측으로만 한다.</figcaption></figure>
 </section>
 <section class="detail-section" id="contributions">
 <h2 class="detail-section__title">Contributions</h2>
