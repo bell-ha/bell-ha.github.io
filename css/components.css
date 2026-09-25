@@ -243,14 +243,28 @@
 /* 수치가 넷인 페이지 — 위 auto-fill 규칙으로는 872px 칸에 셋만 들어가
    넷째가 혼자 아랫줄로 내려간다. 넓은 화면에서만 넷으로 세우고,
    칸이 좁아지면 위 규칙으로 돌아가 둘 · 하나로 접힌다. */
-@media (min-width: 900px) {
+/* 넷일 때는 칸 폭이 들쭉날쭉하면 안 된다 — 라벨 줄을 한 줄씩 지정해 두었고
+   그중 가장 긴 "LOCKED, READY, NAV, PAUSED" 가 179px 을 요구한다.
+   920px 이상에서는 본문 폭이 872px 로 고정되므로 칸이 항상 209px(안쪽 183px)이라
+   그 줄이 접히지 않는다. 그 아래는 둘, 560px 아래는 하나로 내린다. */
+.impact-grid--4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+@media (max-width: 559px) {
+  .impact-grid--4 { grid-template-columns: 1fr; }
+}
+
+@media (min-width: 920px) {
   .impact-grid--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 }
 
 .impact-grid .impact-item { margin-block-start: 0; }
 
+/* 줄을 지정한 라벨 — 한 항목이 한 줄이다 */
+.impact-item__line { display: block; }
+
 .impact-grid > .impact-item {
-  padding: var(--sp-3) var(--sp-4);
+  /* 좌우 16px 이면 넷일 때 안쪽이 175px 이라 가장 긴 라벨 줄(179px)이 접힌다 */
+  padding: var(--sp-3);
   background: var(--surface);
   border: var(--hairline) solid var(--border);
   border-inline-start: var(--cat-bar) solid var(--cat);
