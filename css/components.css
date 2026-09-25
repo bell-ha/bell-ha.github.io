@@ -231,6 +231,13 @@
   padding: 0;
   list-style: none;
 }
+/* 수치가 넷인 페이지 — 위 auto-fill 규칙으로는 872px 칸에 셋만 들어가
+   넷째가 혼자 아랫줄로 내려간다. 넓은 화면에서만 넷으로 세우고,
+   칸이 좁아지면 위 규칙으로 돌아가 둘 · 하나로 접힌다. */
+@media (min-width: 900px) {
+  .impact-grid--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
 .impact-grid .impact-item { margin-block-start: 0; }
 
 .impact-grid > .impact-item {
