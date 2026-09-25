@@ -28,9 +28,13 @@ body {
   /* 한글은 어절 단위로 끊어야 읽힌다. 영문 토큰만 따로 쪼갠다. */
   word-break: keep-all;
   overflow-wrap: break-word;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
+  /* -webkit-font-smoothing: antialiased 를 넣지 않는다.
+     macOS 에서 이 한 줄이 서브픽셀 안티에일리어싱을 끄고 회색조로 바꾼다 —
+     글자가 얇아지고 색이 옅어져서, 같은 Pretendard 를 같은 크기로 그려도
+     다른 글꼴처럼 보인다. 구 사이트에는 없던 선언이다.
+     구 사이트와 픽셀 대조: 이 줄이 있을 때 About 문단의 14.68%가 어긋났고,
+     빼면 0%가 된다(한 줄이 1px 어긋나는 것은 절 위치의 소수점 반올림).
+     text-rendering: optimizeLegibility 도 구 사이트에 없어 같이 뺀다. */
 }
 
 /* ---- 제목 ----------------------------------------------------
