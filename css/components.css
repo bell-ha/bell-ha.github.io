@@ -205,6 +205,15 @@
   white-space: nowrap;
 }
 
+/* 머리말이 숫자가 아니라 말일 때 — 숫자용 조판을 벗긴다.
+   -0.01em 은 숫자를 붙여 세우려고 넣은 값인데 한글에 걸리면 눌려 보이고,
+   고정폭 숫자(tabular-nums)는 한글에서 아무 일도 하지 않는다. */
+.impact-item__num--text {
+  letter-spacing: normal;
+  font-variant-numeric: normal;
+  white-space: normal;
+}
+
 .impact-item__unit {
   margin-inline-start: 1px;
   font-size: 0.615em;   /* 20.8px 기준 12.8px — --fs-xs 와 같은 단계 */
