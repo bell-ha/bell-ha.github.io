@@ -243,6 +243,35 @@ body {
   color: var(--sub);
 }
 
+/* 주력 프로젝트에만 사이트 Impact 를 옮겨 적는다.
+   15개를 똑같은 두께로 쓰면 "무엇이 주력인가"가 안 보인다 —
+   두께 차이가 그 자체로 신호다. Impact 가 없는 프로젝트는 한 줄로 둔다. */
+.item-impact {
+  margin: 1.2mm 0 0;
+  padding-left: 4.6mm;
+  list-style: none;
+}
+
+.item-impact li {
+  position: relative;
+  padding-left: 3.2mm;
+  font-size: 8.2pt;
+  line-height: 1.42;
+  color: var(--sub);
+}
+
+.item-impact li::before {
+  content: "–";
+  position: absolute;
+  left: 0;
+}
+
+/* 머리말만 본문 색으로 세운다 — 훑을 때 이 말들이 먼저 잡힌다 */
+.item-impact b {
+  font-weight: 700;
+  color: var(--ink);
+}
+
 /* ===== Print button (screen only) ===== */
 
 
