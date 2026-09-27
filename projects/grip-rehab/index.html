@@ -52,7 +52,7 @@
 <h1 class="detail-title">악력 재활 훈련 시스템</h1>
 <p class="detail-oneline">악력으로 조작하는 재활 훈련 게임</p>
 <dl class="detail-meta">
-<dt class="meta-key">기간</dt><dd>2026.04 ~ 2026.09</dd>
+<dt class="meta-key">기간</dt><dd>2026.04 ~ 2026.07</dd>
 <dt class="meta-key">역할</dt><dd>2인 팀 ⁠·⁠ 하드웨어 설계, 신호처리 담당</dd>
 </dl>
 <ul class="detail-links">
@@ -68,7 +68,7 @@
 </header>
 <section class="detail-section" id="impact">
 <h2 class="detail-section__title">Impact</h2>
-<ul class="impact-grid"><li class="impact-item"><span class="impact-item__num impact-item__num--text">4단 필터</span><span class="impact-item__label"><span class="impact-item__line">스파이크 → 중간값 → 이동평균 → 데드존</span><span class="impact-item__line">8 kg 급상승 차단 ⁠·⁠ 1 kg 미만은 0</span></span></li><li class="impact-item"><span class="impact-item__num impact-item__num--text">4개의 소프트웨어</span><span class="impact-item__label"><span class="impact-item__line">게임 3종과 악력 신디사이저</span><span class="impact-item__line">요구하는 입력 특성이 서로 다름</span></span></li><li class="impact-item"><span class="impact-item__num impact-item__num--text">스레드 분리</span><span class="impact-item__label"><span class="impact-item__line">센서 80 Hz ⁠·⁠ 게임 루프 60 Hz</span><span class="impact-item__line">큐 대신 최신값 하나만 읽음</span></span></li></ul>
+<ul class="impact-grid"><li class="impact-item"><span class="impact-item__num">4<span class="impact-item__unit">단 필터</span></span><span class="impact-item__label"><span class="impact-item__line">스파이크 → 중간값 → 이동평균 → 데드존</span><span class="impact-item__line">8 kg 급상승 차단 ⁠·⁠ 1 kg 미만은 0</span></span></li><li class="impact-item"><span class="impact-item__num">4<span class="impact-item__unit">개의 소프트웨어</span></span><span class="impact-item__label"><span class="impact-item__line">게임 3종과 악력 신디사이저</span><span class="impact-item__line">요구하는 입력 특성이 서로 다름</span></span></li><li class="impact-item"><span class="impact-item__num impact-item__num--text">스레드 분리</span><span class="impact-item__label"><span class="impact-item__line">센서 80 Hz ⁠·⁠ 게임 루프 60 Hz</span><span class="impact-item__line">큐 대신 최신값 하나만 읽음</span></span></li></ul>
 </section>
 <section class="detail-section" id="background">
 <h2 class="detail-section__title">Background</h2>
@@ -100,7 +100,7 @@
 <div class="ts-item"><h3 class="ts-item__title">진동이 울리면 오른손 센서가 끊김</h3><dl class="ts-item__rows"><dt class="ts-item__key">문제</dt><dd class="ts-item__val">진동 모터가 돌 때만 한쪽 로드셀 값이 사라짐</dd><dt class="ts-item__key">원인</dt><dd class="ts-item__val">신호 간섭이 아니라 전류 부하. 모터를 아두이노 핀에서 직접 구동해, 센서 쪽 전원이 흔들림</dd><dt class="ts-item__key">해결</dt><dd class="ts-item__val">NPN 트랜지스터로 모터 구동 회로를 분리. 모터는 켜고 끄기만 하고 세기는 조절하지 않음</dd><dt class="ts-item__key">결과</dt><dd class="ts-item__val">회로를 바꿔 해결. 양손 값이 함께 유지됨</dd></dl></div>
 <div class="ts-item"><h3 class="ts-item__title">원신호를 그대로 쓰면 조작이 안 됨</h3><dl class="ts-item__rows"><dt class="ts-item__key">문제</dt><dd class="ts-item__val">손이 닿는 순간의 값이 최대 악력으로 기록됨. 유지 구간에서도 캐릭터가 떨림</dd><dt class="ts-item__key">원인</dt><dd class="ts-item__val">로드셀이 온도와 진동에 민감해, 순간 스파이크와 미세한 떨림이 함께 들어감</dd><dt class="ts-item__key">해결</dt><dd class="ts-item__val">네 단계 필터를 순서까지 고정해 적용. 캘리브레이션도 필터를 통과한 값으로만 잡음</dd><dt class="ts-item__key">결과</dt><dd class="ts-item__val">쥐는 힘이 그대로 입력이 됨</dd></dl></div>
 <div class="ts-item"><h3 class="ts-item__title">필터를 세게 걸면 반응이 느려짐</h3><dl class="ts-item__rows"><dt class="ts-item__key">문제</dt><dd class="ts-item__val">이동평균 윈도우를 키우면 신호는 매끄러운데, 두더지 잡기 반응이 늦어짐</dd><dt class="ts-item__key">원인</dt><dd class="ts-item__val">평활과 지연은 맞바꿈. 풍선은 안정성을, 두더지는 응답속도를 요구해 서로 반대</dd><dt class="ts-item__key">해결</dt><dd class="ts-item__val">중간값 3, 이동평균 5 조합으로 균형점을 잡음</dd><dt class="ts-item__key">결과</dt><dd class="ts-item__val">네 응용이 같은 파이프라인 하나로 동작</dd></dl></div>
-<div class="ts-item"><h3 class="ts-item__title">소리가 밀리고 음이 바뀔 때 Pop Noise 발생</h3><dl class="ts-item__rows"><dt class="ts-item__key">문제</dt><dd class="ts-item__val">힘을 바꿔도 소리가 늦게 따라옴. 음이 바뀌는 순간 Pop Noise</dd><dt class="ts-item__key">원인</dt><dd class="ts-item__val">aplay 파이프에 데이터가 쌓여 지연 누적. 주파수를 바꾸면 파형이 끊겨 Pop Noise</dd><dt class="ts-item__key">해결</dt><dd class="ts-item__val">청크 하나 재생 시간만큼 기다려 파이프를 비움. 위상을 누적해 파형을 이어 감</dd><dt class="ts-item__key">결과</dt><dd class="ts-item__val">지연이 ALSA 하드웨어 버퍼만 남음</dd></dl></div>
+<div class="ts-item"><h3 class="ts-item__title">소리가 밀리고 음이 바뀔 때 Pop Noise 발생</h3><dl class="ts-item__rows"><dt class="ts-item__key">문제</dt><dd class="ts-item__val">힘을 바꿔도 소리가 늦게 따라옴. 음이 바뀌는 순간 Pop Noise 발생</dd><dt class="ts-item__key">원인</dt><dd class="ts-item__val">aplay 파이프에 데이터가 쌓여 지연 누적. 주파수를 바꾸면 파형이 끊김</dd><dt class="ts-item__key">해결</dt><dd class="ts-item__val">청크 하나 재생 시간만큼 기다려 파이프를 비움. 위상을 누적해 파형을 이어 감</dd><dt class="ts-item__key">결과</dt><dd class="ts-item__val">남은 지연은 하드웨어 버퍼뿐. Pop Noise 사라짐</dd></dl></div>
 </section>
 </article>
 <nav class="pager" aria-label="다른 프로젝트">
