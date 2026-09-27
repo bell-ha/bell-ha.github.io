@@ -96,7 +96,7 @@
           <p class="item-title">악력 재활 훈련 시스템 <span class="item-period">2026.04 ~ 2026.07</span></p>
           <p class="item-desc">악력으로 조작하는 재활 훈련 게임 (2인 팀 ⁠·⁠ 하드웨어 설계, 신호처리 담당)</p>
           <p class="item-tech">HX711 · Arduino · Raspberry Pi · Python · Pygame</p>
-          <ul class="item-impact"><li><b>4단 필터</b> — 스파이크 → 중간값 → 이동평균 → 데드존으로 걸렀음</li><li><b>4개의 소프트웨어</b> — 게임 3종과 악력 신디사이저를 만들었음, 3초 유지 ⁠·⁠ 순간 도달 ⁠·⁠ 두 손 차이</li><li><b>스레드 분리</b> — 센서 80 Hz, 게임 루프 60 Hz로 떼어 놨음</li>
+          <ul class="item-impact"><li><b>4단 필터</b> — 스파이크 → 중간값 → 이동평균 → 데드존, 8 kg 급상승을 막고 1 kg 미만은 0으로 필터링</li><li><b>4개의 소프트웨어</b> — 게임 3종과 악력 신디사이저 제작, 3초 유지 ⁠·⁠ 순간 도달 ⁠·⁠ 두 손 차이로 입력을 분리</li><li><b>스레드 분리</b> — 센서 80 Hz, 게임 루프 60 Hz로 분리, 큐 대신 최신값 하나만 읽게함</li></ul>
         </div>
         <div class="item">
           <p class="item-title">두리(Doori) <span class="item-period">2025.12 ~ 2026.01</span></p>
@@ -193,8 +193,14 @@
   <section class="block compact">
     <h2 class="block-title">Certifications</h2>
     <div class="block-body">
-      <div class="line"><span class="key">2026.09</span><span class="val">정보처리기사 (한국산업인력공단)</span></div>
-      <div class="line"><span class="key">2026.06</span><span class="val">데이터분석 준전문가 ADsP (한국데이터산업진흥원)</span></div>
+      <div class="entry">
+  <div class="line line--head"><span class="key">2026.09.11</span><span class="val">정보처리기사</span></div>
+  <div class="line"><span class="key"></span><span class="val val--sub">한국산업인력공단</span></div>
+      </div>
+      <div class="entry">
+  <div class="line line--head"><span class="key">2026.06.05</span><span class="val">데이터분석 준전문가(ADsP)</span></div>
+  <div class="line"><span class="key"></span><span class="val val--sub">한국데이터산업진흥원</span></div>
+      </div>
     </div>
   </section>
 
