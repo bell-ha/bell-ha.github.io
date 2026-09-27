@@ -244,25 +244,7 @@ body {
 }
 
 /* ===== Print button (screen only) ===== */
-.print-btn {
-  position: fixed;
-  top: 20px;
-  right: 24px;
-  z-index: 10;
-  padding: 10px 20px;
-  border: 1px solid #bbb;
-  border-radius: 8px;
-  background: #fff;
-  font-family: inherit;
-  font-size: 0.9rem;
-  color: var(--ink);
-  cursor: pointer;
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
-}
 
-.print-btn:hover {
-  background: #f5f5f5;
-}
 
 /* ===== Print ===== */
 @page {
@@ -279,6 +261,7 @@ body {
   .page-num {
     display: none;
   }
+
 
   #pages {
     padding: 0;
@@ -322,6 +305,15 @@ body {
    인쇄(@media print)는 screen 쿼리라 영향을 받지 않는다.
    ============================================================ */
 @media screen and (max-width: 794px) {
+  /* 인쇄 버튼이 머리 사진을 덮지 않게 */
+  .print-btn {
+    position: static;
+    display: block;
+    width: calc(100% - 40px);
+    margin: 16px 20px 0;
+    box-shadow: none;
+  }
+
   /* 스크립트가 넣는 인라인 축소를 무력화 */
   #pages {
     transform: none !important;
@@ -426,15 +418,29 @@ body {
   .item-desc { padding-left: 14px; font-size: 0.875rem; line-height: 1.5; }
 
   /* 인쇄 버튼이 머리 사진을 덮지 않게 */
-  .print-btn {
-    position: static;
-    display: block;
-    width: calc(100% - 40px);
-    margin: 16px 20px 0;
-    box-shadow: none;
-  }
 }
 
 #pages {
   transform-origin: top left;
+}
+
+/* PDF 저장 단추 — 이력서에는 머리글이 없어 여기에만 둔다 */
+.print-btn {
+  position: fixed;
+  top: 20px;
+  right: 24px;
+  z-index: 10;
+  padding: 10px 20px;
+  border: 1px solid #bbb;
+  border-radius: 8px;
+  background: #fff;
+  font-family: inherit;
+  font-size: 0.9rem;
+  color: var(--ink);
+  cursor: pointer;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+}
+
+.print-btn:hover {
+  background: #f5f5f5;
 }

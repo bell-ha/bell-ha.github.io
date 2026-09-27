@@ -107,8 +107,7 @@
 @media (max-width: 360px) {
   .site-nav { gap: 0; }
   .site-nav a { padding-inline: 5px; font-size: 0.72rem; }  /* 320px 전용 */
-  .theme-toggle,
-  .print-btn { padding-inline: var(--sp-2); }
+  .theme-toggle { padding-inline: var(--sp-2); }
 }
 
 /* ---- 테마 토글 ------------------------------------------------
@@ -117,8 +116,7 @@
      라이트일 때 → "Dark"   (.label-light)
      다크일 때   → "Light"  (.label-dark)
    ---------------------------------------------------------------- */
-.theme-toggle,
-.print-btn {
+.theme-toggle {
   flex: none;
   display: inline-flex;
   align-items: center;
@@ -134,31 +132,13 @@
   border-radius: var(--r-sm);
   transition: color var(--dur) var(--ease), background-color var(--dur) var(--ease);
 }
-.theme-toggle:hover,
-.print-btn:hover { color: var(--text); background: var(--surface-2); }
+.theme-toggle:hover { color: var(--text); background: var(--surface-2); }
 
-/* ---- 인쇄 버튼 · 인쇄용 영상 주소 --------------------------------
-   PDF 버튼은 window.print() 를 부른다(theme.js). 좁은 화면에서는
-   머리줄에 버튼 둘이 서면 넘치고, 폰에서 인쇄하는 경우도 드물어 감춘다.
+/* ---- 인쇄용 영상 주소 --------------------------------------------
    .video-url 은 종이에만 나오는 줄이다 — 인쇄에서 YouTube iframe 이
    흰 빈 칸이 되어 주소가 사라지므로, 실제 링크로 심어 두고 print.css
    에서만 보이게 한다. 실제 <a> 라서 PDF 에서 선택·복사·클릭이 된다.
    ---------------------------------------------------------------- */
-.print-btn {
-  min-inline-size: 0;
-  inline-size: var(--tap);
-  padding: 0;
-  color: var(--text-faint);
-}
-
-.print-btn svg {
-  inline-size: 1rem;
-  block-size: 1rem;
-}
-
-.print-btn:hover { color: var(--text); }
-
-@media (max-width: 559px) { .print-btn { display: none; } }
 .video-url { display: none; }
 
 .theme-toggle .label-dark { display: none; }
