@@ -83,20 +83,24 @@
         <div class="item">
           <p class="item-title">SoNA (Social Norm-Aware Indoor Navigation Assistant) <span class="item-period">2025.12 ~</span></p>
           <p class="item-desc">사회적 규범 인식 기반 실내 자율 안내 로봇 시스템 (단독 개발 ⁠·⁠ ITRC 과제)</p>
-          <ul class="item-impact"><li><b>4개의 상태</b> — LOCKED, READY, NAV, PAUSED를 버튼과 음성으로만 이동</li><li><b>사회적 규범</b> — 사람의 방향을 탐지해 양보 및 추적, 엘리베이터 1층→5층</li><li><b>결함 관리</b> — 직접 기록한 결함 239건을 사용자 입장에서 해결</li><li><b>당사자 인터뷰</b> — 요구 3건 전부 반영, 밀기 기능은 구현 후 폐기</li><li><b>직접 만든 손잡이</b> — 버튼 둘과 압력센서, Fusion 설계 후 3D 출력</li></ul>
+          <p class="item-tech">ROS2 Humble · Nav2 · AMCL · OCR-RCNN · Python · Arduino · Autodesk Fusion</p>
+          <ul class="item-impact"><li><b>4개의 상태</b> — LOCKED, READY, NAV, PAUSED 네 상태를 버튼과 음성으로만 이동</li><li><b>사회적 규범</b> — 사람의 방향을 탐지해 양보 및 추적, 엘리베이터 1층→5층 이동</li><li><b>결함 관리</b> — 직접 기록한 결함 239건을 사용자 입장에서 해결</li><li><b>당사자 인터뷰</b> — 요구 3건 전부 반영, 밀기 기능은 제거 희망</li></ul>
         </div>
         <div class="item">
           <p class="item-title">전동휠체어 자동 주차 시스템 <span class="item-period">2025.12 ~</span></p>
           <p class="item-desc">운전하는 사용자를 위한 전동휠체어 적재 (3인 팀 ⁠·⁠ 위치추정과 인식, 통합 담당 ⁠·⁠ ITRC 과제)</p>
-          <ul class="item-impact"><li><b>카메라를 옮긴 재설계</b> — 먼 구간이 안 찍혀 차량 어라운드뷰에서 휠체어 탑재로</li><li><b>직접 구성한 데이터</b> — 실차 123장⁠·⁠목업 62장을 직접 촬영⁠·⁠라벨링, 부위 6종</li><li><b>IMU로 회전 보정</b> — 각도 대신 회전속도를 맞춰 진동 제거</li><li><b>하드웨어 최적화</b> — 갱신 주기 분리로 4 → 15 FPS</li></ul>
+          <p class="item-tech">Python · YOLOv8 · OpenCV · SolvePnP · Jetson Nano · AgileX TRACER</p>
+          <ul class="item-impact"><li><b>카메라를 옮긴 재설계</b> — 먼 구간이 안 찍혀 전면 개편, 차량 어라운드뷰 → 휠체어 탑재</li><li><b>직접 구성한 데이터</b> — 실차 121장⁠·⁠목업 60장 직접 라벨링, 차량 부품 6종⁠·⁠번호판을 자로 활용</li><li><b>IMU로 회전 보정</b> — 앞바퀴가 캐스터라 틀어짐을 못 읽어, 각도 대신 회전속도를 맞춰 진동 제거</li><li><b>하드웨어 최적화</b> — 디코딩이 코어 하나를 91% 점유, 갱신 주기 분리로 4 → 15 FPS 향상</li></ul>
         </div>
         <div class="item">
-          <p class="item-title">두리 AI 스마트 순찰 로봇 <span class="item-period">2025.12 ~ 2026.01</span></p>
-          <p class="item-desc">포트홀⁠·⁠점자블록 파손을 찾는 순찰 로봇 제안. 무한궤도 구조 설계와 Unity 시뮬레이션 검증 (2인 팀)</p>
+          <p class="item-title">두리(Doori) <span class="item-period">2025.12 ~ 2026.01</span></p>
+          <p class="item-desc">보도를 순찰하며 포트홀과 점자블록 파손을 찾는 AI 로봇 ⁠·⁠ 공모전 대상(2인 팀)</p>
+          <p class="item-tech">Unity 2022</p>
         </div>
         <div class="item">
           <p class="item-title">악력 재활 훈련 시스템 <span class="item-period">2026.04 ~ 2026.07</span></p>
           <p class="item-desc">악력으로 조작하는 재활 훈련 게임 (2인 팀 ⁠·⁠ 하드웨어 설계, 신호처리 담당)</p>
+          <p class="item-tech">HX711 · Arduino · Raspberry Pi · Python · Pygame</p>
           <ul class="item-impact"><li><b>4단 필터</b> — 스파이크 → 중간값 → 이동평균 → 데드존</li><li><b>4개의 소프트웨어</b> — 게임 3종과 악력 신디사이저, 요구하는 입력 특성이 서로 다름</li><li><b>스레드 분리</b> — 센서 80 Hz, 게임 루프 60 Hz 고정 dt</li></ul>
         </div>
       </div>

@@ -243,6 +243,19 @@ body {
   color: var(--sub);
 }
 
+/* 쓴 기술은 프로젝트 자리에서 말한다. Skills 블록은 32개로 줄인 요약이라
+   SolvePnP·AMCL·HX711 같은 34개와 버전(ROS2 Humble → ROS2)이 거기서 잘린다.
+   "무엇을 아는가"는 Skills 가, "어디서 썼는가"는 이 줄이 맡는다.
+   위계의 맨 아래 — 제목 10pt > 설명 9pt > Impact 8.2pt > 이 줄 7.8pt */
+.item-tech {
+  margin: 0.8mm 0 0;
+  padding-left: 4.6mm;
+  font-size: 7.8pt;
+  line-height: 1.4;
+  letter-spacing: 0.015em;
+  color: var(--sub);
+}
+
 /* 주력 프로젝트에만 사이트 Impact 를 옮겨 적는다.
    15개를 똑같은 두께로 쓰면 "무엇이 주력인가"가 안 보인다 —
    두께 차이가 그 자체로 신호다. Impact 가 없는 프로젝트는 한 줄로 둔다. */
