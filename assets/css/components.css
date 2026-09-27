@@ -357,7 +357,10 @@
 .proj-row { margin-block-start: 0; }
 .proj-row + .proj-row { border-block-start: var(--hairline) solid var(--border); }
 
-.proj-row > a {
+/* 상세 페이지가 있는 줄은 줄 전체가 링크다. 없는 줄(.proj-row__body)은
+   같은 격자만 쓰고, 링크는 제목 옆 작은 것 하나만 둔다. */
+.proj-row > a,
+.proj-row > .proj-row__body {
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--sp-1) var(--sp-4);
@@ -371,7 +374,8 @@
 
 
 @media (min-width: 720px) {
-  .proj-row > a {
+  .proj-row > a,
+  .proj-row > .proj-row__body {
     /* 마지막 열을 auto 로 두면 태그가 오른쪽 끝에 붙고, 태그 길이가
        제각각이라 우측 가장자리가 들쭉날쭉해진다. 고정폭 열에 왼쪽 정렬한다. */
     grid-template-columns: minmax(0, 19rem) minmax(0, 1fr) minmax(0, 11rem);
@@ -385,6 +389,17 @@
   line-height: var(--lh-snug);
   color: var(--text);
 }
+
+/* 줄 전체가 링크가 아닐 때 제목 옆에 붙는 작은 링크 */
+.proj-row__gh {
+  margin-inline-start: var(--sp-2);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-regular);
+  color: var(--text-faint);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.proj-row__gh:hover { color: var(--text); text-decoration: underline; }
 
 .proj-row__oneline {
   font-size: var(--fs-sm);

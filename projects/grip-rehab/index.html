@@ -53,11 +53,10 @@
 <p class="detail-oneline">악력으로 조작하는 재활 훈련 게임</p>
 <dl class="detail-meta">
 <dt class="meta-key">기간</dt><dd>2026.04 ~ 2026.09</dd>
-<dt class="meta-key">역할</dt><dd>2인 팀 · 소프트웨어 담당</dd>
+<dt class="meta-key">역할</dt><dd>2인 팀 ⁠·⁠ 하드웨어 설계, 신호처리 담당</dd>
 </dl>
 <ul class="detail-links">
 <li><a href="https://github.com/bell-ha/grip-rehab-system" target="_blank" rel="noopener">GitHub</a></li>
-<li><a href="https://www.youtube.com/watch?v=_I-ejlEAkNM" target="_blank" rel="noopener">YouTube</a></li>
 </ul>
 <ul class="detail-tags">
 <li class="tag">HX711</li>
@@ -69,36 +68,43 @@
 </header>
 <section class="detail-section" id="impact">
 <h2 class="detail-section__title">Impact</h2>
-<ul class="impact-grid"><li class="impact-item"><span class="impact-item__num">4<span class="impact-item__unit">단</span></span><span class="impact-item__label">스파이크 제거 → 중간값 → 이동평균 → 데드존으로 손떨림을 걸러냄</span></li><li class="impact-item"><span class="impact-item__num">3<span class="impact-item__unit">종</span></span><span class="impact-item__label">센서 구현을 키보드·아두이노·라즈베리파이로 나눠 로드셀 없이도 게임을 개발</span></li><li class="impact-item"><span class="impact-item__num">100<span class="impact-item__unit">Hz</span></span><span class="impact-item__label">아두이노가 보내는 속도와 게임 루프 60 FPS를 스레드로 분리</span></li></ul>
+<ul class="impact-grid"><li class="impact-item"><span class="impact-item__num impact-item__num--text">4단 필터</span><span class="impact-item__label"><span class="impact-item__line">스파이크 → 중간값 → 이동평균 → 데드존</span><span class="impact-item__line">8 kg 급상승 차단 ⁠·⁠ 1 kg 미만은 0</span></span></li><li class="impact-item"><span class="impact-item__num impact-item__num--text">4개의 소프트웨어</span><span class="impact-item__label"><span class="impact-item__line">게임 3종과 악력 신디사이저</span><span class="impact-item__line">요구하는 입력 특성이 서로 다름</span></span></li><li class="impact-item"><span class="impact-item__num impact-item__num--text">스레드 분리</span><span class="impact-item__label"><span class="impact-item__line">센서 80 Hz ⁠·⁠ 게임 루프 60 Hz</span><span class="impact-item__line">큐 대신 최신값 하나만 읽음</span></span></li></ul>
 </section>
 <section class="detail-section" id="background">
 <h2 class="detail-section__title">Background</h2>
-<p>악력을 회복해야 하는 환자의 재활 훈련은 반복적이고 지루해서 오래 하기 어렵습니다. 쥐는 힘을 실시간으로 읽어 게임과 소리로 돌려주면 훈련을 이어갈 수 있을 것이라고 봤습니다.</p>
-<p>만들어 보니 게임보다 신호 쪽이 어려웠습니다. 로드셀에서 나오는 원신호는 손이 닿는 순간 수십 킬로그램짜리 값이 튀고, 힘을 유지해도 값이 계속 흔들려서 게임 입력으로 바로 쓸 수 없었습니다.</p>
-<figure class="figure figure--wide figure--video"><div class="video-embed"><iframe src="https://www.youtube-nocookie.com/embed/_I-ejlEAkNM" title="쥐는 힘이 그대로 게임 입력이 된다." loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><p class="video-url">영상 <a href="https://youtu.be/_I-ejlEAkNM">youtu.be/_I-ejlEAkNM</a></p><figcaption class="figure__caption">쥐는 힘이 그대로 게임 입력이 된다.</figcaption></figure>
+<p>인구가 고령화되면서, 상지 기능이 떨어지는 환자가 늘고 있습니다.<br>악력은 생활 능력과 인지 기능의 지표로 쓰여, 꾸준한 측정과 훈련이 필요합니다.</p>
+<p>그러나 기존 재활은 단순 반복이라 지루하고, 측정과 훈련이 나뉘어, 경과가 쌓이지 않습니다.<br>상용 장비는 비싸고 조작이 복잡해, 인지 기능이 떨어진 사용자는 쓰기 어렵습니다.</p>
+<p>저비용 부품으로 하드웨어를 만들어, 측정⁠·⁠훈련⁠·⁠피드백을 하나로 묶었습니다.<br>모든 조작을 악력만으로 하게 해, 훈련을 이어가며, 상지 기능의 향상을 목표로 합니다.</p>
 </section>
 <section class="detail-section" id="architecture">
 <h2 class="detail-section__title">Architecture</h2>
-<figure class="figure figure--wide"><img class="figure__img--arch" src="../../assets/img/grip-rehab/grip-arch.png" alt="" width="2421" height="638" loading="lazy"><figcaption class="figure__caption">로드셀 값이 네 단계 필터를 거쳐 게임으로 가고, 게임은 다시 손으로 진동을 돌려보낸다.</figcaption></figure>
-<p>아두이노는 HX711로 로드셀을 읽어 보내기만 하고 판단은 라즈베리파이의 파이썬이 합니다. 센서 읽기는 별도 스레드에 두고, 게임 루프는 그 스레드가 갱신한 최신값 하나만 읽어 갑니다.</p>
-<figure class="figure figure--wide"><img class="figure__img--photo" src="../../assets/img/grip-rehab/grip-hardware.jpg" alt="" width="994" height="766" loading="lazy"><figcaption class="figure__caption">3D 출력한 로드셀 마운트에 HX711과 아두이노를 얹었다.</figcaption></figure>
+<figure class="figure figure--wide"><img class="figure__img--arch" src="../../assets/img/grip-rehab/grip-system-arch.png" alt="로드셀 둘이 HX711을 거쳐 아두이노로 들어가고, 아두이노와 라즈베리파이가 USB 시리얼로 양방향 통신한다. 라즈베리파이에서 스파이크·중간값·이동평균·데드존 파이프라인을 지난 값이 런처와 게임 4종으로 가고, 게임 이벤트는 진동 명령으로 되돌아간다." width="1588" height="1534" loading="lazy"></figure>
 </section>
 <section class="detail-section" id="contributions">
 <h2 class="detail-section__title">Contributions</h2>
-<div class="contrib"><h3 class="contrib__title">4단 필터 — 순서가 설계</h3><p>스파이크 제거, 중간값, 이동평균, 데드존 순서로 걸렀습니다. 스파이크를 먼저 버리지 않으면 뒤의 중간값과 이동평균이 계산에 쓰는 구간이 오염되고, 데드존을 먼저 걸면 스파이크가 그대로 지나갑니다. 급히 올라가는 값만 막고 내려가는 값은 통과시켰는데, 손을 빨리 놓는 것은 정상 동작이기 때문입니다.</p></div>
-<div class="contrib"><h3 class="contrib__title">큐 없이 최신값 하나</h3><p>아두이노는 100Hz로 보내고 게임 루프는 60Hz로 돕니다. 센서가 더 빠르니 큐에 쌓으면 지연이 누적돼 화면이 손보다 늦게 반응합니다. 그래서 잠금으로 보호한 최신값 하나만 읽고, 큐는 진동 모터 명령을 보내는 반대 방향에만 썼습니다.</p></div>
-<div class="contrib"><h3 class="contrib__title">사용자별 캘리브레이션</h3><p>시작할 때 영점 3초, 최대 악력 5초를 측정해 그 사람 기준으로 난이도를 맞춥니다. 한 번 잡은 값은 파일로 남겨서 다음 실행에서는 건너뜁니다. 매번 다시 재게 하면 게임을 켜는 것 자체가 일이 됩니다.</p></div>
-<div class="contrib"><h3 class="contrib__title">하드웨어 없이 개발 가능한 구조</h3><p><code>GripSensor</code> 인터페이스에 키보드와 아두이노, 라즈베리파이 세 가지 구현을 뒀습니다. 로드셀이 없어도 게임 로직을 개발하고 디버깅할 수 있어서, 두 사람이 하나의 하드웨어를 기다리지 않아도 됐습니다.</p></div>
+<div class="contrib contrib-side"><div class="contrib-side__text"><h3 class="contrib__title">하드웨어 설계</h3>
+<p>로드셀은 미세한 전압 변화만 내보내, HX711이 24비트로 증폭해 읽습니다.<br>아두이노가 두 채널을 받아, 라즈베리파이로 넘깁니다.</p>
+<ul><li>로드셀 2개 — 왼손과 오른손 각각 20 kg</li><li>HX711을 라이브러리 없이 bit⁠-⁠bang으로 직접 읽음</li><li>진동 모터는 HIGH/LOW 신호로만 동작</li></ul></div><figure class="figure"><img class="figure__img--photo" src="../../assets/img/grip-rehab/grip-hardware.jpg" alt="가운데에 3D 출력한 로드셀 마운트, 오른쪽 위에 아두이노 우노, 그 아래 HX711 증폭 모듈, 좌우에 진동 모터가 놓여 있다." width="994" height="766" loading="lazy"></figure></div>
+<div class="contrib contrib-side contrib-side--wide"><div class="contrib-side__text"><h3 class="contrib__title">4단 필터 — 순서가 설계</h3>
+<p>스파이크 제거, 중간값, 이동평균, 데드존 순서로 걸렀습니다.</p>
+<ul><li>스파이크 제거 — 직전 값보다 8 kg 이상 뛰면 직전 값으로</li><li>중간값 — 윈도우 3, 산발적 이상치를 걸러냄</li><li>이동평균 — 윈도우 5, 유지 구간의 미세 진동을 다듬음</li><li>데드존 — 1 kg 미만은 0, 손을 뗀 상태를 확실히 구분</li></ul></div><figure class="figure figure--wide figure--video"><div class="video-embed"><iframe src="https://www.youtube-nocookie.com/embed/_I-ejlEAkNM" title="프로젝트 영상" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><p class="video-url">영상 <a href="https://youtu.be/_I-ejlEAkNM">youtu.be/_I-ejlEAkNM</a></p></figure></div>
+<div class="contrib"><h3 class="contrib__title">스레드 분리</h3>
+<p>센서는 80 Hz, 게임 루프는 60 Hz 고정 dt로 돕니다.</p>
+<ul><li>메인에서 시리얼을 읽으면 읽기 지연이 프레임 드롭이 됨</li><li>잠금으로 보호한 최신값 하나만 읽고 큐는 쓰지 않음</li></ul></div>
+<div class="contrib"><h3 class="contrib__title">사용자별 캘리브레이션</h3>
+<p>로드셀은 개체마다 스케일이 다르고, 조립 상태에 따라 영점이 달라집니다.</p>
+<ul><li>첫 실행에서 영점 3초, 최대 악력 5초를 측정</li><li>calibration.json 에 남겨 다음 실행부터 재사용</li><li>측정한 최대 악력으로 그 사람 기준 난이도를 잡음</li></ul></div>
 </section>
 <section class="detail-section" id="troubleshooting">
 <h2 class="detail-section__title">Troubleshooting</h2>
-<div class="ts-item"><h3 class="ts-item__title">진동이 울리면 오른손 센서가 끊긴다</h3><dl class="ts-item__rows"><dt class="ts-item__key">문제</dt><dd class="ts-item__val">진동 모터가 돌 때만 한쪽 로드셀 값이 사라졌습니다.</dd><dt class="ts-item__key">원인</dt><dd class="ts-item__val">신호 간섭이 아니라 전류 부하였습니다. 모터를 아두이노 핀에서 직접 구동하면서 센서 쪽 전원이 흔들렸습니다.</dd><dt class="ts-item__key">해결</dt><dd class="ts-item__val">NPN 트랜지스터로 모터 구동 회로를 분리했습니다. 모터는 켜고 끄기만 하고 세기는 조절하지 않습니다.</dd><dt class="ts-item__key">결과</dt><dd class="ts-item__val">진동을 쓰면서도 양손 값이 함께 유지됩니다.</dd></dl></div>
-<div class="ts-item"><h3 class="ts-item__title">원신호를 그대로 쓰면 조작이 안 된다</h3><dl class="ts-item__rows"><dt class="ts-item__key">문제</dt><dd class="ts-item__val">손이 닿는 순간의 값이 최대 악력으로 기록돼 캘리브레이션이 망가지고, 힘을 유지하는 구간에서도 캐릭터가 떨었습니다.</dd><dt class="ts-item__key">원인</dt><dd class="ts-item__val">원신호에 접촉 충격과 진동이 함께 들어 있는데 둘의 대처 방법이 다릅니다.</dd><dt class="ts-item__key">해결</dt><dd class="ts-item__val">위의 네 단계 필터를 순서까지 고정해 적용하고, 캘리브레이션은 필터를 통과한 값으로만 잡았습니다.</dd><dt class="ts-item__key">결과</dt><dd class="ts-item__val">쥐는 힘이 그대로 입력이 됐습니다. 게임 3종과 신디사이저는 요구하는 입력 특성이 서로 달라서 필터 검증에 그대로 썼습니다.</dd></dl></div>
-<div class="ts-item"><h3 class="ts-item__title">직접 만든 것과 아닌 것</h3><p>로드셀 마운트는 3D 모델링해서 출력했고 아두이노 시리얼 프로토콜도 직접 설계했습니다. 다만 출력물 중에 직접 설계한 것으로 확인되는 것은 베이스 부품이고 나머지는 출처가 확인되지 않습니다.</p></div>
+<div class="ts-item"><h3 class="ts-item__title">진동이 울리면 오른손 센서가 끊김</h3><dl class="ts-item__rows"><dt class="ts-item__key">문제</dt><dd class="ts-item__val">진동 모터가 돌 때만 한쪽 로드셀 값이 사라짐</dd><dt class="ts-item__key">원인</dt><dd class="ts-item__val">신호 간섭이 아니라 전류 부하. 모터를 아두이노 핀에서 직접 구동해, 센서 쪽 전원이 흔들림</dd><dt class="ts-item__key">해결</dt><dd class="ts-item__val">NPN 트랜지스터로 모터 구동 회로를 분리. 모터는 켜고 끄기만 하고 세기는 조절하지 않음</dd><dt class="ts-item__key">결과</dt><dd class="ts-item__val">회로를 바꿔 해결. 양손 값이 함께 유지됨</dd></dl></div>
+<div class="ts-item"><h3 class="ts-item__title">원신호를 그대로 쓰면 조작이 안 됨</h3><dl class="ts-item__rows"><dt class="ts-item__key">문제</dt><dd class="ts-item__val">손이 닿는 순간의 값이 최대 악력으로 기록됨. 유지 구간에서도 캐릭터가 떨림</dd><dt class="ts-item__key">원인</dt><dd class="ts-item__val">로드셀이 온도와 진동에 민감해, 순간 스파이크와 미세한 떨림이 함께 들어감</dd><dt class="ts-item__key">해결</dt><dd class="ts-item__val">네 단계 필터를 순서까지 고정해 적용. 캘리브레이션도 필터를 통과한 값으로만 잡음</dd><dt class="ts-item__key">결과</dt><dd class="ts-item__val">쥐는 힘이 그대로 입력이 됨</dd></dl></div>
+<div class="ts-item"><h3 class="ts-item__title">필터를 세게 걸면 반응이 느려짐</h3><dl class="ts-item__rows"><dt class="ts-item__key">문제</dt><dd class="ts-item__val">이동평균 윈도우를 키우면 신호는 매끄러운데, 두더지 잡기 반응이 늦어짐</dd><dt class="ts-item__key">원인</dt><dd class="ts-item__val">평활과 지연은 맞바꿈. 풍선은 안정성을, 두더지는 응답속도를 요구해 서로 반대</dd><dt class="ts-item__key">해결</dt><dd class="ts-item__val">중간값 3, 이동평균 5 조합으로 균형점을 잡음</dd><dt class="ts-item__key">결과</dt><dd class="ts-item__val">네 응용이 같은 파이프라인 하나로 동작</dd></dl></div>
+<div class="ts-item"><h3 class="ts-item__title">소리가 밀리고 음이 바뀔 때 Pop Noise 발생</h3><dl class="ts-item__rows"><dt class="ts-item__key">문제</dt><dd class="ts-item__val">힘을 바꿔도 소리가 늦게 따라옴. 음이 바뀌는 순간 Pop Noise</dd><dt class="ts-item__key">원인</dt><dd class="ts-item__val">aplay 파이프에 데이터가 쌓여 지연 누적. 주파수를 바꾸면 파형이 끊겨 Pop Noise</dd><dt class="ts-item__key">해결</dt><dd class="ts-item__val">청크 하나 재생 시간만큼 기다려 파이프를 비움. 위상을 누적해 파형을 이어 감</dd><dt class="ts-item__key">결과</dt><dd class="ts-item__val">지연이 ALSA 하드웨어 버퍼만 남음</dd></dl></div>
 </section>
 </article>
 <nav class="pager" aria-label="다른 프로젝트">
-<a class="pager__prev" href="../doori/"><span>이전</span>두리 — AI 스마트 순찰 로봇</a>
+<a class="pager__prev" href="../wheelchair-parking/"><span>이전</span>전동휠체어 자동 주차 시스템</a>
 <a class="pager__next" href="../artist-platform/"><span>다음</span>아티스트 홍보 웹사이트</a>
 </nav>
 </main>
