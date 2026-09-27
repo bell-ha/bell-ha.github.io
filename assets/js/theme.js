@@ -23,3 +23,11 @@
     });
   });
 })();
+
+// 인쇄 버튼 — 브라우저 인쇄 대화상자를 연다.
+// 여기서 여는 것과 Ctrl+P 로 여는 것이 같은 결과여야 한다(print.css 가 둘 다 담당).
+(function () {
+  document.querySelectorAll('.print-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () { window.print(); });
+  });
+})();

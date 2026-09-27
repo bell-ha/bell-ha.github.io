@@ -19,6 +19,13 @@ body {
   background: #efefef;
   color: var(--ink);
   line-height: 1.45;
+
+  /* 한글은 어절마다 띄어 쓰므로 그냥 두면 단어 한가운데서 끊긴다.
+     실제로 '최용근'이 '최/용근' 으로, '코엑스'가 '코/엑스' 로 갈라져 있었다.
+     resume.html 은 base.css 를 링크하지 않아 그쪽 keep-all 이 닿지 않는다.
+     break-word 는 띄어쓰기가 없는 긴 주소용 예외다. */
+  word-break: keep-all;
+  overflow-wrap: break-word;
   -webkit-print-color-adjust: exact;
   print-color-adjust: exact;
 }
@@ -137,9 +144,38 @@ body {
 }
 
 .key {
-  flex: 0 0 30mm;
+  /* 30mm 일 때 'Robotics & Embedded' 가 칸을 넘쳐 그 줄의 값만 오른쪽으로
+     밀렸다. 가장 긴 라벨이 들어갈 만큼 넓힌다. */
+  flex: 0 0 34mm;
   font-size: 10pt;
   font-weight: 700;
+
+  /* 기간(2020.03 ~ 2027.02)이 30mm 를 넘쳐 두 줄로 접혔다.
+     날짜는 한 덩어리로 읽어야 하는 값이라 접히면 안 된다.
+     줄을 막고, 넘치는 만큼만 글자를 줄여 한 줄에 앉힌다. */
+  white-space: nowrap;
+}
+
+/* 날짜만 골라 줄일 수 없어 칸 전체를 한 단 내린다 — 라벨(이름·연락처)은
+   짧아서 영향이 없고, 날짜는 이 크기에서 30mm 안에 들어간다. */
+.key { font-size: 9pt; }
+
+/* 연락처 주소는 실제 링크다 — PDF 에서 눌러야 담당자가 손으로 옮겨 치지 않는다.
+   다만 파란 밑줄은 이력서 조판을 깨므로 글자는 본문과 같게 둔다. */
+.val a { color: inherit; text-decoration: none; }
+
+/* Experience 는 한 항목이 두 줄이다 — 소속·직책 줄과 하는 일 줄.
+   둘이 같은 크기·같은 색으로 나란히 서면 어디까지가 한 덩어리인지 안 보인다.
+   Projects 절이 이미 쓰는 층(제목 굵게 / 설명 작고 흐리게 들여쓰기)을 그대로 가져온다.
+   소속 줄 아래 밑줄을 지워, 두 줄이 한 항목으로 묶여 보이게 한다. */
+.entry { break-inside: avoid; page-break-inside: avoid; }
+
+.line--head { border-bottom: none; padding-bottom: 0; }
+
+.val--sub {
+  font-size: 9pt;
+  line-height: 1.35;
+  color: var(--sub);
 }
 
 .val {

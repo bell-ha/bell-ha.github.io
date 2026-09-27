@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>전동휠체어 자동 주차 시스템 | Jongha Lee</title>
-<meta name="description" content="혼자 운전하는 사용자를 위한 휠체어 적재">
+<meta name="description" content="운전하는 사용자를 위한 전동휠체어 적재">
 <link rel="canonical" href="https://bell-ha.github.io/projects/wheelchair-parking/">
 <meta property="og:type" content="article">
 <meta property="og:title" content="전동휠체어 자동 주차 시스템 | Jongha Lee">
-<meta property="og:description" content="혼자 운전하는 사용자를 위한 휠체어 적재">
+<meta property="og:description" content="운전하는 사용자를 위한 전동휠체어 적재">
 <meta property="og:url" content="https://bell-ha.github.io/projects/wheelchair-parking/">
 <meta property="og:image" content="https://bell-ha.github.io/assets/img/common/og.jpg">
 <meta property="og:locale" content="ko_KR">
@@ -42,6 +42,9 @@
     <button class="theme-toggle" type="button" aria-label="화면 테마 전환">
       <span class="label-light">Dark</span><span class="label-dark">Light</span>
     </button>
+    <button class="print-btn" type="button" title="PDF로 저장" aria-label="이 페이지를 인쇄하거나 PDF로 저장">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 9V3h10v6"/><path d="M7 18H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2"/><rect x="7" y="14" width="10" height="7" rx="1"/></svg>
+    </button>
   </div>
 </header>
 <main id="main" class="container">
@@ -50,7 +53,7 @@
 <header class="detail-header">
 <p class="detail-breadcrumb"><a href="../../#robotics">Robotics &amp; Embedded</a></p>
 <h1 class="detail-title">전동휠체어 자동 주차 시스템</h1>
-<p class="detail-oneline">혼자 운전하는 사용자를 위한 휠체어 적재</p>
+<p class="detail-oneline">운전하는 사용자를 위한 전동휠체어 적재</p>
 <dl class="detail-meta">
 <dt class="meta-key">기간</dt><dd>2025.12 ~</dd>
 <dt class="meta-key">역할</dt><dd>3인 팀 · 위치추정과 인식, 통합 담당 · ITRC 과제</dd>
@@ -69,34 +72,34 @@
 </header>
 <section class="detail-section" id="impact">
 <h2 class="detail-section__title">Impact</h2>
-<ul class="impact-grid"><li class="impact-item"><span class="impact-item__num">118 → 718</span><span class="impact-item__label">목업을 더 학습시키자 같은 영상 2,513프레임에서 번호판 검출이 여섯 배 (신뢰도 0.26 → 0.89)</span></li><li class="impact-item"><span class="impact-item__num">15<span class="impact-item__unit">FPS</span></span><span class="impact-item__label">Jetson Nano 320px 지속 추론 · 42 ms · 5.8 W</span></li><li class="impact-item"><span class="impact-item__num">8<span class="impact-item__unit">프레임</span></span><span class="impact-item__label">목표 자세와의 오차가 여덟 프레임 연속 허용범위여야 다음 단계로 — 한 프레임 운으로 넘어가지 않게</span></li></ul>
+<ul class="impact-grid impact-grid--4"><li class="impact-item"><span class="impact-item__num impact-item__num--text">카메라를 옮긴 재설계</span><span class="impact-item__label"><span class="impact-item__line">먼 구간이 안 찍혀 전면 개편</span><span class="impact-item__line">차량 어라운드뷰 → 휠체어 탑재</span></span></li><li class="impact-item"><span class="impact-item__num impact-item__num--text">직접 구성한 데이터</span><span class="impact-item__label"><span class="impact-item__line">실차 123장·목업 62장 직접 라벨링</span><span class="impact-item__line">차량 부품 6종 · 번호판을 자로</span></span></li><li class="impact-item"><span class="impact-item__num impact-item__num--text">IMU로 회전 보정</span><span class="impact-item__label"><span class="impact-item__line">앞바퀴가 캐스터라 틀어짐을 못 읽음</span><span class="impact-item__line">각도 대신 회전속도를 맞춰 진동 제거</span></span></li><li class="impact-item"><span class="impact-item__num impact-item__num--text">하드웨어 최적화</span><span class="impact-item__label"><span class="impact-item__line">디코딩이 코어 하나를 91% 점유</span><span class="impact-item__line">갱신 주기 분리로 4 → 15 FPS</span></span></li></ul>
 </section>
 <section class="detail-section" id="background">
 <h2 class="detail-section__title">Background</h2>
-<p>전동휠체어 사용자는 차에 탄 뒤 남겨진 휠체어를 혼자 실을 수 없습니다. 혼자 운전하는 사용자에게는 외출 자체가 어려워집니다. 휠체어에 장치를 덧붙이지 않는 쪽이 여러 기종에 맞아서, 차량에 이미 달린 어라운드뷰 카메라로 시작했습니다.</p>
+<p>전동휠체어 사용자는 차량에 탑승한 뒤,<br>밖에 남겨진 휠체어를 스스로 실을 수 없습니다. 이 과정에는 반드시 타인의 도움이 필요합니다.</p>
+<p>본 연구에서는 기아 RAY 자가운전 차량을 기준으로,<br>휠체어가 스스로 트렁크까지 가서 주차 및 출차하는 시스템을 제안합니다.</p>
 </section>
 <section class="detail-section" id="architecture">
 <h2 class="detail-section__title">Architecture</h2>
-<figure class="figure figure--wide"><img class="figure__img--arch" src="../../assets/img/wheelchair-parking/wc-system.png" alt="" width="2840" height="1193" loading="lazy"><figcaption class="figure__caption">사람이 한 번 가르친 자세를 기준으로, 매 프레임 지금 보이는 모습과의 차이를 줄인다.</figcaption></figure>
-<p>휠체어에 실은 카메라가 차량 부위를 탐지하면 번호판 크기를 기준으로 거리와 각도를 계산하고, 그 값으로 정렬기가 바퀴를 움직입니다. 가까워지면 카메라로는 잘 보이지 않아 초음파가 기준을 넘겨받습니다.</p>
+<figure class="figure figure--wide"><img class="figure__img--arch" src="../../assets/img/wheelchair-parking/wc-v1-arch.svg" alt="휠체어에는 ArUco 마커만 붙어 있고, 카메라 두 대는 모두 차량에 달려 있다. 차량의 어안 카메라 좌측·후방이 그 마커를 보고 위치를 추정한 뒤 칼만 필터로 안정화하고, A* 경로계획과 경로 추종을 거쳐 CAN 으로 섀시를 움직인다. 실기체에서 8단계 중 7단계까지 동작했다. 휠체어가 멀리서 출발하면 마커가 어라운드뷰에 들어오지 않아 그 구간은 검출되지 않는다." width="1392" height="968" loading="lazy"></figure>
+<figure class="figure figure--wide"><img class="figure__img--arch" src="../../assets/img/wheelchair-parking/wc-v2-arch.svg" alt="카메라와 초음파, IMU가 모두 휠체어에 실려 있고 주차된 차량에는 계측 장치가 없다. 카메라가 잡은 부위 6종을 번호판 규격으로 환산해 VISION 국면이 사이드미러로 시야를 맞추고, SONAR 국면이 측면 초음파 앞뒤 차이로 평행을 맞춘다. 판단 결과는 네 가지 지시가 되어 ESP32 서보가 조이스틱을 움직인다. IMU는 직진 중 방위를 유지하고, 전방 초음파는 30cm 안에서 자동으로 멈춘다." width="1392" height="1000" loading="lazy"></figure>
 </section>
 <section class="detail-section" id="contributions">
 <h2 class="detail-section__title">Contributions</h2>
-<div class="contrib"><h3 class="contrib__title">V1 — 차량 카메라로 위치 추정</h3><p>어안 렌즈 보정, 마커 검출, SolvePnP로 자세를 구한 뒤 회귀 보정층과 칼만 필터를 얹었습니다. 오차가 거리와 각도에 따라 일정한 방향으로 치우치는 것을 확인하고, 그 편향을 학습으로 상쇄하는 보정층을 설계했습니다. 8단계 중 7단계가 실기체에서 동작했습니다.</p>
-<figure class="figure figure--wide"><img class="figure__img--photo" src="../../assets/img/wheelchair-parking/wheelchair-v1.jpg" alt="" width="929" height="335" loading="lazy"><figcaption class="figure__caption">V1 실기체. 차량에 달린 어안 카메라 두 대로 휠체어의 마커를 좇았다.</figcaption></figure>
-<figure class="figure figure--wide figure--video"><div class="video-embed"><iframe src="https://www.youtube-nocookie.com/embed/o30saxUv7JM" title="V1 실기체 테스트. 어안 2뷰로 마커를 추적해 탑뷰 맵에 위치를 찍는다." loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><figcaption class="figure__caption">V1 실기체 테스트. 어안 2뷰로 마커를 추적해 탑뷰 맵에 위치를 찍는다.</figcaption></figure></div>
-<div class="contrib"><h3 class="contrib__title">V1에서 V2로 — 카메라를 옮긴 이유</h3><p>어라운드뷰는 차량 바로 주변을 보라고 달린 장치인데 휠체어는 그 바깥에서 출발합니다. 멀어질수록 마커가 작아지고 렌즈 가장자리로 밀려서, 보정으로는 채울 수 없는 구간이 남았습니다. 캘리브레이션은 왜곡을 펴는 작업이지 찍히지 않은 곳을 보이게 하지는 못합니다. 그래서 카메라를 휠체어에 실어 대상까지의 거리가 항상 가깝게 만들었습니다.</p>
-<figure class="figure figure--wide"><img class="figure__img--diagram" src="../../assets/img/wheelchair-parking/wc-v1-coverage.svg" alt="" width="1020" height="600" loading="lazy"><figcaption class="figure__caption">어라운드뷰는 차량 바로 주변을 보라고 달린 장치다. 휠체어는 그 밖에서 출발한다.</figcaption></figure>
-<figure class="figure figure--wide"><img class="figure__img--diagram" src="../../assets/img/wheelchair-parking/wc-where-camera.svg" alt="" width="1020" height="600" loading="lazy"><figcaption class="figure__caption">카메라를 차량에 두느냐 휠체어에 두느냐 — 이 선택이 두 버전을 갈랐다.</figcaption></figure></div>
-<div class="contrib"><h3 class="contrib__title">V2 — 부위 6종 탐지와 번호판 기준자</h3><p>공개 데이터셋은 차량을 상자 하나로만 잡아서 정렬에 쓸 기준이 없었습니다. 실차 121장과 목업 60장을 직접 촬영하고 라벨링해 YOLOv8을 다시 학습시켜 사이드미러와 번호판, 후미등 등 6종을 개별 탐지했습니다. 목업을 더 학습시킨 뒤 같은 영상 2,513프레임에서 번호판 검출이 118건에서 718건으로 늘었고 평균 신뢰도도 0.26에서 0.89가 됐습니다. 다만 이 영상은 학습에 쓴 촬영분과 같은 세션이라 홀드아웃이 아닙니다. 검출 건수와 신뢰도가 오른 것이지 정밀도를 잰 값은 아니고, 실차 성능은 아직 재검증하지 못했습니다.</p>
-<figure class="figure figure--wide"><img class="figure__img--screen" src="../../assets/img/wheelchair-parking/wc-detect-compare.jpg" alt="" width="1280" height="360" loading="lazy"><figcaption class="figure__caption">왼쪽이 공개 데이터셋만 쓴 모델, 오른쪽이 직접 촬영분을 더 학습시킨 모델. 같은 프레임에서 번호판·후미등·엠블럼을 각각 잡는다.</figcaption></figure>
-<p>카메라가 한 대라 절대 거리를 알 수 없어서, 국가 표준으로 크기가 정해진 번호판을 기준자로 삼고 핀홀 모델로 거리와 각도를 계산했습니다. 실차는 단형(335 × 155 mm), 목업은 장형(520 × 110 mm)이라 규격을 따로 넣었습니다.</p></div>
+<div class="contrib contrib-side contrib-side--wide"><div class="contrib-side__text"><h3 class="contrib__title">V1 — 차량 카메라로 위치 추정</h3><p>차량에 장착되어 있는 어라운드뷰 카메라로 휠체어의 ArUco 마커를 보고 위치를 추정합니다.</p>
+<ul><li>어안 왜곡을 편 뒤 SolvePnP로 마커까지의 위치와 회전을 구함</li><li>오차가 거리와 각도에 따라 일정한 방향으로 치우쳐, 그 편향을 학습으로 상쇄하는 보정층을 설계</li><li>칼만 필터로 시계열을 안정화</li></ul></div><div class="contrib-side__figs"><figure class="figure"><img class="figure__img--photo" src="../../assets/img/wheelchair-parking/wheelchair-v1.jpg" alt="V1 실기체. 차량에 달린 어안 카메라 두 대로 휠체어의 마커를 좇는다." width="929" height="335" loading="lazy"></figure><figure class="figure figure--wide figure--video"><div class="video-embed"><iframe src="https://www.youtube-nocookie.com/embed/o30saxUv7JM" title="프로젝트 영상" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><p class="video-url">영상 <a href="https://youtu.be/o30saxUv7JM">youtu.be/o30saxUv7JM</a></p></figure></div></div>
+<div class="contrib contrib-side contrib-side--wide"><div class="contrib-side__text"><h3 class="contrib__title">V2 — 휠체어 카메라로 위치 추정</h3><p>휠체어에 실은 카메라로 차량의 특징을 봅니다.<br>공개 데이터셋이 실차에서 듣지 않아 직접 촬영하고 라벨링해 학습시켰습니다.</p>
+<ul><li>번호판, 엠블럼, 손잡이, 주유구, 후미등, 사이드미러 부위 6종을 개별 탐지</li><li>번호판을 기준 자로 삼아 거리를 추정</li><li>목업을 학습시킨 뒤 검출이 6배 증가</li></ul></div><figure class="figure"><img class="figure__img--screen" src="../../assets/img/wheelchair-parking/wc-detect-compare.jpg" alt="왼쪽이 공개 데이터셋만 쓴 모델, 오른쪽이 직접 촬영분을 더 학습시킨 모델. 같은 프레임에서 번호판·후미등·엠블럼을 각각 잡는다." width="1280" height="360" loading="lazy"></figure></div>
+<div class="contrib contrib-side contrib-side--wide"><div class="contrib-side__text"><h3 class="contrib__title">두 가지 센서로 정렬</h3><p>사이드미러로 시야를 맞춘 뒤, 초음파로 평행을 맞춥니다.<br>한 센서로 끝까지 가지 않고 구간마다 기준을 넘깁니다.</p>
+<ul><li>VISION — 사이드미러의 화면 위치와 크기를 목표 자세에 맞춤</li><li>SONAR — 측면 초음파 앞뒤 거리 차이로 차량과 평행하게</li><li>두 국면 모두 여덟 프레임 연속 허용범위여야 다음으로 넘어감</li></ul></div><figure class="figure"><img class="figure__img--diagram figure__img--diagram-tall" src="../../assets/img/wheelchair-parking/wc-parking-9step.svg" alt="9단계 주차 시나리오. 휠체어는 좌우로 이동할 수 없어 직진·후진과 회전만으로 목표 자세에 도달한다. 단계마다 기준이 되는 센서가 사이드미러, 좌측 초음파, 카메라, IMU, 전방 초음파로 바뀐다. 4단계에서 90도가 아니라 70도로 도는 것은 90도로 돌면 차량 후면 특징점이 시야에서 사라지기 때문이다. 출차는 이 순서를 뒤집은 7단계다." width="1020" height="660" loading="lazy"></figure></div>
+<div class="contrib"><h3 class="contrib__title">하드웨어 최적화</h3><p>휠체어에 장착할 컴퓨터라는 제약에서 출발해 Jetson Nano 4GB에 얹었습니다.<br>4 FPS에 머물던 것을 지속 15 FPS, 프레임당 추론 42 ms로 끌어올렸습니다.</p>
+<ul><li>카메라를 30 fps로 받으면 디코딩 스레드가 코어 하나를 91% 점유해 추론이 쓸 CPU를 뺏음</li><li>카메라를 15 fps로 낮추고 화면 갱신을 10 Hz로 분리</li><li>모델 로드 중 프리징은 스왑 부족이어서 4 GB로 확장</li></ul></div>
 </section>
 <section class="detail-section" id="troubleshooting">
 <h2 class="detail-section__title">Troubleshooting</h2>
-<div class="ts-item"><h3 class="ts-item__title">튜닝으로 풀 문제와 설계를 바꿔야 하는 문제</h3><dl class="ts-item__rows"><dt class="ts-item__key">문제</dt><dd class="ts-item__val">V1에서 보정층과 칼만 필터를 계속 붙였는데도 먼 구간의 오차가 줄지 않았습니다.</dd><dt class="ts-item__key">원인</dt><dd class="ts-item__val">파라미터 문제가 아니라 그 구간이 아예 찍히지 않는 것이었습니다. 이미 7단계까지 동작하던 상태라 버리기 아까웠고, 팀에서도 아무도 먼저 말을 꺼내지 않았습니다.</dd><dt class="ts-item__key">해결</dt><dd class="ts-item__val">마커를 더 키울 수도 보정으로 메울 수도 없다는 근거를 정리해서 카메라를 휠체어로 옮기자고 제안했습니다. 바뀌는 부분이 제 담당이었기 때문에 시뮬레이션을 실물로 옮기는 작업까지 맡았습니다.</dd><dt class="ts-item__key">결과</dt><dd class="ts-item__val">경로 생성은 그대로 쓸 수 있어서 팀원의 작업은 영향을 받지 않았습니다.</dd></dl></div>
-<div class="ts-item"><h3 class="ts-item__title">Jetson Nano에서 프리징</h3><dl class="ts-item__rows"><dt class="ts-item__key">문제</dt><dd class="ts-item__val">추론을 돌리면 보드가 멈춰서 아무 응답이 없었습니다.</dd><dt class="ts-item__key">원인</dt><dd class="ts-item__val">메모리가 모자라 스왑이 부족해진 것이었습니다.</dd><dt class="ts-item__key">해결</dt><dd class="ts-item__val">스왑을 4GB로 늘리고 입력 해상도를 320픽셀로 낮췄습니다.</dd><dt class="ts-item__key">결과</dt><dd class="ts-item__val">15FPS로 지속 구동했고 추론에 42ms가 걸렸습니다.</dd></dl></div>
-<div class="ts-item"><h3 class="ts-item__title">어디까지 됐는지</h3><figure class="figure figure--wide"><img class="figure__img--diagram" src="../../assets/img/wheelchair-parking/wc-parking-9step.svg" alt="" width="1020" height="660" loading="lazy"><figcaption class="figure__caption">주차 9단계와 각 단계가 근거로 삼는 센서. 출차는 이 순서를 뒤집은 7단계다.</figcaption></figure><p>주차 9단계를 실기체에서 확인했지만 자동으로 도는 것은 정렬 1·2단계까지이고 3단계부터는 수동으로 조작합니다. 출차 경로는 설계까지 했습니다. 휠체어에 붙는 장치가 계속 늘고 카메라와 초음파가 동시에 놓치면 복구할 방법이 없어서 UWB 측위를 검토하고 있습니다.</p></div>
+<div class="ts-item"><h3 class="ts-item__title">튜닝으로 풀 문제와 설계를 바꿔야 하는 문제</h3><dl class="ts-item__rows"><dt class="ts-item__key">문제</dt><dd class="ts-item__val">먼 구간의 오차가 줄지 않음. 보정을 더해도 그대로</dd><dt class="ts-item__key">원인</dt><dd class="ts-item__val">거리가 멀어 그 구간이 아예 찍히지 않음. 파라미터로 풀 문제가 아니었음</dd><dt class="ts-item__key">해결</dt><dd class="ts-item__val">마커를 키울 수도, 보정으로 메울 수도 없음. 그 근거로, 카메라를 휠체어로 옮기자고 제안</dd><dt class="ts-item__key">결과</dt><dd class="ts-item__val">V1에서 V2로 설계를 바꿈. 경로 생성은 그대로 쓸 수 있음. 팀원 작업은 영향 없음</dd></dl><figure class="figure figure--wide"><img class="figure__img--screen" src="../../assets/img/wheelchair-parking/wc-where-camera.svg" alt="화면 캡처" width="1020" height="600" loading="lazy"></figure></div>
+<div class="ts-item"><h3 class="ts-item__title">직진 중 좌우로 진동</h3><dl class="ts-item__rows"><dt class="ts-item__key">문제</dt><dd class="ts-item__val">직진 명령을 줘도 똑바로 못 감. 좌우로 흔들림</dd><dt class="ts-item__key">원인</dt><dd class="ts-item__val">앞바퀴가 캐스터라 이전 방향으로 휨. 그 틀어짐을 읽을 센서가 없음. IMU로 각도를 재 P제어로 되돌림. 방위오차가 1.2°인데 자이로는 −17.7°/s. 도착 순간 브레이크가 없어 반대로 넘어감</dd><dt class="ts-item__key">해결</dt><dd class="ts-item__val">각도로 목표 회전속도를 정함. 자이로가 그 속도를 맞추는 구조로 교체. 적분항이 캐스터의 틀어짐을 주행 중 학습</dd><dt class="ts-item__key">결과</dt><dd class="ts-item__val">가까울수록 스스로 감속. 50° 복귀가 11초에서 7초로 절감</dd></dl></div>
+<div class="ts-item"><h3 class="ts-item__title">Jetson Nano에서 프리징</h3><dl class="ts-item__rows"><dt class="ts-item__key">문제</dt><dd class="ts-item__val">추론을 돌리면 보드가 멈춤. 아무 응답이 없음</dd><dt class="ts-item__key">원인</dt><dd class="ts-item__val">메모리가 모자라 스왑이 부족해짐</dd><dt class="ts-item__key">해결</dt><dd class="ts-item__val">스왑을 4GB로 늘림. 입력 해상도를 320픽셀로 낮춤</dd><dt class="ts-item__key">결과</dt><dd class="ts-item__val">15FPS로 지속 구동. 추론에 42ms</dd></dl></div>
 </section>
 </article>
 <nav class="pager" aria-label="다른 프로젝트">
