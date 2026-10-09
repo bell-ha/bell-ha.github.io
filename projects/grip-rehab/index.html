@@ -68,7 +68,7 @@
 </header>
 <section class="detail-section" id="impact">
 <h2 class="detail-section__title">Impact</h2>
-<ul class="impact-grid"><li class="impact-item"><span class="impact-item__num">4<span class="impact-item__unit">단 필터</span></span><span class="impact-item__label"><span class="impact-item__line">스파이크 → 중간값 → 이동평균 → 데드존</span><span class="impact-item__line">8 kg 급상승을 막고, 1 kg 미만은 0으로 필터링</span></span></li><li class="impact-item"><span class="impact-item__num">4<span class="impact-item__unit">개의 소프트웨어</span></span><span class="impact-item__label"><span class="impact-item__line">게임 3종과 악력 신디사이저 제작</span><span class="impact-item__line">3초 유지 ⁠·⁠ 순간 도달 ⁠·⁠ 두 손 차이로 입력을 분리</span></span></li><li class="impact-item"><span class="impact-item__num impact-item__num--text">스레드 분리</span><span class="impact-item__label"><span class="impact-item__line">센서 80 Hz, 게임 루프 60 Hz로 분리</span><span class="impact-item__line">큐 대신 최신값 하나만 읽게함</span></span></li></ul>
+<ul class="impact-grid"><li class="impact-item"><span class="impact-item__num">4<span class="impact-item__unit">단 필터</span></span><span class="impact-item__label"><span class="impact-item__line">스파이크 → 중간값 → 이동평균 → 데드존</span><span class="impact-item__line">8 kg 급상승을 막고, 1 kg 미만은 0으로 필터링</span></span></li><li class="impact-item"><span class="impact-item__num">4<span class="impact-item__unit">개의 소프트웨어</span></span><span class="impact-item__label"><span class="impact-item__line">게임 3종과 악력 신디사이저 제작</span><span class="impact-item__line">3초 유지 ⁠·⁠ 순간 도달 ⁠·⁠ 두 손 차이로 입력을 분리</span></span></li><li class="impact-item"><span class="impact-item__num impact-item__num--text">스레드 분리</span><span class="impact-item__label"><span class="impact-item__line">센서 100 Hz, 게임 루프 60 Hz로 분리</span><span class="impact-item__line">큐 대신 최신값 하나만 읽게함</span></span></li></ul>
 </section>
 <section class="detail-section" id="background">
 <h2 class="detail-section__title">Background</h2>
@@ -89,7 +89,6 @@
 <p>스파이크 제거, 중간값, 이동평균, 데드존 순서로 걸렀습니다.</p>
 <ul><li>스파이크 제거 — 직전 값보다 8 kg 이상 뛰면 직전 값으로</li><li>중간값 — 윈도우 3, 산발적 이상치를 걸러냄</li><li>이동평균 — 윈도우 5, 유지 구간의 미세 진동을 다듬음</li><li>데드존 — 1 kg 미만은 0, 손을 뗀 상태를 확실히 구분</li></ul></div><figure class="figure figure--wide figure--video"><div class="video-embed"><iframe src="https://www.youtube-nocookie.com/embed/_I-ejlEAkNM" title="프로젝트 영상" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><p class="video-url">영상 <a href="https://youtu.be/_I-ejlEAkNM">youtu.be/_I-ejlEAkNM</a></p></figure></div>
 <div class="contrib"><h3 class="contrib__title">스레드 분리</h3>
-<p>센서는 80 Hz, 게임 루프는 60 Hz 고정 dt로 돕니다.</p>
 <ul><li>메인에서 시리얼을 읽으면 읽기 지연이 프레임 드롭이 됨</li><li>잠금으로 보호한 최신값 하나만 읽고 큐는 쓰지 않음</li></ul></div>
 <div class="contrib"><h3 class="contrib__title">사용자별 캘리브레이션</h3>
 <p>로드셀은 개체마다 스케일이 다르고, 조립 상태에 따라 영점이 달라집니다.</p>

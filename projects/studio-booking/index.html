@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>뉴뮤직학부 연습실 예약 시스템 | Jongha Lee</title>
-<meta name="description" content="학과가 직접 운영하도록 만든 교내 서비스">
+<title>마디(Madi) — 음악학원·연습실 운영 플랫폼 | Jongha Lee</title>
+<meta name="description" content="단국대학교 뉴뮤직학부 연습실 예약 시스템에서 출발한 운영 플랫폼">
 <link rel="canonical" href="https://bell-ha.github.io/projects/studio-booking/">
 <meta property="og:type" content="article">
-<meta property="og:title" content="뉴뮤직학부 연습실 예약 시스템 | Jongha Lee">
-<meta property="og:description" content="학과가 직접 운영하도록 만든 교내 서비스">
+<meta property="og:title" content="마디(Madi) — 음악학원·연습실 운영 플랫폼 | Jongha Lee">
+<meta property="og:description" content="단국대학교 뉴뮤직학부 연습실 예약 시스템에서 출발한 운영 플랫폼">
 <meta property="og:url" content="https://bell-ha.github.io/projects/studio-booking/">
 <meta property="og:image" content="https://bell-ha.github.io/assets/img/common/og.jpg">
 <meta property="og:locale" content="ko_KR">
@@ -49,17 +49,21 @@
 <article class="detail" data-category="software">
 <header class="detail-header">
 <p class="detail-breadcrumb"><a href="../../#software">Software &amp; AI</a></p>
-<h1 class="detail-title">뉴뮤직학부 연습실 예약 시스템</h1>
-<p class="detail-oneline">학과가 직접 운영하도록 만든 교내 서비스</p>
+<h1 class="detail-title">마디(Madi) — 음악학원·연습실 운영 플랫폼</h1>
+<p class="detail-oneline">단국대학교 뉴뮤직학부 연습실 예약 시스템에서 출발한 운영 플랫폼</p>
 <dl class="detail-meta">
-<dt class="meta-key">기간</dt><dd>2025.03 ~ 2026.09</dd>
+<dt class="meta-key">기간</dt><dd>2025.03 ~</dd>
 <dt class="meta-key">역할</dt><dd>2인 팀 · 백엔드</dd>
 </dl>
 <ul class="detail-links">
 <li><a href="https://github.com/bell-ha/musicstudio-booking-system" target="_blank" rel="noopener">GitHub</a></li>
-<li><a href="https://github.com/bell-ha/musicstudio-booking-system/blob/main/docs/TROUBLESHOOTING.md" target="_blank" rel="noopener">문서</a></li>
+<li><a href="https://github.com/bell-ha/musicstudio-booking-system/blob/main/docs/experiments/0001-%EC%98%88%EC%95%BD-%EA%B2%B9%EC%B9%A8-%EB%B0%A9%EC%A7%80-%EB%B9%84%EA%B5%90.md" target="_blank" rel="noopener">예약 겹침 실험</a></li>
+<li><a href="https://github.com/bell-ha/musicstudio-booking-system/blob/legacy-fastapi/docs/TROUBLESHOOTING.md" target="_blank" rel="noopener">초기 버전 문서</a></li>
 </ul>
 <ul class="detail-tags">
+<li class="tag">Java 25</li>
+<li class="tag">Spring Boot 4.1</li>
+<li class="tag">Testcontainers</li>
 <li class="tag">FastAPI</li>
 <li class="tag">PostgreSQL</li>
 <li class="tag">Docker</li>
@@ -67,14 +71,11 @@
 <li class="tag">pytest</li>
 </ul>
 </header>
-<section class="detail-section" id="impact">
-<h2 class="detail-section__title">Impact</h2>
-<ul class="impact-grid"><li class="impact-item"><span class="impact-item__num">8→1</span><span class="impact-item__label">같은 자리에 동시 8요청이 와도 통과는 1건 — 트랜잭션 단위 advisory lock</span></li><li class="impact-item"><span class="impact-item__num">12<span class="impact-item__unit">개</span></span><span class="impact-item__label">겹침·취소·정원 규칙을 코드가 아니라 DB 제약으로 내림</span></li></ul>
-</section>
 <section class="detail-section" id="background">
 <h2 class="detail-section__title">Background</h2>
 <p>연습실 예약을 학과 카페 댓글과 구두로 하다 보니 누가 언제 쓰는지 확인할 수 없어서 중복 예약과 분쟁이 반복됐습니다. 화면을 만들면 되는 일처럼 보였지만 실제로 어려웠던 것은 어떤 예약을 거절해야 하는지 정하는 쪽이었습니다.</p>
 <p>연습실이 네 개 층에 51실이고 이름이 124-2, 222-11 같은 번호라서 목록으로 늘어놓으면 학생이 그 방의 위치를 알 수 없었습니다.</p>
+<p>교수님께 제안하고 직접 만들어 실험 단계까지 운영했습니다(FastAPI). 2026년 10월부터는 여기서 정한 예약 규칙을 요구사항으로 삼아, 여러 학원과 학교가 각자 공간을 만들고 연습실 예약이나 학원 관리를 골라 쓰는 운영 플랫폼 「마디」로 Spring에서 새로 만들고 있습니다. 실사용자가 없어서 부하와 경쟁 상황은 일부러 만들어 검증했습니다. 배포와 알림, PG 결제는 진행 중입니다.</p>
 </section>
 <section class="detail-section" id="architecture">
 <h2 class="detail-section__title">Architecture</h2>
@@ -91,8 +92,9 @@
 </section>
 <section class="detail-section" id="troubleshooting">
 <h2 class="detail-section__title">Troubleshooting</h2>
+<div class="ts-item"><h3 class="ts-item__title">겹치는 예약이 아직 없으면 잠글 행도 없다</h3><dl class="ts-item__rows"><dt class="ts-item__key">문제</dt><dd class="ts-item__val">처음 버전과 같은 규칙을 Spring으로 다시 만들면서 같은 방, 같은 사람(방이 달라도), 하루 이용 한도 세 가지를 동시 요청에서도 지켜야 했습니다. 예약이 정해진 시각에 열리면 요청이 한 칸에 몰립니다.</dd><dt class="ts-item__key">원인</dt><dd class="ts-item__val">구간이 겹치면 안 되는 범위 규칙입니다. 겹치는 행에 <code>SELECT … FOR UPDATE</code>를 걸어도 아직 겹치는 행이 없으면 잠글 대상이 없습니다. 하루 한도는 합계 규칙이라 겹치지 않는 두 예약이 각자 검사를 통과하는 write skew도 생깁니다.</dd><dt class="ts-item__key">해결</dt><dd class="ts-item__val">조치 없음, 겹치는 행 <code>FOR UPDATE</code>, 방·날짜 advisory lock, <code>EXCLUDE</code> 제약만 두는 방식 네 가지를 같은 방 1,000건 동시 요청으로 세 번씩 쟀습니다. 앞의 둘은 20건이 저장됐고, <code>EXCLUDE</code>만 두면 데이터는 정확하지만 1,000건 중 569~594건이 교착으로 실패했습니다. advisory lock으로 같은 방 요청을 줄 세우고 그 안에서 사람·날짜 잠금으로 한도를 검사하며, <code>EXCLUDE</code>는 마지막 방어선으로 남겼습니다.</dd><dt class="ts-item__key">결과</dt><dd class="ts-item__val">저장 1건, 오류 0, p99 약 0.8초. 요청이 여러 방에 흩어지면 잠금 쪽이 약 30% 느리다는 대가까지 ADR 0010에 기록했습니다. 측정은 노트북 한 대에서 했기 때문에 절대값보다 방식 사이의 차이로 봅니다.</dd></dl></div>
 <div class="ts-item"><h3 class="ts-item__title">같은 순간에 온 두 예약이 둘 다 통과한다</h3><dl class="ts-item__rows"><dt class="ts-item__key">문제</dt><dd class="ts-item__val">예약 생성이 충돌 검사 다음에 저장하는 순서라, 두 요청이 같은 순간에 오면 검사를 둘 다 통과하고 둘 다 저장됩니다. 예약이 주 단위로 금요일 9시에 열려서 요청이 그 순간에 몰리는 구조였습니다.</dd><dt class="ts-item__key">원인</dt><dd class="ts-item__val">이 조건은 키로 표현되지 않습니다. 먼저 <code>(room_id, start_date, start_time)</code>에 유니크 제약을 걸어 보려 했는데, 예약 길이가 1~2시간으로 가변이라 09:00-11:00과 10:00-12:00은 시작 시각이 달라 제약을 통과하면서 시간은 겹칩니다. <code>SELECT ... FOR UPDATE</code>도 맞지 않았습니다. 행 잠금은 이미 존재하는 행만 잠그는데, 문제가 생기는 순간은 겹치는 예약이 아직 하나도 없는 오픈 직후입니다. 결국 행이 아니라 임의의 숫자 키에 거는 잠금이 필요했습니다.</dd><dt class="ts-item__key">해결</dt><dd class="ts-item__val"><code>pg_advisory_xact_lock</code>으로 방과 날짜 단위 잠금을 걸었습니다. 방은 음수, 사용자는 양수로 키 공간을 나누고 획득 순서를 방에서 사용자로 고정해 교착을 막았습니다. 커넥션 풀러가 트랜잭션 모드라 세션 잠금은 다른 커넥션에서 풀릴 수 있어서 트랜잭션 단위를 골랐습니다.</dd><dt class="ts-item__key">결과</dt><dd class="ts-item__val">8명이 같은 슬롯을 동시에 요청하는 시험에서 1건만 통과하고 데이터베이스에도 한 행만 남았습니다.</dd></dl><figure class="figure figure--wide"><img class="figure__img--arch" src="../../assets/img/studio-booking/booking-arch.png" alt="" width="2554" height="1484" loading="lazy"><figcaption class="figure__caption">두 요청이 같은 순간에 와도 방·날짜 키를 먼저 잡은 쪽만 통과한다.</figcaption></figure></div>
-<div class="ts-item"><h3 class="ts-item__title">비밀번호가 평문으로 저장되고 있었다</h3><dl class="ts-item__rows"><dt class="ts-item__key">문제</dt><dd class="ts-item__val">운영 중에 확인해 보니 저장과 전송, 화면 표시가 모두 평문이었고 관리자 화면에는 학생 비밀번호를 보여주는 버튼까지 있었습니다.</dd><dt class="ts-item__key">원인</dt><dd class="ts-item__val">이미 쓰는 사람이 있어서 한 번에 바꿀 수 없었습니다.</dd><dt class="ts-item__key">해결</dt><dd class="ts-item__val">로그인할 때 저장된 값이 해시가 아니면 평문으로 인증하고 성공하는 즉시 bcrypt로 다시 저장하게 했습니다. 해시로 바꾸면 관리자도 원래 값을 알 수 없어서 임시 비밀번호 발급 경로를 함께 만들었습니다.</dd><dt class="ts-item__key">결과</dt><dd class="ts-item__val">학생은 따로 할 일 없이 다음 로그인 한 번으로 전환됩니다.</dd></dl></div>
+<div class="ts-item"><h3 class="ts-item__title">비밀번호가 평문으로 저장되고 있었다</h3><dl class="ts-item__rows"><dt class="ts-item__key">문제</dt><dd class="ts-item__val">실험 운영 중에 확인해 보니 저장과 전송, 화면 표시가 모두 평문이었고 관리자 화면에는 학생 비밀번호를 보여주는 버튼까지 있었습니다.</dd><dt class="ts-item__key">원인</dt><dd class="ts-item__val">이미 만들어진 계정이 있어서 한 번에 바꿀 수 없었습니다.</dd><dt class="ts-item__key">해결</dt><dd class="ts-item__val">로그인할 때 저장된 값이 해시가 아니면 평문으로 인증하고 성공하는 즉시 bcrypt로 다시 저장하게 했습니다. 해시로 바꾸면 관리자도 원래 값을 알 수 없어서 임시 비밀번호 발급 경로를 함께 만들었습니다.</dd><dt class="ts-item__key">결과</dt><dd class="ts-item__val">기존 계정은 따로 할 일 없이 다음 로그인 한 번으로 전환됩니다.</dd></dl></div>
 </section>
 </article>
 <nav class="pager" aria-label="다른 프로젝트">

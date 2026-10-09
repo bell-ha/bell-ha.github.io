@@ -95,7 +95,7 @@
           <p class="item-title">악력 재활 훈련 시스템 <span class="item-period">2026.04 ~ 2026.07</span></p>
           <p class="item-desc">악력으로 조작하는 재활 훈련 게임 (2인 팀 ⁠·⁠ 하드웨어 설계, 신호처리 담당)</p>
           <p class="item-tech">HX711 · Arduino · Raspberry Pi · Python · Pygame</p>
-          <ul class="item-impact"><li><b>4단 필터</b> — 스파이크 → 중간값 → 이동평균 → 데드존, 8 kg 급상승을 막고 1 kg 미만은 0으로 필터링</li><li><b>4개의 소프트웨어</b> — 게임 3종과 악력 신디사이저 제작, 3초 유지 ⁠·⁠ 순간 도달 ⁠·⁠ 두 손 차이로 입력을 분리</li><li><b>스레드 분리</b> — 센서 80 Hz, 게임 루프 60 Hz로 분리, 큐 대신 최신값 하나만 읽게함</li></ul>
+          <ul class="item-impact"><li><b>4단 필터</b> — 스파이크 → 중간값 → 이동평균 → 데드존, 8 kg 급상승을 막고 1 kg 미만은 0으로 필터링</li><li><b>4개의 소프트웨어</b> — 게임 3종과 악력 신디사이저 제작, 3초 유지 ⁠·⁠ 순간 도달 ⁠·⁠ 두 손 차이로 입력을 분리</li><li><b>스레드 분리</b> — 센서 100 Hz, 게임 루프 60 Hz로 분리, 큐 대신 최신값 하나만 읽게함</li></ul>
         </div>
         <div class="item">
           <p class="item-title">두리(Doori) <span class="item-period">2025.12 ~ 2026.01</span></p>
@@ -107,16 +107,16 @@
       <div class="group">
         <span class="group-tag">Software &amp; AI</span>
         <div class="item">
-          <p class="item-title">아티스트 홍보 웹사이트 <span class="item-period">2025.12 ~ 2026.09</span></p>
+          <p class="item-title">아티스트 홍보 웹사이트 <span class="item-period">2025.12 ~ 2026.05</span></p>
           <p class="item-desc">FastAPI⁠·⁠React 풀스택. 스키마를 Alembic으로 이관하고, 템플릿 중복을 서비스 계층으로 정리 (2인 팀 ⁠·⁠ 백엔드)</p>
         </div>
         <div class="item">
-          <p class="item-title">뉴뮤직학부 연습실 예약 시스템 <span class="item-period">2025.03 ~ 2026.09</span></p>
-          <p class="item-desc">평면도를 좌표 데이터로 두어 관리자가 직접 그리게 설계. 가변 길이 예약의 동시성을 advisory lock으로 해결 (2인 팀 ⁠·⁠ 백엔드 ⁠·⁠ 학부생 실사용)</p>
+          <p class="item-title">마디(Madi) — 음악학원·연습실 운영 플랫폼 <span class="item-period">2025.03 ~</span></p>
+          <p class="item-desc">단국대 뉴뮤직학부 연습실 예약 시스템에서 출발한 학원 운영 플랫폼 (2인 팀 ⁠·⁠ 백엔드)</p>
         </div>
         <div class="item">
           <p class="item-title">생성형 AI 기반 맞춤형 반도핑 예방교육 시스템 <span class="item-period">2026.09 ~</span></p>
-          <p class="item-desc">예방교육 자료로만 답하는 RAG 파이프라인 구축, 판단이 필요한 질문은 전문가 상담으로 연결</p>
+          <p class="item-desc">인용 검증 ⁠·⁠ 조회표 판정 ⁠·⁠ 세션 권한으로 근거 없는 답을 걸러내는 구조 설계 (연구 프로토타입)</p>
         </div>
         <div class="item">
           <p class="item-title">WGBS 유전체 분석 자동화 프로그램 <span class="item-period">2026.07 ~ 2026.08</span></p>
@@ -193,6 +193,9 @@
     <h2 class="block-title">Certifications</h2>
     <div class="block-body">
       <div class="entry">
+  <div class="line"><span class="key">2026.10.08</span><span class="val">TOEIC Speaking IH</span></div>
+      </div>
+      <div class="entry">
   <div class="line line--head"><span class="key">2026.09.11</span><span class="val">정보처리기사</span></div>
   <div class="line"><span class="key"></span><span class="val val--sub">한국산업인력공단</span></div>
       </div>
@@ -206,12 +209,12 @@
   <section class="block compact">
     <h2 class="block-title">Skills</h2>
     <div class="block-body">
-      <div class="line"><span class="key">Languages</span><span class="val">Python · C# · TypeScript</span></div>
+      <div class="line"><span class="key">Languages</span><span class="val">Python · Java · C# · TypeScript</span></div>
       <div class="line line--head"><span class="key">Robotics & Embedded</span><span class="val">ROS2 · Nav2 · SLAM · LiDAR · RealSense</span></div>
       <div class="line"><span class="key"></span><span class="val">Jetson Nano · Arduino · Autodesk Fusion · Bambu Lab X1C</span></div>
       <div class="line"><span class="key">AI & Vision</span><span class="val">YOLOv8 · OpenCV · MediaPipe · TensorFlow · RAG</span></div>
       <div class="line"><span class="key">Game</span><span class="val">Unity · NavMesh · Animator</span></div>
-      <div class="line line--head"><span class="key">Backend & Infra</span><span class="val">FastAPI · React · PostgreSQL</span></div>
+      <div class="line line--head"><span class="key">Backend & Infra</span><span class="val">Spring Boot · FastAPI · React · PostgreSQL</span></div>
       <div class="line"><span class="key"></span><span class="val">Docker · Kubernetes · Terraform · Ansible · AWS</span></div>
       <div class="line"><span class="key">Music & Interactive</span><span class="val">Logic Pro X · Max/MSP · Cubase · TouchDesigner</span></div>
     </div>
