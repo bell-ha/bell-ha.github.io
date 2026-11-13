@@ -74,8 +74,8 @@
 </section>
 <section class="detail-section" id="background">
 <h2 class="detail-section__title">Background</h2>
-<p>도핑 예방 교육은 모든 선수에게 같은 자료를 나눠 주는 방식이었습니다. 종목과 경력, 복용 이력이 다른데 같은 내용을 받으면 자기 상황에 해당하는 부분을 선수가 직접 찾아야 합니다. 연구진의 경기력 예측과 실제 기록의 차이로 선수를 단계로 나누고, 단계마다 주당 교육 수와 불시 퀴즈 빈도를 다르게 주는 시스템입니다. 선수가 궁금한 것은 규정 문서를 근거로 답하는 질문 챗봇에 묻습니다.</p>
-<p>논문에 실을 시연용 프로토타입이고, 선수 데이터는 합성 데이터입니다. 선수 대상 시범 적용은 이후 단계입니다.</p>
+<p>모든 선수에게 같은 자료를 나눠 주던 도핑 예방 교육을 선수마다 다르게 주는 시스템입니다.<br>연구진의 경기력 예측과 실제 기록의 차이로 선수를 단계로 나누고, 단계마다 주당 교육 수와 불시 퀴즈 빈도를 정합니다.</p>
+<p>논문에 실을 시연용 프로토타입이고 선수 데이터는 합성입니다. 선수 대상 시범 적용은 이후 단계입니다.</p>
 </section>
 <section class="detail-section" id="architecture">
 <h2 class="detail-section__title">Architecture</h2>
@@ -83,15 +83,16 @@
 </section>
 <section class="detail-section" id="contributions">
 <h2 class="detail-section__title">Contributions</h2>
-<div class="contrib"><h3 class="contrib__title">근거를 인용한 답만 내보낸다</h3><p>생성형 AI가 아는 대로 답하면 예방 교육이라고 할 수 없습니다. 처음 만든 챗봇은 없는 규정과 출처를 그럴듯하게 지어냈습니다. 지금은 서버가 교육 자료를 먼저 검색해 넘기고, 모델은 그 자료를 근거로만 답합니다. 모델 응답은 답변·인용 목록·전문가 확인 여부·범위 밖 여부로 나뉜 구조화 응답으로 받고, 서버가 인용이 실제로 넘겨준 자료인지 확인합니다. 자료로 답할 수 없는 부분은 'AI 추측'으로 화면에 따로 표시해 근거 있는 답과 나누고, 금지 여부와 규정, 용량은 추측에 쓰지 않습니다. 전문가 확인 표시는 모델 판단과 서버 규칙 중 하나만 걸려도 켜지게 했습니다. 검사를 피하는 방법을 묻는 질문에는 서버가 바로 고정 답변을 주며, 평범한 교육 질문이 막히지 않는 것도 테스트로 확인했습니다.</p></div>
-<div class="contrib"><h3 class="contrib__title">약물 판정은 조회표로</h3><p>도핑은 잘못된 정보가 선수의 자격 정지로 이어지는 영역입니다. 금지 여부를 모델에게 물으면 그럴듯한 오답이 나올 수 있어서, 판정은 출처 URL이 붙은 조회표에서 금지·경기기간 중에만 금지·기준치·조건부·목록에 없음·제품마다 다름의 여섯 가지로만 내리고 모델은 설명만 맡겼습니다. 목록에 없다고 먹어도 된다는 뜻은 아니어서 '허용' 판정은 두지 않았습니다. 국내 제품명은 심평원 약가마스터로 성분을 찾아 판정하고, 답변 아래에 조회표 판정 원본을 카드로 따로 보여 줘 AI 설명과 대조할 수 있게 했습니다.</p></div>
-<div class="contrib"><h3 class="contrib__title">선수 정보는 AI에 보내지 않는다</h3><p>권한은 선수와 관리자 둘입니다. 가입 없이 관리자가 로그인 코드를 발급하고, 데이터베이스에는 코드의 해시만 남깁니다. 질문은 선수의 이름과 기록, 단계, 종목을 빼고 AI에 보냅니다. 선수 화면에는 순위와 단계를 보여 주지 않고 이번 주 교육 수만 보입니다.</p></div>
-<div class="contrib"><h3 class="contrib__title">시범 서버는 검토된 데이터로만 시작</h3><p>지금의 판정 기준은 합성 데이터로 정한 값이라 실제 선수에게 쓰면 근거가 없습니다. 모델이 합성 데이터로 학습한 것이거나, 검토를 거치지 않은 약물 항목이 있거나, 금지목록 유효기간이 지났으면 시범 모드에서는 서버가 시작을 거부합니다.</p></div>
+<div class="contrib"><h3 class="contrib__title">근거를 인용한 답만 내보낸다</h3><p>처음 만든 챗봇은 없는 규정과 출처를 그럴듯하게 지어냈습니다.<br>지금은 서버가 교육 자료를 먼저 검색해 넘기고, 모델은 그 자료를 근거로만 답합니다.</p>
+<ul><li>인용이 실제로 넘겨준 자료인지 서버가 확인</li><li>자료로 답할 수 없는 부분은 'AI 추측'으로 따로 표시. 금지 여부와 용량은 추측에서 제외</li><li>검사 회피를 묻는 질문은 서버가 고정 답변</li></ul></div>
+<div class="contrib"><h3 class="contrib__title">약물 판정은 조회표로</h3><p>금지 여부를 모델에게 물으면 그럴듯한 오답이 나올 수 있어, 판정은 출처가 붙은 조회표가 내리고 모델은 설명만 맡습니다.</p>
+<ul><li>판정은 여섯 가지. 목록에 없다고 먹어도 되는 것은 아니라서 '허용'은 두지 않음</li><li>국내 제품명은 심평원 약가마스터로 성분을 찾아 판정</li><li>조회표 판정 원본을 답변 아래 카드로 따로 보여 줌</li></ul></div>
+<div class="contrib"><h3 class="contrib__title">시범 서버는 검토된 데이터로만 시작</h3><p>지금 기준은 합성 데이터로 정한 값이라 실제 선수에게 쓸 근거가 없습니다.<br>합성 데이터로 학습한 모델, 검토 전 약물 항목, 기한이 지난 금지목록 중 하나라도 있으면 시범 모드에서 서버가 시작을 거부합니다.</p></div>
 </section>
 <section class="detail-section" id="troubleshooting">
 <h2 class="detail-section__title">Troubleshooting</h2>
-<div class="ts-item"><h3 class="ts-item__title">두 글자 제품명을 약으로 못 알아봄</h3><dl class="ts-item__rows"><dt class="ts-item__key">문제</dt><dd class="ts-item__val">위험 질문 150개(50문항씩 3회)로 답변을 점검. "판콜 먹어도 돼?"에 약물 판정이 붙지 않음</dd><dt class="ts-item__key">원인</dt><dd class="ts-item__val">두 글자 낱말은 잘못 걸리지 않도록 정확히 등록된 약 이름만 약으로 봄. 판콜, 펜잘 같은 흔한 국내 제품명이 빠져 있었음. "판콜에이"는 끝이 조사처럼 보여 잘려 나감</dd><dt class="ts-item__key">해결</dt><dd class="ts-item__val">자주 묻는 두 글자 제품명을 따로 등록. 낱말 그대로와 조사를 뗀 형태를 둘 다 찾음</dd><dt class="ts-item__key">결과</dt><dd class="ts-item__val">판콜, 펜잘, 탁센, 콘택 질문에 조회표 판정이 붙음. 같은 질문을 테스트로 고정</dd></dl></div>
-<div class="ts-item"><h3 class="ts-item__title">금지목록 추출본이 원문보다 느슨함</h3><dl class="ts-item__rows"><dt class="ts-item__key">문제</dt><dd class="ts-item__val">WADA 2026 금지목록을 PDF에서 자동 추출하자 금지방법 M1~M3가 "조건부"로 나옴. 원문은 상시 금지</dd><dt class="ts-item__key">원인</dt><dd class="ts-item__val">자동 추출 결과를 원문과 맞춰 보는 단계가 없었음</dd><dt class="ts-item__key">해결</dt><dd class="ts-item__val">첫 추출 414항목을 원문 PDF와 색인에 대조해 결함 28건 수정, 443항목으로. 원문 색인 표제어 518개를 전부 조회해 일치 확인</dd><dt class="ts-item__key">결과</dt><dd class="ts-item__val">회귀 테스트 76개. 첫 추출본에 돌리면 36개가 실패해 결함을 실제로 잡는 것을 확인. 대조는 AI로 했기 때문에, 사람이 표본을 확인하기 전에는 시범 서버가 뜨지 않게 막음</dd></dl></div>
+<div class="ts-item"><h3 class="ts-item__title">두 글자 제품명을 약으로 못 알아봄</h3><dl class="ts-item__rows"><dt class="ts-item__key">문제</dt><dd class="ts-item__val">위험 질문 150개로 점검. "판콜 먹어도 돼?"에 판정이 붙지 않음</dd><dt class="ts-item__key">원인</dt><dd class="ts-item__val">오탐을 막으려 두 글자 낱말은 등록된 약 이름만 인정. 흔한 국내 제품명이 빠져 있었음</dd><dt class="ts-item__key">해결</dt><dd class="ts-item__val">자주 묻는 두 글자 제품명을 등록. 조사를 뗀 형태도 찾음</dd><dt class="ts-item__key">결과</dt><dd class="ts-item__val">판콜, 펜잘, 탁센, 콘택에 판정이 붙음. 테스트로 고정</dd></dl></div>
+<div class="ts-item"><h3 class="ts-item__title">금지목록 추출본이 원문보다 느슨함</h3><dl class="ts-item__rows"><dt class="ts-item__key">문제</dt><dd class="ts-item__val">WADA 2026 금지목록 자동 추출본에서 금지방법 M1~M3가 "조건부". 원문은 상시 금지</dd><dt class="ts-item__key">원인</dt><dd class="ts-item__val">추출 결과를 원문과 맞춰 보는 단계가 없었음</dd><dt class="ts-item__key">해결</dt><dd class="ts-item__val">첫 추출 414항목을 원문 PDF와 색인에 대조해 결함 28건 수정. 색인 표제어 518개 전수 조회</dd><dt class="ts-item__key">결과</dt><dd class="ts-item__val">회귀 테스트 76개. 첫 추출본에 돌리면 36개가 실패. 대조를 AI로 했으므로 사람이 표본을 확인하기 전에는 시범 서버가 뜨지 않음</dd></dl></div>
 </section>
 </article>
 <nav class="pager" aria-label="다른 프로젝트">

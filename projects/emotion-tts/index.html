@@ -68,20 +68,23 @@
 </header>
 <section class="detail-section" id="impact">
 <h2 class="detail-section__title">Impact</h2>
-<ul class="impact-grid"><li class="impact-item"><span class="impact-item__num">7<span class="impact-item__unit">종</span></span><span class="impact-item__label">FER2013으로 학습한 CNN이 분류하는 감정 — 48×48 흑백 프레임 입력</span></li><li class="impact-item"><span class="impact-item__num">6<span class="impact-item__unit">종</span></span><span class="impact-item__label">감정마다 음성 톤·발화 속도·스타일을 따로 정의한 TTS 프리셋</span></li><li class="impact-item"><span class="impact-item__num">3<span class="impact-item__unit">기법</span></span><span class="impact-item__label">지수이동평균·다수결 투표·Hold-Time으로 프레임마다 튀는 감정을 안정화</span></li></ul>
+<ul class="impact-grid impact-grid--4"><li class="impact-item"><span class="impact-item__num impact-item__num--text">표정으로 감정 태그</span><span class="impact-item__label"><span class="impact-item__line">웹캠 표정을 CNN이 감정 7종으로 분류</span><span class="impact-item__line">문장이 끝나면 감정 태그가 자동으로 붙음</span></span></li><li class="impact-item"><span class="impact-item__num impact-item__num--text">흔들림 안정화</span><span class="impact-item__label"><span class="impact-item__line">프레임마다 튀는 판정을 지수이동평균으로 누름</span><span class="impact-item__line">100 ms 넘게 유지된 감정만 서버로 보냄</span></span></li><li class="impact-item"><span class="impact-item__num impact-item__num--text">사용자가 확정</span><span class="impact-item__label"><span class="impact-item__line">자동으로 붙은 태그를 보고 고친 뒤 합성</span><span class="impact-item__line">표정 판정이 틀려도 문장 감정은 사람이 정함</span></span></li><li class="impact-item"><span class="impact-item__num impact-item__num--text">감정별 운율</span><span class="impact-item__label"><span class="impact-item__line">논문 이후 속도·음높이·음량 프리셋 추가</span><span class="impact-item__line">PSOLA 후처리로 억양까지 조절</span></span></li></ul>
 </section>
 <section class="detail-section" id="background">
 <h2 class="detail-section__title">Background</h2>
-<p>감정을 다루는 음성 합성 연구는 행복이나 슬픔 같은 태그를 미리 정해 입력으로 넣는 방식입니다. 그러면 감정을 만들기 전에 먼저 정해 둬야 합니다. 말하는 사람의 표정에 그 정보가 실시간으로 들어 있는데도 쓰이지 않아서, 표정을 읽어 감정을 추정하고 그대로 합성 목소리에 반영하는 방법을 제안했습니다.</p>
+<p>감정 음성 합성은 보통 행복·슬픔 같은 태그를 미리 정해 넣습니다.<br>말하는 사람의 표정에 감정이 실시간으로 드러나는데도 쓰이지 않아, 표정으로 감정을 추정해 합성에 넘기는 방법을 제안했습니다.</p>
 </section>
 <section class="detail-section" id="architecture">
 <h2 class="detail-section__title">Architecture</h2>
-<figure class="figure figure--wide"><img class="figure__img--arch" src="../../assets/img/emotion-tts/tts-arch.png" alt="" width="2421" height="638" loading="lazy"><figcaption class="figure__caption">표정 판정은 프레임마다 흔들리므로, 눌러서 정한 다음에야 합성으로 넘어간다.</figcaption></figure>
+<figure class="figure figure--wide"><img class="figure__img--arch" src="../../assets/img/emotion-tts/tts-arch.png" alt="" width="2421" height="638" loading="lazy"><figcaption class="figure__caption">논문 당시 구성. 이후 점검에서 다수결 단계는 결과를 바꾸지 못했고, 감정 지시문은 TTS에 전달되지 않았음을 확인했다.</figcaption></figure>
 </section>
 <section class="detail-section" id="contributions">
 <h2 class="detail-section__title">Contributions</h2>
-<div class="contrib"><h3 class="contrib__title">프레임마다 튀는 인식 값 안정화</h3><p>표정 인식은 프레임 단위로 판정하기 때문에 같은 표정을 유지해도 결과가 계속 바뀝니다. 그 값을 바로 합성에 넘기면 한 문장 안에서 감정이 여러 번 달라집니다. 지수이동평균으로 값을 누르고 다수결 투표를 겹쳐서, 짧게 스쳐 간 오판정이 문장 전체의 감정을 바꾸지 못하게 했습니다.</p></div>
-<div class="contrib"><h3 class="contrib__title">감정 추정과 합성 분리</h3><p>MediaPipe로 얼굴을 찾고 CNN으로 표정을 분류한 뒤, 추정한 감정을 JSON으로 Flask 서버에 넘기면 서버가 TTS를 호출할 때 프롬프트로 반영합니다. 웹 화면에서는 문장 종결부마다 감정 태그가 자동으로 붙고, 사용자가 그 결과를 보고 고칠 수 있습니다.</p></div>
+<div class="contrib"><h3 class="contrib__title">표정에서 문장 태그까지</h3><p>FER2013으로 학습한 CNN이 48×48 흑백 얼굴을 분류하고, 안정된 감정만 Flask 서버로 보냅니다.<br>문장이 끝나면 그동안 가장 오래 유지된 감정이 태그로 붙습니다.</p></div>
+</section>
+<section class="detail-section" id="troubleshooting">
+<h2 class="detail-section__title">Troubleshooting</h2>
+<div class="ts-item"><h3 class="ts-item__title">감정이 목소리에 실리지 않았다</h3><dl class="ts-item__rows"><dt class="ts-item__key">문제</dt><dd class="ts-item__val">감정을 바꿔도 합성 음성은 속도만 달라짐</dd><dt class="ts-item__key">원인</dt><dd class="ts-item__val">감정 지시문이 TTS 호출에 빠져 있었음</dd><dt class="ts-item__key">해결</dt><dd class="ts-item__val">지시문을 TTS에 넘기도록 고치고, 감정별 운율 프리셋과 PSOLA 후처리를 붙임</dd><dt class="ts-item__key">결과</dt><dd class="ts-item__val">감정마다 속도뿐 아니라 음높이·음량·억양이 달라짐. 사람 청취 평가는 아직 없음</dd></dl></div>
 </section>
 </article>
 <nav class="pager" aria-label="다른 프로젝트">
