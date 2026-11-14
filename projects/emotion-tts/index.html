@@ -76,7 +76,7 @@
 </section>
 <section class="detail-section" id="architecture">
 <h2 class="detail-section__title">Architecture</h2>
-<figure class="figure figure--wide"><img class="figure__img--arch" src="../../assets/img/emotion-tts/tts-arch.png" alt="" width="2421" height="638" loading="lazy"><figcaption class="figure__caption">논문 당시 구성. 이후 점검에서 다수결 단계는 결과를 바꾸지 못했고, 감정 지시문은 TTS에 전달되지 않았음을 확인했다.</figcaption></figure>
+<figure class="figure figure--wide"><img class="figure__img--arch" src="../../assets/img/emotion-tts/tts-arch.svg" alt="감정 기반 TTS 시스템 구성도. 웹캠 표정을 MediaPipe로 검출하고 CNN이 감정 7종으로 분류한 뒤 지수이동평균과 100 ms 유지 조건으로 안정화해 합성 서버로 보낸다. 서버는 문장을 쓰는 동안 가장 오래 유지된 감정을 태그로 붙이고, 사용자가 확인한 태그의 프리셋으로 TTS를 호출해 합성 음성을 만든다." width="1500" height="640" loading="lazy"><figcaption class="figure__caption">표정 인식과 합성 서버를 나누고, 감정은 문장 단위로 확정한 뒤 합성한다.</figcaption></figure>
 </section>
 <section class="detail-section" id="contributions">
 <h2 class="detail-section__title">Contributions</h2>
