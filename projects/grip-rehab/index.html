@@ -68,13 +68,13 @@
 </header>
 <section class="detail-section" id="impact">
 <h2 class="detail-section__title">Impact</h2>
-<ul class="impact-grid"><li class="impact-item"><span class="impact-item__num">4<span class="impact-item__unit">단 필터</span></span><span class="impact-item__label"><span class="impact-item__line">스파이크 → 중간값 → 이동평균 → 데드존</span><span class="impact-item__line">8 kg 급상승을 막고, 1 kg 미만은 0으로 처리</span></span></li><li class="impact-item"><span class="impact-item__num">4<span class="impact-item__unit">개의 소프트웨어</span></span><span class="impact-item__label"><span class="impact-item__line">게임 3종과 악력 신디사이저 제작</span><span class="impact-item__line">3초 유지 ⁠·⁠ 순간 도달 ⁠·⁠ 두 손 차이로 입력 방식을 구분</span></span></li><li class="impact-item"><span class="impact-item__num impact-item__num--text">스레드 분리</span><span class="impact-item__label"><span class="impact-item__line">센서 100 Hz, 게임 루프 60 Hz로 분리</span><span class="impact-item__line">큐 대신 최신값 하나만 읽게 함</span></span></li></ul>
+<ul class="impact-grid"><li class="impact-item"><span class="impact-item__num">4<span class="impact-item__unit">단 필터</span></span><span class="impact-item__label"><span class="impact-item__line">스파이크 → 중간값 → 이동평균 → 데드존</span><span class="impact-item__line">8 kg 급상승을 막고, 1 kg 미만은 0으로 처리</span></span></li><li class="impact-item"><span class="impact-item__num">4<span class="impact-item__unit">개의 소프트웨어</span></span><span class="impact-item__label"><span class="impact-item__line">게임 3종과 악력 신디사이저 제작</span><span class="impact-item__line">3초 유지, 순간 도달, 두 손 차이로 입력 방식을 구분</span></span></li><li class="impact-item"><span class="impact-item__num impact-item__num--text">스레드 분리</span><span class="impact-item__label"><span class="impact-item__line">센서 100 Hz, 게임 루프 60 Hz로 분리</span><span class="impact-item__line">큐 대신 최신값 하나만 읽게 함</span></span></li></ul>
 </section>
 <section class="detail-section" id="background">
 <h2 class="detail-section__title">Background</h2>
 <p>인구가 고령화되면서, 상지 기능이 떨어지는 환자가 늘고 있습니다.<br>악력은 생활 능력과 인지 기능의 지표로 쓰여, 꾸준한 측정과 훈련이 필요합니다.</p>
 <p>그러나 기존 재활은 단순 반복이라 지루하고, 측정과 훈련이 나뉘어, 경과가 쌓이지 않습니다.<br>상용 장비는 비싸고 조작이 복잡해, 인지 기능이 떨어진 사용자는 쓰기 어렵습니다.</p>
-<p>저비용 부품으로 하드웨어를 만들어, 측정⁠·⁠훈련⁠·⁠피드백을 하나로 묶었습니다.<br>모든 조작을 악력만으로 하게 해, 훈련을 이어가며, 상지 기능의 향상을 목표로 합니다.</p>
+<p>저비용 부품으로 하드웨어를 만들어, 측정, 훈련, 피드백을 하나로 묶었습니다.<br>모든 조작을 악력만으로 하게 해, 훈련을 이어가며, 상지 기능의 향상을 목표로 합니다.</p>
 </section>
 <section class="detail-section" id="architecture">
 <h2 class="detail-section__title">Architecture</h2>
@@ -84,10 +84,10 @@
 <h2 class="detail-section__title">Contributions</h2>
 <div class="contrib contrib-side"><div class="contrib-side__text"><h3 class="contrib__title">하드웨어 설계</h3>
 <p>로드셀은 미세한 전압 변화만 내보내, HX711이 24비트로 증폭해 읽습니다.<br>아두이노가 두 채널을 받아, 라즈베리파이로 넘깁니다.</p>
-<ul><li>로드셀 2개 — 왼손과 오른손 각각 20 kg</li><li>HX711을 라이브러리 없이 bit⁠-⁠bang으로 직접 읽음</li><li>진동 모터는 HIGH/LOW 신호로만 동작</li></ul></div><figure class="figure"><img class="figure__img--photo" src="../../assets/img/grip-rehab/grip-hardware.jpg" alt="가운데에 3D 출력한 로드셀 마운트, 오른쪽 위에 아두이노 우노, 그 아래 HX711 증폭 모듈, 좌우에 진동 모터가 놓여 있다." width="994" height="766" loading="lazy"></figure></div>
-<div class="contrib contrib-side contrib-side--wide"><div class="contrib-side__text"><h3 class="contrib__title">4단 필터 — 순서가 설계</h3>
+<ul><li>로드셀 2개: 왼손과 오른손 각각 20 kg</li><li>HX711을 라이브러리 없이 bit⁠-⁠bang으로 직접 읽음</li><li>진동 모터는 HIGH/LOW 신호로만 동작</li></ul></div><figure class="figure"><img class="figure__img--photo" src="../../assets/img/grip-rehab/grip-hardware.jpg" alt="가운데에 3D 출력한 로드셀 마운트, 오른쪽 위에 아두이노 우노, 그 아래 HX711 증폭 모듈, 좌우에 진동 모터가 놓여 있다." width="994" height="766" loading="lazy"></figure></div>
+<div class="contrib contrib-side contrib-side--wide"><div class="contrib-side__text"><h3 class="contrib__title">4단 필터: 순서가 설계</h3>
 <p>스파이크 제거, 중간값, 이동평균, 데드존 순서로 걸렀습니다.</p>
-<ul><li>스파이크 제거 — 직전 값보다 8 kg 이상 뛰면 직전 값으로</li><li>중간값 — 윈도우 3, 산발적 이상치를 걸러냄</li><li>이동평균 — 윈도우 5, 유지 구간의 미세 진동을 다듬음</li><li>데드존 — 1 kg 미만은 0, 손을 뗀 상태를 확실히 구분</li></ul></div><figure class="figure figure--wide figure--video"><div class="video-embed"><iframe src="https://www.youtube-nocookie.com/embed/_I-ejlEAkNM" title="프로젝트 영상" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><p class="video-url">영상 <a href="https://youtu.be/_I-ejlEAkNM">youtu.be/_I-ejlEAkNM</a></p></figure></div>
+<ul><li>스파이크 제거: 직전 값보다 8 kg 이상 뛰면 직전 값으로</li><li>중간값: 윈도우 3, 산발적 이상치를 걸러냄</li><li>이동평균: 윈도우 5, 유지 구간의 미세 진동을 다듬음</li><li>데드존: 1 kg 미만은 0, 손을 뗀 상태를 확실히 구분</li></ul></div><figure class="figure figure--wide figure--video"><div class="video-embed"><iframe src="https://www.youtube-nocookie.com/embed/_I-ejlEAkNM" title="프로젝트 영상" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><p class="video-url">영상 <a href="https://youtu.be/_I-ejlEAkNM">youtu.be/_I-ejlEAkNM</a></p></figure></div>
 <div class="contrib"><h3 class="contrib__title">스레드 분리</h3>
 <ul><li>메인에서 시리얼을 읽으면 읽기 지연이 프레임 드롭이 됨</li><li>잠금으로 보호한 최신값 하나만 읽고 큐는 쓰지 않음</li></ul></div>
 <div class="contrib"><h3 class="contrib__title">사용자별 캘리브레이션</h3>

@@ -83,23 +83,23 @@
           <p class="item-title">SoNA (Social Norm-Aware Indoor Navigation Assistant) <span class="item-period">2025.12 ~</span></p>
           <p class="item-desc">사회적 규범 인식 기반 실내 자율 안내 로봇 시스템 (단독 개발 ⁠·⁠ ITRC 과제)</p>
           <p class="item-tech">ROS2 Humble · Nav2 · AMCL · OCR-RCNN · Python · Arduino · Autodesk Fusion</p>
-          <ul class="item-impact"><li><b>4개의 상태</b> — LOCKED, READY, NAV, PAUSED 네 상태 사이를 버튼과 음성으로만 전환</li><li><b>사회적 규범</b> — 사람의 방향을 탐지해 양보 및 추적, 엘리베이터 1층→5층 이동</li><li><b>결함 관리</b> — 직접 기록한 결함 239건을 사용자 입장에서 해결</li><li><b>당사자 인터뷰</b> — 요구 3건 전부 반영, 밀기 기능은 원치 않아 제거</li></ul>
+          <ul class="item-impact"><li><b>4개의 상태</b>: LOCKED, READY, NAV, PAUSED 네 상태 사이를 버튼과 음성으로만 전환</li><li><b>사회적 규범</b>: 사람의 방향을 탐지해 양보 및 추적, 엘리베이터 1층→5층 이동</li><li><b>결함 관리</b>: 직접 기록한 결함 239건을 사용자 입장에서 해결</li><li><b>당사자 인터뷰</b>: 요구 3건 전부 반영, 밀기 기능은 원치 않아 제거</li></ul>
         </div>
         <div class="item">
           <p class="item-title">전동휠체어 자동 주차 시스템 <span class="item-period">2025.12 ~</span></p>
           <p class="item-desc">운전하는 사용자를 위한 전동휠체어 적재 (3인 팀 ⁠·⁠ 위치추정과 인식, 통합 담당 ⁠·⁠ ITRC 과제)</p>
           <p class="item-tech">Python · YOLOv8 · OpenCV · SolvePnP · Jetson Nano · AgileX TRACER</p>
-          <ul class="item-impact"><li><b>카메라를 옮긴 재설계</b> — 먼 구간이 안 찍혀 전면 개편, 차량 어라운드뷰 → 휠체어 탑재</li><li><b>직접 구성한 데이터</b> — 실차 121장⁠·⁠목업 60장 직접 라벨링, 차량 부품 6종⁠·⁠번호판을 크기 기준으로 활용</li><li><b>IMU로 회전 보정</b> — 캐스터 앞바퀴의 틀어짐을 읽을 센서가 없어, 각도 대신 회전속도를 맞춰 진동 제거</li><li><b>하드웨어 최적화</b> — 디코딩이 코어 하나를 91% 점유, 갱신 주기 분리로 4 → 15 FPS 향상</li></ul>
+          <ul class="item-impact"><li><b>카메라를 옮긴 재설계</b>: 먼 구간이 안 찍혀 전면 개편, 차량 어라운드뷰 → 휠체어 탑재</li><li><b>직접 구성한 데이터</b>: 실차 121장과 목업 60장 직접 라벨링, 차량 부품 6종과 번호판을 크기 기준으로 활용</li><li><b>IMU로 회전 보정</b>: 캐스터 앞바퀴의 틀어짐을 읽을 센서가 없어, 각도 대신 회전속도를 맞춰 진동 제거</li><li><b>하드웨어 최적화</b>: 디코딩이 코어 하나를 91% 점유, 갱신 주기 분리로 4 → 15 FPS 향상</li></ul>
         </div>
         <div class="item">
           <p class="item-title">악력 재활 훈련 시스템 <span class="item-period">2026.04 ~ 2026.07</span></p>
           <p class="item-desc">악력으로 조작하는 재활 훈련 게임 (2인 팀 ⁠·⁠ 하드웨어 설계, 신호처리 담당)</p>
           <p class="item-tech">HX711 · Arduino · Raspberry Pi · Python · Pygame</p>
-          <ul class="item-impact"><li><b>4단 필터</b> — 스파이크 → 중간값 → 이동평균 → 데드존, 8 kg 급상승을 막고 1 kg 미만은 0으로 처리</li><li><b>4개의 소프트웨어</b> — 게임 3종과 악력 신디사이저 제작, 3초 유지 ⁠·⁠ 순간 도달 ⁠·⁠ 두 손 차이로 입력 방식을 구분</li><li><b>스레드 분리</b> — 센서 100 Hz, 게임 루프 60 Hz로 분리, 큐 대신 최신값 하나만 읽게 함</li></ul>
+          <ul class="item-impact"><li><b>4단 필터</b>: 스파이크 → 중간값 → 이동평균 → 데드존, 8 kg 급상승을 막고 1 kg 미만은 0으로 처리</li><li><b>4개의 소프트웨어</b>: 게임 3종과 악력 신디사이저 제작, 3초 유지, 순간 도달, 두 손 차이로 입력 방식을 구분</li><li><b>스레드 분리</b>: 센서 100 Hz, 게임 루프 60 Hz로 분리, 큐 대신 최신값 하나만 읽게 함</li></ul>
         </div>
         <div class="item">
           <p class="item-title">두리(Doori) <span class="item-period">2025.12 ~ 2026.01</span></p>
-          <p class="item-desc">보도를 순찰하며 포트홀과 점자블록 파손을 찾는 AI 로봇 ⁠·⁠ 공모전 대상 (2인 팀)</p>
+          <p class="item-desc">보도를 순찰하며 포트홀과 점자블록 파손을 찾는 AI 로봇, 공모전 대상 (2인 팀)</p>
           <p class="item-tech">Unity 2022</p>
         </div>
       </div>
@@ -110,14 +110,14 @@
           <p class="item-title">생성형 AI 기반 맞춤형 도핑 예방 교육 시스템 <span class="item-period">2026.09 ~</span></p>
           <p class="item-desc">역도 선수용 도핑 예방 교육 웹과 질문 챗봇 (설계와 개발 전담 ⁠·⁠ 연구 프로토타입)</p>
           <p class="item-tech">FastAPI · React · TypeScript · LLM API · BM25 · Docker</p>
-          <ul class="item-impact"><li><b>근거 기반 답변</b> — 규정 문서에서 찾은 근거로만 답하고, 근거 없는 부분은 'AI 추측'으로 분리</li><li><b>원문 대조</b> — WADA 금지목록 추출본을 원문과 대조해 결함 28건 수정, 회귀 테스트로 재발 방지</li></ul>
+          <ul class="item-impact"><li><b>근거 기반 답변</b>: 규정 문서에서 찾은 근거로만 답하고, 근거 없는 부분은 'AI 추측'으로 분리</li><li><b>원문 대조</b>: WADA 금지목록 추출본을 원문과 대조해 결함 28건 수정, 회귀 테스트로 재발 방지</li></ul>
         </div>
         <div class="item">
-          <p class="item-title">마디(Madi) — 음악학원·연습실 운영 플랫폼 <span class="item-period">2025.03 ~</span></p>
+          <p class="item-title">마디(Madi): 음악학원·연습실 운영 플랫폼 <span class="item-period">2025.03 ~</span></p>
           <p class="item-desc">단국대 뉴뮤직학부 연습실 예약 시스템에서 출발한 학원 운영 플랫폼 (2인 팀 ⁠·⁠ 백엔드)</p>
         </div>
         <div class="item">
-          <p class="item-title">CAST — 탄소 인식 클라우드 스케줄러 <span class="item-period">2026.07 ~</span></p>
+          <p class="item-title">CAST: 탄소 인식 클라우드 스케줄러 <span class="item-period">2026.07 ~</span></p>
           <p class="item-desc">작업을 탄소 배출이 적은 리전으로 배정하는 스케줄러. 리전 배정 로드밸런서 담당 (4인 팀)</p>
         </div>
         <div class="item">
@@ -126,17 +126,17 @@
         </div>
         <div class="item">
           <p class="item-title">WGBS 유전체 분석 자동화 프로그램 <span class="item-period">2026.07 ~ 2026.08</span></p>
-          <p class="item-desc">R 분석 절차를 코드 없이 실행하도록 GUI로 묶고, GUI⁠·⁠콘솔이 같은 백엔드를 호출하게 설계</p>
+          <p class="item-desc">R 분석 절차를 코드 없이 실행하도록 GUI로 묶고, GUI와 콘솔이 같은 백엔드를 호출하게 설계</p>
         </div>
         <div class="item">
           <p class="item-title">Kubernetes 클러스터 인프라 구축 <span class="item-period">2025.09 ~ 2025.12</span></p>
-          <p class="item-desc">CloudStack에 Terraform⁠·⁠Ansible로 3노드 클러스터 구축, 공인 IP 하나를 포트 규약으로 분리 (단독)</p>
+          <p class="item-desc">CloudStack에 Terraform과 Ansible로 3노드 클러스터 구축, 공인 IP 하나를 포트 규약으로 분리 (단독)</p>
         </div>
         <div class="item">
           <p class="item-title">감정 기반 TTS 보컬 합성 연구 <span class="item-period">2025.06 ~ 2025.12</span></p>
           <p class="item-desc">웹캠 표정으로 문장마다 감정을 붙여 TTS 운율을 바꾸는 시스템 (단독 ⁠·⁠ 학사학위논문)</p>
           <p class="item-tech">Python · TensorFlow · MediaPipe · OpenCV · Flask · edge-tts · Parselmouth</p>
-          <ul class="item-impact"><li><b>표정 인식</b> — FER2013 35,887장으로 학습한 CNN이 감정 7종 분류, EMA와 유지 시간으로 안정화</li><li><b>평가 설계</b> — 개발용 ⁠·⁠ 평가용 데이터 분리, 감정 인식 모델 2종으로 교차 확인</li></ul>
+          <ul class="item-impact"><li><b>표정 인식</b>: FER2013 35,887장으로 학습한 CNN이 감정 7종 분류, EMA와 유지 시간으로 안정화</li><li><b>평가 설계</b>: 개발용과 평가용 데이터 분리, 감정 인식 모델 2종으로 교차 확인</li></ul>
         </div>
         <div class="item">
           <p class="item-title">OnWork 그룹웨어 <span class="item-period">2026.05 ~ 2026.09</span></p>
@@ -147,15 +147,15 @@
       <div class="group">
         <span class="group-tag">Game</span>
         <div class="item">
-          <p class="item-title">DelRev — 3D 잠입 액션 게임 <span class="item-period">2025.04 ~ 2026.01</span></p>
-          <p class="item-desc">위험도를 화면이 아닌 소리로 전달. 플레이어 시스템⁠·⁠맵⁠·⁠방해자 AI와 사운드 담당 (4인으로 시작해 3인 ⁠·⁠ 조장)</p>
+          <p class="item-title">DelRev: 3D 잠입 액션 게임 <span class="item-period">2025.04 ~ 2026.01</span></p>
+          <p class="item-desc">위험도를 화면이 아닌 소리로 전달. 플레이어 시스템, 맵, 방해자 AI, 사운드 담당 (4인으로 시작해 3인 ⁠·⁠ 조장)</p>
         </div>
       </div>
 
       <div class="group">
         <span class="group-tag">Music Technology</span>
         <div class="item">
-          <p class="item-title">게임 사운드팩 — 여섯 장르 <span class="item-period">2024.01 ~ 2024.12</span></p>
+          <p class="item-title">게임 사운드팩: 여섯 장르 <span class="item-period">2024.01 ~ 2024.12</span></p>
           <p class="item-desc">여섯 장르를 각각 설계해 제작, 분류 체계를 세우고 파일명 규칙 적용을 자동화 (QLAUDIO 프리랜서 ⁠·⁠ 상용 판매)</p>
         </div>
         <div class="item">
@@ -164,11 +164,11 @@
         </div>
         <div class="item">
           <p class="item-title">인터랙티브 사운드 ⁠·⁠ 퍼포먼스 작업 <span class="item-period">2024</span></p>
-          <p class="item-desc">Max/MSP와 MediaPipe로 제스처에 반응하는 사운드 제어, Unity⁠·⁠TouchDesigner 공간 음향 연동</p>
+          <p class="item-desc">Max/MSP와 MediaPipe로 제스처에 반응하는 사운드 제어, Unity와 TouchDesigner 공간 음향 연동</p>
         </div>
         <div class="item">
           <p class="item-title">권혁준 감독 단편영화 &lsquo;After Session&rsquo; 음악 제작 <span class="item-period">2023</span></p>
-          <p class="item-desc">장면 분석 기반 음악 구성, 작곡⁠·⁠편곡 및 최종 믹싱 납품</p>
+          <p class="item-desc">장면 분석 기반 음악 구성, 작곡과 편곡, 최종 믹싱 납품</p>
         </div>
       </div>
 
@@ -448,7 +448,7 @@
   bar.id = 'edbar';
   bar.innerHTML =
     '<button id="edtoggle">편집 켜기</button>' +
-    '<button id="edsave" disabled>저장 — 파일 내려받기</button>' +
+    '<button id="edsave" disabled>저장: 파일 내려받기</button>' +
     '<span id="edmsg">글자를 클릭해 고칠 수 있습니다. 받은 파일을 index.html에 덮어쓰고 커밋하세요.</span>';
 
   var css = document.createElement('style');
