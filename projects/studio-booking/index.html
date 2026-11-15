@@ -81,7 +81,7 @@
 </section>
 <section class="detail-section" id="architecture">
 <h2 class="detail-section__title">Architecture</h2>
-<figure class="figure figure--wide"><img class="figure__img--arch" src="../../assets/img/studio-booking/madi-aws.png" alt="마디 AWS 배포 계획 구성도. 사용자가 Route 53으로 도메인을 찾고 HTTPS로 EC2의 Nginx에 들어오면, 화면은 Nginx가 주고 /api 요청은 Spring Boot로 넘긴다. 업무 데이터는 프라이빗 서브넷의 RDS PostgreSQL, 로고 파일은 S3에 두고, 구글 로그인과 GitHub Actions 배포, SSM 접속이 붙는다." width="2700" height="1208" loading="lazy"><figcaption class="figure__caption">AWS 배포 계획. 지금은 같은 구성을 로컬 Docker Compose로 띄운다.</figcaption></figure>
+<figure class="figure figure--wide"><img class="figure__img--arch" src="../../assets/img/studio-booking/madi-aws.png" alt="마디 AWS 배포 설계도. 사용자가 Route 53으로 도메인을 찾고 HTTPS로 EC2의 Nginx에 들어오면, 화면은 Nginx가 주고 /api 요청은 Spring Boot로 넘긴다. 업무 데이터는 프라이빗 서브넷의 RDS PostgreSQL, 로고 파일은 S3에 두고, 구글 로그인과 GitHub Actions 배포, SSM 접속이 붙는다." width="2700" height="1208" loading="lazy"><figcaption class="figure__caption">AWS 배포 설계</figcaption></figure>
 <p>모든 기관이 같은 테이블을 쓰고, 행마다 기관 ID를 두어 데이터를 나눴습니다. 배치도는 층마다 문서 하나로 저장하고, 두 관리자가 동시에 고치면 버전을 비교해 나중 저장을 막습니다.</p>
 </section>
 <section class="detail-section" id="contributions">
