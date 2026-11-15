@@ -57,8 +57,6 @@
 </dl>
 <ul class="detail-links">
 <li><a href="https://github.com/bell-ha/musicstudio-booking-system" target="_blank" rel="noopener">GitHub</a></li>
-<li><a href="https://github.com/bell-ha/musicstudio-booking-system/blob/main/docs/experiments/0001-%EC%98%88%EC%95%BD-%EA%B2%B9%EC%B9%A8-%EB%B0%A9%EC%A7%80-%EB%B9%84%EA%B5%90.md" target="_blank" rel="noopener">예약 겹침 실험</a></li>
-<li><a href="https://github.com/bell-ha/musicstudio-booking-system/blob/legacy-fastapi/docs/TROUBLESHOOTING.md" target="_blank" rel="noopener">초기 버전 문서</a></li>
 </ul>
 <ul class="detail-tags">
 <li class="tag">Java 25</li>
@@ -73,7 +71,7 @@
 </header>
 <section class="detail-section" id="impact">
 <h2 class="detail-section__title">Impact</h2>
-<ul class="impact-grid impact-grid--4"><li class="impact-item"><span class="impact-item__num impact-item__num--text">평면도 위에서 예약</span><span class="impact-item__label"><span class="impact-item__line">관리자가 그린 평면도를 학생 화면이 그대로 읽음</span><span class="impact-item__line">번호뿐인 연습실을 지도에서 고름</span></span></li><li class="impact-item"><span class="impact-item__num impact-item__num--text">문서 없던 규칙 정리</span><span class="impact-item__label"><span class="impact-item__line">카페 공지를 뒤지고 학생·과대표에게 물어 정함</span><span class="impact-item__line">정한 규칙은 관리자 화면에서 바꿈</span></span></li><li class="impact-item"><span class="impact-item__num impact-item__num--text">예약 겹침 방지</span><span class="impact-item__label"><span class="impact-item__line">같은 방 1,000건 동시 요청으로 4가지 방식 비교</span><span class="impact-item__line">advisory lock 채택, 저장 1건 오류 0</span></span></li><li class="impact-item"><span class="impact-item__num impact-item__num--text">여러 기관이 쓸 수 있는 구조</span><span class="impact-item__label"><span class="impact-item__line">한 학과용 예약을 학원·학교 공용 플랫폼으로</span><span class="impact-item__line">기관마다 연습실·학원 관리 기능을 골라 쓰게 함</span></span></li></ul>
+<ul class="impact-grid"><li class="impact-item"><span class="impact-item__num impact-item__num--text">연습실 배치도</span><span class="impact-item__label"><span class="impact-item__line">관리자가 그린 배치도 위에서 학생이 방을 골라 예약</span><span class="impact-item__line">번호뿐인 연습실도 위치를 보고 고름</span></span></li><li class="impact-item"><span class="impact-item__num impact-item__num--text">동시 예약 검증</span><span class="impact-item__label"><span class="impact-item__line">같은 방에 몰린 요청을 재현해 잠금 방식 4가지 비교</span><span class="impact-item__line">중복 없이 한 건만 저장되는 방식 채택</span></span></li><li class="impact-item"><span class="impact-item__num impact-item__num--text">설계 결정 기록</span><span class="impact-item__label"><span class="impact-item__line">요구사항과 설계 결정을 코드보다 먼저 정리</span><span class="impact-item__line">고른 방식과 버린 대안을 이유와 함께 남김</span></span></li></ul>
 </section>
 <section class="detail-section" id="background">
 <h2 class="detail-section__title">Background</h2>
@@ -83,13 +81,13 @@
 </section>
 <section class="detail-section" id="architecture">
 <h2 class="detail-section__title">Architecture</h2>
-<p>평면도 좌표 자체를 데이터로 뒀습니다. <code>cells(floor, x, y)</code>는 복도와 벽 칸, <code>rooms.pos_x/pos_y</code>는 방 이름표 자리입니다. 관리자가 그린 값을 학생 화면이 그대로 읽어 평면도를 그립니다.</p>
+<p>배치도 좌표 자체를 데이터로 뒀습니다. <code>cells(floor, x, y)</code>는 복도와 벽 칸, <code>rooms.pos_x/pos_y</code>는 방 이름표 자리입니다. 관리자가 그린 값을 학생 화면이 그대로 읽어 배치도를 그립니다.</p>
 </section>
 <section class="detail-section" id="contributions">
 <h2 class="detail-section__title">Contributions</h2>
-<div class="contrib"><h3 class="contrib__title">평면도를 이미지 대신 좌표로</h3><p>평면도를 이미지로 넣으면 배치가 바뀔 때마다 개발자가 이미지와 좌표를 고쳐 다시 배포해야 합니다.<br>관리자가 화면에서 펜으로 복도를 긋고 이름표를 얹으면 그 값이 그대로 저장되게 했습니다.</p>
+<div class="contrib"><h3 class="contrib__title">배치도를 이미지 대신 좌표로</h3><p>배치도를 이미지로 넣으면 배치가 바뀔 때마다 개발자가 이미지와 좌표를 고쳐 다시 배포해야 합니다.<br>관리자가 화면에서 펜으로 복도를 긋고 이름표를 얹으면 그 값이 그대로 저장되게 했습니다.</p>
 <figure class="figure figure--wide"><img class="figure__img--screen" src="../../assets/img/studio-booking/booking-editor.png" alt="" width="900" height="599" loading="lazy"><figcaption class="figure__caption">관리자가 모눈 위에 펜으로 복도를 긋고 방 이름표를 얹는다.</figcaption></figure>
-<figure class="figure figure--wide"><img class="figure__img--screen" src="../../assets/img/studio-booking/booking-user.png" alt="" width="900" height="624" loading="lazy"><figcaption class="figure__caption">학생은 같은 데이터를 읽어 그린 평면도에서 방을 고른다.</figcaption></figure></div>
+<figure class="figure figure--wide"><img class="figure__img--screen" src="../../assets/img/studio-booking/booking-user.png" alt="" width="900" height="624" loading="lazy"><figcaption class="figure__caption">학생은 같은 데이터를 읽어 그린 배치도에서 방을 고른다.</figcaption></figure></div>
 <div class="contrib"><h3 class="contrib__title">정책 값도 데이터베이스로</h3><p>최대 예약 시간, 취소 마감, 운영 시간, 매주 예약이 열리는 시점이 코드에 상수로 박혀 있었습니다.<br>이 값을 바꾸는 쪽은 학과 사무실이라 데이터베이스로 옮기고 관리자 화면을 붙였습니다.</p>
 <figure class="figure figure--wide"><img class="figure__img--screen" src="../../assets/img/studio-booking/booking-policy.png" alt="" width="900" height="675" loading="lazy"><figcaption class="figure__caption">규칙 이름만 보고는 무엇이 달라지는지 알기 어려워, 규칙마다 설명을 한 줄씩 붙였다.</figcaption></figure></div>
 <div class="contrib"><h3 class="contrib__title">업무 규칙을 데이터베이스에도</h3><p>규칙을 파이썬 코드에서만 검사하고 있어서 SQL로 직접 넣으면 15시부터 13시까지 같은 예약도 들어갔습니다.<br>CHECK와 UNIQUE 10개, 조회용 인덱스 2개를 적용하고 다섯 경우가 차단되는 것을 확인했습니다.</p></div>
