@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>전동휠체어 자동 주차 시스템 | Jongha Lee</title>
-<meta name="description" content="운전하는 사용자를 위한 전동휠체어 적재">
+<meta name="description" content="휠체어가 스스로 트렁크까지 가는 자동 주차 시스템">
 <link rel="canonical" href="https://bell-ha.github.io/projects/wheelchair-parking/">
 <meta property="og:type" content="article">
 <meta property="og:title" content="전동휠체어 자동 주차 시스템 | Jongha Lee">
-<meta property="og:description" content="운전하는 사용자를 위한 전동휠체어 적재">
+<meta property="og:description" content="휠체어가 스스로 트렁크까지 가는 자동 주차 시스템">
 <meta property="og:url" content="https://bell-ha.github.io/projects/wheelchair-parking/">
 <meta property="og:image" content="https://bell-ha.github.io/assets/img/common/og.jpg">
 <meta property="og:locale" content="ko_KR">
@@ -50,10 +50,10 @@
 <header class="detail-header">
 <p class="detail-breadcrumb"><a href="../../#robotics">Robotics &amp; Embedded</a></p>
 <h1 class="detail-title">전동휠체어 자동 주차 시스템</h1>
-<p class="detail-oneline">운전하는 사용자를 위한 전동휠체어 적재</p>
+<p class="detail-oneline">휠체어가 스스로 트렁크까지 가는 자동 주차 시스템</p>
 <dl class="detail-meta">
 <dt class="meta-key">기간</dt><dd>2025.12 ~</dd>
-<dt class="meta-key">역할</dt><dd>3인 팀 · 위치추정과 인식, 통합 담당 · ITRC 과제</dd>
+<dt class="meta-key">역할</dt><dd>ITRC 과제 · 3인 팀 · 위치추정과 인식, 통합</dd>
 </dl>
 <ul class="detail-links">
 <li><a href="https://github.com/bell-ha/wheelchair-auto-parking-system" target="_blank" rel="noopener">GitHub</a></li>
@@ -69,12 +69,12 @@
 </header>
 <section class="detail-section" id="impact">
 <h2 class="detail-section__title">Impact</h2>
-<ul class="impact-grid impact-grid--4"><li class="impact-item"><span class="impact-item__num impact-item__num--text">카메라를 옮긴 재설계</span><span class="impact-item__label"><span class="impact-item__line">먼 구간이 안 찍혀 전면 개편</span><span class="impact-item__line">차량 어라운드뷰 → 휠체어 탑재</span></span></li><li class="impact-item"><span class="impact-item__num impact-item__num--text">직접 구성한 데이터</span><span class="impact-item__label"><span class="impact-item__line">실차 121장과 목업 60장 직접 라벨링</span><span class="impact-item__line">차량 부품 6종과 번호판을 크기 기준으로 활용</span></span></li><li class="impact-item"><span class="impact-item__num impact-item__num--text">IMU로 회전 보정</span><span class="impact-item__label"><span class="impact-item__line">캐스터 앞바퀴의 틀어짐을 읽을 센서가 없어</span><span class="impact-item__line">각도 대신 회전속도를 맞춰 진동 제거</span></span></li><li class="impact-item"><span class="impact-item__num impact-item__num--text">하드웨어 최적화</span><span class="impact-item__label"><span class="impact-item__line">디코딩이 코어 하나를 91% 점유</span><span class="impact-item__line">갱신 주기 분리로 4 → 15 FPS 향상</span></span></li></ul>
+<ul class="impact-grid impact-grid--4"><li class="impact-item"><span class="impact-item__num impact-item__num--text">카메라를 옮긴 재설계</span><span class="impact-item__label"><span class="impact-item__line">먼 구간이 안 찍혀 전면 개편</span><span class="impact-item__line">차량 어라운드뷰 → 휠체어 탑재</span></span></li><li class="impact-item"><span class="impact-item__num impact-item__num--text">직접 구성한 데이터</span><span class="impact-item__label"><span class="impact-item__line">실차 121장, 목업 60장 라벨링</span><span class="impact-item__line">차량 부위 6종을 따로 탐지</span></span></li><li class="impact-item"><span class="impact-item__num impact-item__num--text">IMU로 회전 보정</span><span class="impact-item__label"><span class="impact-item__line">캐스터 틀어짐을 읽을 센서 없음</span><span class="impact-item__line">회전속도를 맞춰 진동 제거</span></span></li><li class="impact-item"><span class="impact-item__num impact-item__num--text">하드웨어 최적화</span><span class="impact-item__label"><span class="impact-item__line">디코딩이 코어 하나를 91% 점유</span><span class="impact-item__line">갱신 주기 분리로 4 → 15 FPS 향상</span></span></li></ul>
 </section>
 <section class="detail-section" id="background">
 <h2 class="detail-section__title">Background</h2>
-<p>전동휠체어 사용자는 차량에 탑승한 뒤,<br>밖에 남겨진 휠체어를 스스로 실을 수 없습니다. 이 과정에는 반드시 타인의 도움이 필요합니다.</p>
-<p>본 연구에서는 기아 RAY 자가운전 차량을 기준으로,<br>휠체어가 스스로 트렁크까지 가서 주차 및 출차하는 시스템을 제안합니다.</p>
+<p>전동휠체어 사용자는 차에 탄 뒤, 밖에 남은 휠체어를 스스로 실을 수 없습니다.<br>그래서 차를 탈 때마다 다른 사람의 도움이 필요합니다.</p>
+<p>기아 레이를 기준으로, 휠체어가 스스로 트렁크까지 가서 주차하고 다시 나오는 시스템을 만들고 있습니다.<br>3인 팀에서 위치추정과 인식, 통합을 맡았습니다.</p>
 </section>
 <section class="detail-section" id="architecture">
 <h2 class="detail-section__title">Architecture</h2>
@@ -94,9 +94,8 @@
 </section>
 <section class="detail-section" id="troubleshooting">
 <h2 class="detail-section__title">Troubleshooting</h2>
-<div class="ts-item"><h3 class="ts-item__title">튜닝이 아니라 설계를 바꿔야 했던 문제</h3><dl class="ts-item__rows"><dt class="ts-item__key">문제</dt><dd class="ts-item__val">먼 구간의 오차가 줄지 않음. 보정을 더해도 그대로</dd><dt class="ts-item__key">원인</dt><dd class="ts-item__val">거리가 멀어 그 구간이 아예 찍히지 않음. 파라미터로 풀 문제가 아니었음</dd><dt class="ts-item__key">해결</dt><dd class="ts-item__val">마커를 키울 수도, 보정으로 메울 수도 없음. 그 근거로, 카메라를 휠체어로 옮기자고 제안</dd><dt class="ts-item__key">결과</dt><dd class="ts-item__val">V1에서 V2로 설계를 바꿈. 경로 생성은 그대로 쓸 수 있음. 팀원 작업은 영향 없음</dd></dl><figure class="figure figure--wide"><img class="figure__img--screen" src="../../assets/img/wheelchair-parking/wc-where-camera.svg" alt="화면 캡처" width="1020" height="600" loading="lazy"></figure></div>
-<div class="ts-item"><h3 class="ts-item__title">직진 중 좌우로 진동</h3><dl class="ts-item__rows"><dt class="ts-item__key">문제</dt><dd class="ts-item__val">직진 명령을 줘도 똑바로 못 감. 좌우로 흔들림</dd><dt class="ts-item__key">원인</dt><dd class="ts-item__val">앞바퀴가 캐스터라 이전 방향으로 휨. 그 틀어짐을 읽을 센서가 없음. IMU로 각도를 재 P제어로 되돌림. 방위오차가 1.2°인데 자이로는 −17.7°/s. 도착 순간 브레이크가 없어 반대쪽으로 지나침</dd><dt class="ts-item__key">해결</dt><dd class="ts-item__val">각도로 목표 회전속도를 정함. 자이로가 그 속도를 맞추는 구조로 교체. 적분항이 캐스터의 틀어짐을 주행 중 학습</dd><dt class="ts-item__key">결과</dt><dd class="ts-item__val">목표 방향에 가까울수록 스스로 감속. 50° 벗어난 상태에서 약 7초에 복귀</dd></dl></div>
-<div class="ts-item"><h3 class="ts-item__title">Jetson Nano에서 프리징</h3><dl class="ts-item__rows"><dt class="ts-item__key">문제</dt><dd class="ts-item__val">추론을 돌리면 보드가 멈춤. 아무 응답이 없음</dd><dt class="ts-item__key">원인</dt><dd class="ts-item__val">메모리가 모자라 스왑이 부족해짐</dd><dt class="ts-item__key">해결</dt><dd class="ts-item__val">스왑을 4GB로 늘림. 입력 해상도를 320픽셀로 낮춤</dd><dt class="ts-item__key">결과</dt><dd class="ts-item__val">15FPS로 지속 구동. 추론에 42ms</dd></dl></div>
+<div class="ts-item"><h3 class="ts-item__title">먼 구간의 위치 오차가 줄지 않음</h3><dl class="ts-item__rows"><dt class="ts-item__key">문제</dt><dd class="ts-item__val">보정을 더해도 먼 구간의 오차가 그대로</dd><dt class="ts-item__key">원인</dt><dd class="ts-item__val">거리가 멀어 그 구간이 아예 찍히지 않음. 파라미터로 풀 문제가 아니었음</dd><dt class="ts-item__key">해결</dt><dd class="ts-item__val">마커를 키울 수도, 보정으로 메울 수도 없음. 그 근거로, 카메라를 휠체어로 옮기자고 제안</dd><dt class="ts-item__key">결과</dt><dd class="ts-item__val">V1에서 V2로 설계를 바꿈. 경로 생성은 그대로 쓸 수 있음. 팀원 작업은 영향 없음</dd></dl><figure class="figure figure--wide"><img class="figure__img--screen" src="../../assets/img/wheelchair-parking/wc-where-camera.svg" alt="화면 캡처" width="1020" height="600" loading="lazy"></figure></div>
+<div class="ts-item"><h3 class="ts-item__title">직진 중 좌우로 진동</h3><dl class="ts-item__rows"><dt class="ts-item__key">문제</dt><dd class="ts-item__val">직진 명령을 줘도 똑바로 못 감. 좌우로 흔들림</dd><dt class="ts-item__key">원인</dt><dd class="ts-item__val">앞바퀴가 캐스터라 이전 방향으로 틀어지는데, 이를 읽을 센서가 없음.<br>IMU 각도로 P제어를 하자 방위 오차는 1.2°인데 회전 속도가 −17.7°/s라 목표를 지나침</dd><dt class="ts-item__key">해결</dt><dd class="ts-item__val">각도로 목표 회전속도를 정함. 자이로가 그 속도를 맞추는 구조로 교체. 적분항이 캐스터의 틀어짐을 주행 중 학습</dd><dt class="ts-item__key">결과</dt><dd class="ts-item__val">목표 방향에 가까울수록 스스로 감속. 50° 벗어난 상태에서 약 7초에 복귀</dd></dl></div>
 </section>
 </article>
 <nav class="pager" aria-label="다른 프로젝트">

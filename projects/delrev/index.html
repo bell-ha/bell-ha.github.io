@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>DelRev | Jongha Lee</title>
-<meta name="description" content="10개월간 4인 팀으로 만든 졸업작품">
+<meta name="description" content="위험을 소리로 알려 주는 3D 잠입 게임">
 <link rel="canonical" href="https://bell-ha.github.io/projects/delrev/">
 <meta property="og:type" content="article">
 <meta property="og:title" content="DelRev | Jongha Lee">
-<meta property="og:description" content="10개월간 4인 팀으로 만든 졸업작품">
+<meta property="og:description" content="위험을 소리로 알려 주는 3D 잠입 게임">
 <meta property="og:url" content="https://bell-ha.github.io/projects/delrev/">
 <meta property="og:image" content="https://bell-ha.github.io/assets/img/common/og.jpg">
 <meta property="og:locale" content="ko_KR">
@@ -50,10 +50,10 @@
 <header class="detail-header">
 <p class="detail-breadcrumb"><a href="../../#game">Game</a></p>
 <h1 class="detail-title">DelRev</h1>
-<p class="detail-oneline">10개월간 4인 팀으로 만든 졸업작품</p>
+<p class="detail-oneline">위험을 소리로 알려 주는 3D 잠입 게임</p>
 <dl class="detail-meta">
 <dt class="meta-key">기간</dt><dd>2025.04 ~ 2026.01</dd>
-<dt class="meta-key">역할</dt><dd>4인으로 시작해 2025년 8월부터 3인, 조장, 플레이어와 맵, 위험게이지, 방해자 AI, 사운드 담당</dd>
+<dt class="meta-key">역할</dt><dd>4인 팀 · 플레이어, 맵, 위험게이지, 방해자 AI, 사운드</dd>
 </dl>
 <ul class="detail-links">
 <li><a href="https://github.com/hitori839/DelRev" target="_blank" rel="noopener">GitHub</a></li>
@@ -70,7 +70,7 @@
 </header>
 <section class="detail-section" id="impact">
 <h2 class="detail-section__title">Impact</h2>
-<ul class="impact-grid"><li class="impact-item"><span class="impact-item__num">4<span class="impact-item__unit">구간</span></span><span class="impact-item__label">위험도를 틱 간격과 볼륨으로 나눠 화면 대신 귀로 전달</span></li><li class="impact-item"><span class="impact-item__num">11<span class="impact-item__unit">종</span></span><span class="impact-item__label">방해자 상태 기계: 연구소 3종은 맵을 끝내지 못해 빌드에 넣지 못함</span></li><li class="impact-item"><span class="impact-item__num">57<span class="impact-item__unit">개</span></span><span class="impact-item__label">게임 사운드를 직접 만들고 재생 시점까지 코드로 연결</span></li></ul>
+<ul class="impact-grid"><li class="impact-item"><span class="impact-item__num">4<span class="impact-item__unit">구간</span></span><span class="impact-item__label">위험도를 틱 간격과 볼륨으로 나눠 화면 대신 귀로 전달</span></li><li class="impact-item"><span class="impact-item__num">11<span class="impact-item__unit">종</span></span><span class="impact-item__label">방해자마다 따로 만든 상태 기계</span></li><li class="impact-item"><span class="impact-item__num">57<span class="impact-item__unit">개</span></span><span class="impact-item__label">게임 사운드를 직접 만들고 재생 시점까지 코드로 연결</span></li></ul>
 </section>
 <section class="detail-section" id="background">
 <h2 class="detail-section__title">Background</h2>
@@ -80,7 +80,7 @@
 </section>
 <section class="detail-section" id="architecture">
 <h2 class="detail-section__title">Architecture</h2>
-<figure class="figure figure--wide"><img class="figure__img--arch" src="../../assets/img/delrev/delrev-arch.png" alt="" width="2473" height="1955" loading="lazy"><figcaption class="figure__caption">위험게이지는 업무 구역 밖에 머문 시간만 본다. 감지는 그와 별개로 돈다.</figcaption></figure>
+<figure class="figure figure--wide"><img class="figure__img--arch" src="../../assets/img/delrev/delrev-arch.png" alt="" width="2473" height="1955" loading="lazy"><figcaption class="figure__caption">게임 구조</figcaption></figure>
 <p>맵마다 씬을 나누고, 플레이어와 인벤토리는 씬 수명에서 떼어내 전환 뒤에도 남게 했습니다.</p>
 <p>위험 계통과 감지 계통은 서로 모릅니다. 위험게이지는 업무 구역을 벗어난 시간만 보고 오르내리다가 가득 차면 <code>IDangerTarget</code>으로 그 스테이지의 최종 방해자에게 통보만 합니다. 감지는 그와 별개로 감시 장치가 플레이어를 보면 추격자를 부르는 쪽이고, 방해자는 공통 부모 없이 각자의 상태 집합으로 돕니다.</p>
 </section>
@@ -98,7 +98,6 @@
 <section class="detail-section" id="troubleshooting">
 <h2 class="detail-section__title">Troubleshooting</h2>
 <div class="ts-item"><h3 class="ts-item__title">씬을 넘어갈 때 아이템이 사라지거나 두 개가 된다</h3><dl class="ts-item__rows"><dt class="ts-item__key">문제</dt><dd class="ts-item__val">맵을 옮길 때마다 씬을 새로 불러오는데, Unity는 씬을 내리면서 그 씬의 오브젝트를 전부 파괴합니다. 들고 있던 아이템도 트레일러에 실어 둔 아이템도 같이 사라졌고, 매번 일어나지 않아 재현부터 어려웠습니다.</dd><dt class="ts-item__key">원인</dt><dd class="ts-item__val">원인이 네 개였습니다. <code>DontDestroyOnLoad</code>가 루트 오브젝트에만 걸리는데 아이템은 플레이어의 자식이었고, 트레일러에 실으면 다시 자식이 됐습니다. 씬을 다시 불러오면 원래 배치된 사본과 넘어온 사본이 함께 남았고, 중복을 정리하기 전에 트리거가 먼저 발동했습니다.</dd><dt class="ts-item__key">해결</dt><dd class="ts-item__val">순서를 고쳤습니다. <code>SetParent(null)</code>로 루트를 떼어낸 다음 <code>DontDestroyOnLoad</code>를 호출합니다(<code>1.Player/InventoryUI.cs:18-19</code>). 트레일러에 실을 때도 각각 보호하고, 씬 이름으로 사본을 판별해 제거하고, 준비가 끝나기 전에는 트리거가 동작하지 않게 막았습니다.</dd><dt class="ts-item__key">결과</dt><dd class="ts-item__val">이후 재발하지 않았습니다.</dd></dl></div>
-<div class="ts-item"><h3 class="ts-item__title">네 맵을 한 씬에 둘 것인가, 맵마다 나눌 것인가</h3><dl class="ts-item__rows"><dt class="ts-item__key">문제</dt><dd class="ts-item__val">처음에는 네 맵을 한 씬에 배치하고 플레이어를 순간이동으로 옮기려 했는데, 옮길 때마다 위치와 상태를 맞추는 일이 까다로웠습니다.</dd><dt class="ts-item__key">원인</dt><dd class="ts-item__val">한 씬에 모으면 상태를 계속 동기화해야 하고, 씬을 나누면 씬 사이에 데이터를 보존해야 합니다. 어느 쪽이든 비용이 따라옵니다.</dd><dt class="ts-item__key">해결</dt><dd class="ts-item__val">맵마다 씬을 나누고 플레이어는 항상 원점에 두는 쪽으로 정했습니다.</dd><dt class="ts-item__key">결과</dt><dd class="ts-item__val">시작 지점이 일정해진 대신 위의 아이템 소실 문제를 떠안았습니다.</dd></dl></div>
 <div class="ts-item"><h3 class="ts-item__title">남은 것</h3><p>스테이지는 네 개를 설계해 셋을 빌드에 넣었습니다. 연구소 씬을 끝내지 못해 맵 선택 코드에 <code>/* 연구소 생기면 추가 case 4 */</code> 주석이 남아 있습니다. 할당량을 못 채웠을 때의 판정도 구현하지 않았습니다.</p></div>
 </section>
 <section class="detail-section" id="related">

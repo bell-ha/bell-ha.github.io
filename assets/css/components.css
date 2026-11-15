@@ -56,7 +56,7 @@
   .proj-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 20px;
-    align-items: start;   /* 내용이 짧은 카드가 옆 카드 높이에 끌려가 비지 않게 */
+    align-items: stretch; /* 같은 줄의 카드는 높이를 맞추고, 태그는 카드 맨 아래로(.proj-card__tags) */
   }
   /* 카드가 하나뿐인 분야(Game)는 오른쪽 절반이 통째로 비므로 1열 */
   .proj-grid:has(> :only-child) { grid-template-columns: 1fr; }
@@ -65,7 +65,8 @@
 
 .proj-card {
   position: relative;
-  display: block;
+  display: flex;
+  flex-direction: column;
   padding: 18px 20px;
   border: var(--hairline) solid var(--border-strong);
   border-radius: 8px;
@@ -107,6 +108,17 @@
   margin-bottom: 6px;
   color: var(--text);
   text-wrap: balance;
+}
+
+/* 영문 풀이처럼 제목 아래에 붙는 둘째 줄: 한 줄에 들어가게 작게 */
+.proj-card__title-sub {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+@media (min-width: 680px) {
+  .proj-card__title-sub { white-space: nowrap; }
 }
 
 .proj-card__oneline {
@@ -177,7 +189,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  margin-block-start: var(--sp-1);
+  margin-block-start: auto;   /* 남는 높이를 위에 두어 태그 줄을 카드 바닥에 맞춘다 */
   padding: var(--sp-1) 0 0;
   list-style: none;
 }

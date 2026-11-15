@@ -53,7 +53,6 @@
 <p class="detail-oneline">관리자가 그린 배치도 위에서 바로 예약하는 연습실 플랫폼</p>
 <dl class="detail-meta">
 <dt class="meta-key">기간</dt><dd>2025.03 ~</dd>
-<dt class="meta-key">역할</dt><dd>2인 팀 · 백엔드</dd>
 </dl>
 <ul class="detail-links">
 <li><a href="https://github.com/bell-ha/musicstudio-booking-system" target="_blank" rel="noopener">GitHub</a></li>
@@ -75,9 +74,9 @@
 </section>
 <section class="detail-section" id="background">
 <h2 class="detail-section__title">Background</h2>
-<p>학과 연습실은 네 개 층 51실인데, 예약은 카페 댓글로 받았습니다. 빈 시간을 한눈에 볼 수 없었고, 124-2 같은 번호만으로는 연습실 위치도 알기 어려웠습니다. 예약 단위나 취소 기한 같은 규칙도 문서로 정리돼 있지 않았습니다.</p>
-<p>교수님께 제안해 배치도 위에서 바로 예약하는 첫 버전을 FastAPI로 만들었고, 2인 팀에서 백엔드와 서버를 맡았습니다. 문서에 없던 규칙은 카페 공지와 학생, 과대표의 의견을 모아 정했습니다.</p>
-<p>2026년 10월부터는 이 규칙을 요구사항으로 삼아, 여러 학원과 학교가 쓸 수 있는 플랫폼 「마디」를 Spring으로 새로 만들고 있습니다.</p>
+<p>학과 연습실은 네 개 층 51실인데, 예약은 카페 댓글로 받았습니다.<br>빈 시간을 한눈에 볼 수 없었고, 124-2 같은 번호만으로는 연습실 위치도 알기 어려웠습니다.<br>예약 단위나 취소 기한 같은 규칙도 문서로 정리돼 있지 않았습니다.</p>
+<p>교수님께 제안해 배치도 위에서 바로 예약하는 첫 버전을 FastAPI로 만들었고, 백엔드와 서버를 맡았습니다.<br>문서에 없던 규칙은 카페 공지와 학생, 과대표의 의견을 모아 정했습니다.</p>
+<p>2026년 10월부터는 이 규칙을 요구사항으로 삼아, 여러 학원과 학교가 쓰는 플랫폼 「마디」를 Spring으로 만들고 있습니다.</p>
 </section>
 <section class="detail-section" id="architecture">
 <h2 class="detail-section__title">Architecture</h2>
@@ -86,6 +85,7 @@
 <section class="detail-section" id="contributions">
 <h2 class="detail-section__title">Contributions</h2>
 <div class="contrib"><h3 class="contrib__title">그려서 만드는 연습실 지도</h3><p>방이 많은 건물은 방 이름 목록만으로는 위치를 찾기 어렵습니다.<br>관리자가 층별 배치도를 직접 그리고, 학생은 그 지도에서 방을 골라 예약합니다.</p><figure class="figure figure--wide"><img class="figure__img--screen" src="../../assets/img/studio-booking/booking-editor.png" alt="" width="900" height="599" loading="lazy"><figcaption class="figure__caption">관리자가 모눈 위에 펜으로 복도를 긋고 방 이름표를 얹는다.</figcaption></figure><figure class="figure figure--wide"><img class="figure__img--screen" src="../../assets/img/studio-booking/booking-user.png" alt="" width="900" height="624" loading="lazy"><figcaption class="figure__caption">학생은 같은 데이터를 읽어 그린 배치도에서 방을 고른다.</figcaption></figure></div>
+<div class="contrib"><h3 class="contrib__title">같은 방에 몰린 예약은 한 건만</h3><p>예약이 열리는 순간 같은 방에 요청이 몰리면, 조회한 뒤 저장하는 방식으로는 여러 건이 함께 저장됩니다.<br>잠금 방식 4가지를 같은 조건에서 비교해, 방과 날짜로 요청을 줄 세우는 advisory lock을 골랐습니다.<br>잠금을 빠뜨린 경로가 생겨도 겹치지 않게, DB 배타 제약(EXCLUDE)을 마지막 방어선으로 두었습니다.</p></div>
 <div class="contrib"><h3 class="contrib__title">학과마다 다른 예약 규칙</h3><p>학과마다 예약이 열리는 시각, 같은 날 다시 예약하는 방식 같은 규칙이 다릅니다.<br>관리자가 이런 규칙을 화면에서 직접 고를 수 있게 했습니다.</p><figure class="figure figure--wide"><img class="figure__img--screen" src="../../assets/img/studio-booking/booking-policy.png" alt="" width="900" height="675" loading="lazy"><figcaption class="figure__caption">규칙 이름만 보고는 무엇이 달라지는지 알기 어려워, 규칙마다 설명을 한 줄씩 붙였다.</figcaption></figure></div>
 <div class="contrib"><h3 class="contrib__title">예약과 학원 관리를 한 곳에서</h3><p>음악학원은 연습실 예약과 원생 관리를 보통 다른 프로그램으로 따로 합니다.<br>마디는 예약과 원생, 수강, 출결, 청구를 한 서비스에 묶었습니다.<br>기관마다 필요한 기능만 켜서 쓸 수 있습니다.</p></div>
 </section>
@@ -97,8 +97,8 @@
 </section>
 </article>
 <nav class="pager" aria-label="다른 프로젝트">
-<a class="pager__prev" href="../artist-platform/"><span>이전</span>아티스트 홍보 웹사이트</a>
-<a class="pager__next" href="../emotion-tts/"><span>다음</span>감정 기반 TTS 보컬 합성 시스템</a>
+<a class="pager__prev" href="../cast/"><span>이전</span>CAST (Carbon-Aware Spatio-Temporal Scheduling)</a>
+<a class="pager__next" href="../artist-platform/"><span>다음</span>아티스트 홍보 웹사이트</a>
 </nav>
 </main>
 <footer class="site-footer">

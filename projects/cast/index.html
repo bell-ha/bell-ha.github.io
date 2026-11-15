@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CAST (Carbon-Aware Spatio-Temporal Scheduling) | Jongha Lee</title>
-<meta name="description" content="탄소 배출을 줄이는 작업 스케줄러">
+<meta name="description" content="리전 용량과 마감을 지키며 작업을 탄소가 적은 리전과 시각으로 옮기는 스케줄러">
 <link rel="canonical" href="https://bell-ha.github.io/projects/cast/">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CAST (Carbon-Aware Spatio-Temporal Scheduling) | Jongha Lee">
-<meta property="og:description" content="탄소 배출을 줄이는 작업 스케줄러">
+<meta property="og:description" content="리전 용량과 마감을 지키며 작업을 탄소가 적은 리전과 시각으로 옮기는 스케줄러">
 <meta property="og:url" content="https://bell-ha.github.io/projects/cast/">
 <meta property="og:image" content="https://bell-ha.github.io/assets/img/common/og.jpg">
 <meta property="og:locale" content="ko_KR">
@@ -50,17 +50,17 @@
 <header class="detail-header">
 <p class="detail-breadcrumb"><a href="../../#software">Software &amp; AI</a></p>
 <h1 class="detail-title">CAST (Carbon-Aware Spatio-Temporal Scheduling)</h1>
-<p class="detail-oneline">탄소 배출을 줄이는 작업 스케줄러</p>
+<p class="detail-oneline">리전 용량과 마감을 지키며 작업을 탄소가 적은 리전과 시각으로 옮기는 스케줄러</p>
 <dl class="detail-meta">
 <dt class="meta-key">기간</dt><dd>2026.07 ~</dd>
-<dt class="meta-key">역할</dt><dd>4인 팀 · 리전 배정 로드밸런서 담당</dd>
+<dt class="meta-key">역할</dt><dd>4인 팀 · 리전 배정 로드밸런서</dd>
 </dl>
 <ul class="detail-links">
 <li><a href="https://github.com/bell-ha/carbon-aware-scheduler" target="_blank" rel="noopener">GitHub</a></li>
 </ul>
 <ul class="detail-tags">
 <li class="tag">Python</li>
-<li class="tag">PuLP/CBC</li>
+<li class="tag">SciPy (HiGHS)</li>
 <li class="tag">NumPy</li>
 <li class="tag">Pandas</li>
 <li class="tag">Dash</li>
@@ -68,29 +68,41 @@
 </header>
 <section class="detail-section" id="impact">
 <h2 class="detail-section__title">Impact</h2>
-<ul class="impact-grid"><li class="impact-item"><span class="impact-item__num">5<span class="impact-item__unit">종</span></span><span class="impact-item__label">선행연구를 직접 구현해 자기 결과와 나란히 비교</span></li><li class="impact-item"><span class="impact-item__num">1<span class="impact-item__unit">명령</span></span><span class="impact-item__label">표, 그림, 스윕을 통째로 재생성하는 재현 하네스</span></li><li class="impact-item"><span class="impact-item__num">56.9<span class="impact-item__unit">%</span></span><span class="impact-item__label">맡은 리전 배정만으로 줄인 탄소: 홈 리전 즉시 실행 대비 (시뮬레이션)</span></li></ul>
+<ul class="impact-grid"><li class="impact-item"><span class="impact-item__num impact-item__num--text">배출 71.93% 감축</span><span class="impact-item__label"><span class="impact-item__line">합성 작업 기준, Azure VM 기록은 51.35%</span><span class="impact-item__line">리전 상한과 마감 위반 0건</span></span></li><li class="impact-item"><span class="impact-item__num impact-item__num--text">용량 안에서 거의 같은 감축</span><span class="impact-item__label"><span class="impact-item__line">1년치를 미리 아는 정책과 0.98%p 차이</span><span class="impact-item__line">그 정책은 한 리전에 129개, CAST는 17개</span></span></li><li class="impact-item"><span class="impact-item__num impact-item__num--text">매시간 다시 푸는 배정</span><span class="impact-item__label"><span class="impact-item__line">대기 작업 전체의 리전과 시각을 함께 결정</span><span class="impact-item__line">슬롯당 평균 223 ms에 풀이</span></span></li></ul>
 </section>
 <section class="detail-section" id="background">
 <h2 class="detail-section__title">Background</h2>
-<p>같은 연산이라도 어느 지역에서 몇 시에 돌리는지에 따라 배출되는 탄소가 달라집니다. 급하지 않은 작업을 전기가 깨끗한 리전과 시간대로 옮기는 스케줄러입니다. 4인 팀이고 역할은 이렇게 나눴습니다.</p>
-<ul><li><strong>팀원</strong>: 작업을 미뤄서 깨끗한 시간대로 옮기는 스케줄러 본체, 탄소집약도를 예측하는 LSTM</li><li><strong>본인</strong>: 리전 배정 ILP 로드밸런서, 용량을 고려한 온라인 확장, 선행연구 5종 재현, 재현성 확인용 실행 하네스</li></ul>
-<p>8개 리전의 1년치 실측 탄소집약도 위에 작업 146,000건을 합성해 돌린 시뮬레이션입니다. 탄소집약도는 실측값이고 작업 목록은 생성한 것입니다.</p>
+<p>같은 연산도 어느 리전에서 몇 시에 돌리는지에 따라 탄소 배출이 달라집니다.<br>8개 리전의 2025년 평균 탄소집약도는 인도 543.2, 프랑스 13.6 gCO₂/kWh로 약 40배 차이 납니다.</p>
+<p>그런데 모든 작업이 같은 저탄소 리전과 시각을 고르면, 한 리전에 작업이 몰립니다.<br>용량을 두지 않은 선행 정책을 그대로 쓰면 작업의 99.75%가 프랑스 한 리전으로 갑니다.</p>
+<p>선행 연구는 용량과 마감 중 하나를 제약으로 두지 않거나, 도착할 때 배정을 확정하고 다시 풀지 않습니다.</p>
+<div class="table-wrap"><table class="md-table"><thead><tr><th scope="col">정책</th><th scope="col">리전 용량</th><th scope="col">마감</th><th scope="col">다시 풀기</th></tr></thead><tbody><tr><td>Sukprasert</td><td>없음</td><td>지킴</td><td>없음 (1년치를 미리 앎)</td></tr><tr><td>Caspian</td><td>지킴</td><td>페널티로 완화</td><td>매시간</td></tr><tr><td>도착 시 배정 (Zanotto)</td><td>지킴</td><td>지킴</td><td>없음</td></tr><tr><td><strong>CAST</strong></td><td>넘긴 양에 가장 큰 페널티</td><td>지킴</td><td>매시간</td></tr></tbody></table></div>
 </section>
 <section class="detail-section" id="architecture">
 <h2 class="detail-section__title">Architecture</h2>
-<figure class="figure figure--wide"><img class="figure__img--arch" src="../../assets/img/cast/cast-arch.png" alt="" width="2491" height="1229" loading="lazy"><figcaption class="figure__caption">배정은 한 시간 전 예측으로 하고, 정산은 같은 시각 실측으로만 한다.</figcaption></figure>
+<figure class="figure figure--wide"><img class="figure__img--arch" src="../../assets/img/cast/cast-arch.png" alt="CAST 구성. 리전별 탄소집약도 기록을 LSTM이 24시간 앞까지 예측하고, 작업과 마감, 리전 간 지연을 받아 슬롯마다 하나의 선형 계획으로 로드밸런서(리전)와 스케줄러(시작 시각, 용량)를 함께 푼다. 이번 슬롯에 시작하는 작업만 8개 리전에 확정하고, 나머지는 다음 슬롯으로 넘긴다." width="3247" height="1109" loading="lazy"><figcaption class="figure__caption">CAST 구성</figcaption></figure>
+<ul><li><strong>예측기</strong>: 리전마다 LSTM이 과거 168시간으로 앞으로 24시간의 탄소집약도를 예측</li><li><strong>로드밸런서</strong>: 작업마다 리전 후보와 왕복 지연 비용을 정함</li><li><strong>스케줄러</strong>: 시작 시각 후보를 만들고 리전 용량을 셈</li><li><strong>통합 배정</strong>: 둘을 하나의 선형 계획으로 풀고, 이번 시간에 시작할 작업만 확정</li></ul>
 </section>
 <section class="detail-section" id="contributions">
 <h2 class="detail-section__title">Contributions</h2>
-<div class="contrib"><h3 class="contrib__title">배정을 정수최적화 문제로</h3><p>슬롯마다 들어온 작업을 8개 리전에 배정합니다. 목적함수는 탄소집약도와 네트워크 지연의 가중합이고 제약은 리전별 동시 실행 한도와 전량 처리입니다. 어느 리전에도 넣을 수 없는 작업이 생기면 해가 사라지기 때문에, 미배정을 허용하는 변수를 따로 두고 비용을 물렸습니다.</p></div>
-<div class="contrib"><h3 class="contrib__title">솔버를 건너뛰어도 되는 구간</h3><p>1년치를 전부 돌리는 실험에서는 슬롯마다 솔버를 부르는 비용이 그대로 실험 시간이 됩니다. 모든 리전의 가용량이 배치 크기보다 크면 용량 제약이 아무것도 묶지 않아서, 각 작업이 따로 가장 싼 리전을 고르는 것과 결과가 같습니다. 그 조건을 판별해 솔버를 건너뛰게 했습니다.</p></div>
-<div class="contrib"><h3 class="contrib__title">예측으로 라우팅, 실측으로 정산</h3><p>처음에는 감축 효과가 실제보다 크게 나왔습니다. 작업을 옮길 때 쓴 예측 탄소집약도로 감축량까지 계산하고 있어서 예측이 빗나간 만큼이 감축으로 들어갔기 때문입니다. 라우팅은 예측값으로 하고 정산은 같은 시간의 실측값으로만 하도록 입력을 나눴습니다.</p></div>
-<div class="contrib"><h3 class="contrib__title">결과</h3><p>기준선은 홈 리전에서 즉시 실행하는 경우입니다. 제가 맡은 리전 배정만 적용하면 탄소가 56.9% 줄고 지연이 36.2ms 늘었습니다. 여기에 팀원이 맡은 시간 이동을 결합한 전체 구성은 62.9%이고, 작업 146,000건 전량이 마감 안에 처리됐습니다. 탄소와 지연의 가중치는 고정하지 않고 매 슬롯 파레토 곡선의 무릎점에서 자동으로 고르게 했습니다.</p></div>
+<div class="contrib"><h3 class="contrib__title">마감은 지키고, 용량은 가장 큰 페널티로</h3><p>마감은 하드 제약으로 두고, 리전 상한을 넘긴 양은 목적함수에서 가장 비싸게 둡니다.<br>미룰 수 없는 작업이 들어올 자리를 위해 예비 용량을 남깁니다.</p><figure class="figure figure--wide"><img class="figure__img--diagram" src="../../assets/img/cast/cast-california-day.png" alt="캘리포니아의 7월 7일. 위는 탄소집약도, 가운데는 작업별 실행 구간, 아래는 시간별 동시 실행 수다. 탄소가 낮은 UTC 16~23시에 동시 실행이 상한 17에 닿고, 들어가지 못한 작업은 그 앞뒤 시각에 시작한다." width="1493" height="1916" loading="lazy"><figcaption class="figure__caption">캘리포니아의 하루: 탄소가 낮은 시간에 동시 실행이 상한 17에 닿고, 들어가지 못한 작업은 앞뒤 시각으로 간다.</figcaption></figure></div>
+<div class="contrib"><h3 class="contrib__title">매시간 다시 풀기</h3><p>매시간 모든 대기 작업의 리전과 시작 시각을 하나의 선형 계획으로 다시 풉니다.<br>이번 시간에 시작할 작업만 확정해, 그사이 도착한 작업과 자리를 다시 나눕니다.<br>도착할 때 확정하는 방식과 같은 지연에서 비교하면, 합성에서 0.96%p, Azure에서 2.53%p 덜 배출합니다.</p></div>
+<div class="contrib"><h3 class="contrib__title">무릎점 규칙</h3><p>탄소와 지연 사이의 가중치 α는 미리 정하지 않습니다.<br>매시간 후보 α 11개로 배정을 풀고, 지연과 배출이 모두 가장 작은 점에 가장 가까운 것을 고릅니다.<br>예: 한국에서 제출된 작업이 7시간 뒤 일본에서 시작해, 지연 30 ms로 예측 탄소를 42% 낮췄습니다.</p><figure class="figure figure--wide"><img class="figure__img--diagram" src="../../assets/img/cast/cast-knee-example.png" alt="한국에서 제출된 작업 하나에 대해 α별로 고른 리전과 시작 시각. α=0이면 한국에서 바로, α=1이면 프랑스에서 시작하고, 무릎점 α=0.5는 7시간 뒤 일본을 골랐다." width="1493" height="1041" loading="lazy"><figcaption class="figure__caption">α에 따라 고른 리전과 시작 시각</figcaption></figure></div>
+<div class="contrib"><h3 class="contrib__title">선행 정책을 같은 조건에서 비교</h3><p>선행 정책을 같은 자료와 배출 계산으로 다시 구현해 비교했습니다.<br>Sukprasert는 1년치를 미리 알고도 한 리전에 129개를 동시에 돌려야 하고, Caspian은 5,582건의 마감을 넘겼습니다.</p><figure class="figure figure--wide"><img class="figure__img--diagram" src="../../assets/img/cast/cast-prior-compare.png" alt="선행 정책과 CAST의 절감, 필요 용량, 마감 위반 비교. Sukprasert 96.6%, 129개, 0건. Caspian 67.5%, 34개, 5,582건. CAST α=1 95.7%, 17개, 0건. CAST 무릎점 71.9%, 17개, 0건." width="1493" height="1736" loading="lazy"><figcaption class="figure__caption">선행 정책과의 비교: 절감, 필요 용량, 마감 위반</figcaption></figure></div>
+</section>
+<section class="detail-section" id="results">
+<h2 class="detail-section__title">Results</h2>
+<p>8개 리전의 2025년 1년치 탄소집약도 위에서 합성 작업 14만여 건을 돌린 결과입니다.</p>
+<div class="table-wrap"><table class="md-table"><thead><tr><th scope="col">설정</th><th scope="col">절감</th><th scope="col">필요 용량</th><th scope="col">마감 위반</th></tr></thead><tbody><tr><td>CAST, 무릎점</td><td>71.93%</td><td>17</td><td>0</td></tr><tr><td>CAST, 탄소만 (α=1)</td><td>95.65%</td><td>17</td><td>0</td></tr><tr><td>시간 이동만</td><td>18.78%</td><td>17</td><td>0</td></tr><tr><td>리전 이동만</td><td>61.57%</td><td>17</td><td>0</td></tr><tr><td>Sukprasert</td><td>96.63%</td><td>129</td><td>0</td></tr><tr><td>Caspian</td><td>67.54%</td><td>34</td><td>5,582</td></tr></tbody></table></div>
+<ul><li>Azure VM 기록으로 만든 작업에서도 51.35%를 줄였고, 위반은 0건</li><li>예측기, 상한, 작업을 바꿔도 위반은 0이고, 미래 정보를 모두 빼도 68.88%</li><li>슬롯당 풀이는 평균 223 ms, 최대 1,223 ms</li><li>평균 배출계수 기준이며, 모든 작업에 왕복 지연 상한 100 ms를 두면 32.98%</li></ul>
+</section>
+<section class="detail-section" id="troubleshooting">
+<h2 class="detail-section__title">Troubleshooting</h2>
+<div class="ts-item"><h3 class="ts-item__title">감축 효과가 실제보다 크게 나옴</h3><dl class="ts-item__rows"><dt class="ts-item__key">문제</dt><dd class="ts-item__val">처음 계산한 탄소 감축률이 실제보다 크게 나옴</dd><dt class="ts-item__key">원인</dt><dd class="ts-item__val">작업을 옮길 때 쓴 예측 탄소집약도로 감축량까지 계산함. 예측이 빗나간 만큼이 감축으로 들어감</dd><dt class="ts-item__key">해결</dt><dd class="ts-item__val">라우팅은 예측값으로 하고, 정산은 같은 시각의 실측값으로만 하도록 입력을 나눔</dd><dt class="ts-item__key">결과</dt><dd class="ts-item__val">지금 밝힌 감축률 71.93%와 51.35%는 모두 실측으로 정산한 값</dd></dl></div>
 </section>
 </article>
 <nav class="pager" aria-label="다른 프로젝트">
-<a class="pager__prev" href="../k8s-infra/"><span>이전</span>쿠버네티스 클러스터 인프라 구축</a>
-<a class="pager__next" href="../onwork/"><span>다음</span>OnWork 그룹웨어</a>
+<a class="pager__prev" href="../anti-doping/"><span>이전</span>생성형 AI 기반 도핑 예방 교육 시스템</a>
+<a class="pager__next" href="../studio-booking/"><span>다음</span>마디(Madi)</a>
 </nav>
 </main>
 <footer class="site-footer">
