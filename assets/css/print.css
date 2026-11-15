@@ -163,6 +163,11 @@ p, li, dd, .ts-item__val, .impact-item__label { orphans: 2; widows: 2; }
 /* 표 머리를 쪽마다 반복 */
 thead { display: table-header-group; }
 tr { break-inside: avoid; }
+/* 짧은 표(결과표, 비교표)는 쪽 사이에 갈리지 않게 */
+.table-wrap { break-inside: avoid; page-break-inside: avoid; }
+/* 결과표 섹션은 제목과 표가 떨어지지 않게 통째로 */
+#results { break-inside: avoid; page-break-inside: avoid; }
+.detail-section__title { break-after: avoid; page-break-after: avoid; }
 
 /* ============================================================
    5. 컴포넌트 — 화면 장식을 문서 장식으로 바꾼다
